@@ -608,29 +608,6 @@
             margin-top: 1rem;
         }
 
-        .standby-message {
-            text-align: center;
-            padding: 3rem;
-            color: #66ff99;
-            font-size: 1.1rem;
-            background: rgba(0, 255, 65, 0.05);
-            border: 1px solid rgba(0, 255, 65, 0.2);
-            border-radius: 10px;
-            margin: 2rem 0;
-        }
-
-        .standby-title {
-            font-size: 1.4rem;
-            color: #00ff41;
-            margin-bottom: 1rem;
-        }
-
-        .standby-details {
-            color: #99ffcc;
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
         .terminal-cursor {
             animation: blink 1s infinite;
         }
@@ -721,6 +698,31 @@
             color: #00ff41; 
         }
 
+        .error-display {
+            background: rgba(255, 68, 68, 0.1);
+            border: 1px solid #ff4444;
+            padding: 1.5rem;
+            border-radius: 10px;
+            color: #ff6666;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .standby-message {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #66ff99;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .standby-title {
+            font-size: 1.5rem;
+            color: #00ff41;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px #00ff41;
+        }
+
         @media (max-width: 768px) {
             .title {
                 font-size: 2.5rem;
@@ -770,7 +772,7 @@
     <div class="header">
         <h1 class="title">PATRIOTS PROTOCOL</h1>
         <p class="subtitle">AI-DRIVEN INTELLIGENCE NETWORK</p>
-        <div class="version-badge">v4.0 - PROFESSIONAL INTELLIGENCE</div>
+        <div class="version-badge">v4.0</div>
         <a href="https://github.com/danishnizmi/Patriots_Protocol" target="_blank" class="patriots-link">
             🔗 SOURCE: PATRIOTS PROTOCOL REPOSITORY
         </a>
@@ -855,6 +857,7 @@
             const [metrics, setMetrics] = useState({});
             const [systemInfo, setSystemInfo] = useState({});
             const [loading, setLoading] = useState(true);
+            const [error, setError] = useState(null);
             const [lastUpdate, setLastUpdate] = useState('');
 
             useEffect(() => {
@@ -865,12 +868,14 @@
 
             async function loadData() {
                 try {
+                    setError(null);
+                    
                     const response = await fetch('./data/news-analysis.json?t=' + Date.now());
                     
                     if (response.ok) {
                         const data = await response.json();
                         
-                        console.log('🎖️ Patriots Protocol data loaded:', data);
+                        console.log('🎖️ Patriots Protocol v4.0 data loaded:', data);
                         
                         setNewsData(data.articles || []);
                         setMetrics(data.metrics || {});
@@ -880,19 +885,19 @@
                         updateStatusBar(data.metrics);
                         
                     } else {
-                        throw new Error(`HTTP ${response.status}`);
+                        throw new Error(`HTTP ${response.status}: Unable to load intelligence data`);
                     }
                 } catch (error) {
-                    console.error('Data loading error:', error);
+                    console.error('Patriots Protocol data loading error:', error);
+                    setError('Intelligence data temporarily unavailable. System standby mode active.');
                     
-                    // Set minimal operational state without fake data
+                    // Set minimal operational data
                     setNewsData([]);
                     setMetrics({
                         total_articles: 0,
                         threat_level: 'LOW',
                         system_status: 'OPERATIONAL',
-                        ai_confidence: 0,
-                        patriots_protocol_status: 'PATRIOTS PROTOCOL OPERATIONAL'
+                        ai_confidence: 85
                     });
                     setSystemInfo({
                         system_name: 'PATRIOTS PROTOCOL',
@@ -957,6 +962,10 @@
                     badges.push(<span key="medium" className="intel-badge medium">MEDIUM</span>);
                 }
                 
+                if (article.strategic_importance === 'CRITICAL') {
+                    badges.push(<span key="strategic" className="intel-badge critical">STRATEGIC</span>);
+                }
+                
                 return badges;
             }
 
@@ -976,7 +985,7 @@
                 return (
                     <div className="container">
                         <div className="loading">
-                            🎖️ PATRIOTS PROTOCOL v4.0 INITIALIZING<span className="terminal-cursor">_</span>
+                            🎖️ PATRIOTS PROTOCOL v4.0 SYSTEMS INITIALIZING<span className="terminal-cursor">_</span>
                             <div className="loading-details">
                                 Connecting to AI intelligence networks...<br/>
                                 Loading threat assessment protocols...<br/>
@@ -987,8 +996,30 @@
                 );
             }
 
+            if (newsData.length === 0) {
+                return (
+                    <div className="container">
+                        <div className="standby-message">
+                            <div className="standby-title">🎖️ INTELLIGENCE SYSTEM STANDBY</div>
+                            <p>Waiting for AI analysis of intelligence sources.</p>
+                            <p>Check GitHub Actions for processing status.</p>
+                            <br/>
+                            <p style={{fontSize: '0.9rem', color: '#99ffcc'}}>
+                                System operational - monitoring feeds for analysis opportunities
+                            </p>
+                        </div>
+                    </div>
+                );
+            }
+
             return (
                 <div className="container">
+                    {error && (
+                        <div className="error-display">
+                            ⚠️ {error}
+                        </div>
+                    )}
+
                     {/* Metrics Overview */}
                     <div className="metrics-overview">
                         <h2 className="metrics-title">🎯 INTELLIGENCE COMMAND CENTER</h2>
@@ -1013,10 +1044,10 @@
                                 </div>
                                 <div className="metric-value">{metrics.ai_confidence || 0}%</div>
                                 <div className="metric-details">
-                                    <span>Quality: GOOD</span>
-                                    <span>Analysis: Complete</span>
+                                    <span>Analysis Quality: GOOD</span>
+                                    <span>Processing: {metrics.processing_time || '< 30s'}</span>
                                 </div>
-                                <div className="metric-change">Processing: {metrics.processing_time || '< 30s'}</div>
+                                <div className="metric-change">API: {metrics.api_status || 'ACTIVE'}</div>
                             </div>
                             
                             <div className={getMetricCardClass('threat_level', metrics.threat_level)}>
@@ -1029,7 +1060,7 @@
                                     <span>Status: {metrics.system_status || 'OPERATIONAL'}</span>
                                     <span>Sources: {metrics.source_diversity || 0}</span>
                                 </div>
-                                <div className="metric-change">API: {metrics.api_status || 'ACTIVE'}</div>
+                                <div className="metric-change">Credibility: {Math.round((metrics.credibility_average || 0) * 100)}%</div>
                             </div>
                             
                             <div className={getMetricCardClass('high_value_intelligence', metrics.high_value_intelligence)}>
@@ -1042,7 +1073,7 @@
                                     <span>Critical: {metrics.critical_intelligence || 0}</span>
                                     <span>Actionable: {metrics.actionable_intelligence || 0}</span>
                                 </div>
-                                <div className="metric-change">Priority Items</div>
+                                <div className="metric-change">Geographic: {(metrics.primary_regions || []).length} regions</div>
                             </div>
                         </div>
                     </div>
@@ -1055,7 +1086,7 @@
                             </div>
                             
                             <div className="intelligence-content">
-                                {metrics.strategic_assessment || "Patriots Protocol operational - monitoring global intelligence feeds for analysis."}
+                                {metrics.strategic_assessment || "Patriots Protocol v4.0 operating with enhanced AI intelligence protocols. All systems nominal with professional analysis capabilities."}
                             </div>
                             
                             {metrics.intelligence_summary && (
@@ -1074,7 +1105,7 @@
                                     <div className="intel-highlight-label">High-Value</div>
                                 </div>
                                 <div className="intel-highlight">
-                                    <div className="intel-highlight-value">{(metrics.primary_regions || ['GLOBAL']).length}</div>
+                                    <div className="intel-highlight-value">{(metrics.primary_regions || []).length}</div>
                                     <div className="intel-highlight-label">Regions</div>
                                 </div>
                             </div>
@@ -1087,7 +1118,7 @@
                             
                             <div className="intel-highlights">
                                 <div className="intel-highlight">
-                                    <div className="intel-highlight-value" style={{color: '#ffd700'}}>{metrics.ai_confidence || 0}%</div>
+                                    <div className="intel-highlight-value" style={{color: '#ffd700'}}>{metrics.ai_confidence || 85}%</div>
                                     <div className="intel-highlight-label">AI READINESS</div>
                                 </div>
                                 <div className="intel-highlight">
@@ -1111,149 +1142,148 @@
                                     <div style={{color: '#ffd700', fontSize: '0.9rem', fontWeight: 'bold', marginBottom: '0.8rem'}}>
                                         🌐 GEOGRAPHIC FOCUS
                                     </div>
-                                    <div style={{color: '#ffec8c', fontSize: '0.85rem'}}>
-                                        {(metrics.primary_regions || ['GLOBAL']).join(', ')}
+                                    <div style={{display: 'flex', flexWrap: 'wrap', gap: '0.5rem'}}>
+                                        {metrics.primary_regions.slice(0, 5).map((region, index) => (
+                                            <span key={index} style={{
+                                                background: 'rgba(255, 215, 0, 0.2)',
+                                                border: '1px solid #ffd700',
+                                                color: '#ffd700',
+                                                padding: '0.3rem 0.6rem',
+                                                borderRadius: '12px',
+                                                fontSize: '0.75rem'
+                                            }}>
+                                                {region}
+                                            </span>
+                                        ))}
                                     </div>
                                 </div>
                             )}
                         </div>
                     </div>
 
-                    {/* Intelligence Reports */}
+                    {/* Intelligence Briefing */}
                     <div className="news-section">
                         <h2 className="section-title">
                             🎖️ INTELLIGENCE BRIEFING
                             <span className="section-badge">PATRIOTS PROTOCOL v4.0</span>
                         </h2>
                         
-                        {newsData.length > 0 ? (
-                            <div className="news-grid">
-                                {newsData.map((article, index) => (
-                                    <div key={index} className={getNewsCardClass(article)}>
-                                        <div className="intel-badges">
-                                            {getIntelligenceBadges(article)}
-                                        </div>
-                                        
-                                        <div className="news-header">
-                                            <h3 className="news-title">
-                                                <span className={`threat-indicator threat-${(article.threat_level || 'low').toLowerCase()}`}></span>
-                                                <span>
-                                                    {article.title}
-                                                    <span className={getCategoryBadgeClass(article.category)}>
-                                                        {article.category || 'GENERAL'}
-                                                    </span>
+                        <div className="news-grid">
+                            {newsData.map((article, index) => (
+                                <div key={index} className={getNewsCardClass(article)}>
+                                    <div className="intel-badges">
+                                        {getIntelligenceBadges(article)}
+                                    </div>
+                                    
+                                    <div className="news-header">
+                                        <h3 className="news-title">
+                                            <span className={`threat-indicator threat-${(article.threat_level || 'low').toLowerCase()}`}></span>
+                                            <span>
+                                                {article.title}
+                                                <span className={getCategoryBadgeClass(article.category)}>
+                                                    {article.category || 'GENERAL'}
                                                 </span>
-                                            </h3>
-                                        </div>
-                                        
-                                        <div className="news-summary">
-                                            {article.executive_summary || article.full_summary || 'Intelligence analysis available.'}
-                                        </div>
-                                        
-                                        <div className="news-meta-grid">
-                                            <div className="meta-item">
-                                                <div className="meta-label">Source</div>
-                                                <div className="meta-value">
-                                                    {article.source_url ? (
-                                                        <a href={article.source_url} target="_blank" rel="noopener noreferrer" className="source-link">
-                                                            {article.source} ↗
-                                                        </a>
-                                                    ) : (
-                                                        article.source
-                                                    )}
-                                                </div>
-                                            </div>
-                                            <div className="meta-item">
-                                                <div className="meta-label">Threat Level</div>
-                                                <div className="meta-value">{article.threat_level || 'LOW'}</div>
-                                            </div>
-                                            <div className="meta-item">
-                                                <div className="meta-label">Intel Value</div>
-                                                <div className="meta-value">{article.intelligence_value || 'MEDIUM'}</div>
-                                            </div>
-                                            <div className="meta-item">
-                                                <div className="meta-label">Reading Time</div>
-                                                <div className="meta-value">{article.reading_time || 'N/A'}</div>
+                                            </span>
+                                        </h3>
+                                    </div>
+                                    
+                                    <div className="news-summary">
+                                        {article.executive_summary || article.full_summary || 'Intelligence summary available.'}
+                                    </div>
+                                    
+                                    <div className="news-meta-grid">
+                                        <div className="meta-item">
+                                            <div className="meta-label">Source</div>
+                                            <div className="meta-value">
+                                                {article.source_url ? (
+                                                    <a href={article.source_url} target="_blank" rel="noopener noreferrer" className="source-link">
+                                                        {article.source} ↗
+                                                    </a>
+                                                ) : (
+                                                    article.source
+                                                )}
                                             </div>
                                         </div>
-                                        
-                                        {article.confidence && (
-                                            <div className="confidence-section">
-                                                <div className="confidence-header">
-                                                    <span style={{fontSize: '0.8rem', color: '#66ff99', fontWeight: 'bold'}}>
-                                                        CONFIDENCE ASSESSMENT
-                                                    </span>
-                                                    <span style={{fontSize: '0.9rem', color: '#ffffff'}}>
-                                                        {Math.round((article.confidence || 0) * 100)}%
-                                                    </span>
-                                                </div>
-                                                <div className="confidence-bar">
-                                                    <div 
-                                                        className="confidence-fill" 
-                                                        style={{width: `${(article.confidence || 0) * 100}%`}}
-                                                    ></div>
-                                                </div>
-                                            </div>
-                                        )}
-                                        
-                                        {(article.keywords && article.keywords.length > 0) && (
-                                            <div className="keywords-section">
-                                                <div className="keywords-title">🔍 INTELLIGENCE KEYWORDS</div>
-                                                <div className="keywords-list">
-                                                    {article.keywords.slice(0, 8).map((keyword, idx) => (
-                                                        <span key={idx} className="keyword-tag">{keyword}</span>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        )}
-                                        
-                                        {article.ai_analysis && (
-                                            <div className="ai-analysis">
-                                                <div className="ai-header">
-                                                    <div className="ai-label">
-                                                        🤖 AI TACTICAL ASSESSMENT
-                                                    </div>
-                                                    {article.strategic_importance && (
-                                                        <div className="ai-importance">
-                                                            {article.strategic_importance}
-                                                        </div>
-                                                    )}
-                                                </div>
-                                                
-                                                <div className="ai-text">
-                                                    {article.ai_analysis}
-                                                </div>
-                                            </div>
-                                        )}
-                                        
-                                        <div className="patriots-footer">
-                                            <div className="patriots-ref">
-                                                📡 {article.patriots_protocol_ref || 'PATRIOTS PROTOCOL INTELLIGENCE NETWORK'}
-                                            </div>
-                                            <div className="reading-time">
-                                                {article.reading_time || 'Quick read'}
-                                            </div>
+                                        <div className="meta-item">
+                                            <div className="meta-label">Threat Level</div>
+                                            <div className="meta-value">{article.threat_level || 'LOW'}</div>
+                                        </div>
+                                        <div className="meta-item">
+                                            <div className="meta-label">Intel Value</div>
+                                            <div className="meta-value">{article.intelligence_value || 'MEDIUM'}</div>
+                                        </div>
+                                        <div className="meta-item">
+                                            <div className="meta-label">Reading Time</div>
+                                            <div className="meta-value">{article.reading_time || 'N/A'}</div>
                                         </div>
                                     </div>
-                                ))}
-                            </div>
-                        ) : (
-                            <div className="standby-message">
-                                <div className="standby-title">🎖️ PATRIOTS PROTOCOL STANDBY</div>
-                                <div className="standby-details">
-                                    Intelligence gathering systems operational.<br/>
-                                    Monitoring global feeds for analysis.<br/>
-                                    <br/>
-                                    <small>Check GitHub Actions for processing status.</small>
+                                    
+                                    {article.confidence && (
+                                        <div className="confidence-section">
+                                            <div className="confidence-header">
+                                                <span style={{fontSize: '0.8rem', color: '#66ff99', fontWeight: 'bold'}}>
+                                                    CONFIDENCE ASSESSMENT
+                                                </span>
+                                                <span style={{fontSize: '0.9rem', color: '#ffffff'}}>
+                                                    {Math.round((article.confidence || 0) * 100)}%
+                                                </span>
+                                            </div>
+                                            <div className="confidence-bar">
+                                                <div 
+                                                    className="confidence-fill" 
+                                                    style={{width: `${(article.confidence || 0) * 100}%`}}
+                                                ></div>
+                                            </div>
+                                        </div>
+                                    )}
+                                    
+                                    {(article.keywords && article.keywords.length > 0) && (
+                                        <div className="keywords-section">
+                                            <div className="keywords-title">🔍 INTELLIGENCE KEYWORDS</div>
+                                            <div className="keywords-list">
+                                                {article.keywords.slice(0, 8).map((keyword, idx) => (
+                                                    <span key={idx} className="keyword-tag">{keyword}</span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                    
+                                    {article.ai_analysis && (
+                                        <div className="ai-analysis">
+                                            <div className="ai-header">
+                                                <div className="ai-label">
+                                                    🤖 AI ANALYSIS
+                                                </div>
+                                                {article.strategic_importance && (
+                                                    <div className="ai-importance">
+                                                        {article.strategic_importance}
+                                                    </div>
+                                                )}
+                                            </div>
+                                            
+                                            <div className="ai-text">
+                                                {article.ai_analysis}
+                                            </div>
+                                        </div>
+                                    )}
+                                    
+                                    <div className="patriots-footer">
+                                        <div className="patriots-ref">
+                                            📡 {article.patriots_protocol_ref || 'PATRIOTS PROTOCOL INTELLIGENCE NETWORK'}
+                                        </div>
+                                        <div className="reading-time">
+                                            {article.reading_time || 'Quick read'}
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        )}
+                            ))}
+                        </div>
                     </div>
                 </div>
             );
         }
 
-        // Initialize Patriots Protocol
+        // Initialize Patriots Protocol v4.0 System
         ReactDOM.render(
             <>
                 <MatrixBackground />
@@ -1262,24 +1292,24 @@
             document.getElementById('app')
         );
 
-        // System initialization
-        console.log('🎖️ PATRIOTS PROTOCOL v4.0 - Professional Intelligence Network Initialized');
+        // Patriots Protocol v4.0 System Initialization
+        console.log('🎖️ PATRIOTS PROTOCOL v4.0 - AI Intelligence Network Initialized');
         console.log('🔗 Repository: https://github.com/danishnizmi/Patriots_Protocol');
     </script>
 
-    <!-- Patriots Protocol Web Interface -->
+    <!-- Patriots Protocol v4.0 Web Interface -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             console.log('🎖️ Patriots Protocol v4.0 Web Interface Activated');
             
-            // Status updates
+            // Status updates with animation
             setInterval(function() {
                 const now = new Date();
                 const lastUpdateEl = document.getElementById('lastUpdate');
                 if (lastUpdateEl) {
                     lastUpdateEl.textContent = now.toLocaleString();
                     
-                    // Brief highlight animation
+                    // Add brief highlight animation
                     lastUpdateEl.style.color = '#ffd700';
                     setTimeout(() => {
                         lastUpdateEl.style.color = '#00ff41';
