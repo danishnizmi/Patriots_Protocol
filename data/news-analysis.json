@@ -1,36 +1,69 @@
 {
   "articles": [
     {
-      "title": "Global Tech Markets Show Resilience Amid Economic Uncertainty",
-      "summary": "Technology sectors continue to demonstrate strong performance indicators despite ongoing global economic challenges and regulatory changes.",
-      "source": "REUTERS",
-      "timestamp": "2025-06-14T12:47:25.858Z",
-      "aiAnalysis": "Analysis pending - AI model temporarily unavailable"
+      "title": "Advanced Persistent Threats Target Global Infrastructure Networks",
+      "summary": "Cybersecurity firms report sophisticated attack campaigns targeting critical infrastructure across multiple nations, utilizing previously unknown zero-day exploits.",
+      "source": "CYBER_INTEL",
+      "timestamp": "2025-06-14T12:47:54.361Z",
+      "category": "SECURITY",
+      "aiAnalysis": "Tactical analysis pending - AI model processing queue active",
+      "confidence": 0.75,
+      "threatLevel": "LOW"
     },
     {
-      "title": "Cybersecurity Frameworks Enhanced for Critical Infrastructure",
-      "summary": "New protocols implemented across major infrastructure networks to strengthen defensive capabilities against emerging threats.",
-      "source": "BBC",
-      "timestamp": "2025-06-14T12:47:25.858Z",
-      "aiAnalysis": "Analysis pending - AI model temporarily unavailable"
+      "title": "Economic Sanctions Impact Technology Supply Chains Globally",
+      "summary": "New trade restrictions create significant disruptions in semiconductor manufacturing and distribution, affecting global technology markets.",
+      "source": "ECON_WATCH",
+      "timestamp": "2025-06-14T12:47:54.383Z",
+      "category": "ECONOMICS",
+      "aiAnalysis": "Tactical analysis pending - AI model processing queue active",
+      "confidence": 0.75,
+      "threatLevel": "LOW"
     },
     {
-      "title": "AI Integration Accelerates in Financial Services Sector",
-      "summary": "Major financial institutions report significant improvements in operational efficiency through strategic AI implementation programs.",
-      "source": "BLOOMBERG",
-      "timestamp": "2025-06-14T12:47:25.858Z",
-      "aiAnalysis": "Analysis pending - AI model temporarily unavailable"
+      "title": "AI Model Integration Accelerates in Defense Applications",
+      "summary": "Military organizations worldwide report rapid deployment of artificial intelligence systems for enhanced operational capabilities.",
+      "source": "DEFENSE_TECH",
+      "timestamp": "2025-06-14T12:47:54.402Z",
+      "category": "TECHNOLOGY",
+      "aiAnalysis": "Tactical analysis pending - AI model processing queue active",
+      "confidence": 0.75,
+      "threatLevel": "LOW"
+    },
+    {
+      "title": "Diplomatic Tensions Rise Over Data Sovereignty Regulations",
+      "summary": "International disputes emerge over cross-border data transfer regulations, impacting global tech companies and government cooperation.",
+      "source": "GEOPOLITICS",
+      "timestamp": "2025-06-14T12:47:54.421Z",
+      "category": "POLITICS",
+      "aiAnalysis": "Tactical analysis pending - AI model processing queue active",
+      "confidence": 0.75,
+      "threatLevel": "LOW"
     }
   ],
   "metrics": {
-    "totalArticles": 3,
-    "aiAnalysisComplete": 3,
+    "totalArticles": 4,
+    "aiAnalysisComplete": 4,
     "threatLevel": "LOW",
     "systemStatus": "OPERATIONAL",
-    "newArticles": 3,
-    "lastAnalysis": "2025-06-14T12:47:26.121Z",
-    "aiInsight": "Metrics analysis completed successfully"
+    "newArticles": 4,
+    "lastAnalysis": "2025-06-14T12:47:54.443Z",
+    "aiConfidence": 85,
+    "securityReports": 1,
+    "economicReports": 1,
+    "techReports": 1,
+    "strategicAssessment": "System operational with baseline intelligence processing capabilities.",
+    "emergingTrends": [
+      "AI Integration",
+      "Cybersecurity",
+      "Global Economy"
+    ],
+    "averageConfidence": 85,
+    "dataQuality": "GOOD",
+    "processingTime": "< 30 seconds",
+    "apiStatus": "ACTIVE",
+    "lastUpdate": "6/14/2025, 12:47:54 PM"
   },
-  "lastUpdated": "2025-06-14T12:47:26.121Z",
+  "lastUpdated": "2025-06-14T12:47:54.474Z",
   "version": "1.0"
 }
