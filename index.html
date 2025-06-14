@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PATRIOTS PROTOCOL - Enhanced AI Intelligence Network v3.0</title>
+    <title>PATRIOTS PROTOCOL - Real AI Intelligence v4.0</title>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono:wght@400&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
@@ -23,22 +23,11 @@
             min-height: 100vh;
         }
 
-        .matrix-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            opacity: 0.08;
-        }
-
         .header {
             text-align: center;
             padding: 2rem;
             border-bottom: 2px solid #00ff41;
             background: rgba(0, 0, 0, 0.95);
-            position: relative;
         }
 
         .title {
@@ -66,6 +55,17 @@
             margin-bottom: 0.5rem;
         }
 
+        .real-badge {
+            background: rgba(0, 255, 65, 0.2);
+            border: 1px solid #00ff41;
+            color: #00ff41;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-left: 1rem;
+        }
+
         .patriots-link {
             color: #ffd700;
             text-decoration: none;
@@ -90,14 +90,13 @@
         }
 
         .container {
-            max-width: 1500px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
         }
 
-        /* Enhanced Metrics Grid */
-        .metrics-overview {
-            margin-bottom: 2rem;
+        .metrics-section {
+            margin-bottom: 3rem;
         }
 
         .metrics-title {
@@ -110,7 +109,7 @@
 
         .metrics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
             margin-bottom: 2rem;
         }
@@ -120,26 +119,8 @@
             border: 1px solid #00ff41;
             padding: 1.5rem;
             border-radius: 10px;
-            backdrop-filter: blur(15px);
+            text-align: center;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .metric-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #00ff41, transparent);
-            animation: scan 3s infinite;
-        }
-
-        @keyframes scan {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
         }
 
         .metric-card:hover {
@@ -148,174 +129,47 @@
             transform: translateY(-3px);
         }
 
-        .metric-card.critical {
-            border-color: #ff4444;
-            background: rgba(255, 68, 68, 0.1);
-        }
-
-        .metric-card.high-value {
-            border-color: #ffd700;
-            background: rgba(255, 215, 0, 0.1);
-        }
-
-        .metric-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .metric-title {
-            font-size: 0.9rem;
-            color: #66ff99;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        .metric-icon {
-            font-size: 1.2rem;
-        }
-
         .metric-value {
             font-size: 2.5rem;
             font-weight: bold;
-            margin-bottom: 0.8rem;
-            text-shadow: 0 0 10px currentColor;
+            margin-bottom: 0.5rem;
+            color: #00ff41;
         }
 
-        .metric-details {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
+        .metric-label {
+            font-size: 0.9rem;
+            color: #66ff99;
+            text-transform: uppercase;
+        }
+
+        .metric-detail {
             font-size: 0.8rem;
-            color: #99ffcc;
-        }
-
-        .metric-change {
-            font-size: 0.85rem;
             color: #99ffcc;
             margin-top: 0.5rem;
         }
 
-        /* Intelligence Overview */
-        .intelligence-overview {
-            margin: 3rem 0;
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 2rem;
-        }
-
-        @media (max-width: 1024px) {
-            .intelligence-overview {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .strategic-section {
+        .status-section {
             background: rgba(0, 255, 65, 0.05);
             border: 1px solid #00ff41;
-            padding: 2rem;
-            border-radius: 12px;
-            backdrop-filter: blur(15px);
-        }
-
-        .tactical-section {
-            background: rgba(255, 215, 0, 0.05);
-            border: 1px solid #ffd700;
-            padding: 2rem;
-            border-radius: 12px;
-            backdrop-filter: blur(15px);
-        }
-
-        .section-header {
-            font-size: 1.4rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 1px solid rgba(0, 255, 65, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .intelligence-content {
-            color: #ffffff;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        .intel-highlights {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-
-        .intel-highlight {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 1rem;
-            border-radius: 8px;
-            text-align: center;
-            border: 1px solid rgba(0, 255, 65, 0.2);
-        }
-
-        .intel-highlight-value {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #00ff41;
-            margin-bottom: 0.3rem;
-        }
-
-        .intel-highlight-label {
-            font-size: 0.8rem;
-            color: #99ffcc;
-            text-transform: uppercase;
-        }
-
-        /* Trends and Analysis */
-        .trends-section {
-            margin: 2rem 0;
             padding: 1.5rem;
-            background: rgba(102, 204, 255, 0.05);
-            border: 1px solid rgba(102, 204, 255, 0.3);
             border-radius: 10px;
-        }
-
-        .trends-title {
-            color: #66ccff;
-            font-size: 1.1rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .trends-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 0.8rem;
-        }
-
-        .trend-item {
-            background: rgba(102, 204, 255, 0.15);
-            border: 1px solid #66ccff;
-            padding: 0.6rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: #66ccff;
+            margin-bottom: 2rem;
             text-align: center;
-            transition: all 0.3s ease;
         }
 
-        .trend-item:hover {
-            background: rgba(102, 204, 255, 0.25);
-            transform: scale(1.05);
+        .status-title {
+            color: #ffd700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
         }
 
-        /* News Section */
+        .status-message {
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
         .news-section {
-            margin-top: 3rem;
+            margin-top: 2rem;
         }
 
         .section-title {
@@ -329,17 +183,9 @@
             justify-content: space-between;
         }
 
-        .section-badge {
-            background: rgba(0, 255, 65, 0.2);
-            border: 1px solid #00ff41;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
-
         .news-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 2rem;
         }
 
@@ -349,24 +195,6 @@
             padding: 2rem;
             border-radius: 12px;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .news-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #00ff41, transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .news-card:hover::before {
-            opacity: 1;
         }
 
         .news-card:hover {
@@ -375,85 +203,11 @@
             box-shadow: 0 10px 30px rgba(0, 255, 65, 0.2);
         }
 
-        .news-card.critical-intel {
-            border-left: 4px solid #ff4444;
-            background: rgba(255, 68, 68, 0.05);
-        }
-
-        .news-card.high-value-intel {
-            border-left: 4px solid #ffd700;
-            background: rgba(255, 215, 0, 0.05);
-        }
-
-        .intel-badges {
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .intel-badge {
-            padding: 0.3rem 0.8rem;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            text-align: center;
-            min-width: 70px;
-        }
-
-        .intel-badge.critical {
-            background: rgba(255, 68, 68, 0.9);
-            color: #fff;
-            animation: pulse 2s infinite;
-        }
-
-        .intel-badge.high {
-            background: rgba(255, 215, 0, 0.9);
-            color: #000;
-        }
-
-        .intel-badge.medium {
-            background: rgba(255, 165, 0, 0.8);
-            color: #fff;
-        }
-
-        .news-header {
-            margin-bottom: 1.5rem;
-            padding-right: 5rem;
-        }
-
         .news-title {
             font-size: 1.3rem;
             margin-bottom: 1rem;
             color: #ffffff;
             line-height: 1.4;
-            display: flex;
-            align-items: flex-start;
-            gap: 0.5rem;
-        }
-
-        .threat-indicator {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            margin-top: 0.5rem;
-            flex-shrink: 0;
-        }
-
-        .threat-low { background-color: #00ff41; }
-        .threat-medium { background-color: #ffd700; }
-        .threat-high { background-color: #ff4444; }
-        .threat-critical { 
-            background-color: #ff0000; 
-            animation: criticalBlink 1s infinite;
-            box-shadow: 0 0 10px #ff0000;
-        }
-
-        @keyframes criticalBlink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0.3; }
         }
 
         .news-summary {
@@ -463,15 +217,14 @@
             font-size: 0.95rem;
         }
 
-        .news-meta-grid {
+        .news-meta {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: 1fr 1fr;
             gap: 1rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             padding: 1rem;
             background: rgba(0, 0, 0, 0.3);
             border-radius: 8px;
-            border: 1px solid rgba(0, 255, 65, 0.2);
         }
 
         .meta-item {
@@ -503,172 +256,91 @@
             text-shadow: 0 0 5px #66ccff;
         }
 
-        .confidence-section {
-            margin: 1rem 0;
-        }
-
-        .confidence-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .confidence-bar {
-            width: 100%;
-            height: 6px;
-            background: rgba(0, 255, 65, 0.2);
-            border-radius: 3px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .confidence-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #ff4444, #ffd700, #00ff41);
-            transition: width 0.8s ease;
-            position: relative;
-        }
-
-        .confidence-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            width: 10px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8));
-            animation: shine 2s infinite;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
-        .keywords-section {
-            margin: 1rem 0;
-        }
-
-        .keywords-title {
-            font-size: 0.8rem;
-            color: #66ff99;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-        }
-
-        .keywords-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-        }
-
-        .keyword-tag {
-            background: rgba(0, 255, 65, 0.2);
-            border: 1px solid #00ff41;
-            padding: 0.2rem 0.6rem;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            color: #00ff41;
-            transition: all 0.3s ease;
-        }
-
-        .keyword-tag:hover {
-            background: rgba(0, 255, 65, 0.3);
-            transform: scale(1.05);
-        }
-
         .ai-analysis {
             background: rgba(255, 215, 0, 0.08);
             border: 1px solid #ffd700;
             border-radius: 10px;
             padding: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .ai-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
+            margin-top: 1rem;
         }
 
         .ai-label {
             color: #ffd700;
             font-size: 0.9rem;
             font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .ai-importance {
-            background: rgba(255, 215, 0, 0.2);
-            border: 1px solid #ffd700;
-            padding: 0.2rem 0.6rem;
-            border-radius: 10px;
-            font-size: 0.7rem;
-            color: #ffd700;
+            margin-bottom: 1rem;
         }
 
         .ai-text {
             color: #ffec8c;
             font-size: 0.95rem;
             line-height: 1.6;
-            margin-bottom: 1rem;
         }
 
-        .ai-recommendations {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 1rem;
-            border-radius: 6px;
-            border-left: 3px solid #ffd700;
-        }
-
-        .recommendations-title {
-            color: #ffd700;
-            font-size: 0.8rem;
-            margin-bottom: 0.5rem;
+        .threat-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
             font-weight: bold;
+            text-align: center;
+            margin-left: 1rem;
         }
 
-        .recommendations-list {
-            list-style: none;
-            padding: 0;
+        .threat-low {
+            background: rgba(0, 255, 65, 0.2);
+            border: 1px solid #00ff41;
+            color: #00ff41;
         }
 
-        .recommendations-list li {
-            color: #ffec8c;
-            font-size: 0.85rem;
-            margin-bottom: 0.3rem;
-            padding-left: 1rem;
-            position: relative;
-        }
-
-        .recommendations-list li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
+        .threat-medium {
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid #ffd700;
             color: #ffd700;
+        }
+
+        .threat-high {
+            background: rgba(255, 68, 68, 0.2);
+            border: 1px solid #ff4444;
+            color: #ff4444;
+        }
+
+        .category-badge {
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
             font-weight: bold;
+            text-align: center;
+            margin-left: 0.5rem;
         }
 
-        .patriots-footer {
-            margin-top: 1.5rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255, 215, 0, 0.3);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.8rem;
+        .category-technology {
+            background: rgba(102, 204, 255, 0.2);
+            border: 1px solid #66ccff;
+            color: #66ccff;
         }
 
-        .patriots-ref {
-            color: #ffd700;
+        .category-security {
+            background: rgba(255, 68, 68, 0.2);
+            border: 1px solid #ff4444;
+            color: #ff4444;
         }
 
-        .reading-time {
-            color: #99ffcc;
+        .category-politics {
+            background: rgba(204, 102, 255, 0.2);
+            border: 1px solid #cc66ff;
+            color: #cc66ff;
+        }
+
+        .category-economics {
+            background: rgba(255, 170, 0, 0.2);
+            border: 1px solid #ffaa00;
+            color: #ffaa00;
+        }
+
+        .category-global {
+            background: rgba(0, 255, 65, 0.2);
+            border: 1px solid #00ff41;
+            color: #00ff41;
         }
 
         .loading {
@@ -678,19 +350,24 @@
             padding: 4rem;
         }
 
-        .loading-details {
-            font-size: 1rem;
-            color: #66ff99;
-            margin-top: 1rem;
+        .error-display {
+            background: rgba(255, 68, 68, 0.1);
+            border: 1px solid #ff4444;
+            padding: 1.5rem;
+            border-radius: 10px;
+            color: #ff6666;
+            margin: 2rem 0;
+            text-align: center;
         }
 
-        .terminal-cursor {
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
+        .no-data-display {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid #ffd700;
+            padding: 2rem;
+            border-radius: 10px;
+            color: #ffd700;
+            margin: 2rem 0;
+            text-align: center;
         }
 
         .status-bar {
@@ -705,88 +382,11 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .status-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .status-bar a {
-            color: #ffd700;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .status-bar a:hover {
-            color: #ffec8c;
-            text-shadow: 0 0 10px #ffd700;
-        }
-
-        .category-badge {
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            margin-left: 0.5rem;
-        }
-
-        .category-security { 
-            background: rgba(255, 68, 68, 0.2); 
-            border: 1px solid #ff4444; 
-            color: #ff4444; 
-        }
-        
-        .category-technology { 
-            background: rgba(102, 204, 255, 0.2); 
-            border: 1px solid #66ccff; 
-            color: #66ccff; 
-        }
-        
-        .category-economics { 
-            background: rgba(255, 170, 0, 0.2); 
-            border: 1px solid #ffaa00; 
-            color: #ffaa00; 
-        }
-        
-        .category-politics { 
-            background: rgba(204, 102, 255, 0.2); 
-            border: 1px solid #cc66ff; 
-            color: #cc66ff; 
-        }
-        
-        .category-defense { 
-            background: rgba(255, 69, 0, 0.2); 
-            border: 1px solid #ff4500; 
-            color: #ff4500; 
-        }
-        
-        .category-global { 
-            background: rgba(0, 255, 65, 0.2); 
-            border: 1px solid #00ff41; 
-            color: #00ff41; 
-        }
-
-        .error-display {
-            background: rgba(255, 68, 68, 0.1);
-            border: 1px solid #ff4444;
-            padding: 1.5rem;
-            border-radius: 10px;
-            color: #ff6666;
-            margin: 2rem 0;
-            text-align: center;
         }
 
         @media (max-width: 768px) {
             .title {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
             
             .metrics-grid {
@@ -797,133 +397,48 @@
                 grid-template-columns: 1fr;
             }
             
-            .news-header {
-                padding-right: 0;
-            }
-            
-            .intel-badges {
-                position: static;
-                display: flex;
-                flex-direction: row;
-                margin-bottom: 1rem;
-            }
-            
             .status-bar {
                 flex-direction: column;
                 text-align: center;
-                padding: 1.5rem;
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% { 
-                box-shadow: 0 0 5px rgba(255, 68, 68, 0.5); 
-                transform: scale(1);
-            }
-            50% { 
-                box-shadow: 0 0 20px rgba(255, 68, 68, 0.8); 
-                transform: scale(1.05);
+                gap: 0.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <canvas class="matrix-bg" id="matrix"></canvas>
-    
     <div class="header">
-        <h1 className="title">PATRIOTS PROTOCOL</h1>
-        <p className="subtitle">ENHANCED AI-DRIVEN INTELLIGENCE NETWORK</p>
-        <div className="version-badge">v3.0 - ADVANCED INTELLIGENCE</div>
-        <a href="https://github.com/danishnizmi/Patriots_Protocol" target="_blank" className="patriots-link">
+        <h1 class="title">PATRIOTS PROTOCOL</h1>
+        <p class="subtitle">REAL AI-DRIVEN INTELLIGENCE NETWORK</p>
+        <div class="version-badge">v4.0 - REAL AI ONLY</div>
+        <span class="real-badge">🚫 NO FAKE DATA</span>
+        <a href="https://github.com/danishnizmi/Patriots_Protocol" target="_blank" class="patriots-link">
             🔗 SOURCE: PATRIOTS PROTOCOL REPOSITORY
         </a>
     </div>
 
     <div id="app"></div>
 
-    <div className="status-bar">
-        <div className="status-item">
-            <span id="systemStatus">STATUS: INITIALIZING...</span>
-        </div>
-        <div className="status-item">
-            LAST UPDATE: <span id="lastUpdate">CONNECTING...</span>
-        </div>
-        <div className="status-item">
-            <span id="aiModels">AI MODELS: STARTING...</span>
-        </div>
+    <div class="status-bar">
+        <div>STATUS: <span id="systemStatus">INITIALIZING...</span></div>
+        <div>LAST UPDATE: <span id="lastUpdate">CONNECTING...</span></div>
         <a href="https://github.com/danishnizmi/Patriots_Protocol" target="_blank">
-            🎖️ PATRIOTS PROTOCOL v3.0
+            🎖️ PATRIOTS PROTOCOL v4.0 - REAL AI
         </a>
     </div>
 
     <script type="text/babel">
-        const { useState, useEffect, useRef } = React;
-
-        // Enhanced Matrix Background
-        function MatrixBackground() {
-            const canvasRef = useRef(null);
-
-            useEffect(() => {
-                const canvas = canvasRef.current;
-                const ctx = canvas.getContext('2d');
-                
-                function resizeCanvas() {
-                    canvas.width = window.innerWidth;
-                    canvas.height = window.innerHeight;
-                }
-                
-                resizeCanvas();
-                window.addEventListener('resize', resizeCanvas);
-
-                const matrix = "PATRIOTSPROTOCOL0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%^&*+=";
-                const matrixArray = matrix.split("");
-                const fontSize = 12;
-                const columns = canvas.width / fontSize;
-                const drops = [];
-
-                for (let x = 0; x < columns; x++) {
-                    drops[x] = 1;
-                }
-
-                function draw() {
-                    ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-                    ctx.fillStyle = '#00ff41';
-                    ctx.font = fontSize + 'px Share Tech Mono';
-
-                    for (let i = 0; i < drops.length; i++) {
-                        const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
-                        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                            drops[i] = 0;
-                        }
-                        drops[i]++;
-                    }
-                }
-
-                const interval = setInterval(draw, 35);
-                return () => {
-                    clearInterval(interval);
-                    window.removeEventListener('resize', resizeCanvas);
-                };
-            }, []);
-
-            return <canvas ref={canvasRef} className="matrix-bg" />;
-        }
+        const { useState, useEffect } = React;
 
         function App() {
             const [newsData, setNewsData] = useState([]);
             const [metrics, setMetrics] = useState({});
-            const [systemInfo, setSystemInfo] = useState({});
             const [loading, setLoading] = useState(true);
             const [error, setError] = useState(null);
-            const [lastUpdate, setLastUpdate] = useState('');
+            const [hasRealData, setHasRealData] = useState(false);
 
             useEffect(() => {
                 loadData();
-                const interval = setInterval(loadData, 180000); // Update every 3 minutes
+                const interval = setInterval(loadData, 300000); // Check every 5 minutes
                 return () => clearInterval(interval);
             }, []);
 
@@ -936,181 +451,71 @@
                     if (response.ok) {
                         const data = await response.json();
                         
-                        console.log('🎖️ Patriots Protocol v3.0 data loaded:', data);
+                        console.log('🎖️ Patriots Protocol v4.0 real data loaded:', data);
                         
-                        setNewsData(data.articles || []);
+                        const articles = data.articles || [];
+                        const hasReal = articles.length > 0 && articles.some(a => a.ai_analysis && a.ai_analysis.length > 20);
+                        
+                        setNewsData(articles);
                         setMetrics(data.metrics || {});
-                        setSystemInfo(data.patriots_protocol_info || data.system_status || {});
-                        setLastUpdate(new Date().toLocaleString());
+                        setHasRealData(hasReal);
                         
-                        updateStatusBar(data.metrics);
+                        updateStatusBar(data.metrics, hasReal);
                         
                     } else {
-                        throw new Error(`HTTP ${response.status}: Unable to load Patriots Protocol intelligence data`);
+                        throw new Error(`Unable to load data: ${response.status}`);
                     }
                 } catch (error) {
-                    console.error('Patriots Protocol data loading error:', error);
-                    setError('Patriots Protocol intelligence data temporarily unavailable. Enhanced fallback systems activated.');
-                    
-                    const fallbackData = createEnhancedFallbackData();
-                    setNewsData(fallbackData.articles);
-                    setMetrics(fallbackData.metrics);
-                    setSystemInfo(fallbackData.system_info);
-                    
+                    console.error('Data loading error:', error);
+                    setError('Unable to load real intelligence data. Check system logs.');
+                    setHasRealData(false);
                 } finally {
                     setLoading(false);
-                    setLastUpdate(new Date().toLocaleString());
                 }
             }
 
-            function updateStatusBar(metricsData) {
+            function updateStatusBar(metricsData, hasReal) {
                 const systemStatus = document.getElementById('systemStatus');
-                const lastUpdateEl = document.getElementById('lastUpdate');
-                const aiModels = document.getElementById('aiModels');
+                const lastUpdate = document.getElementById('lastUpdate');
                 
                 if (systemStatus) {
-                    systemStatus.textContent = `STATUS: ${metricsData?.system_status || 'OPERATIONAL'}`;
+                    const status = hasReal ? 'OPERATIONAL - REAL DATA' : 'STANDBY - NO REAL DATA';
+                    systemStatus.textContent = status;
+                    systemStatus.style.color = hasReal ? '#00ff41' : '#ffd700';
                 }
                 
-                if (lastUpdateEl) {
-                    lastUpdateEl.textContent = new Date().toLocaleString();
-                }
-                
-                if (aiModels) {
-                    aiModels.textContent = `AI MODELS: ${metricsData?.api_status || 'ACTIVE'}`;
+                if (lastUpdate) {
+                    lastUpdate.textContent = new Date().toLocaleString();
                 }
             }
 
-            function createEnhancedFallbackData() {
-                return {
-                    articles: [
-                        {
-                            title: "Patriots Protocol v3.0 Enhanced Intelligence Systems Operational",
-                            full_summary: "Advanced AI-driven intelligence network v3.0 successfully deployed with comprehensive threat detection capabilities, enhanced content analysis, and real-time multi-source intelligence gathering. System demonstrates significant improvements in threat assessment accuracy and strategic intelligence processing with advanced AI integration.",
-                            executive_summary: "Patriots Protocol v3.0 deployed with enhanced AI intelligence capabilities and comprehensive threat assessment systems.",
-                            source: "PATRIOTS_PROTOCOL_COMMAND",
-                            source_url: "https://github.com/danishnizmi/Patriots_Protocol",
-                            source_credibility: 1.0,
-                            timestamp: new Date().toISOString(),
-                            category: "TECHNOLOGY",
-                            ai_analysis: "Patriots Protocol v3.0 represents a significant advancement in AI-driven intelligence capabilities with enhanced threat detection, strategic assessment protocols, and real-time analysis systems. The deployment demonstrates robust operational capacity for comprehensive intelligence gathering and tactical assessment across multiple domains.",
-                            detailed_analysis: "Comprehensive analysis of Patriots Protocol v3.0 deployment indicates successful integration of advanced AI systems with enhanced analytical capabilities. Strategic positioning improved significantly with deployment of multi-layered threat assessment and intelligence processing systems.",
-                            confidence: 0.95,
-                            threat_level: "LOW",
-                            strategic_importance: "CRITICAL",
-                            operational_impact: "Significant enhancement to global intelligence gathering and threat assessment capabilities",
-                            geo_relevance: ["GLOBAL", "MULTI-DOMAIN"],
-                            keywords: ["PATRIOTS_PROTOCOL", "AI_INTELLIGENCE", "ENHANCED_SYSTEMS", "THREAT_ASSESSMENT", "OPERATIONAL"],
-                            entities: ["Patriots Protocol", "AI Systems", "Intelligence Network", "Command Center"],
-                            priority_score: 9,
-                            word_count: 87,
-                            reading_time: "2 min read",
-                            impact_assessment: "Critical enhancement to intelligence capabilities with advanced AI integration providing significant operational advantages",
-                            recommendations: ["Continue system optimization", "Expand intelligence gathering capabilities", "Enhance threat assessment protocols", "Monitor global intelligence networks"],
-                            related_topics: ["AI Intelligence", "Threat Assessment", "Strategic Analysis", "Global Security"],
-                            intelligence_value: "CRITICAL",
-                            patriots_protocol_ref: "PATRIOTS PROTOCOL INTELLIGENCE NETWORK"
-                        }
-                    ],
-                    metrics: {
-                        patriots_protocol_status: "PATRIOTS PROTOCOL v3.0 OPERATIONAL",
-                        total_articles: 1,
-                        ai_analysis_complete: 1,
-                        threat_level: "LOW",
-                        system_status: "OPERATIONAL",
-                        average_article_length: 87,
-                        total_word_count: 87,
-                        average_reading_time: "2 min",
-                        content_diversity_score: 1.0,
-                        high_value_intelligence: 1,
-                        critical_intelligence: 1,
-                        actionable_intelligence: 1,
-                        strategic_intelligence: 1,
-                        emerging_threats: ["Monitoring"],
-                        threat_actors: ["Unknown"],
-                        primary_regions: ["GLOBAL"],
-                        ai_confidence: 95,
-                        analysis_depth_score: 1.0,
-                        strategic_assessment: "Patriots Protocol v3.0 successfully deployed with enhanced AI capabilities and comprehensive intelligence processing systems. All operational parameters within optimal ranges.",
-                        intelligence_summary: "Patriots Protocol v3.0 operating at maximum capacity with enhanced AI-driven intelligence capabilities providing superior threat assessment and strategic analysis.",
-                        threat_vector_analysis: "No immediate threats detected. Enhanced monitoring protocols active with advanced AI threat assessment systems operational.",
-                        operational_recommendations: ["System optimization", "Intelligence expansion", "Threat protocol enhancement", "Global network monitoring"],
-                        priority_intelligence_requirements: ["Emerging Technologies", "Global Security", "Threat Assessment", "Strategic Intelligence"],
-                        processing_time: "< 30 seconds",
-                        api_status: "ACTIVE",
-                        last_update: new Date().toLocaleString()
-                    },
-                    system_info: {
-                        system_name: "PATRIOTS PROTOCOL",
-                        description: "Enhanced AI-Driven Intelligence Network v3.0",
-                        status: "OPERATIONAL"
-                    }
-                };
-            }
-
-            function getMetricCardClass(metricType, value) {
-                if (metricType === 'threat_level' && (value === 'HIGH' || value === 'CRITICAL')) {
-                    return 'metric-card critical';
+            function getThreatBadgeClass(threatLevel) {
+                switch(threatLevel?.toLowerCase()) {
+                    case 'high': return 'threat-badge threat-high';
+                    case 'medium': return 'threat-badge threat-medium';
+                    default: return 'threat-badge threat-low';
                 }
-                if (metricType === 'high_value_intelligence' && value > 0) {
-                    return 'metric-card high-value';
-                }
-                if (metricType === 'ai_confidence' && value < 80) {
-                    return 'metric-card critical';
-                }
-                return 'metric-card';
-            }
-
-            function getNewsCardClass(article) {
-                if (article.intelligence_value === 'CRITICAL' || article.threat_level === 'CRITICAL') {
-                    return 'news-card critical-intel';
-                }
-                if (article.intelligence_value === 'HIGH' || article.priority_score >= 7) {
-                    return 'news-card high-value-intel';
-                }
-                return 'news-card';
-            }
-
-            function getIntelligenceBadges(article) {
-                const badges = [];
-                
-                if (article.intelligence_value === 'CRITICAL') {
-                    badges.push(<span key="critical" className="intel-badge critical">CRITICAL</span>);
-                } else if (article.intelligence_value === 'HIGH') {
-                    badges.push(<span key="high" className="intel-badge high">HIGH VALUE</span>);
-                } else if (article.intelligence_value === 'MEDIUM') {
-                    badges.push(<span key="medium" className="intel-badge medium">MEDIUM</span>);
-                }
-                
-                if (article.strategic_importance === 'CRITICAL') {
-                    badges.push(<span key="strategic" className="intel-badge critical">STRATEGIC</span>);
-                }
-                
-                return badges;
             }
 
             function getCategoryBadgeClass(category) {
-                const categoryClasses = {
-                    'SECURITY': 'category-badge category-security',
-                    'TECHNOLOGY': 'category-badge category-technology',
-                    'ECONOMICS': 'category-badge category-economics',
-                    'POLITICS': 'category-badge category-politics',
-                    'DEFENSE': 'category-badge category-defense',
-                    'GLOBAL': 'category-badge category-global'
-                };
-                return categoryClasses[category] || 'category-badge category-global';
+                switch(category?.toLowerCase()) {
+                    case 'technology': return 'category-badge category-technology';
+                    case 'security': return 'category-badge category-security';
+                    case 'politics': return 'category-badge category-politics';
+                    case 'economics': return 'category-badge category-economics';
+                    default: return 'category-badge category-global';
+                }
             }
 
             if (loading) {
                 return (
                     <div className="container">
                         <div className="loading">
-                            🎖️ PATRIOTS PROTOCOL v3.0 ENHANCED SYSTEMS INITIALIZING<span className="terminal-cursor">_</span>
-                            <div className="loading-details">
-                                Connecting to enhanced AI intelligence networks...<br/>
-                                Loading advanced threat assessment protocols...<br/>
-                                Activating strategic analysis systems...
-                            </div>
+                            🎖️ PATRIOTS PROTOCOL v4.0 INITIALIZING...<br/>
+                            <small style={{fontSize: '1rem', color: '#66ff99', marginTop: '1rem', display: 'block'}}>
+                                Loading real AI intelligence data...<br/>
+                                No fake data will be generated
+                            </small>
                         </div>
                     </div>
                 );
@@ -1120,420 +525,134 @@
                 <div className="container">
                     {error && (
                         <div className="error-display">
-                            ⚠️ {error}
-                            <br/>
-                            <small>Enhanced fallback systems maintaining operational capability</small>
+                            ⚠️ {error}<br/>
+                            <small>System will not generate fake data as fallback</small>
                         </div>
                     )}
 
-                    {/* Enhanced Metrics Overview */}
-                    <div className="metrics-overview">
-                        <h2 className="metrics-title">🎯 INTELLIGENCE COMMAND CENTER</h2>
-                        <div className="metrics-grid">
-                            <div className={getMetricCardClass('total_articles', metrics.total_articles)}>
-                                <div className="metric-header">
-                                    <div className="metric-title">Intelligence Reports</div>
-                                    <div className="metric-icon">📊</div>
-                                </div>
-                                <div className="metric-value">{metrics.total_articles || 0}</div>
-                                <div className="metric-details">
-                                    <span>Processed: {metrics.ai_analysis_complete || 0}</span>
-                                    <span>Total Words: {metrics.total_word_count || 0}</span>
-                                </div>
-                                <div className="metric-change">Average: {metrics.average_article_length || 0} words</div>
-                            </div>
-                            
-                            <div className={getMetricCardClass('ai_confidence', metrics.ai_confidence)}>
-                                <div className="metric-header">
-                                    <div className="metric-title">AI Confidence</div>
-                                    <div className="metric-icon">🤖</div>
-                                </div>
-                                <div className="metric-value">{metrics.ai_confidence || 0}%</div>
-                                <div className="metric-details">
-                                    <span>Quality: {metrics.data_quality || 'GOOD'}</span>
-                                    <span>Depth: {Math.round((metrics.analysis_depth_score || 0) * 100)}%</span>
-                                </div>
-                                <div className="metric-change">Analysis: {metrics.average_reading_time || '0 min'}</div>
-                            </div>
-                            
-                            <div className={getMetricCardClass('threat_level', metrics.threat_level)}>
-                                <div className="metric-header">
-                                    <div className="metric-title">Threat Assessment</div>
-                                    <div className="metric-icon">🛡️</div>
-                                </div>
-                                <div className="metric-value">{metrics.threat_level || 'LOW'}</div>
-                                <div className="metric-details">
-                                    <span>High: {metrics.high_threat_count || 0}</span>
-                                    <span>Medium: {metrics.medium_threat_count || 0}</span>
-                                </div>
-                                <div className="metric-change">Low: {metrics.low_threat_count || 0}</div>
-                            </div>
-                            
-                            <div className={getMetricCardClass('high_value_intelligence', metrics.high_value_intelligence)}>
-                                <div className="metric-header">
-                                    <div className="metric-title">High-Value Intel</div>
-                                    <div className="metric-icon">💎</div>
-                                </div>
-                                <div className="metric-value">{metrics.high_value_intelligence || 0}</div>
-                                <div className="metric-details">
-                                    <span>Critical: {metrics.critical_intelligence || 0}</span>
-                                    <span>Strategic: {metrics.strategic_intelligence || 0}</span>
-                                </div>
-                                <div className="metric-change">Actionable: {metrics.actionable_intelligence || 0}</div>
-                            </div>
-                            
-                            <div className="metric-card">
-                                <div className="metric-header">
-                                    <div className="metric-title">Source Diversity</div>
-                                    <div className="metric-icon">🌐</div>
-                                </div>
-                                <div className="metric-value">{metrics.source_diversity || 0}</div>
-                                <div className="metric-details">
-                                    <span>Credibility: {Math.round((metrics.credibility_average || 0) * 100)}%</span>
-                                    <span>Regions: {(metrics.primary_regions || []).length}</span>
-                                </div>
-                                <div className="metric-change">Quality: {metrics.content_diversity_score ? Math.round(metrics.content_diversity_score * 100) + '%' : '0%'}</div>
-                            </div>
-                            
-                            <div className="metric-card">
-                                <div className="metric-header">
-                                    <div className="metric-title">System Performance</div>
-                                    <div className="metric-icon">⚡</div>
-                                </div>
-                                <div className="metric-value">{metrics.processing_time || '< 30s'}</div>
-                                <div className="metric-details">
-                                    <span>API: {metrics.api_status || 'ACTIVE'}</span>
-                                    <span>Status: {metrics.system_status || 'OPERATIONAL'}</span>
-                                </div>
-                                <div className="metric-change">Ready: {metrics.operational_readiness || 'READY'}</div>
-                            </div>
+                    {!hasRealData && !error && (
+                        <div className="no-data-display">
+                            🚫 NO REAL INTELLIGENCE DATA AVAILABLE<br/>
+                            <small>Waiting for successful AI analysis of real news sources.<br/>
+                            Check GitHub Actions for processing status.<br/>
+                            This system does not generate fake fallback data.</small>
                         </div>
-                    </div>
+                    )}
 
-                    {/* Intelligence Overview */}
-                    <div className="intelligence-overview">
-                        <div className="strategic-section">
-                            <div className="section-header">
-                                🎯 STRATEGIC INTELLIGENCE ASSESSMENT
-                            </div>
-                            
-                            <div className="intelligence-content">
-                                {metrics.strategic_assessment || "Patriots Protocol v3.0 operating with enhanced intelligence protocols. All systems nominal with advanced AI analysis capabilities."}
-                            </div>
-                            
-                            {metrics.intelligence_summary && (
-                                <div className="intelligence-content">
-                                    <strong>Mission Summary:</strong> {metrics.intelligence_summary}
-                                </div>
-                            )}
-                            
-                            <div className="intel-highlights">
-                                <div className="intel-highlight">
-                                    <div className="intel-highlight-value">{metrics.total_articles || 0}</div>
-                                    <div className="intel-highlight-label">Reports</div>
-                                </div>
-                                <div className="intel-highlight">
-                                    <div className="intel-highlight-value">{metrics.high_value_intelligence || 0}</div>
-                                    <div className="intel-highlight-label">High-Value</div>
-                                </div>
-                                <div className="intel-highlight">
-                                    <div className="intel-highlight-value">{(metrics.primary_regions || []).length}</div>
-                                    <div className="intel-highlight-label">Regions</div>
-                                </div>
-                            </div>
-                            
-                            {metrics.emerging_trends && metrics.emerging_trends.length > 0 && (
-                                <div className="trends-section">
-                                    <div className="trends-title">🔍 EMERGING INTELLIGENCE TRENDS</div>
-                                    <div className="trends-grid">
-                                        {metrics.emerging_trends.slice(0, 8).map((trend, index) => (
-                                            <div key={index} className="trend-item">{trend}</div>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                        
-                        <div className="tactical-section">
-                            <div className="section-header" style={{borderBottomColor: 'rgba(255, 215, 0, 0.3)', color: '#ffd700'}}>
-                                ⚡ TACTICAL OPERATIONS STATUS
-                            </div>
-                            
-                            <div className="intel-highlights">
-                                <div className="intel-highlight">
-                                    <div className="intel-highlight-value" style={{color: '#ffd700'}}>{metrics.ai_confidence || 85}%</div>
-                                    <div className="intel-highlight-label">AI READINESS</div>
-                                </div>
-                                <div className="intel-highlight">
-                                    <div className="intel-highlight-value" style={{color: '#ffd700'}}>{metrics.actionable_intelligence || 0}</div>
-                                    <div className="intel-highlight-label">ACTIONABLE</div>
-                                </div>
-                                <div className="intel-highlight">
-                                    <div className="intel-highlight-value" style={{color: '#ffd700'}}>{metrics.breaking_news_count || 0}</div>
-                                    <div className="intel-highlight-label">BREAKING</div>
-                                </div>
-                            </div>
-                            
-                            {metrics.threat_vector_analysis && (
-                                <div className="intelligence-content" style={{color: '#ffec8c'}}>
-                                    <strong>Threat Analysis:</strong> {metrics.threat_vector_analysis}
-                                </div>
-                            )}
-                            
-                            {metrics.operational_recommendations && (
-                                <div style={{marginTop: '1.5rem'}}>
-                                    <div style={{color: '#ffd700', fontSize: '0.9rem', fontWeight: 'bold', marginBottom: '0.8rem'}}>
-                                        🎯 OPERATIONAL PRIORITIES
-                                    </div>
-                                    <ul style={{listStyle: 'none', padding: 0}}>
-                                        {metrics.operational_recommendations.slice(0, 4).map((rec, index) => (
-                                            <li key={index} style={{color: '#ffec8c', fontSize: '0.85rem', marginBottom: '0.5rem', paddingLeft: '1rem', position: 'relative'}}>
-                                                <span style={{position: 'absolute', left: 0, color: '#ffd700'}}>→</span>
-                                                {rec}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            )}
-                            
-                            {(metrics.primary_regions || []).length > 0 && (
-                                <div style={{marginTop: '1.5rem'}}>
-                                    <div style={{color: '#ffd700', fontSize: '0.9rem', fontWeight: 'bold', marginBottom: '0.8rem'}}>
-                                        🌐 GEOGRAPHIC FOCUS
-                                    </div>
-                                    <div style={{display: 'flex', flexWrap: 'wrap', gap: '0.5rem'}}>
-                                        {metrics.primary_regions.slice(0, 5).map((region, index) => (
-                                            <span key={index} style={{
-                                                background: 'rgba(255, 215, 0, 0.2)',
-                                                border: '1px solid #ffd700',
-                                                color: '#ffd700',
-                                                padding: '0.3rem 0.6rem',
-                                                borderRadius: '12px',
-                                                fontSize: '0.75rem'
-                                            }}>
-                                                {region}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    </div>
-
-                    {/* Enhanced Intelligence Briefing */}
-                    <div className="news-section">
-                        <h2 className="section-title">
-                            🎖️ ENHANCED INTELLIGENCE BRIEFING
-                            <span className="section-badge">PATRIOTS PROTOCOL v3.0</span>
-                        </h2>
-                        
-                        <div className="news-grid">
-                            {newsData.map((article, index) => (
-                                <div key={index} className={getNewsCardClass(article)}>
-                                    <div className="intel-badges">
-                                        {getIntelligenceBadges(article)}
+                    {hasRealData && (
+                        <>
+                            {/* Real Metrics */}
+                            <div className="metrics-section">
+                                <h2 className="metrics-title">🎯 REAL AI INTELLIGENCE METRICS</h2>
+                                <div className="metrics-grid">
+                                    <div className="metric-card">
+                                        <div className="metric-value">{metrics.total_articles || 0}</div>
+                                        <div className="metric-label">Real Articles</div>
+                                        <div className="metric-detail">AI Analyzed: {metrics.ai_analysis_complete || 0}</div>
                                     </div>
                                     
-                                    <div className="news-header">
-                                        <h3 className="news-title">
-                                            <span className={`threat-indicator threat-${(article.threat_level || 'low').toLowerCase()}`}></span>
-                                            <span>
+                                    <div className="metric-card">
+                                        <div className="metric-value">{Math.round((metrics.avg_confidence || 0) * 100)}%</div>
+                                        <div className="metric-label">AI Confidence</div>
+                                        <div className="metric-detail">Real Analysis Quality</div>
+                                    </div>
+                                    
+                                    <div className="metric-card">
+                                        <div className="metric-value">{metrics.total_words || 0}</div>
+                                        <div className="metric-label">Total Words</div>
+                                        <div className="metric-detail">Avg: {metrics.avg_article_length || 0} per article</div>
+                                    </div>
+                                    
+                                    <div className="metric-card">
+                                        <div className="metric-value">{metrics.sources_count || 0}</div>
+                                        <div className="metric-label">Real Sources</div>
+                                        <div className="metric-detail">Live News Feeds</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* System Status */}
+                            <div className="status-section">
+                                <div className="status-title">🤖 REAL AI SYSTEM STATUS</div>
+                                <div className="status-message">
+                                    System Status: <strong>{metrics.system_status || 'UNKNOWN'}</strong><br/>
+                                    Processing Time: <strong>{metrics.processing_time || 'N/A'}</strong><br/>
+                                    Last Analysis: <strong>{metrics.last_update || 'Unknown'}</strong><br/>
+                                    <strong>🚫 No fake data generated - Real AI analysis only</strong>
+                                </div>
+                            </div>
+
+                            {/* Real News */}
+                            <div className="news-section">
+                                <h2 className="section-title">
+                                    📰 REAL AI INTELLIGENCE REPORTS
+                                    <span style={{fontSize: '0.9rem', color: '#ffd700'}}>VERIFIED REAL</span>
+                                </h2>
+                                
+                                <div className="news-grid">
+                                    {newsData.map((article, index) => (
+                                        <div key={index} className="news-card">
+                                            <h3 className="news-title">
                                                 {article.title}
+                                                <span className={getThreatBadgeClass(article.threat_level)}>
+                                                    {article.threat_level || 'LOW'}
+                                                </span>
                                                 <span className={getCategoryBadgeClass(article.category)}>
-                                                    {article.category || 'GENERAL'}
+                                                    {article.category || 'GLOBAL'}
                                                 </span>
-                                            </span>
-                                        </h3>
-                                    </div>
-                                    
-                                    <div className="news-summary">
-                                        {article.executive_summary || article.full_summary || article.summary || 'Intelligence summary not available.'}
-                                    </div>
-                                    
-                                    <div className="news-meta-grid">
-                                        <div className="meta-item">
-                                            <div className="meta-label">Source</div>
-                                            <div className="meta-value">
-                                                {article.source_url ? (
-                                                    <a href={article.source_url} target="_blank" rel="noopener noreferrer" className="source-link">
-                                                        {article.source} ↗
-                                                    </a>
-                                                ) : (
-                                                    article.source
-                                                )}
-                                            </div>
-                                        </div>
-                                        <div className="meta-item">
-                                            <div className="meta-label">Timestamp</div>
-                                            <div className="meta-value">{new Date(article.timestamp).toLocaleDateString()}</div>
-                                        </div>
-                                        <div className="meta-item">
-                                            <div className="meta-label">Threat Level</div>
-                                            <div className="meta-value">{article.threat_level || 'LOW'}</div>
-                                        </div>
-                                        <div className="meta-item">
-                                            <div className="meta-label">Intel Value</div>
-                                            <div className="meta-value">{article.intelligence_value || 'MEDIUM'}</div>
-                                        </div>
-                                        <div className="meta-item">
-                                            <div className="meta-label">Word Count</div>
-                                            <div className="meta-value">{article.word_count || 0}</div>
-                                        </div>
-                                        <div className="meta-item">
-                                            <div className="meta-label">Reading Time</div>
-                                            <div className="meta-value">{article.reading_time || 'N/A'}</div>
-                                        </div>
-                                    </div>
-                                    
-                                    {article.confidence && (
-                                        <div className="confidence-section">
-                                            <div className="confidence-header">
-                                                <span style={{fontSize: '0.8rem', color: '#66ff99', fontWeight: 'bold'}}>
-                                                    CONFIDENCE ASSESSMENT
-                                                </span>
-                                                <span style={{fontSize: '0.9rem', color: '#ffffff'}}>
-                                                    {Math.round((article.confidence || 0) * 100)}%
-                                                </span>
-                                            </div>
-                                            <div className="confidence-bar">
-                                                <div 
-                                                    className="confidence-fill" 
-                                                    style={{width: `${(article.confidence || 0) * 100}%`}}
-                                                ></div>
-                                            </div>
-                                        </div>
-                                    )}
-                                    
-                                    {(article.keywords && article.keywords.length > 0) && (
-                                        <div className="keywords-section">
-                                            <div className="keywords-title">🔍 INTELLIGENCE KEYWORDS</div>
-                                            <div className="keywords-list">
-                                                {article.keywords.slice(0, 10).map((keyword, idx) => (
-                                                    <span key={idx} className="keyword-tag">{keyword}</span>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    )}
-                                    
-                                    {article.ai_analysis && (
-                                        <div className="ai-analysis">
-                                            <div className="ai-header">
-                                                <div className="ai-label">
-                                                    🤖 AI TACTICAL ASSESSMENT
-                                                </div>
-                                                {article.strategic_importance && (
-                                                    <div className="ai-importance">
-                                                        {article.strategic_importance}
-                                                    </div>
-                                                )}
+                                            </h3>
+                                            
+                                            <div className="news-summary">
+                                                {article.summary || 'Summary not available'}
                                             </div>
                                             
-                                            <div className="ai-text">
-                                                {article.detailed_analysis || article.ai_analysis}
-                                            </div>
-                                            
-                                            {article.impact_assessment && (
-                                                <div style={{
-                                                    background: 'rgba(0, 0, 0, 0.3)',
-                                                    padding: '1rem',
-                                                    borderRadius: '6px',
-                                                    marginTop: '1rem',
-                                                    borderLeft: '3px solid #66ccff'
-                                                }}>
-                                                    <div style={{color: '#66ccff', fontSize: '0.8rem', marginBottom: '0.5rem', fontWeight: 'bold'}}>
-                                                        IMPACT ASSESSMENT
-                                                    </div>
-                                                    <div style={{color: '#ccddff', fontSize: '0.85rem'}}>
-                                                        {article.impact_assessment}
+                                            <div className="news-meta">
+                                                <div className="meta-item">
+                                                    <div className="meta-label">Source</div>
+                                                    <div className="meta-value">
+                                                        {article.source_url ? (
+                                                            <a href={article.source_url} target="_blank" rel="noopener noreferrer" className="source-link">
+                                                                {article.source} ↗
+                                                            </a>
+                                                        ) : (
+                                                            article.source
+                                                        )}
                                                     </div>
                                                 </div>
-                                            )}
+                                                <div className="meta-item">
+                                                    <div className="meta-label">Reading Time</div>
+                                                    <div className="meta-value">{article.reading_time || 'Quick read'}</div>
+                                                </div>
+                                                <div className="meta-item">
+                                                    <div className="meta-label">Confidence</div>
+                                                    <div className="meta-value">{Math.round((article.confidence || 0) * 100)}%</div>
+                                                </div>
+                                                <div className="meta-item">
+                                                    <div className="meta-label">Word Count</div>
+                                                    <div className="meta-value">{article.word_count || 0}</div>
+                                                </div>
+                                            </div>
                                             
-                                            {article.recommendations && article.recommendations.length > 0 && (
-                                                <div className="ai-recommendations">
-                                                    <div className="recommendations-title">TACTICAL RECOMMENDATIONS</div>
-                                                    <ul className="recommendations-list">
-                                                        {article.recommendations.slice(0, 4).map((rec, idx) => (
-                                                            <li key={idx}>{rec}</li>
-                                                        ))}
-                                                    </ul>
+                                            {article.ai_analysis && (
+                                                <div className="ai-analysis">
+                                                    <div className="ai-label">🤖 REAL AI ANALYSIS</div>
+                                                    <div className="ai-text">{article.ai_analysis}</div>
                                                 </div>
                                             )}
                                         </div>
-                                    )}
-                                    
-                                    <div className="patriots-footer">
-                                        <div className="patriots-ref">
-                                            📡 {article.patriots_protocol_ref || 'PATRIOTS PROTOCOL INTELLIGENCE NETWORK'}
-                                        </div>
-                                        <div className="reading-time">
-                                            {article.reading_time || 'Quick read'}
-                                        </div>
-                                    </div>
+                                    ))}
                                 </div>
-                            ))}
-                        </div>
-                        
-                        {newsData.length === 0 && (
-                            <div style={{
-                                textAlign: 'center',
-                                padding: '3rem',
-                                color: '#66ff99',
-                                fontSize: '1.1rem'
-                            }}>
-                                🎖️ Patriots Protocol Intelligence Network Standby<br/>
-                                <small style={{color: '#99ffcc', fontSize: '0.9rem'}}>
-                                    Awaiting intelligence feeds for comprehensive analysis
-                                </small>
                             </div>
-                        )}
-                    </div>
+                        </>
+                    )}
                 </div>
             );
         }
 
-        // Initialize Patriots Protocol v3.0 Enhanced System
-        ReactDOM.render(
-            <>
-                <MatrixBackground />
-                <App />
-            </>,
-            document.getElementById('app')
-        );
+        ReactDOM.render(<App />, document.getElementById('app'));
 
-        // Patriots Protocol v3.0 System Initialization
-        console.log('🎖️ PATRIOTS PROTOCOL v3.0 - Enhanced AI Intelligence Network Initialized');
-        console.log('🔗 Repository: https://github.com/danishnizmi/Patriots_Protocol');
-        console.log('⚡ Enhanced features: Advanced AI Analysis, Source Linking, Rich Metrics');
-    </script>
-
-    <!-- Patriots Protocol v3.0 Enhanced Web Interface -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('🎖️ Patriots Protocol v3.0 Enhanced Web Interface Activated');
-            
-            // Enhanced status updates with animation
-            setInterval(function() {
-                const now = new Date();
-                const lastUpdateEl = document.getElementById('lastUpdate');
-                if (lastUpdateEl) {
-                    lastUpdateEl.textContent = now.toLocaleString();
-                    
-                    // Add brief highlight animation
-                    lastUpdateEl.style.color = '#ffd700';
-                    setTimeout(() => {
-                        lastUpdateEl.style.color = '#00ff41';
-                    }, 500);
-                }
-            }, 60000);
-            
-            // Enhanced matrix effect trigger
-            document.addEventListener('click', function(e) {
-                if (e.target.classList.contains('patriots-link')) {
-                    console.log('🎖️ Accessing Patriots Protocol Repository');
-                }
-            });
-        });
+        console.log('🎖️ PATRIOTS PROTOCOL v4.0 - Real AI Interface Active');
+        console.log('🚫 No fake data generation - Real intelligence only');
     </script>
 </body>
 </html>
