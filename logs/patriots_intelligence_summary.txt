@@ -1,13 +1,13 @@
 🎖️  ═══════════════════════════════════════════════════════════
      PATRIOTS PROTOCOL - INTELLIGENCE BRIEFING SUMMARY
    ═══════════════════════════════════════════════════════════
-   📅 Mission Date: 2025-06-14 13:23:13 UTC
-   📊 Reports Processed: 8
-   🎯 Threat Level: MEDIUM
-   🤖 AI Confidence: 75%
+   📅 Mission Date: 2025-06-14 13:30:18 UTC
+   📊 Reports Processed: 12
+   🎯 Threat Level: CRITICAL
+   🤖 AI Confidence: 78%
    🛡️  System Status: OPERATIONAL
-   📈 Data Quality: ADEQUATE
-   ⚡ Processing Time: < 30 seconds
+   📈 Data Quality: GOOD
+   ⚡ Processing Time: < 45 seconds
    🌐 Geographic Focus: ['GLOBAL']
    ═══════════════════════════════════════════════════════════
      MISSION STATUS: PATRIOTS PROTOCOL OPERATIONAL
