@@ -149,13 +149,17 @@ class PatriotsProtocolAI:
     async def make_ai_request(self, prompt: str, context: str) -> Dict[str, Any]:
         """Professional AI request with GitHub Models API"""
         try:
-            headers = {
-                'Content-Type': 'application/json',
-                'Authorization': f'Bearer {self.api_token}'
-            }
+            # Use OpenAI client with GitHub Models endpoint
+            from openai import AsyncOpenAI
+            
+            client = AsyncOpenAI(
+                base_url=self.base_url,
+                api_key=self.api_token
+            )
 
-            payload = {
-                "messages": [
+            response = await client.chat.completions.create(
+                model=self.model,
+                messages=[
                     {
                         "role": "system", 
                         "content": """You are a professional intelligence analyst providing concise, factual analysis of news events. 
@@ -180,67 +184,70 @@ Be specific about what the news means. Avoid generic phrases. Provide real intel
                         "content": f"Analyze this news report:\n\nTitle: {context.split('Content:')[0].replace('Title:', '').strip() if 'Content:' in context else context[:100]}\n\nContent: {context.split('Content:')[1] if 'Content:' in context else context}\n\nProvide specific analysis in JSON format."
                     }
                 ],
-                "model": self.model,
-                "temperature": 0.2,
-                "max_tokens": 1000
-            }
-
-            async with self.session.post(
-                f"{self.base_url}/chat/completions",
-                json=payload,
-                headers=headers
-            ) as response:
+                temperature=0.2,
+                max_tokens=1000
+            )
+            
+            ai_response = response.choices[0].message.content
+            logger.info(f"🤖 AI Response received: {ai_response[:100]}...")
+            
+            # Extract JSON from response
+            try:
+                json_start = ai_response.find('{')
+                json_end = ai_response.rfind('}') + 1
                 
-                if response.status == 200:
-                    data = await response.json()
-                    ai_response = data['choices'][0]['message']['content']
+                if json_start != -1 and json_end > json_start:
+                    json_content = ai_response[json_start:json_end]
+                    structured_data = json.loads(json_content)
                     
-                    # Extract JSON from response
-                    try:
-                        json_start = ai_response.find('{')
-                        json_end = ai_response.rfind('}') + 1
-                        
-                        if json_start != -1 and json_end > json_start:
-                            json_content = ai_response[json_start:json_end]
-                            structured_data = json.loads(json_content)
-                            
-                            # Get analysis text
-                            analysis = structured_data.get('analysis', '').strip()
-                            
-                            # Validate we got meaningful analysis (not empty or too generic)
-                            if not analysis or len(analysis) < 50:
-                                logger.warning("⚠️  Analysis too short, retrying...")
-                                return {'success': False}
-                            
-                            # Check for generic phrases
-                            generic_phrases = ['monitoring protocols', 'situational awareness', 'enhanced monitoring', 'standard protocols']
-                            if any(phrase in analysis.lower() for phrase in generic_phrases):
-                                logger.warning("⚠️  Generic analysis detected, skipping...")
-                                return {'success': False}
-                            
-                            return {
-                                'success': True,
-                                'analysis': analysis,
-                                'threat_level': structured_data.get('threat_level', 'LOW'),
-                                'strategic_importance': structured_data.get('strategic_importance', 'MEDIUM'),
-                                'operational_impact': structured_data.get('operational_impact', 'Requires assessment'),
-                                'geo_relevance': structured_data.get('geo_relevance', ['GLOBAL']),
-                                'confidence_score': structured_data.get('confidence_score', 0.78),
-                                'priority_score': structured_data.get('priority_score', 5),
-                                'entities': structured_data.get('entities', []),
-                                'intelligence_value': structured_data.get('intelligence_value', 'MEDIUM')
-                            }
+                    # Get analysis text
+                    analysis = structured_data.get('analysis', '').strip()
                     
-                    except (json.JSONDecodeError, ValueError) as e:
-                        logger.warning(f"⚠️  JSON parsing failed: {str(e)}")
+                    # Validate we got meaningful analysis (not empty or too generic)
+                    if not analysis or len(analysis) < 50:
+                        logger.warning("⚠️  Analysis too short, skipping...")
                         return {'success': False}
-                
-                else:
-                    logger.error(f"❌ API error: {response.status}")
-                    error_text = await response.text()
-                    logger.error(f"❌ Error details: {error_text}")
-                    return {'success': False}
-
+                    
+                    # Check for generic phrases
+                    generic_phrases = ['monitoring protocols', 'situational awareness', 'enhanced monitoring', 'standard protocols']
+                    if any(phrase in analysis.lower() for phrase in generic_phrases):
+                        logger.warning("⚠️  Generic analysis detected, skipping...")
+                        return {'success': False}
+                    
+                    logger.info(f"✅ Meaningful analysis extracted: {analysis[:100]}...")
+                    
+                    return {
+                        'success': True,
+                        'analysis': analysis,
+                        'threat_level': structured_data.get('threat_level', 'LOW'),
+                        'strategic_importance': structured_data.get('strategic_importance', 'MEDIUM'),
+                        'operational_impact': structured_data.get('operational_impact', 'Requires assessment'),
+                        'geo_relevance': structured_data.get('geo_relevance', ['GLOBAL']),
+                        'confidence_score': structured_data.get('confidence_score', 0.78),
+                        'priority_score': structured_data.get('priority_score', 5),
+                        'entities': structured_data.get('entities', []),
+                        'intelligence_value': structured_data.get('intelligence_value', 'MEDIUM')
+                    }
+            
+            except (json.JSONDecodeError, ValueError) as e:
+                logger.warning(f"⚠️  JSON parsing failed: {str(e)}")
+                # Try to extract analysis from text if JSON fails
+                if len(ai_response) > 100:
+                    logger.info("🔄 Using text response as analysis...")
+                    return {
+                        'success': True,
+                        'analysis': ai_response[:400] + "..." if len(ai_response) > 400 else ai_response,
+                        'threat_level': 'MEDIUM',
+                        'strategic_importance': 'MEDIUM',
+                        'operational_impact': 'Professional assessment based on available information',
+                        'geo_relevance': ['GLOBAL'],
+                        'confidence_score': 0.75,
+                        'priority_score': 5,
+                        'entities': [],
+                        'intelligence_value': 'MEDIUM'
+                    }
+                return {'success': False}
+            
         except Exception as e:
             logger.error(f"❌ AI request failed: {str(e)}")
             return {'success': False}
@@ -545,16 +552,22 @@ async def main():
         async with PatriotsProtocolAI() as ai_system:
             # Test API connectivity first
             logger.info("🧪 Testing GitHub Models API connectivity...")
-            test_result = await ai_system.make_ai_request(
-                "Test connectivity", 
-                "Title: GitHub Models API Test\nContent: Testing connectivity to GitHub Models API with OpenAI GPT-4.1-mini model."
-            )
             
-            if test_result.get('success'):
-                logger.info("✅ GitHub Models API connection successful")
-                logger.info(f"🎯 Test analysis received: {test_result.get('analysis', 'N/A')[:100]}...")
-            else:
-                logger.warning("⚠️  GitHub Models API test failed - proceeding with data collection")
+            # Simple connectivity test
+            try:
+                test_result = await ai_system.make_ai_request(
+                    "Test connectivity", 
+                    "Title: GitHub Models API Test\nContent: Testing connectivity to GitHub Models API with OpenAI GPT-4.1-mini model for Patriots Protocol intelligence analysis."
+                )
+                
+                if test_result.get('success'):
+                    logger.info("✅ GitHub Models API connection successful")
+                    logger.info(f"🎯 Test analysis received: {test_result.get('analysis', 'N/A')[:100]}...")
+                else:
+                    logger.warning("⚠️  GitHub Models API test failed - will attempt article processing anyway")
+                    
+            except Exception as e:
+                logger.warning(f"⚠️  API test error: {str(e)} - continuing with processing")
             
             # Fetch intelligence
             articles = await ai_system.fetch_intelligence_feeds()
