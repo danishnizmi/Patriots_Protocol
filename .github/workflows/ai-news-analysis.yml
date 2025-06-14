@@ -71,7 +71,8 @@ jobs:
           fi
           
           echo "✅ GITHUB_TOKEN verified for GitHub Models API"
-          echo "🤖 Model endpoint: https://models.inference.ai.azure.com"
+          echo "🤖 Model: openai/gpt-4.1-mini"
+          echo "🌐 Endpoint: https://models.github.ai/inference"
           echo "🔄 Executing AI intelligence analysis..."
           
           # Run Patriots Protocol AI Analysis
