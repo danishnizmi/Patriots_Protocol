@@ -92,7 +92,7 @@ class PatriotsProtocolAI:
         # Use GITHUB_TOKEN as MODEL_TOKEN for GitHub Models API
         self.api_token = os.getenv('GITHUB_TOKEN') or os.getenv('MODEL_TOKEN')
         self.base_url = "https://models.github.ai/inference"
-        self.model = "gpt-4.1-mini"
+        self.model = "openai/gpt-4.1-mini"
         self.session = None
         
         # Professional intelligence sources
@@ -546,8 +546,8 @@ async def main():
             # Test API connectivity first
             logger.info("🧪 Testing GitHub Models API connectivity...")
             test_result = await ai_system.make_ai_request(
-                "Test connectivity",
-                "Title: API Test\nContent: This is a test to verify API connectivity and response quality."
+                "Test connectivity", 
+                "Title: GitHub Models API Test\nContent: Testing connectivity to GitHub Models API with OpenAI GPT-4.1-mini model."
             )
             
             if test_result.get('success'):
