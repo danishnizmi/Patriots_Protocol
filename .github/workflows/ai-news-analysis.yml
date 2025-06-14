@@ -55,19 +55,23 @@ jobs:
         id: ai_analysis
         env:
           GITHUB_TOKEN: ${{ secrets.MODEL_TOKEN }}
+          MODEL_TOKEN: ${{ secrets.MODEL_TOKEN }}
         run: |
           echo "🎖️  PATRIOTS PROTOCOL v4.0 - AI Intelligence System Initiating..."
           echo "📅 Mission Start: $(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)"
           echo "🚀 System: AI-Driven Intelligence Network"
           
-          # Verify GITHUB_TOKEN is available
+          # Verify GITHUB_TOKEN is available  
           if [ -z "$GITHUB_TOKEN" ]; then
-            echo "❌ GITHUB_TOKEN not found in secrets"
-            echo "⚠️  Please add MODEL_TOKEN to repository secrets as GITHUB_TOKEN"
+            echo "❌ GITHUB_TOKEN not found in environment"
+            echo "⚠️  Please verify MODEL_TOKEN is set in repository secrets"
+            echo "🔍 Available environment variables:"
+            env | grep -E "(GITHUB|MODEL|TOKEN)" || echo "No relevant tokens found"
             exit 1
           fi
           
-          echo "✅ GITHUB_TOKEN verified"
+          echo "✅ GITHUB_TOKEN verified for GitHub Models API"
+          echo "🤖 Model endpoint: https://models.inference.ai.azure.com"
           echo "🔄 Executing AI intelligence analysis..."
           
           # Run Patriots Protocol AI Analysis
