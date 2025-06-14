@@ -673,4 +673,4 @@ async def main():
         logger.info("✅ Minimal operational data generated")
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    asyncio.run(main()) 
