@@ -122,6 +122,9 @@ class PatriotsProtocolAI:
             raise ValueError("GITHUB_TOKEN or MODEL_TOKEN is required for AI operations")
         
         logger.info("🚀 Patriots Protocol AI Intelligence System v4.0 initialized")
+        logger.info(f"🔑 API Token available: {bool(self.api_token)}")
+        logger.info(f"🤖 Model: {self.model}")
+        logger.info(f"🌐 Endpoint: {self.base_url}")
 
     async def __aenter__(self):
         """Async context manager entry"""
@@ -159,8 +162,8 @@ class PatriotsProtocolAI:
 
 Analyze the provided content and return a JSON response with these exact fields:
 {
-    "analysis": "Professional 2-3 sentence analysis focusing on key facts and implications. Be specific and factual, not generic.",
-    "threat_level": "CRITICAL/HIGH/MEDIUM/LOW based on actual content",
+    "analysis": "Professional 2-3 sentence analysis focusing on key facts and implications. Be specific and factual about what happened.",
+    "threat_level": "CRITICAL/HIGH/MEDIUM/LOW based on actual content severity",
     "strategic_importance": "CRITICAL/HIGH/MEDIUM/LOW",
     "operational_impact": "Specific assessment of actual implications",
     "geo_relevance": ["Specific countries/regions mentioned"],
@@ -170,16 +173,16 @@ Analyze the provided content and return a JSON response with these exact fields:
     "intelligence_value": "CRITICAL/HIGH/MEDIUM/LOW"
 }
 
-Focus on actual content. Avoid generic phrases like "monitoring protocols" or "situational awareness". Be specific about what the news means."""
+Be specific about what the news means. Avoid generic phrases. Provide real intelligence analysis."""
                     },
                     {
                         "role": "user", 
-                        "content": f"Analyze this intelligence report:\n\nTitle: {context.split('Content:')[0].replace('Title:', '').strip()}\n\nContent: {context.split('Content:')[1] if 'Content:' in context else context}\n\nProvide specific, professional analysis in JSON format."
+                        "content": f"Analyze this news report:\n\nTitle: {context.split('Content:')[0].replace('Title:', '').strip() if 'Content:' in context else context[:100]}\n\nContent: {context.split('Content:')[1] if 'Content:' in context else context}\n\nProvide specific analysis in JSON format."
                     }
                 ],
                 "model": self.model,
-                "temperature": 0.1,
-                "max_tokens": 800
+                "temperature": 0.2,
+                "max_tokens": 1000
             }
 
             async with self.session.post(
@@ -201,11 +204,19 @@ Focus on actual content. Avoid generic phrases like "monitoring protocols" or "s
                             json_content = ai_response[json_start:json_end]
                             structured_data = json.loads(json_content)
                             
-                            # Validate we got meaningful analysis
-                            analysis = structured_data.get('analysis', '')
-                            if 'monitoring protocols' in analysis.lower() or 'situational awareness' in analysis.lower():
-                                logger.warning("⚠️  Generic analysis detected, retrying...")
-                                raise ValueError("Generic analysis response")
+                            # Get analysis text
+                            analysis = structured_data.get('analysis', '').strip()
+                            
+                            # Validate we got meaningful analysis (not empty or too generic)
+                            if not analysis or len(analysis) < 50:
+                                logger.warning("⚠️  Analysis too short, retrying...")
+                                return {'success': False}
+                            
+                            # Check for generic phrases
+                            generic_phrases = ['monitoring protocols', 'situational awareness', 'enhanced monitoring', 'standard protocols']
+                            if any(phrase in analysis.lower() for phrase in generic_phrases):
+                                logger.warning("⚠️  Generic analysis detected, skipping...")
+                                return {'success': False}
                             
                             return {
                                 'success': True,
@@ -220,13 +231,14 @@ Focus on actual content. Avoid generic phrases like "monitoring protocols" or "s
                                 'intelligence_value': structured_data.get('intelligence_value', 'MEDIUM')
                             }
                     
-                    except (json.JSONDecodeError, ValueError):
-                        # If we can't get good structured data, skip this article
-                        logger.warning("⚠️  Could not extract meaningful analysis")
+                    except (json.JSONDecodeError, ValueError) as e:
+                        logger.warning(f"⚠️  JSON parsing failed: {str(e)}")
                         return {'success': False}
                 
                 else:
                     logger.error(f"❌ API error: {response.status}")
+                    error_text = await response.text()
+                    logger.error(f"❌ Error details: {error_text}")
                     return {'success': False}
 
         except Exception as e:
@@ -309,53 +321,58 @@ Focus on actual content. Avoid generic phrases like "monitoring protocols" or "s
         """Professional article analysis - only return if meaningful"""
         logger.info(f"🔍 Analyzing: {article['title'][:50]}...")
         
-        # AI analysis
-        ai_result = await self.make_ai_request(
-            "Professional intelligence analysis",
-            f"Title: {article['title']}\nContent: {article['summary']}"
-        )
-        
-        # Skip if AI couldn't provide meaningful analysis
-        if not ai_result.get('success'):
-            logger.info(f"⚠️  Skipping article - no meaningful analysis available")
+        try:
+            # AI analysis
+            ai_result = await self.make_ai_request(
+                "Professional intelligence analysis",
+                f"Title: {article['title']}\nContent: {article['summary']}"
+            )
+            
+            # Skip if AI couldn't provide meaningful analysis
+            if not ai_result.get('success'):
+                logger.info(f"⚠️  Skipping article - no meaningful analysis available")
+                return None
+            
+            # Category classification
+            category = self._classify_category(article['title'], article['summary'])
+            
+            # Extract keywords and entities
+            keywords = self._extract_keywords(f"{article['title']} {article['summary']}")
+            entities = ai_result.get('entities', [])
+            
+            # Generate executive summary
+            executive_summary = self._generate_executive_summary(article['summary'])
+            
+            report = IntelligenceReport(
+                title=article['title'],
+                full_summary=article['summary'],
+                executive_summary=executive_summary,
+                source=article['source'],
+                source_url=article.get('source_url', ''),
+                source_credibility=article['credibility'],
+                timestamp=article['timestamp'],
+                category=category,
+                ai_analysis=ai_result['analysis'],
+                confidence=ai_result['confidence_score'],
+                threat_level=ai_result['threat_level'],
+                strategic_importance=ai_result['strategic_importance'],
+                operational_impact=ai_result['operational_impact'],
+                geo_relevance=ai_result['geo_relevance'],
+                keywords=keywords,
+                entities=entities,
+                priority_score=ai_result['priority_score'],
+                content_hash=article['content_hash'],
+                word_count=article['word_count'],
+                reading_time=article['reading_time'],
+                intelligence_value=ai_result['intelligence_value']
+            )
+            
+            logger.info(f"✅ Analysis complete - Threat: {report.threat_level}, Value: {report.intelligence_value}")
+            return report
+            
+        except Exception as e:
+            logger.error(f"❌ Error analyzing article '{article['title'][:50]}...': {str(e)}")
             return None
-        
-        # Category classification
-        category = self._classify_category(article['title'], article['summary'])
-        
-        # Extract keywords and entities
-        keywords = self._extract_keywords(f"{article['title']} {article['summary']}")
-        entities = ai_result.get('entities', [])
-        
-        # Generate executive summary
-        executive_summary = self._generate_executive_summary(article['summary'])
-        
-        report = IntelligenceReport(
-            title=article['title'],
-            full_summary=article['summary'],
-            executive_summary=executive_summary,
-            source=article['source'],
-            source_url=article.get('source_url', ''),
-            source_credibility=article['credibility'],
-            timestamp=article['timestamp'],
-            category=category,
-            ai_analysis=ai_result['analysis'],
-            confidence=ai_result['confidence_score'],
-            threat_level=ai_result['threat_level'],
-            strategic_importance=ai_result['strategic_importance'],
-            operational_impact=ai_result['operational_impact'],
-            geo_relevance=ai_result['geo_relevance'],
-            keywords=keywords,
-            entities=entities,
-            priority_score=ai_result['priority_score'],
-            content_hash=article['content_hash'],
-            word_count=article['word_count'],
-            reading_time=article['reading_time'],
-            intelligence_value=ai_result['intelligence_value']
-        )
-        
-        logger.info(f"✅ Analysis complete - Threat: {report.threat_level}, Value: {report.intelligence_value}")
-        return report
 
     def _generate_executive_summary(self, summary: str) -> str:
         """Generate concise executive summary"""
@@ -526,30 +543,61 @@ async def main():
     
     try:
         async with PatriotsProtocolAI() as ai_system:
+            # Test API connectivity first
+            logger.info("🧪 Testing GitHub Models API connectivity...")
+            test_result = await ai_system.make_ai_request(
+                "Test connectivity",
+                "Title: API Test\nContent: This is a test to verify API connectivity and response quality."
+            )
+            
+            if test_result.get('success'):
+                logger.info("✅ GitHub Models API connection successful")
+                logger.info(f"🎯 Test analysis received: {test_result.get('analysis', 'N/A')[:100]}...")
+            else:
+                logger.warning("⚠️  GitHub Models API test failed - proceeding with data collection")
+            
             # Fetch intelligence
             articles = await ai_system.fetch_intelligence_feeds()
             
             # Process articles with AI analysis - only keep meaningful ones
             reports = []
-            for i, article in enumerate(articles[:15]):  # Check more articles
+            processed_count = 0
+            
+            for i, article in enumerate(articles[:20]):  # Check more articles to increase success rate
                 try:
-                    logger.info(f"🔍 Processing article {i+1}/{min(15, len(articles))}: {article['title'][:50]}...")
+                    logger.info(f"🔍 Processing article {i+1}/{min(20, len(articles))}: {article['title'][:50]}...")
+                    processed_count += 1
+                    
                     report = await ai_system.analyze_article(article)
                     
                     if report:  # Only add if we got meaningful analysis
                         reports.append(report)
+                        logger.info(f"✅ Successfully analyzed: {report.title[:50]}...")
+                    else:
+                        logger.info(f"⚠️  Skipped article due to insufficient analysis quality")
                     
-                    # Rate limiting
-                    await asyncio.sleep(1.5)
+                    # Rate limiting - shorter delay to process more articles
+                    await asyncio.sleep(1.0)
+                    
+                    # Stop if we have enough good reports
+                    if len(reports) >= 10:
+                        logger.info(f"📊 Reached target of {len(reports)} quality reports")
+                        break
                     
                 except Exception as e:
                     logger.error(f"❌ Analysis error for article {i+1}: {str(e)}")
                     continue
 
-            logger.info(f"📊 Analysis complete - {len(reports)} reports with meaningful analysis")
+            logger.info(f"📊 Analysis complete - {len(reports)} reports with meaningful analysis from {processed_count} articles processed")
 
-            # Calculate metrics
-            metrics = ai_system.calculate_metrics(reports)
+            # If we didn't get any meaningful reports, create minimal operational data
+            if not reports:
+                logger.warning("⚠️  No articles produced meaningful analysis - creating minimal operational data")
+                metrics = ai_system._generate_baseline_metrics()
+                metrics.intelligence_summary = f"Patriots Protocol operational - processed {processed_count} articles, analysis quality insufficient for reporting."
+            else:
+                # Calculate metrics for successful reports
+                metrics = ai_system.calculate_metrics(reports)
 
             # Prepare output
             output_data = {
