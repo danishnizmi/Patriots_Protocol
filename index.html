@@ -1,1 +1,385 @@
-placeolder
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PATRIOTS PROTOCOL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono:wght@400&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            color: #00ff41;
+            font-family: 'Share Tech Mono', monospace;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .header {
+            text-align: center;
+            padding: 2rem;
+            border-bottom: 2px solid #00ff41;
+            background: rgba(0, 0, 0, 0.9);
+            position: relative;
+        }
+
+        .title {
+            font-size: 3rem;
+            text-shadow: 0 0 20px #00ff41;
+            animation: glow 2s ease-in-out infinite alternate;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #33ff66;
+            opacity: 0.8;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px #00ff41; }
+            to { text-shadow: 0 0 30px #00ff41, 0 0 40px #00ff41; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric-card {
+            background: rgba(0, 255, 65, 0.1);
+            border: 1px solid #00ff41;
+            padding: 1.5rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            background: rgba(0, 255, 65, 0.2);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
+        }
+
+        .metric-title {
+            font-size: 0.9rem;
+            color: #66ff99;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-change {
+            font-size: 0.8rem;
+            color: #99ffcc;
+        }
+
+        .news-section {
+            margin-top: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #00ff41;
+            color: #00ff41;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .news-card {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #00ff41;
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .news-card:hover {
+            background: rgba(0, 255, 65, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .news-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            color: #ffffff;
+        }
+
+        .news-summary {
+            color: #99ffcc;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: #66ff99;
+        }
+
+        .ai-analysis {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid #ffd700;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .ai-label {
+            color: #ffd700;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .ai-text {
+            color: #ffec8c;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .loading {
+            text-align: center;
+            color: #00ff41;
+            font-size: 1.2rem;
+            padding: 2rem;
+        }
+
+        .terminal-cursor {
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .status-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            border-top: 1px solid #00ff41;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+<body>
+    <canvas class="matrix-bg" id="matrix"></canvas>
+    
+    <div class="header">
+        <h1 class="title">PATRIOTS PROTOCOL</h1>
+        <p class="subtitle">AI-DRIVEN INTELLIGENCE NETWORK</p>
+    </div>
+
+    <div id="app"></div>
+
+    <div class="status-bar">
+        <span>STATUS: OPERATIONAL</span>
+        <span>LAST UPDATE: <span id="lastUpdate">INITIALIZING...</span></span>
+        <span>AI MODELS: ACTIVE</span>
+    </div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // Matrix Background Effect
+        function MatrixBackground() {
+            const canvasRef = useRef(null);
+
+            useEffect(() => {
+                const canvas = canvasRef.current;
+                const ctx = canvas.getContext('2d');
+                
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+                const matrixArray = matrix.split("");
+
+                const fontSize = 10;
+                const columns = canvas.width / fontSize;
+                const drops = [];
+
+                for (let x = 0; x < columns; x++) {
+                    drops[x] = 1;
+                }
+
+                function draw() {
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                    ctx.fillStyle = '#00ff41';
+                    ctx.font = fontSize + 'px Share Tech Mono';
+
+                    for (let i = 0; i < drops.length; i++) {
+                        const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+                        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                            drops[i] = 0;
+                        }
+                        drops[i]++;
+                    }
+                }
+
+                const interval = setInterval(draw, 35);
+                return () => clearInterval(interval);
+            }, []);
+
+            return <canvas ref={canvasRef} className="matrix-bg" />;
+        }
+
+        function App() {
+            const [newsData, setNewsData] = useState([]);
+            const [metrics, setMetrics] = useState({});
+            const [loading, setLoading] = useState(true);
+            const [lastUpdate, setLastUpdate] = useState('');
+
+            useEffect(() => {
+                loadData();
+                const interval = setInterval(loadData, 300000); // Update every 5 minutes
+                return () => clearInterval(interval);
+            }, []);
+
+            async function loadData() {
+                try {
+                    // Load news data from GitHub Actions generated file
+                    const response = await fetch('./data/news-analysis.json');
+                    if (response.ok) {
+                        const data = await response.json();
+                        setNewsData(data.articles || []);
+                        setMetrics(data.metrics || {});
+                        setLastUpdate(new Date().toISOString());
+                    } else {
+                        // Fallback data if file doesn't exist yet
+                        setNewsData([
+                            {
+                                title: "AI Integration Systems Online",
+                                summary: "Patriots Protocol successfully deployed with GitHub Models integration. System monitoring global intelligence feeds.",
+                                source: "SYSTEM",
+                                timestamp: new Date().toISOString(),
+                                aiAnalysis: "Initial system deployment shows optimal performance metrics. AI models are responding within acceptable parameters."
+                            }
+                        ]);
+                        setMetrics({
+                            totalArticles: 1,
+                            aiAnalysisComplete: 1,
+                            threatLevel: "LOW",
+                            systemStatus: "OPERATIONAL"
+                        });
+                    }
+                } catch (error) {
+                    console.error('Data loading error:', error);
+                } finally {
+                    setLoading(false);
+                    setLastUpdate(new Date().toLocaleString());
+                    document.getElementById('lastUpdate').textContent = new Date().toLocaleString();
+                }
+            }
+
+            if (loading) {
+                return (
+                    <div className="container">
+                        <div className="loading">
+                            INITIALIZING PATRIOTS PROTOCOL<span className="terminal-cursor">_</span>
+                        </div>
+                    </div>
+                );
+            }
+
+            return (
+                <div className="container">
+                    <div className="metrics-grid">
+                        <div className="metric-card">
+                            <div className="metric-title">ARTICLES PROCESSED</div>
+                            <div className="metric-value">{metrics.totalArticles || 0}</div>
+                            <div className="metric-change">+{metrics.newArticles || 0} TODAY</div>
+                        </div>
+                        <div className="metric-card">
+                            <div className="metric-title">AI ANALYSIS STATUS</div>
+                            <div className="metric-value">{metrics.aiAnalysisComplete || 0}</div>
+                            <div className="metric-change">MODELS ACTIVE</div>
+                        </div>
+                        <div className="metric-card">
+                            <div className="metric-title">THREAT LEVEL</div>
+                            <div className="metric-value">{metrics.threatLevel || 'LOW'}</div>
+                            <div className="metric-change">MONITORING</div>
+                        </div>
+                        <div className="metric-card">
+                            <div className="metric-title">SYSTEM STATUS</div>
+                            <div className="metric-value">{metrics.systemStatus || 'ONLINE'}</div>
+                            <div className="metric-change">ALL SYSTEMS GO</div>
+                        </div>
+                    </div>
+
+                    <div className="news-section">
+                        <h2 className="section-title">INTELLIGENCE BRIEFING</h2>
+                        <div className="news-grid">
+                            {newsData.map((article, index) => (
+                                <div key={index} className="news-card">
+                                    <h3 className="news-title">{article.title}</h3>
+                                    <p className="news-summary">{article.summary}</p>
+                                    <div className="news-meta">
+                                        <span>SOURCE: {article.source}</span>
+                                        <span>{new Date(article.timestamp).toLocaleString()}</span>
+                                    </div>
+                                    {article.aiAnalysis && (
+                                        <div className="ai-analysis">
+                                            <div className="ai-label">AI ANALYSIS</div>
+                                            <div className="ai-text">{article.aiAnalysis}</div>
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+</body>
+</html>
