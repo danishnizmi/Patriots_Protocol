@@ -1,0 +1,36 @@
+{
+  "articles": [
+    {
+      "title": "Global Tech Markets Show Resilience Amid Economic Uncertainty",
+      "summary": "Technology sectors continue to demonstrate strong performance indicators despite ongoing global economic challenges and regulatory changes.",
+      "source": "REUTERS",
+      "timestamp": "2025-06-14T12:41:07.987Z",
+      "aiAnalysis": "Analysis pending - AI model temporarily unavailable"
+    },
+    {
+      "title": "Cybersecurity Frameworks Enhanced for Critical Infrastructure",
+      "summary": "New protocols implemented across major infrastructure networks to strengthen defensive capabilities against emerging threats.",
+      "source": "BBC",
+      "timestamp": "2025-06-14T12:41:07.987Z",
+      "aiAnalysis": "Analysis pending - AI model temporarily unavailable"
+    },
+    {
+      "title": "AI Integration Accelerates in Financial Services Sector",
+      "summary": "Major financial institutions report significant improvements in operational efficiency through strategic AI implementation programs.",
+      "source": "BLOOMBERG",
+      "timestamp": "2025-06-14T12:41:07.987Z",
+      "aiAnalysis": "Analysis pending - AI model temporarily unavailable"
+    }
+  ],
+  "metrics": {
+    "totalArticles": 3,
+    "aiAnalysisComplete": 3,
+    "threatLevel": "LOW",
+    "systemStatus": "OPERATIONAL",
+    "newArticles": 3,
+    "lastAnalysis": "2025-06-14T12:41:08.458Z",
+    "aiInsight": "Metrics analysis completed successfully"
+  },
+  "lastUpdated": "2025-06-14T12:41:08.458Z",
+  "version": "1.0"
+}
