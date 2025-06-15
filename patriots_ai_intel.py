@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """
 PATRIOTS PROTOCOL - Professional AI Intelligence System v4.0
-Professional AI-Driven Intelligence Network with Meaningful Analysis
+Cyber Security Intelligence Network with Real-Time Analysis
 
-Production system with GitHub Models API integration and professional
-intelligence analysis capabilities.
+Enhanced system with premium cyber security feeds and detailed analysis.
 
 Source: PATRIOTS PROTOCOL - https://github.com/danishnizmi/Patriots_Protocol
 """
@@ -15,7 +14,7 @@ import asyncio
 import aiohttp
 import time
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from typing import Dict, List, Any, Optional
 from dataclasses import dataclass, asdict
 import feedparser
@@ -86,7 +85,7 @@ class IntelligenceMetrics:
     patriots_protocol_status: str = "PATRIOTS PROTOCOL OPERATIONAL"
 
 class PatriotsProtocolAI:
-    """Professional AI Intelligence Analysis System"""
+    """Professional AI Intelligence Analysis System - Cyber Security Focus"""
     
     def __init__(self):
         # Use GITHUB_TOKEN as MODEL_TOKEN for GitHub Models API
@@ -95,25 +94,63 @@ class PatriotsProtocolAI:
         self.model = "openai/gpt-4.1-mini"
         self.session = None
         
-        # Professional intelligence sources
+        # Enhanced cyber security intelligence sources
         self.intelligence_sources = [
-            {
-                'name': 'BBC_WORLD_NEWS',
-                'url': 'https://feeds.bbci.co.uk/news/world/rss.xml',
-                'base_url': 'https://www.bbc.com',
-                'credibility': 0.95
-            },
             {
                 'name': 'CYBERSECURITY_INTEL',
                 'url': 'https://feeds.feedburner.com/eset/blog',
                 'base_url': 'https://www.welivesecurity.com',
-                'credibility': 0.88
+                'credibility': 0.92,
+                'category': 'SECURITY'
             },
             {
-                'name': 'DEFENSE_NEWS',
-                'url': 'https://www.defensenews.com/arc/outboundfeeds/rss/category/breaking-news/',
-                'base_url': 'https://www.defensenews.com',
-                'credibility': 0.87
+                'name': 'KREBS_SECURITY',
+                'url': 'https://krebsonsecurity.com/feed/',
+                'base_url': 'https://krebsonsecurity.com',
+                'credibility': 0.95,
+                'category': 'SECURITY'
+            },
+            {
+                'name': 'DARK_READING',
+                'url': 'https://www.darkreading.com/rss_simple.asp',
+                'base_url': 'https://www.darkreading.com',
+                'credibility': 0.89,
+                'category': 'SECURITY'
+            },
+            {
+                'name': 'BLEEPING_COMPUTER',
+                'url': 'https://www.bleepingcomputer.com/feed/',
+                'base_url': 'https://www.bleepingcomputer.com',
+                'credibility': 0.87,
+                'category': 'SECURITY'
+            },
+            {
+                'name': 'HACKER_NEWS_CYBER',
+                'url': 'https://thehackernews.com/feeds/posts/default',
+                'base_url': 'https://thehackernews.com',
+                'credibility': 0.85,
+                'category': 'SECURITY'
+            },
+            {
+                'name': 'SECURITY_WEEK',
+                'url': 'https://www.securityweek.com/feed',
+                'base_url': 'https://www.securityweek.com',
+                'credibility': 0.88,
+                'category': 'SECURITY'
+            },
+            {
+                'name': 'CYBERSECURITY_DIVE',
+                'url': 'https://www.cybersecuritydive.com/feeds/latest/',
+                'base_url': 'https://www.cybersecuritydive.com',
+                'credibility': 0.90,
+                'category': 'SECURITY'
+            },
+            {
+                'name': 'INFOSEC_MAGAZINE',
+                'url': 'https://www.infosecurity-magazine.com/rss/news/',
+                'base_url': 'https://www.infosecurity-magazine.com',
+                'credibility': 0.86,
+                'category': 'SECURITY'
             }
         ]
         
@@ -121,18 +158,19 @@ class PatriotsProtocolAI:
             logger.error("❌ GITHUB_TOKEN/MODEL_TOKEN environment variable not set")
             raise ValueError("GITHUB_TOKEN or MODEL_TOKEN is required for AI operations")
         
-        logger.info("🚀 Patriots Protocol AI Intelligence System v4.0 initialized")
+        logger.info("🚀 Patriots Protocol AI Cyber Intelligence System v4.0 initialized")
         logger.info(f"🔑 API Token available: {bool(self.api_token)}")
         logger.info(f"🤖 Model: {self.model}")
         logger.info(f"🌐 Endpoint: {self.base_url}")
+        logger.info(f"🛡️  Cyber Security Sources: {len(self.intelligence_sources)}")
 
     async def __aenter__(self):
         """Async context manager entry"""
         self.session = aiohttp.ClientSession(
             timeout=aiohttp.ClientTimeout(total=60),
             headers={
-                'User-Agent': 'Patriots-Protocol-AI-v4.0/Professional-Intelligence',
-                'Accept': 'application/rss+xml, application/xml, text/xml'
+                'User-Agent': 'Patriots-Protocol-Cyber-Intel-v4.0/Professional-Security-Analysis',
+                'Accept': 'application/rss+xml, application/xml, text/xml, application/atom+xml'
             }
         )
         return self
@@ -146,8 +184,41 @@ class PatriotsProtocolAI:
         """Generate unique content hash"""
         return hashlib.sha256(content.encode('utf-8')).hexdigest()[:16]
 
+    def is_fresh_content(self, published_date: str) -> bool:
+        """Check if content is fresh (within last 7 days)"""
+        try:
+            if not published_date:
+                return True  # Include if no date available
+                
+            # Parse various date formats
+            try:
+                from dateutil import parser
+                pub_date = parser.parse(published_date)
+            except:
+                # Fallback for basic ISO format
+                pub_date = datetime.fromisoformat(published_date.replace('Z', '+00:00'))
+            
+            # Make timezone aware if needed
+            if pub_date.tzinfo is None:
+                pub_date = pub_date.replace(tzinfo=timezone.utc)
+            
+            # Check if within last 7 days
+            cutoff_date = datetime.now(timezone.utc) - timedelta(days=7)
+            is_fresh = pub_date > cutoff_date
+            
+            if is_fresh:
+                logger.info(f"✅ Fresh content from {pub_date.strftime('%Y-%m-%d %H:%M')}")
+            else:
+                logger.info(f"⏰ Old content from {pub_date.strftime('%Y-%m-%d %H:%M')} - skipping")
+                
+            return is_fresh
+            
+        except Exception as e:
+            logger.warning(f"⚠️  Date parsing error: {str(e)} - including content anyway")
+            return True
+
     async def make_ai_request(self, prompt: str, context: str) -> Dict[str, Any]:
-        """Professional AI request with GitHub Models API"""
+        """Enhanced AI request for cyber security analysis"""
         try:
             # Use OpenAI client with GitHub Models endpoint
             from openai import AsyncOpenAI
@@ -162,30 +233,37 @@ class PatriotsProtocolAI:
                 messages=[
                     {
                         "role": "system", 
-                        "content": """You are a professional intelligence analyst providing concise, factual analysis of news events. 
+                        "content": """You are a professional cyber security intelligence analyst. Provide detailed, factual analysis of cyber security events with specific technical details.
 
 Analyze the provided content and return a JSON response with these exact fields:
 {
-    "analysis": "Professional 2-3 sentence analysis focusing on key facts and implications. Be specific and factual about what happened.",
-    "threat_level": "CRITICAL/HIGH/MEDIUM/LOW based on actual content severity",
+    "analysis": "Detailed 3-4 sentence technical analysis explaining what happened, the attack method/vulnerability, impact, and implications. Be specific about the technical aspects.",
+    "threat_level": "CRITICAL/HIGH/MEDIUM/LOW based on actual severity and scope",
     "strategic_importance": "CRITICAL/HIGH/MEDIUM/LOW",
-    "operational_impact": "Specific assessment of actual implications",
-    "geo_relevance": ["Specific countries/regions mentioned"],
+    "operational_impact": "Specific assessment of business/operational implications",
+    "geo_relevance": ["Specific countries/regions affected"],
     "confidence_score": 0.85,
-    "priority_score": 6,
-    "entities": ["Specific people, organizations mentioned"],
-    "intelligence_value": "CRITICAL/HIGH/MEDIUM/LOW"
+    "priority_score": 7,
+    "entities": ["Specific companies, threat actors, software mentioned"],
+    "intelligence_value": "CRITICAL/HIGH/MEDIUM/LOW",
+    "attack_vector": "Specific attack method if applicable",
+    "affected_systems": ["Systems/software affected"],
+    "mitigation_urgency": "IMMEDIATE/HIGH/MEDIUM/LOW"
 }
 
-Be specific about what the news means. Avoid generic phrases. Provide real intelligence analysis."""
+Focus on:
+- Technical details of the threat/vulnerability
+- Specific impact and scope
+- Actionable intelligence for security teams
+- Real-world implications for organizations"""
                     },
                     {
                         "role": "user", 
-                        "content": f"Analyze this news report:\n\nTitle: {context.split('Content:')[0].replace('Title:', '').strip() if 'Content:' in context else context[:100]}\n\nContent: {context.split('Content:')[1] if 'Content:' in context else context}\n\nProvide specific analysis in JSON format."
+                        "content": f"Analyze this cyber security intelligence:\n\nTitle: {context.split('Content:')[0].replace('Title:', '').strip() if 'Content:' in context else context[:100]}\n\nContent: {context.split('Content:')[1] if 'Content:' in context else context}\n\nProvide detailed technical analysis in JSON format."
                     }
                 ],
-                temperature=0.2,
-                max_tokens=1000
+                temperature=0.1,  # Lower temperature for more factual analysis
+                max_tokens=1200
             )
             
             ai_response = response.choices[0].message.content
@@ -203,48 +281,51 @@ Be specific about what the news means. Avoid generic phrases. Provide real intel
                     # Get analysis text
                     analysis = structured_data.get('analysis', '').strip()
                     
-                    # Validate we got meaningful analysis (not empty or too generic)
-                    if not analysis or len(analysis) < 50:
-                        logger.warning("⚠️  Analysis too short, skipping...")
+                    # Validate we got meaningful cyber security analysis
+                    if not analysis or len(analysis) < 80:
+                        logger.warning("⚠️  Analysis too short for cyber intel, skipping...")
                         return {'success': False}
                     
-                    # Check for generic phrases
-                    generic_phrases = ['monitoring protocols', 'situational awareness', 'enhanced monitoring', 'standard protocols']
-                    if any(phrase in analysis.lower() for phrase in generic_phrases):
-                        logger.warning("⚠️  Generic analysis detected, skipping...")
+                    # Check for meaningful cyber security content
+                    cyber_keywords = ['vulnerability', 'attack', 'breach', 'malware', 'exploit', 'threat', 'security', 'cyber', 'hack', 'ransomware', 'phishing']
+                    if not any(keyword in analysis.lower() for keyword in cyber_keywords):
+                        logger.warning("⚠️  No cyber security content detected, skipping...")
                         return {'success': False}
                     
-                    logger.info(f"✅ Meaningful analysis extracted: {analysis[:100]}...")
+                    logger.info(f"✅ Cyber intelligence analysis extracted: {analysis[:100]}...")
                     
                     return {
                         'success': True,
                         'analysis': analysis,
-                        'threat_level': structured_data.get('threat_level', 'LOW'),
+                        'threat_level': structured_data.get('threat_level', 'MEDIUM'),
                         'strategic_importance': structured_data.get('strategic_importance', 'MEDIUM'),
-                        'operational_impact': structured_data.get('operational_impact', 'Requires assessment'),
+                        'operational_impact': structured_data.get('operational_impact', 'Security assessment required'),
                         'geo_relevance': structured_data.get('geo_relevance', ['GLOBAL']),
-                        'confidence_score': structured_data.get('confidence_score', 0.78),
-                        'priority_score': structured_data.get('priority_score', 5),
+                        'confidence_score': structured_data.get('confidence_score', 0.82),
+                        'priority_score': structured_data.get('priority_score', 6),
                         'entities': structured_data.get('entities', []),
-                        'intelligence_value': structured_data.get('intelligence_value', 'MEDIUM')
+                        'intelligence_value': structured_data.get('intelligence_value', 'HIGH'),
+                        'attack_vector': structured_data.get('attack_vector', 'Multiple vectors'),
+                        'affected_systems': structured_data.get('affected_systems', ['Enterprise systems']),
+                        'mitigation_urgency': structured_data.get('mitigation_urgency', 'MEDIUM')
                     }
             
             except (json.JSONDecodeError, ValueError) as e:
                 logger.warning(f"⚠️  JSON parsing failed: {str(e)}")
                 # Try to extract analysis from text if JSON fails
-                if len(ai_response) > 100:
-                    logger.info("🔄 Using text response as analysis...")
+                if len(ai_response) > 100 and any(word in ai_response.lower() for word in ['security', 'cyber', 'threat', 'attack']):
+                    logger.info("🔄 Using text response as cyber analysis...")
                     return {
                         'success': True,
-                        'analysis': ai_response[:400] + "..." if len(ai_response) > 400 else ai_response,
-                        'threat_level': 'MEDIUM',
-                        'strategic_importance': 'MEDIUM',
-                        'operational_impact': 'Professional assessment based on available information',
+                        'analysis': ai_response[:500] + "..." if len(ai_response) > 500 else ai_response,
+                        'threat_level': 'HIGH',
+                        'strategic_importance': 'HIGH',
+                        'operational_impact': 'Cyber security assessment based on available intelligence',
                         'geo_relevance': ['GLOBAL'],
-                        'confidence_score': 0.75,
-                        'priority_score': 5,
+                        'confidence_score': 0.78,
+                        'priority_score': 7,
                         'entities': [],
-                        'intelligence_value': 'MEDIUM'
+                        'intelligence_value': 'HIGH'
                     }
                 return {'success': False}
             
@@ -253,7 +334,7 @@ Be specific about what the news means. Avoid generic phrases. Provide real intel
             return {'success': False}
 
     async def fetch_intelligence_feeds(self) -> List[Dict[str, Any]]:
-        """Fetch intelligence from news sources"""
+        """Fetch fresh cyber security intelligence from feeds"""
         all_articles = []
         
         for source in self.intelligence_sources:
@@ -265,12 +346,20 @@ Be specific about what the news means. Avoid generic phrases. Provide real intel
                         content = await response.text()
                         feed = feedparser.parse(content)
                         
-                        for entry in feed.entries[:4]:  # Limit articles per source
+                        logger.info(f"📊 Found {len(feed.entries)} entries from {source['name']}")
+                        
+                        for entry in feed.entries[:8]:  # More articles per source
                             title = entry.title
-                            summary = self._clean_text(entry.get('summary', entry.get('description', '')))
+                            summary = self._clean_text(entry.get('summary', entry.get('description', entry.get('content', [{}])[0].get('value', '') if entry.get('content') else '')))
                             
-                            # Skip if summary is too short or generic
+                            # Skip if summary is too short
                             if len(summary) < 50:
+                                logger.info(f"⚠️  Skipping short content: {title[:50]}...")
+                                continue
+                            
+                            # Check for fresh content
+                            published_date = entry.get('published', entry.get('updated', ''))
+                            if not self.is_fresh_content(published_date):
                                 continue
                             
                             # Build proper source URL
@@ -287,11 +376,12 @@ Be specific about what the news means. Avoid generic phrases. Provide real intel
                                 'summary': summary,
                                 'source': source['name'],
                                 'source_url': source_url,
-                                'timestamp': entry.get('published', datetime.now(timezone.utc).isoformat()),
+                                'timestamp': published_date or datetime.now(timezone.utc).isoformat(),
                                 'credibility': source['credibility'],
                                 'word_count': word_count,
                                 'reading_time': f"{reading_time} min read",
-                                'content_hash': self.generate_content_hash(full_content)
+                                'content_hash': self.generate_content_hash(full_content),
+                                'category': source['category']
                             }
                             
                             all_articles.append(article)
@@ -303,17 +393,22 @@ Be specific about what the news means. Avoid generic phrases. Provide real intel
                 logger.error(f"❌ Error fetching {source['name']}: {str(e)}")
                 continue
 
-        # Remove duplicates
+        # Remove duplicates and sort by timestamp (newest first)
         unique_articles = {}
         for article in all_articles:
             if article['content_hash'] not in unique_articles:
                 unique_articles[article['content_hash']] = article
 
-        logger.info(f"📊 Collected {len(unique_articles)} unique intelligence reports")
-        return list(unique_articles.values())
+        # Sort by timestamp (newest first)
+        sorted_articles = sorted(unique_articles.values(), 
+                               key=lambda x: x['timestamp'], 
+                               reverse=True)
+
+        logger.info(f"📊 Collected {len(sorted_articles)} unique fresh cyber intelligence reports")
+        return sorted_articles
 
     def _clean_text(self, text: str) -> str:
-        """Clean and enhance text content"""
+        """Clean and enhance text content for cyber security analysis"""
         if not text:
             return ""
         
@@ -321,34 +416,33 @@ Be specific about what the news means. Avoid generic phrases. Provide real intel
         text = re.sub(r'<[^>]+>', '', text)
         text = re.sub(r'\s+', ' ', text).strip()
         text = re.sub(r'\[.*?\]', '', text)
+        text = re.sub(r'Read more.*$', '', text, flags=re.IGNORECASE)
         
-        return text[:500] if len(text) > 500 else text
+        # Keep longer summaries for better analysis
+        return text[:800] if len(text) > 800 else text
 
     async def analyze_article(self, article: Dict[str, Any]) -> Optional[IntelligenceReport]:
-        """Professional article analysis - only return if meaningful"""
-        logger.info(f"🔍 Analyzing: {article['title'][:50]}...")
+        """Enhanced cyber security article analysis"""
+        logger.info(f"🔍 Analyzing cyber intel: {article['title'][:60]}...")
         
         try:
             # AI analysis
             ai_result = await self.make_ai_request(
-                "Professional intelligence analysis",
+                "Cyber security intelligence analysis",
                 f"Title: {article['title']}\nContent: {article['summary']}"
             )
             
             # Skip if AI couldn't provide meaningful analysis
             if not ai_result.get('success'):
-                logger.info(f"⚠️  Skipping article - no meaningful analysis available")
+                logger.info(f"⚠️  Skipping article - no meaningful cyber analysis available")
                 return None
             
-            # Category classification
-            category = self._classify_category(article['title'], article['summary'])
-            
-            # Extract keywords and entities
-            keywords = self._extract_keywords(f"{article['title']} {article['summary']}")
+            # Enhanced keyword extraction for cyber security
+            keywords = self._extract_cyber_keywords(f"{article['title']} {article['summary']}")
             entities = ai_result.get('entities', [])
             
-            # Generate executive summary
-            executive_summary = self._generate_executive_summary(article['summary'])
+            # Generate enhanced executive summary
+            executive_summary = self._generate_cyber_executive_summary(article['summary'], ai_result.get('analysis', ''))
             
             report = IntelligenceReport(
                 title=article['title'],
@@ -358,7 +452,7 @@ Be specific about what the news means. Avoid generic phrases. Provide real intel
                 source_url=article.get('source_url', ''),
                 source_credibility=article['credibility'],
                 timestamp=article['timestamp'],
-                category=category,
+                category='SECURITY',  # All articles are cyber security focused
                 ai_analysis=ai_result['analysis'],
                 confidence=ai_result['confidence_score'],
                 threat_level=ai_result['threat_level'],
@@ -374,68 +468,68 @@ Be specific about what the news means. Avoid generic phrases. Provide real intel
                 intelligence_value=ai_result['intelligence_value']
             )
             
-            logger.info(f"✅ Analysis complete - Threat: {report.threat_level}, Value: {report.intelligence_value}")
+            logger.info(f"✅ Cyber analysis complete - Threat: {report.threat_level}, Value: {report.intelligence_value}")
             return report
             
         except Exception as e:
-            logger.error(f"❌ Error analyzing article '{article['title'][:50]}...': {str(e)}")
+            logger.error(f"❌ Error analyzing cyber article '{article['title'][:50]}...': {str(e)}")
             return None
 
-    def _generate_executive_summary(self, summary: str) -> str:
-        """Generate concise executive summary"""
-        if not summary or len(summary) <= 100:
-            return summary
+    def _generate_cyber_executive_summary(self, summary: str, ai_analysis: str) -> str:
+        """Generate enhanced executive summary for cyber security"""
+        if not summary:
+            return "Cyber security intelligence requires assessment."
+        
+        # Try to extract key threat information
+        threat_indicators = ['vulnerability', 'exploit', 'attack', 'breach', 'malware', 'ransomware', 'phishing', 'zero-day']
         
         sentences = summary.split('. ')
-        if sentences and len(sentences[0]) <= 120:
-            return sentences[0] + ('.' if not sentences[0].endswith('.') else '')
+        key_sentence = ""
         
-        return summary[:97] + "..."
+        # Find sentence with threat indicators
+        for sentence in sentences:
+            if any(indicator in sentence.lower() for indicator in threat_indicators):
+                key_sentence = sentence
+                break
+        
+        if not key_sentence and sentences:
+            key_sentence = sentences[0]
+        
+        # Ensure proper ending
+        if key_sentence and not key_sentence.endswith('.'):
+            key_sentence += '.'
+        
+        return key_sentence[:150] + "..." if len(key_sentence) > 150 else key_sentence
 
-    def _extract_keywords(self, text: str) -> List[str]:
-        """Extract relevant keywords"""
+    def _extract_cyber_keywords(self, text: str) -> List[str]:
+        """Extract cyber security specific keywords"""
         text_lower = text.lower()
         keywords = []
         
-        keyword_categories = {
-            'threat': ['attack', 'threat', 'breach', 'exploit', 'cyber', 'terrorism'],
-            'technology': ['ai', 'artificial intelligence', 'quantum', 'digital'],
-            'geopolitical': ['diplomatic', 'sanctions', 'conflict', 'war', 'military'],
-            'economic': ['economic', 'financial', 'trade', 'market'],
-            'organizations': ['nato', 'un', 'government', 'military']
+        cyber_keyword_categories = {
+            'threats': ['malware', 'ransomware', 'phishing', 'ddos', 'botnet', 'apt', 'trojan', 'virus', 'worm'],
+            'attacks': ['breach', 'exploit', 'hack', 'attack', 'intrusion', 'compromise', 'penetration'],
+            'vulnerabilities': ['vulnerability', 'zero-day', 'cve', 'patch', 'flaw', 'bug', 'weakness'],
+            'technologies': ['firewall', 'vpn', 'encryption', 'authentication', 'endpoint', 'cloud', 'ai', 'machine learning'],
+            'sectors': ['healthcare', 'finance', 'government', 'critical infrastructure', 'energy', 'telecommunications'],
+            'techniques': ['social engineering', 'spear phishing', 'credential stuffing', 'supply chain', 'lateral movement']
         }
         
-        for category, terms in keyword_categories.items():
+        for category, terms in cyber_keyword_categories.items():
             for term in terms:
                 if term in text_lower:
-                    keywords.append(term.upper())
+                    keywords.append(term.upper().replace(' ', '_'))
         
-        return list(set(keywords))[:8]
-
-    def _classify_category(self, title: str, summary: str) -> str:
-        """Classify article category"""
-        content = f"{title} {summary}".lower()
+        # Add some common cyber terms
+        common_cyber = ['cyber', 'security', 'threat', 'risk', 'incident', 'response', 'forensics', 'detection']
+        for term in common_cyber:
+            if term in text_lower:
+                keywords.append(term.upper())
         
-        categories = {
-            'SECURITY': ['cyber', 'security', 'attack', 'threat', 'breach'],
-            'TECHNOLOGY': ['tech', 'ai', 'digital', 'innovation'],
-            'POLITICS': ['political', 'government', 'election', 'diplomatic'],
-            'DEFENSE': ['military', 'defense', 'weapons', 'nuclear'],
-            'ECONOMICS': ['economic', 'trade', 'financial', 'market']
-        }
-        
-        scores = {}
-        for category, keywords in categories.items():
-            score = sum(1 for keyword in keywords if keyword in content)
-            scores[category] = score
-        
-        if scores and max(scores.values()) > 0:
-            return max(scores, key=scores.get)
-        
-        return 'GLOBAL'
+        return list(set(keywords))[:10]  # More keywords for cyber intel
 
     def calculate_metrics(self, reports: List[IntelligenceReport]) -> IntelligenceMetrics:
-        """Calculate intelligence metrics"""
+        """Calculate enhanced cyber security intelligence metrics"""
         if not reports:
             return self._generate_baseline_metrics()
 
@@ -443,7 +537,7 @@ Be specific about what the news means. Avoid generic phrases. Provide real intel
         total_words = sum(r.word_count for r in reports)
         avg_length = total_words // len(reports) if reports else 0
         
-        # Intelligence metrics
+        # Cyber intelligence metrics
         high_value = len([r for r in reports if r.intelligence_value in ['HIGH', 'CRITICAL']])
         critical = len([r for r in reports if r.intelligence_value == 'CRITICAL'])
         
@@ -456,7 +550,7 @@ Be specific about what the news means. Avoid generic phrases. Provide real intel
                         'HIGH' if threat_counts['HIGH'] > 0 else (
                         'MEDIUM' if threat_counts['MEDIUM'] > 0 else 'LOW'))
         
-        # Extract trending data
+        # Extract trending cyber threats
         all_keywords = []
         all_entities = []
         for report in reports:
@@ -467,7 +561,7 @@ Be specific about what the news means. Avoid generic phrases. Provide real intel
         for kw in all_keywords:
             keyword_freq[kw] = keyword_freq.get(kw, 0) + 1
         
-        trending = [kw for kw, count in sorted(keyword_freq.items(), key=lambda x: x[1], reverse=True)[:5]]
+        trending_threats = [kw for kw, count in sorted(keyword_freq.items(), key=lambda x: x[1], reverse=True)[:5]]
         
         # Geographic analysis
         all_geo = []
@@ -478,16 +572,26 @@ Be specific about what the news means. Avoid generic phrases. Provide real intel
         for geo in all_geo:
             geo_freq[geo] = geo_freq.get(geo, 0) + 1
         
-        primary_regions = [geo for geo, count in sorted(geo_freq.items(), key=lambda x: x[1], reverse=True)[:3]]
+        primary_regions = [geo for geo, count in sorted(geo_freq.items(), key=lambda x: x[1], reverse=True)[:4]]
         
-        # Strategic assessment
-        strategic_assessment = f"Patriots Protocol analyzed {len(reports)} intelligence reports with professional AI assessment. "
+        # Enhanced strategic assessment for cyber security
+        strategic_assessment = f"Patriots Protocol analyzed {len(reports)} cyber security intelligence reports. "
         if high_value > 0:
-            strategic_assessment += f"Identified {high_value} high-value intelligence items requiring attention. "
-        if threat_counts['HIGH'] + threat_counts['CRITICAL'] > 0:
-            strategic_assessment += f"Detected {threat_counts['HIGH'] + threat_counts['CRITICAL']} elevated threat indicators."
-        else:
-            strategic_assessment += "Current threat environment remains stable."
+            strategic_assessment += f"Identified {high_value} high-value cyber threats requiring immediate attention. "
+        if threat_counts['CRITICAL'] > 0:
+            strategic_assessment += f"CRITICAL: {threat_counts['CRITICAL']} critical cyber threats detected. "
+        if threat_counts['HIGH'] > 0:
+            strategic_assessment += f"Monitoring {threat_counts['HIGH']} high-priority cyber incidents. "
+        
+        if trending_threats:
+            strategic_assessment += f"Emerging threat vectors: {', '.join(trending_threats[:3])}."
+        
+        # Cyber-specific threat vector analysis
+        threat_analysis = f"Cyber threat environment: {overall_threat}. "
+        if trending_threats:
+            threat_analysis += f"Active monitoring of {len(trending_threats)} threat indicators including {', '.join(trending_threats[:2])}. "
+        threat_analysis += f"Source credibility: {int(sum(r.source_credibility for r in reports) / len(reports) * 100)}%. "
+        threat_analysis += f"Geographic focus: {', '.join(primary_regions[:2]) if primary_regions else 'Global'}."
         
         return IntelligenceMetrics(
             total_articles=len(reports),
@@ -496,27 +600,27 @@ Be specific about what the news means. Avoid generic phrases. Provide real intel
             system_status="OPERATIONAL",
             average_article_length=avg_length,
             total_word_count=total_words,
-            average_reading_time="1 min",
+            average_reading_time=f"{max(1, avg_length // 200)} min",
             high_value_intelligence=high_value,
             critical_intelligence=critical,
-            actionable_intelligence=len(reports),
-            emerging_threats=trending[:3] if trending else ["Monitoring"],
+            actionable_intelligence=len([r for r in reports if r.priority_score >= 7]),
+            emerging_threats=trending_threats[:5] if trending_threats else ["Active_Monitoring"],
             primary_regions=primary_regions if primary_regions else ["GLOBAL"],
             source_diversity=len(set(r.source for r in reports)),
             credibility_average=sum(r.source_credibility for r in reports) / len(reports),
-            primary_sources=list(set(r.source for r in reports))[:3],
+            primary_sources=list(set(r.source for r in reports))[:4],
             ai_confidence=int(sum(r.confidence for r in reports) / len(reports) * 100),
             processing_time="< 45 seconds",
             api_status="ACTIVE",
             strategic_assessment=strategic_assessment,
-            intelligence_summary=f"Patriots Protocol processed {len(reports)} intelligence reports. Primary categories: {', '.join(set(r.category for r in reports))}.",
-            threat_vector_analysis=f"Threat environment: {overall_threat}. Active monitoring of {len(trending)} key indicators." if trending else "Standard threat monitoring active.",
+            intelligence_summary=f"Patriots Protocol processed {len(reports)} cyber security reports. Active threat monitoring across {len(set(r.source for r in reports))} intelligence sources.",
+            threat_vector_analysis=threat_analysis,
             last_analysis=datetime.now(timezone.utc).isoformat(),
-            last_update=datetime.now().strftime("%m/%d/%Y, %I:%M:%S %p")
+            last_update=datetime.now().strftime("%d/%m/%Y, %H:%M:%S UTC")
         )
 
     def _generate_baseline_metrics(self) -> IntelligenceMetrics:
-        """Generate baseline metrics when no meaningful reports available"""
+        """Generate baseline metrics for cyber security focus"""
         return IntelligenceMetrics(
             total_articles=0,
             ai_analysis_complete=0,
@@ -528,140 +632,143 @@ Be specific about what the news means. Avoid generic phrases. Provide real intel
             high_value_intelligence=0,
             critical_intelligence=0,
             actionable_intelligence=0,
-            emerging_threats=["Monitoring"],
+            emerging_threats=["Monitoring_Active"],
             primary_regions=["GLOBAL"],
             source_diversity=0,
-            credibility_average=0.85,
-            primary_sources=["PATRIOTS_PROTOCOL"],
+            credibility_average=0.88,
+            primary_sources=["CYBER_INTEL_NETWORK"],
             ai_confidence=85,
             processing_time="< 30 seconds",
             api_status="ACTIVE",
-            strategic_assessment="Patriots Protocol operational - monitoring intelligence feeds for meaningful analysis.",
-            intelligence_summary="Patriots Protocol standing by for intelligence operations.",
-            threat_vector_analysis="No immediate threats detected. Standard monitoring active.",
+            strategic_assessment="Patriots Protocol cyber intelligence network operational - monitoring global threat landscape.",
+            intelligence_summary="Patriots Protocol cyber security intelligence standing by.",
+            threat_vector_analysis="No immediate cyber threats detected. Continuous monitoring active across all threat vectors.",
             last_analysis=datetime.now(timezone.utc).isoformat(),
-            last_update=datetime.now().strftime("%m/%d/%Y, %I:%M:%S %p")
+            last_update=datetime.now().strftime("%d/%m/%Y, %H:%M:%S UTC")
         )
 
 async def main():
-    """Main Patriots Protocol AI Intelligence Pipeline"""
-    logger.info("🎖️  PATRIOTS PROTOCOL v4.0 - AI Intelligence System Starting...")
+    """Main Patriots Protocol Cyber Intelligence Pipeline"""
+    logger.info("🎖️  PATRIOTS PROTOCOL v4.0 - Cyber Security Intelligence System Starting...")
     logger.info(f"📅 Mission Start: {datetime.now(timezone.utc).isoformat()}")
     
     try:
         async with PatriotsProtocolAI() as ai_system:
-            # Test API connectivity first
-            logger.info("🧪 Testing GitHub Models API connectivity...")
+            # Test API connectivity
+            logger.info("🧪 Testing GitHub Models API connectivity for cyber intelligence...")
             
-            # Simple connectivity test
             try:
                 test_result = await ai_system.make_ai_request(
                     "Test connectivity", 
-                    "Title: GitHub Models API Test\nContent: Testing connectivity to GitHub Models API with OpenAI GPT-4.1-mini model for Patriots Protocol intelligence analysis."
+                    "Title: Cyber Security Intelligence Test\nContent: Testing advanced cyber threat analysis capabilities for ransomware detection and vulnerability assessment using AI-powered threat intelligence."
                 )
                 
                 if test_result.get('success'):
-                    logger.info("✅ GitHub Models API connection successful")
-                    logger.info(f"🎯 Test analysis received: {test_result.get('analysis', 'N/A')[:100]}...")
+                    logger.info("✅ GitHub Models API cyber intelligence connection successful")
+                    logger.info(f"🎯 Test cyber analysis: {test_result.get('analysis', 'N/A')[:100]}...")
                 else:
-                    logger.warning("⚠️  GitHub Models API test failed - will attempt article processing anyway")
+                    logger.warning("⚠️  GitHub Models API test failed - continuing with processing")
                     
             except Exception as e:
-                logger.warning(f"⚠️  API test error: {str(e)} - continuing with processing")
+                logger.warning(f"⚠️  API test error: {str(e)} - continuing with cyber intelligence gathering")
             
-            # Fetch intelligence
+            # Fetch fresh cyber intelligence
             articles = await ai_system.fetch_intelligence_feeds()
             
-            # Process articles with AI analysis - only keep meaningful ones
+            # Process articles with enhanced cyber security AI analysis
             reports = []
             processed_count = 0
             
-            for i, article in enumerate(articles[:20]):  # Check more articles to increase success rate
+            for i, article in enumerate(articles[:25]):  # Process more articles for cyber intel
                 try:
-                    logger.info(f"🔍 Processing article {i+1}/{min(20, len(articles))}: {article['title'][:50]}...")
+                    logger.info(f"🔍 Processing cyber intel {i+1}/{min(25, len(articles))}: {article['title'][:60]}...")
                     processed_count += 1
                     
                     report = await ai_system.analyze_article(article)
                     
-                    if report:  # Only add if we got meaningful analysis
+                    if report:  # Only add if we got meaningful cyber analysis
                         reports.append(report)
-                        logger.info(f"✅ Successfully analyzed: {report.title[:50]}...")
+                        logger.info(f"✅ Cyber intelligence analyzed: {report.title[:60]}... (Threat: {report.threat_level})")
                     else:
-                        logger.info(f"⚠️  Skipped article due to insufficient analysis quality")
+                        logger.info(f"⚠️  Skipped article - insufficient cyber security analysis quality")
                     
-                    # Rate limiting - shorter delay to process more articles
-                    await asyncio.sleep(1.0)
+                    # Rate limiting for better quality
+                    await asyncio.sleep(1.2)
                     
-                    # Stop if we have enough good reports
-                    if len(reports) >= 10:
-                        logger.info(f"📊 Reached target of {len(reports)} quality reports")
+                    # Stop if we have enough quality cyber reports
+                    if len(reports) >= 15:
+                        logger.info(f"📊 Reached target of {len(reports)} quality cyber intelligence reports")
                         break
                     
                 except Exception as e:
-                    logger.error(f"❌ Analysis error for article {i+1}: {str(e)}")
+                    logger.error(f"❌ Cyber analysis error for article {i+1}: {str(e)}")
                     continue
 
-            logger.info(f"📊 Analysis complete - {len(reports)} reports with meaningful analysis from {processed_count} articles processed")
+            logger.info(f"📊 Cyber intelligence analysis complete - {len(reports)} reports with meaningful analysis from {processed_count} articles processed")
 
-            # If we didn't get any meaningful reports, create minimal operational data
+            # Calculate enhanced cyber metrics
             if not reports:
-                logger.warning("⚠️  No articles produced meaningful analysis - creating minimal operational data")
+                logger.warning("⚠️  No articles produced meaningful cyber analysis - creating operational baseline")
                 metrics = ai_system._generate_baseline_metrics()
-                metrics.intelligence_summary = f"Patriots Protocol operational - processed {processed_count} articles, analysis quality insufficient for reporting."
+                metrics.intelligence_summary = f"Patriots Protocol cyber intelligence operational - processed {processed_count} articles, enhancing analysis parameters."
             else:
-                # Calculate metrics for successful reports
                 metrics = ai_system.calculate_metrics(reports)
 
-            # Prepare output
+            # Prepare enhanced output data
             output_data = {
                 "articles": [asdict(report) for report in reports],
                 "metrics": asdict(metrics),
                 "lastUpdated": datetime.now(timezone.utc).isoformat(),
                 "version": "4.0",
-                "generatedBy": "Patriots Protocol AI Intelligence System v4.0",
+                "generatedBy": "Patriots Protocol Cyber Intelligence System v4.0",
                 "patriots_protocol_info": {
                     "system_name": "PATRIOTS PROTOCOL",
-                    "description": "AI-DRIVEN INTELLIGENCE NETWORK",
+                    "description": "AI-DRIVEN CYBER INTELLIGENCE NETWORK",
                     "repository": "https://github.com/danishnizmi/Patriots_Protocol",
                     "ai_integration": "GitHub Models API",
+                    "focus": "Cyber Security Intelligence",
                     "last_enhanced": datetime.now(timezone.utc).isoformat(),
-                    "status": "OPERATIONAL"
+                    "status": "OPERATIONAL",
+                    "intelligence_sources": len(ai_system.intelligence_sources)
                 },
                 "system_status": {
                     "ai_models": "ACTIVE",
-                    "intelligence_gathering": "OPERATIONAL",
+                    "cyber_intelligence_gathering": "OPERATIONAL", 
                     "threat_assessment": "ONLINE",
-                    "strategic_analysis": "READY"
+                    "strategic_analysis": "READY",
+                    "feed_monitoring": "ACTIVE"
                 }
             }
 
-            # Save data
+            # Save enhanced data
             os.makedirs('./data', exist_ok=True)
             with open('./data/news-analysis.json', 'w', encoding='utf-8') as f:
                 json.dump(output_data, f, indent=2, ensure_ascii=False)
 
-            logger.info("✅ Patriots Protocol AI Intelligence Mission Complete")
-            logger.info(f"📁 Intelligence data saved to ./data/news-analysis.json")
-            logger.info(f"📈 Threat Level: {metrics.threat_level}")
+            logger.info("✅ Patriots Protocol Cyber Intelligence Mission Complete")
+            logger.info(f"📁 Cyber intelligence data saved to ./data/news-analysis.json")
+            logger.info(f"📈 Cyber Threat Level: {metrics.threat_level}")
             logger.info(f"🎯 AI Confidence: {metrics.ai_confidence}%")
-            logger.info(f"🛡️  High-Value Intel: {metrics.high_value_intelligence}")
+            logger.info(f"🛡️  High-Value Cyber Intel: {metrics.high_value_intelligence}")
+            logger.info(f"🔥 Critical Threats: {metrics.critical_intelligence}")
             
     except Exception as e:
-        logger.error(f"❌ Patriots Protocol mission error: {str(e)}")
+        logger.error(f"❌ Patriots Protocol cyber intelligence mission error: {str(e)}")
         # Create minimal operational data
         minimal_data = {
             "articles": [],
             "metrics": {
                 "total_articles": 0,
-                "threat_level": "LOW",
+                "threat_level": "LOW", 
                 "system_status": "OPERATIONAL",
                 "ai_confidence": 85,
-                "patriots_protocol_status": "PATRIOTS PROTOCOL OPERATIONAL"
+                "patriots_protocol_status": "PATRIOTS PROTOCOL CYBER INTELLIGENCE OPERATIONAL"
             },
             "lastUpdated": datetime.now(timezone.utc).isoformat(),
             "version": "4.0",
             "patriots_protocol_info": {
-                "system_name": "PATRIOTS PROTOCOL", 
+                "system_name": "PATRIOTS PROTOCOL",
+                "description": "AI-DRIVEN CYBER INTELLIGENCE NETWORK", 
                 "status": "OPERATIONAL"
             }
         }
@@ -670,7 +777,7 @@ async def main():
         with open('./data/news-analysis.json', 'w') as f:
             json.dump(minimal_data, f, indent=2)
         
-        logger.info("✅ Minimal operational data generated")
+        logger.info("✅ Minimal cyber intelligence operational data generated")
 
 if __name__ == "__main__":
-    asyncio.run(main()) 
+    asyncio.run(main())
