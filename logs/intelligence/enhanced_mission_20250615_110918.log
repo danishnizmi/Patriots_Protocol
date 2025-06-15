@@ -1,0 +1,102 @@
+🎖️  2025-06-15 11:09:19 UTC - PATRIOTS - INFO - 🎖️ PATRIOTS PROTOCOL - Enhanced Intelligence Mission Initiated
+🎖️  2025-06-15 11:09:19 UTC - PATRIOTS - INFO - 🎖️ Smart Patriots Protocol Intelligence Engine v4.1 - Operational
+🎖️  2025-06-15 11:09:19 UTC - PATRIOTS - INFO - 🔍 Collecting from CISA_ADVISORIES...
+🎖️  2025-06-15 11:09:19 UTC - PATRIOTS - WARNING - ⚠️ CISA_ADVISORIES: HTTP 404
+🎖️  2025-06-15 11:09:19 UTC - PATRIOTS - INFO - 🔍 Collecting from KREBS_SECURITY...
+🎖️  2025-06-15 11:09:20 UTC - PATRIOTS - INFO - 📊 KREBS_SECURITY: 9 reports collected
+🎖️  2025-06-15 11:09:21 UTC - PATRIOTS - INFO - 🔍 Collecting from SANS_ISC...
+🎖️  2025-06-15 11:09:21 UTC - PATRIOTS - INFO - 📊 SANS_ISC: 3 reports collected
+🎖️  2025-06-15 11:09:21 UTC - PATRIOTS - INFO - 🔍 Collecting from BLEEPING_COMPUTER...
+🎖️  2025-06-15 11:09:21 UTC - PATRIOTS - INFO - 📊 BLEEPING_COMPUTER: 8 reports collected
+🎖️  2025-06-15 11:09:22 UTC - PATRIOTS - INFO - 🔍 Collecting from THREAT_POST...
+🎖️  2025-06-15 11:09:22 UTC - PATRIOTS - INFO - 📊 THREAT_POST: 9 reports collected
+🎖️  2025-06-15 11:09:23 UTC - PATRIOTS - INFO - 🔍 Collecting from CYBER_SCOOP...
+🎖️  2025-06-15 11:09:23 UTC - PATRIOTS - INFO - 📊 CYBER_SCOOP: 10 reports collected
+🎖️  2025-06-15 11:09:24 UTC - PATRIOTS - INFO - 🎯 Total Intelligence Collected: 39 reports
+🎖️  2025-06-15 11:09:24 UTC - PATRIOTS - INFO - 🔄 Smart Deduplication: 39 → 39 unique reports
+🎖️  2025-06-15 11:09:24 UTC - PATRIOTS - INFO - 🤖 AI Analysis (1/15): Inside a Dark Adtech Empire Fed by Fake CAPTCHAs...
+🎖️  2025-06-15 11:09:24 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 11:09:24 UTC - PATRIOTS - WARNING - ⚠️ AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4o-mini... - using enhanced basic analysis
+🎖️  2025-06-15 11:09:24 UTC - PATRIOTS - INFO - ✅ Processed: Inside a Dark Adtech Empire Fed by Fake CAPTCHAs... (Level: HIGH)
+🎖️  2025-06-15 11:09:24 UTC - PATRIOTS - INFO - 🤖 AI Analysis (2/15): Patch Tuesday, June 2025 Edition...
+🎖️  2025-06-15 11:09:24 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 11:09:24 UTC - PATRIOTS - WARNING - ⚠️ AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4o-mini... - using enhanced basic analysis
+🎖️  2025-06-15 11:09:24 UTC - PATRIOTS - INFO - ✅ Processed: Patch Tuesday, June 2025 Edition... (Level: LOW)
+🎖️  2025-06-15 11:09:24 UTC - PATRIOTS - INFO - 🤖 AI Analysis (3/15): U.S. Sanctions Cloud Provider ‘Funnull’ as Top Sou...
+🎖️  2025-06-15 11:09:24 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 11:09:24 UTC - PATRIOTS - WARNING - ⚠️ AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4o-mini... - using enhanced basic analysis
+🎖️  2025-06-15 11:09:24 UTC - PATRIOTS - INFO - ✅ Processed: U.S. Sanctions Cloud Provider ‘Funnull’ as Top Sou... (Level: CRITICAL)
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - 🤖 AI Analysis (4/15): Pakistan Arrests 21 in ‘Heartsender’ Malware Servi...
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - WARNING - ⚠️ AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4o-mini... - using enhanced basic analysis
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - ✅ Processed: Pakistan Arrests 21 in ‘Heartsender’ Malware Servi... (Level: MEDIUM)
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - 🤖 AI Analysis (5/15): Oops: DanaBot Malware Devs Infected Their Own PCs...
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - WARNING - ⚠️ AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4o-mini... - using enhanced basic analysis
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - ✅ Processed: Oops: DanaBot Malware Devs Infected Their Own PCs... (Level: MEDIUM)
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - 🤖 AI Analysis (6/15): KrebsOnSecurity Hit With Near-Record 6.3 Tbps DDoS...
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - WARNING - ⚠️ AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4o-mini... - using enhanced basic analysis
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - ✅ Processed: KrebsOnSecurity Hit With Near-Record 6.3 Tbps DDoS... (Level: MEDIUM)
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - 🤖 AI Analysis (7/15): Breachforums Boss to Pay $700k in Healthcare Breac...
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - WARNING - ⚠️ AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4o-mini... - using enhanced basic analysis
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - ✅ Processed: Breachforums Boss to Pay $700k in Healthcare Breac... (Level: HIGH)
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - 🤖 AI Analysis (8/15): Patch Tuesday, May 2025 Edition...
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - WARNING - ⚠️ AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4o-mini... - using enhanced basic analysis
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - ✅ Processed: Patch Tuesday, May 2025 Edition... (Level: CRITICAL)
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - 🤖 AI Analysis (9/15): Pakistani Firm Shipped Fentanyl Analogs, Scams to ...
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - WARNING - ⚠️ AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4o-mini... - using enhanced basic analysis
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - ✅ Processed: Pakistani Firm Shipped Fentanyl Analogs, Scams to ... (Level: LOW)
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - 🤖 AI Analysis (10/15): &#x5b;Guest Diary&#x5d; Anatomy of a Linux SSH Hon...
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - WARNING - ⚠️ AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4o-mini... - using enhanced basic analysis
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - ✅ Processed: &#x5b;Guest Diary&#x5d; Anatomy of a Linux SSH Hon... (Level: HIGH)
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - 🤖 AI Analysis (11/15): Quasar RAT Delivered Through Bat Files, (Wed, Jun ...
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - WARNING - ⚠️ AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4o-mini... - using enhanced basic analysis
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - ✅ Processed: Quasar RAT Delivered Through Bat Files, (Wed, Jun ... (Level: MEDIUM)
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - 🤖 AI Analysis (12/15): Microsoft Patch Tuesday June 2025, (Tue, Jun 10th)...
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 11:09:25 UTC - PATRIOTS - INFO - Retrying request to /chat/completions in 0.434239 seconds
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - WARNING - ⚠️ AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4o-mini... - using enhanced basic analysis
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: Microsoft Patch Tuesday June 2025, (Tue, Jun 10th)... (Level: CRITICAL)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: WestJet investigates cyberattack disrupting intern... (Level: HIGH)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: Anubis ransomware adds wiper to destroy files beyo... (Level: HIGH)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: Discord flaw lets hackers reuse expired invites in... (Level: MEDIUM)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: Microsoft confirms auth issues affecting Microsoft... (Level: LOW)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: Victoria’s Secret restores critical systems after ... (Level: CRITICAL)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: Cloudflare: Outage not caused by security incident... (Level: LOW)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: Trend Micro fixes critical vulnerabilities in mult... (Level: CRITICAL)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: Graphite spyware used in Apple iOS zero-click atta... (Level: LOW)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: Student Loan Breach Exposes 2.5M Records... (Level: HIGH)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: Watering Hole Attacks Push ScanBox Keylogger... (Level: HIGH)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: Tentacles of ‘0ktapus’ Threat Group Victimize 130 ... (Level: MEDIUM)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: Ransomware Attacks are on the Rise... (Level: HIGH)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: Cybercriminals Are Selling Access to Chinese Surve... (Level: CRITICAL)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: Twitter Whistleblower Complaint: The TL;DR Version... (Level: LOW)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: Firewall Bug Under Active Attack Triggers CISA War... (Level: LOW)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: iPhone Users Urged to Update to Patch 2 Zero-Days... (Level: CRITICAL)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: Google Patches Chrome’s Fifth Zero-Day of the Year... (Level: CRITICAL)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: Predator spyware activity surfaces in new places w... (Level: LOW)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: Paragon spyware found on the phones of Euro journo... (Level: LOW)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: Digital rights groups sound alarm on Stop CSAM Act... (Level: LOW)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: Global law enforcement action in Asia nets large i... (Level: CRITICAL)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: Dems want watchdog study of two troubled federally... (Level: MEDIUM)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: How Amazon Web Services uses AI to be a security ‘... (Level: CRITICAL)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: Microsoft Patch Tuesday addresses 66 vulnerabiliti... (Level: CRITICAL)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: House Homeland Chairman Mark Green’s departure cou... (Level: CRITICAL)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: United Natural Foods fulfilling orders on ‘limited... (Level: LOW)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Processed: House committee sets CISA budget cut at $135M, not... (Level: LOW)
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - 💾 Intelligence saved: 39 reports, CRITICAL threat level
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - 🤖 AI Usage: 12/15 calls, Quality: 100%
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ✅ Enhanced Intelligence Mission Complete
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - 🎯 Threats Analyzed: 39
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - 🔥 Global Threat Level: CRITICAL
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - ⚠️ Critical Threats: 12
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - 💥 Zero-Day Exploits: 4
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - 🤖 AI Quality Score: 100%
+🎖️  2025-06-15 11:09:26 UTC - PATRIOTS - INFO - 🎖️ Patriots Protocol Enhanced Intelligence: OPERATIONAL
