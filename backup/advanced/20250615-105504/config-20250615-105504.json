@@ -1,0 +1,13 @@
+{
+  "ai_analysis_intensity": "standard",
+  "geographic_focus": "global",
+  "force_critical_analysis": "true",
+  "mission_timestamp": "2025-06-15T10:53:56.599Z",
+  "advanced_features": {
+    "risk_scoring": true,
+    "timeline_analysis": true,
+    "geographic_mapping": true,
+    "threat_correlation": true,
+    "export_capabilities": true
+  }
+}
