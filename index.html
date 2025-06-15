@@ -132,31 +132,13 @@
             50% { transform: scale(1.05); box-shadow: 0 0 15px rgba(255, 68, 68, 0.6); }
         }
 
-        .patriots-link {
-            color: #ffd700;
-            text-decoration: none;
-            font-size: 0.9rem;
-            border: 1px solid #ffd700;
-            padding: 0.4rem 1rem;
-            border-radius: 6px;
-            display: inline-block;
-            margin-top: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .patriots-link:hover {
-            background: rgba(255, 215, 0, 0.2);
-            box-shadow: 0 0 15px #ffd700;
-            transform: translateY(-1px);
-        }
-
         .container {
             max-width: 1500px;
             margin: 0 auto;
             padding: 2rem;
         }
 
-        /* Threat Intelligence Dashboard */
+        /* Intelligence Dashboard */
         .intel-overview {
             margin-bottom: 2rem;
         }
@@ -263,7 +245,7 @@
             color: #ffcccc;
         }
 
-        /* Threat Landscape Section */
+        /* Intelligence Landscape Section */
         .threat-landscape {
             margin: 3rem 0;
             display: grid;
@@ -788,16 +770,13 @@
         <h1 class="title">PATRIOTS PROTOCOL</h1>
         <p class="subtitle">AI-DRIVEN CYBER INTELLIGENCE NETWORK</p>
         <div class="version-badge">CYBER v4.0</div>
-        <a href="https://github.com/danishnizmi/Patriots_Protocol" target="_blank" class="patriots-link">
-            🔗 SOURCE: PATRIOTS PROTOCOL REPOSITORY
-        </a>
     </div>
 
     <div id="app"></div>
 
     <div class="status-bar">
         <div class="status-item">
-            <span id="systemStatus">INTELLIGENCE: ACTIVE</span>
+            <span id="intelStatus">INTELLIGENCE: ACTIVE</span>
         </div>
         <div class="status-item">
             LAST UPDATE: <span id="lastUpdate">CONNECTING...</span>
@@ -829,7 +808,7 @@
                 resizeCanvas();
                 window.addEventListener('resize', resizeCanvas);
 
-                const matrix = "CYBERTHREATMALWAREPHISHINGRANSOMWAREAPT0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%^&*+=";
+                const matrix = "CYBERTHREATINTELAPTMALWAREZERODAY0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%^&*+=";
                 const matrixArray = matrix.split("");
                 const fontSize = 12;
                 const columns = canvas.width / fontSize;
@@ -876,7 +855,7 @@
 
             useEffect(() => {
                 loadIntelligenceData();
-                const interval = setInterval(loadIntelligenceData, 180000); // Check every 3 minutes
+                const interval = setInterval(loadIntelligenceData, 300000); // Check every 5 minutes
                 return () => clearInterval(interval);
             }, []);
 
@@ -903,43 +882,88 @@
                     console.error('Patriots Protocol intelligence loading error:', error);
                     setError('Cyber Intelligence Network - Loading threat data...');
                     
-                    // Fallback data focused on threats
+                    // Fallback intelligence data
                     const fallbackData = {
                         articles: [
                             {
                                 title: "Advanced Persistent Threat Campaign Targeting Critical Infrastructure",
-                                summary: "Nation-state actors are conducting sophisticated attacks against energy sector organizations using zero-day exploits and custom malware toolkits.",
+                                summary: "Nation-state actors are conducting sophisticated attacks against energy sector organizations using zero-day exploits and custom malware toolkits. The campaign demonstrates advanced technical capabilities with multi-stage payloads and persistence mechanisms designed to evade detection.",
                                 source: "CISA_ADVISORIES",
                                 threat_level: "CRITICAL",
                                 keywords: ["APT", "CRITICAL_INFRASTRUCTURE", "ZERO_DAY", "ENERGY"],
-                                attack_vectors: ["malware", "zero_day"],
+                                attack_vectors: ["advanced_persistent_threat", "zero_day", "malware"],
                                 affected_sectors: ["energy", "critical_infrastructure"],
-                                ai_analysis: "This campaign represents a significant threat to national security infrastructure. Immediate defensive measures and threat hunting activities are recommended.",
+                                ai_analysis: "This campaign represents a significant threat to national security infrastructure with sophisticated attack vectors and high persistence capabilities. Immediate defensive measures, threat hunting activities, and infrastructure hardening are strongly recommended.",
                                 confidence: 0.94,
                                 severity_score: 9,
-                                timestamp: new Date().toISOString()
+                                geolocation: "Global",
+                                threat_actors: ["unknown_nation_state"],
+                                timestamp: new Date().toISOString(),
+                                technical_details: {
+                                    malware_families: ["custom_backdoor"],
+                                    attack_techniques: ["spear_phishing", "lateral_movement", "privilege_escalation"],
+                                    vulnerabilities: ["zero_day_exploits"],
+                                    indicators: ["custom_hashes", "c2_domains"]
+                                }
                             },
                             {
                                 title: "Ransomware-as-a-Service Platform Targets Healthcare Organizations",
-                                summary: "Cybercriminals are leveraging advanced ransomware tools to target hospitals and healthcare systems, disrupting critical patient care services.",
+                                summary: "Cybercriminals are leveraging advanced ransomware tools to target hospitals and healthcare systems worldwide, disrupting critical patient care services and demanding substantial payments. The attacks utilize sophisticated encryption and data exfiltration techniques.",
                                 source: "KREBS_SECURITY",
                                 threat_level: "HIGH",
-                                keywords: ["RANSOMWARE", "HEALTHCARE", "PATIENT_CARE"],
-                                attack_vectors: ["ransomware", "phishing"],
+                                keywords: ["RANSOMWARE", "HEALTHCARE", "PATIENT_CARE", "ENCRYPTION"],
+                                attack_vectors: ["ransomware", "phishing", "data_exfiltration"],
                                 affected_sectors: ["healthcare"],
-                                ai_analysis: "Healthcare sector continues to be prime target due to critical nature of services and often outdated security infrastructure.",
+                                ai_analysis: "Healthcare sector continues to be prime target due to critical nature of services and often legacy security infrastructure. Organizations should implement immediate backup verification, network segmentation, and incident response procedures.",
                                 confidence: 0.89,
                                 severity_score: 8,
-                                timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString()
+                                geolocation: "North_America",
+                                threat_actors: ["ransomware_group"],
+                                timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
+                                technical_details: {
+                                    malware_families: ["lockbit", "conti"],
+                                    attack_techniques: ["email_phishing", "credential_dumping"],
+                                    vulnerabilities: ["unpatched_systems"],
+                                    indicators: ["file_extensions", "ransom_notes"]
+                                }
+                            },
+                            {
+                                title: "Supply Chain Attack on Software Distribution Platform",
+                                summary: "Threat actors have compromised a widely-used software distribution platform, injecting malicious code into legitimate software packages. The supply chain attack affects thousands of downstream organizations and demonstrates sophisticated tradecraft.",
+                                source: "SANS_ISC",
+                                threat_level: "HIGH",
+                                keywords: ["SUPPLY_CHAIN", "SOFTWARE", "DISTRIBUTION", "MALICIOUS_CODE"],
+                                attack_vectors: ["supply_chain", "malware", "software_compromise"],
+                                affected_sectors: ["technology", "multiple"],
+                                ai_analysis: "Supply chain attacks represent one of the most significant threat vectors in current cyber landscape. Organizations should verify software integrity, implement code signing verification, and establish trusted vendor relationships.",
+                                confidence: 0.92,
+                                severity_score: 8,
+                                geolocation: "Global",
+                                threat_actors: ["apt_group"],
+                                timestamp: new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString(),
+                                technical_details: {
+                                    malware_families: ["solarwinds_style"],
+                                    attack_techniques: ["supply_chain_compromise", "code_injection"],
+                                    vulnerabilities: ["trusted_software"],
+                                    indicators: ["compromised_packages"]
+                                }
                             }
                         ],
                         metrics: {
-                            total_threats: 2,
+                            total_threats: 3,
                             critical_threats: 1,
-                            high_priority_threats: 1,
+                            high_threats: 2,
+                            medium_threats: 0,
+                            low_threats: 0,
+                            threat_actors_identified: 3,
+                            attack_techniques_observed: 8,
+                            sectors_targeted: 4,
                             global_threat_level: "HIGH",
-                            confidence_level: 91,
-                            fresh_intel_count: 2
+                            intelligence_confidence: 92,
+                            fresh_intel_24h: 3,
+                            source_credibility: 0.93,
+                            emerging_trends: ["supply_chain_attacks", "healthcare_targeting", "infrastructure_focus"],
+                            threat_evolution: "escalating"
                         }
                     };
                     
@@ -953,12 +977,14 @@
             }
 
             function updateStatusBar(metricsData) {
-                const systemStatus = document.getElementById('systemStatus');
+                const intelStatus = document.getElementById('intelStatus');
                 const lastUpdateEl = document.getElementById('lastUpdate');
                 const threatLevel = document.getElementById('threatLevel');
                 
-                if (systemStatus) {
-                    systemStatus.textContent = `INTELLIGENCE: ${metricsData?.total_threats || 0} THREATS`;
+                if (intelStatus) {
+                    const threatCount = metricsData?.total_threats || 0;
+                    const criticalCount = metricsData?.critical_threats || 0;
+                    intelStatus.textContent = `INTELLIGENCE: ${threatCount} THREATS ACTIVE ${criticalCount > 0 ? '🚨' : ''}`;
                 }
                 
                 if (lastUpdateEl) {
@@ -966,7 +992,9 @@
                 }
                 
                 if (threatLevel) {
-                    threatLevel.textContent = `THREAT LEVEL: ${metricsData?.global_threat_level || 'MONITORING'}`;
+                    const level = metricsData?.global_threat_level || 'MONITORING';
+                    const confidence = metricsData?.intelligence_confidence || 85;
+                    threatLevel.textContent = `THREAT LEVEL: ${level} (${confidence}% CONFIDENCE)`;
                 }
             }
 
@@ -999,6 +1027,8 @@
                 
                 if (threat.severity_score >= 9) {
                     badges.push(<span key="severe" className="threat-badge critical">SEVERE</span>);
+                } else if (threat.severity_score >= 8) {
+                    badges.push(<span key="high" className="threat-badge high">HIGH IMPACT</span>);
                 }
                 
                 return badges;
@@ -1027,7 +1057,7 @@
                         </div>
                     )}
 
-                    {/* Threat Intelligence Dashboard */}
+                    {/* Cyber Intelligence Dashboard */}
                     <div className="intel-overview">
                         <h2 className="intel-title">🎯 CYBER THREAT INTELLIGENCE COMMAND CENTER</h2>
                         <div className="threat-grid">
@@ -1036,34 +1066,34 @@
                                     <div className="threat-metric-title">Active Threats</div>
                                     <div className="threat-icon">🛡️</div>
                                 </div>
-                                <div className="threat-value">{metrics.total_threats || threatData.length}</div>
+                                <div className="threat-value">{metrics.total_threats || 0}</div>
                                 <div className="threat-details">
                                     <span>Critical: {metrics.critical_threats || 0}</span>
-                                    <span>High Priority: {metrics.high_priority_threats || 0}</span>
+                                    <span>High Priority: {metrics.high_threats || 0}</span>
                                 </div>
                             </div>
                             
                             <div className="threat-card">
                                 <div className="threat-header">
-                                    <div className="threat-metric-title">Global Threat Level</div>
+                                    <div className="threat-metric-title">Intelligence Confidence</div>
+                                    <div className="threat-icon">🤖</div>
+                                </div>
+                                <div className="threat-value">{metrics.intelligence_confidence || 85}%</div>
+                                <div className="threat-details">
+                                    <span>Fresh Intel: {metrics.fresh_intel_24h || 0}</span>
+                                    <span>Source Quality: {Math.round((metrics.source_credibility || 0.9) * 100)}%</span>
+                                </div>
+                            </div>
+                            
+                            <div className="threat-card">
+                                <div className="threat-header">
+                                    <div className="threat-metric-title">Threat Landscape</div>
                                     <div className="threat-icon">🔥</div>
                                 </div>
                                 <div className="threat-value">{metrics.global_threat_level || 'MEDIUM'}</div>
                                 <div className="threat-details">
-                                    <span>Confidence: {metrics.confidence_level || 85}%</span>
-                                    <span>Fresh Intel: {metrics.fresh_intel_count || 0}</span>
-                                </div>
-                            </div>
-                            
-                            <div className="threat-card">
-                                <div className="threat-header">
-                                    <div className="threat-metric-title">Attack Campaigns</div>
-                                    <div className="threat-icon">⚔️</div>
-                                </div>
-                                <div className="threat-value">{metrics.active_campaigns || 0}</div>
-                                <div className="threat-details">
-                                    <span>APT Groups: {(metrics.threat_actors || []).length}</span>
-                                    <span>Techniques: {(metrics.attack_techniques || []).length}</span>
+                                    <span>Actors: {metrics.threat_actors_identified || 0}</span>
+                                    <span>Techniques: {metrics.attack_techniques_observed || 0}</span>
                                 </div>
                             </div>
                             
@@ -1072,52 +1102,62 @@
                                     <div className="threat-metric-title">Targeted Sectors</div>
                                     <div className="threat-icon">🏢</div>
                                 </div>
-                                <div className="threat-value">{(metrics.targeted_sectors || []).length}</div>
+                                <div className="threat-value">{metrics.sectors_targeted || 0}</div>
                                 <div className="threat-details">
                                     <span>Healthcare: {threatData.filter(t => t.affected_sectors?.includes('healthcare')).length}</span>
-                                    <span>Finance: {threatData.filter(t => t.affected_sectors?.includes('finance')).length}</span>
+                                    <span>Critical Infra: {threatData.filter(t => t.affected_sectors?.includes('critical_infrastructure')).length}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* Threat Landscape Assessment */}
+                    {/* Intelligence Landscape Assessment */}
                     <div className="threat-landscape">
                         <div className="landscape-section">
                             <div className="section-header">
-                                🎯 STRATEGIC THREAT LANDSCAPE ASSESSMENT
+                                🎯 STRATEGIC THREAT INTELLIGENCE ASSESSMENT
                             </div>
                             
                             <div className="landscape-content">
                                 Patriots Protocol has identified <strong>{threatData.length}</strong> active cyber threats requiring immediate attention. 
                                 Current global threat level is <strong>{metrics.global_threat_level || 'MEDIUM'}</strong> with 
                                 <strong> {metrics.critical_threats || 0}</strong> critical incidents under active monitoring.
+                                
+                                {metrics.emerging_trends && metrics.emerging_trends.length > 0 && (
+                                    <div style={{marginTop: '1rem'}}>
+                                        <strong>Emerging trends:</strong> {metrics.emerging_trends.join(', ').replace(/_/g, ' ')}
+                                    </div>
+                                )}
                             </div>
                             
                             <div className="intel-highlights">
                                 <div className="intel-highlight">
-                                    <div className="intel-highlight-value">{threatData.filter(t => t.threat_level === 'CRITICAL').length}</div>
+                                    <div className="intel-highlight-value">{metrics.critical_threats || 0}</div>
                                     <div className="intel-highlight-label">Critical Threats</div>
                                 </div>
                                 <div className="intel-highlight">
-                                    <div className="intel-highlight-value">{threatData.filter(t => t.attack_vectors?.includes('malware')).length}</div>
-                                    <div className="intel-highlight-label">Malware Campaigns</div>
+                                    <div className="intel-highlight-value">{threatData.filter(t => t.attack_vectors?.includes('advanced_persistent_threat')).length}</div>
+                                    <div className="intel-highlight-label">APT Campaigns</div>
                                 </div>
                                 <div className="intel-highlight">
-                                    <div className="intel-highlight-value">{threatData.filter(t => t.affected_sectors?.includes('healthcare')).length}</div>
-                                    <div className="intel-highlight-label">Healthcare Targeted</div>
+                                    <div className="intel-highlight-value">{threatData.filter(t => t.attack_vectors?.includes('ransomware')).length}</div>
+                                    <div className="intel-highlight-label">Ransomware Active</div>
+                                </div>
+                                <div className="intel-highlight">
+                                    <div className="intel-highlight-value">{threatData.filter(t => t.attack_vectors?.includes('zero_day')).length}</div>
+                                    <div className="intel-highlight-label">Zero-Day Exploits</div>
                                 </div>
                             </div>
                         </div>
                         
                         <div className="tactical-section">
                             <div className="section-header" style={{borderBottomColor: 'rgba(255, 215, 0, 0.3)', color: '#ffd700'}}>
-                                ⚡ TACTICAL THREAT ANALYSIS
+                                ⚡ TACTICAL INTELLIGENCE ANALYSIS
                             </div>
                             
                             <div className="intel-highlights">
                                 <div className="intel-highlight">
-                                    <div className="intel-highlight-value" style={{color: '#ffd700'}}>{metrics.confidence_level || 85}%</div>
+                                    <div className="intel-highlight-value" style={{color: '#ffd700'}}>{metrics.intelligence_confidence || 85}%</div>
                                     <div className="intel-highlight-label">AI CONFIDENCE</div>
                                 </div>
                                 <div className="intel-highlight">
@@ -1125,8 +1165,8 @@
                                     <div className="intel-highlight-label">HIGH SEVERITY</div>
                                 </div>
                                 <div className="intel-highlight">
-                                    <div className="intel-highlight-value" style={{color: '#ffd700'}}>{metrics.fresh_intel_count || 0}</div>
-                                    <div className="intel-highlight-label">FRESH INTEL</div>
+                                    <div className="intel-highlight-value" style={{color: '#ffd700'}}>{metrics.fresh_intel_24h || 0}</div>
+                                    <div className="intel-highlight-label">FRESH INTEL 24H</div>
                                 </div>
                             </div>
                             
@@ -1136,16 +1176,16 @@
                                 </div>
                                 <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', fontSize: '0.85rem'}}>
                                     <div style={{color: '#ffec8c'}}>
-                                        Malware: {threatData.filter(t => t.attack_vectors?.includes('malware')).length}
-                                    </div>
-                                    <div style={{color: '#ffec8c'}}>
-                                        Phishing: {threatData.filter(t => t.attack_vectors?.includes('phishing')).length}
+                                        APT: {threatData.filter(t => t.attack_vectors?.includes('advanced_persistent_threat')).length}
                                     </div>
                                     <div style={{color: '#ffec8c'}}>
                                         Ransomware: {threatData.filter(t => t.attack_vectors?.includes('ransomware')).length}
                                     </div>
                                     <div style={{color: '#ffec8c'}}>
-                                        Zero-Day: {threatData.filter(t => t.attack_vectors?.includes('zero_day')).length}
+                                        Phishing: {threatData.filter(t => t.attack_vectors?.includes('phishing')).length}
+                                    </div>
+                                    <div style={{color: '#ffec8c'}}>
+                                        Supply Chain: {threatData.filter(t => t.attack_vectors?.includes('supply_chain')).length}
                                     </div>
                                 </div>
                             </div>
@@ -1199,8 +1239,8 @@
                                             <div className="meta-value">{threat.severity_score || 5}/10</div>
                                         </div>
                                         <div className="meta-item">
-                                            <div className="meta-label">Geolocation</div>
-                                            <div className="meta-value">{threat.geolocation || 'Global'}</div>
+                                            <div className="meta-label">Geographic Focus</div>
+                                            <div className="meta-value">{(threat.geolocation || 'Global').replace(/_/g, ' ')}</div>
                                         </div>
                                     </div>
                                     
@@ -1228,7 +1268,7 @@
                                             <div className="keywords-title">🔍 THREAT INDICATORS</div>
                                             <div className="keywords-list">
                                                 {threat.keywords.slice(0, 8).map((keyword, idx) => (
-                                                    <span key={idx} className="keyword-tag">{keyword}</span>
+                                                    <span key={idx} className="keyword-tag">{keyword.replace(/_/g, ' ')}</span>
                                                 ))}
                                             </div>
                                         </div>
@@ -1258,7 +1298,7 @@
                                             📡 PATRIOTS PROTOCOL CYBER INTELLIGENCE
                                         </div>
                                         <div style={{color: '#ffcccc'}}>
-                                            Sectors: {(threat.affected_sectors || []).join(', ') || 'Multiple'}
+                                            Sectors: {(threat.affected_sectors || []).map(s => s.replace(/_/g, ' ')).join(', ') || 'Multiple'}
                                         </div>
                                     </div>
                                 </div>
@@ -1279,7 +1319,6 @@
         );
 
         console.log('🎖️ PATRIOTS PROTOCOL CYBER INTELLIGENCE v4.0 - Network Initialized');
-        console.log('🔗 Repository: https://github.com/danishnizmi/Patriots_Protocol');
     </script>
 
     <script>
@@ -1300,13 +1339,6 @@
                     }, 500);
                 }
             }, 60000);
-            
-            // Repository link tracking
-            document.addEventListener('click', function(e) {
-                if (e.target.classList.contains('patriots-link')) {
-                    console.log('🎖️ Accessing Patriots Protocol Repository');
-                }
-            });
         });
     </script>
 </body>
