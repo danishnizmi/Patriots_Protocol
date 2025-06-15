@@ -1,0 +1,135 @@
+🎖️  2025-06-15 10:50:53 UTC - PATRIOTS - INFO - 🎖️ PATRIOTS PROTOCOL - Advanced Intelligence Mission Initiated
+🎖️  2025-06-15 10:50:53 UTC - PATRIOTS - INFO - 🎖️ Advanced Patriots Protocol Intelligence Engine v4.0 - Operational
+🎖️  2025-06-15 10:50:53 UTC - PATRIOTS - INFO - 🔍 Advanced Collection from CISA_ADVISORIES...
+🎖️  2025-06-15 10:50:53 UTC - PATRIOTS - WARNING - ⚠️ CISA_ADVISORIES: HTTP 404
+🎖️  2025-06-15 10:50:54 UTC - PATRIOTS - INFO - 🔍 Advanced Collection from KREBS_SECURITY...
+🎖️  2025-06-15 10:50:55 UTC - PATRIOTS - INFO - 📊 KREBS_SECURITY: 8 advanced reports collected
+🎖️  2025-06-15 10:50:56 UTC - PATRIOTS - INFO - 🔍 Advanced Collection from SANS_ISC...
+🎖️  2025-06-15 10:50:56 UTC - PATRIOTS - INFO - 📊 SANS_ISC: 3 advanced reports collected
+🎖️  2025-06-15 10:50:57 UTC - PATRIOTS - INFO - 🔍 Advanced Collection from BLEEPING_COMPUTER...
+🎖️  2025-06-15 10:50:57 UTC - PATRIOTS - INFO - 📊 BLEEPING_COMPUTER: 8 advanced reports collected
+🎖️  2025-06-15 10:50:58 UTC - PATRIOTS - INFO - 🔍 Advanced Collection from THREAT_POST...
+🎖️  2025-06-15 10:51:00 UTC - PATRIOTS - INFO - 📊 THREAT_POST: 8 advanced reports collected
+🎖️  2025-06-15 10:51:01 UTC - PATRIOTS - INFO - 🔍 Advanced Collection from CYBER_SCOOP...
+🎖️  2025-06-15 10:51:01 UTC - PATRIOTS - INFO - 📊 CYBER_SCOOP: 10 advanced reports collected
+🎖️  2025-06-15 10:51:02 UTC - PATRIOTS - INFO - 🎯 Total Advanced Intelligence: 37 reports
+🎖️  2025-06-15 10:51:02 UTC - PATRIOTS - INFO - 🔄 Advanced Deduplication: 37 → 37 unique reports
+🎖️  2025-06-15 10:51:02 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:02 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:02 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Inside a Dark Adtech Empire Fed by Fake CAPTCHAs... (Level: MEDIUM)
+🎖️  2025-06-15 10:51:03 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:03 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:03 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Patch Tuesday, June 2025 Edition... (Level: MEDIUM)
+🎖️  2025-06-15 10:51:06 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:06 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:06 UTC - PATRIOTS - INFO - ✅ Advanced Processing: U.S. Sanctions Cloud Provider ‘Funnull’ as Top Sou... (Level: MEDIUM)
+🎖️  2025-06-15 10:51:06 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:06 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:06 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Pakistan Arrests 21 in ‘Heartsender’ Malware Servi... (Level: MEDIUM)
+🎖️  2025-06-15 10:51:09 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:09 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:09 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Oops: DanaBot Malware Devs Infected Their Own PCs... (Level: HIGH)
+🎖️  2025-06-15 10:51:09 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:09 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:09 UTC - PATRIOTS - INFO - ✅ Advanced Processing: KrebsOnSecurity Hit With Near-Record 6.3 Tbps DDoS... (Level: MEDIUM)
+🎖️  2025-06-15 10:51:13 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:13 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:13 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Breachforums Boss to Pay $700k in Healthcare Breac... (Level: MEDIUM)
+🎖️  2025-06-15 10:51:13 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:13 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:13 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Patch Tuesday, May 2025 Edition... (Level: CRITICAL)
+🎖️  2025-06-15 10:51:16 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:16 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:16 UTC - PATRIOTS - INFO - ✅ Advanced Processing: &#x5b;Guest Diary&#x5d; Anatomy of a Linux SSH Hon... (Level: MEDIUM)
+🎖️  2025-06-15 10:51:16 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:16 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:16 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Quasar RAT Delivered Through Bat Files, (Wed, Jun ... (Level: MEDIUM)
+🎖️  2025-06-15 10:51:19 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:19 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:19 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Microsoft Patch Tuesday June 2025, (Tue, Jun 10th)... (Level: MEDIUM)
+🎖️  2025-06-15 10:51:20 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:20 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:20 UTC - PATRIOTS - INFO - ✅ Advanced Processing: WestJet investigates cyberattack disrupting intern... (Level: MEDIUM)
+🎖️  2025-06-15 10:51:23 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:23 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:23 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Anubis ransomware adds wiper to destroy files beyo... (Level: HIGH)
+🎖️  2025-06-15 10:51:23 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:23 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:23 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Discord flaw lets hackers reuse expired invites in... (Level: MEDIUM)
+🎖️  2025-06-15 10:51:26 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:26 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:26 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Microsoft confirms auth issues affecting Microsoft... (Level: MEDIUM)
+🎖️  2025-06-15 10:51:26 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:26 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:26 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Victoria’s Secret restores critical systems after ... (Level: MEDIUM)
+🎖️  2025-06-15 10:51:30 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:30 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:30 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Cloudflare: Outage not caused by security incident... (Level: MEDIUM)
+🎖️  2025-06-15 10:51:30 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:30 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:30 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Trend Micro fixes critical vulnerabilities in mult... (Level: HIGH)
+🎖️  2025-06-15 10:51:33 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:33 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:33 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Graphite spyware used in Apple iOS zero-click atta... (Level: HIGH)
+🎖️  2025-06-15 10:51:33 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:33 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:33 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Watering Hole Attacks Push ScanBox Keylogger... (Level: MEDIUM)
+🎖️  2025-06-15 10:51:36 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:36 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:36 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Tentacles of ‘0ktapus’ Threat Group Victimize 130 ... (Level: MEDIUM)
+🎖️  2025-06-15 10:51:36 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:36 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:36 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Ransomware Attacks are on the Rise... (Level: HIGH)
+🎖️  2025-06-15 10:51:40 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:40 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:40 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Cybercriminals Are Selling Access to Chinese Surve... (Level: HIGH)
+🎖️  2025-06-15 10:51:40 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:40 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:40 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Twitter Whistleblower Complaint: The TL;DR Version... (Level: MEDIUM)
+🎖️  2025-06-15 10:51:43 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:43 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:43 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Firewall Bug Under Active Attack Triggers CISA War... (Level: MEDIUM)
+🎖️  2025-06-15 10:51:43 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:43 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:43 UTC - PATRIOTS - INFO - ✅ Advanced Processing: iPhone Users Urged to Update to Patch 2 Zero-Days... (Level: CRITICAL)
+🎖️  2025-06-15 10:51:46 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:46 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:46 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Google Patches Chrome’s Fifth Zero-Day of the Year... (Level: CRITICAL)
+🎖️  2025-06-15 10:51:46 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:46 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:46 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Predator spyware activity surfaces in new places w... (Level: HIGH)
+🎖️  2025-06-15 10:51:50 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:50 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:50 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Paragon spyware found on the phones of Euro journo... (Level: HIGH)
+🎖️  2025-06-15 10:51:50 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:50 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:50 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Digital rights groups sound alarm on Stop CSAM Act... (Level: HIGH)
+🎖️  2025-06-15 10:51:53 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:53 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:53 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Global law enforcement action in Asia nets large i... (Level: MEDIUM)
+🎖️  2025-06-15 10:51:53 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:53 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:53 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Dems want watchdog study of two troubled federally... (Level: MEDIUM)
+🎖️  2025-06-15 10:51:56 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:56 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:56 UTC - PATRIOTS - INFO - ✅ Advanced Processing: How Amazon Web Services uses AI to be a security ‘... (Level: MEDIUM)
+🎖️  2025-06-15 10:51:56 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:51:56 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:51:56 UTC - PATRIOTS - INFO - ✅ Advanced Processing: Microsoft Patch Tuesday addresses 66 vulnerabiliti... (Level: CRITICAL)
+🎖️  2025-06-15 10:52:00 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:52:00 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:52:00 UTC - PATRIOTS - INFO - ✅ Advanced Processing: House Homeland Chairman Mark Green’s departure cou... (Level: MEDIUM)
+🎖️  2025-06-15 10:52:00 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:52:00 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:52:00 UTC - PATRIOTS - INFO - ✅ Advanced Processing: United Natural Foods fulfilling orders on ‘limited... (Level: MEDIUM)
+🎖️  2025-06-15 10:52:03 UTC - PATRIOTS - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 403 Forbidden"
+🎖️  2025-06-15 10:52:03 UTC - PATRIOTS - WARNING - ⚠️ Advanced AI analysis failed: Error code: 403 - {'error': {'code': 'no_access', 'message': 'No access to model: openai/gpt-4.1-min... - using advanced basic analysis
+🎖️  2025-06-15 10:52:03 UTC - PATRIOTS - INFO - ✅ Advanced Processing: House committee sets CISA budget cut at $135M, not... (Level: MEDIUM)
+🎖️  2025-06-15 10:52:03 UTC - PATRIOTS - INFO - 💾 Advanced intelligence saved: 37 reports, CRITICAL threat level
+🎖️  2025-06-15 10:52:03 UTC - PATRIOTS - INFO - ✅ Advanced Intelligence Mission Complete
+🎖️  2025-06-15 10:52:03 UTC - PATRIOTS - INFO - 🎯 Threats Analyzed: 37
+🎖️  2025-06-15 10:52:03 UTC - PATRIOTS - INFO - 🔥 Global Threat Level: CRITICAL
+🎖️  2025-06-15 10:52:03 UTC - PATRIOTS - INFO - ⚠️ Critical Threats: 4
+🎖️  2025-06-15 10:52:03 UTC - PATRIOTS - INFO - 💥 Zero-Day Exploits: 4
+🎖️  2025-06-15 10:52:03 UTC - PATRIOTS - INFO - 🌍 Geographic Coverage: 4 regions
+🎖️  2025-06-15 10:52:03 UTC - PATRIOTS - INFO - 🎖️ Patriots Protocol Advanced Intelligence: OPERATIONAL
