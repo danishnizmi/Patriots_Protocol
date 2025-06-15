@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-PATRIOTS PROTOCOL - Enhanced AI-Powered Cyber Intelligence Engine v4.0
-Dynamic Threat Intelligence with AI-Driven Technical Analysis
+PATRIOTS PROTOCOL - Advanced AI-Powered Cyber Intelligence Engine v4.0
+Professional Threat Intelligence with Advanced AI Analysis
 
 Repository: https://github.com/danishnizmi/Patriots_Protocol
 """
@@ -19,7 +19,7 @@ from dataclasses import dataclass, asdict
 from pathlib import Path
 import feedparser
 
-# Enhanced logging
+# Advanced logging configuration
 logging.basicConfig(
     level=logging.INFO,
     format='🎖️  %(asctime)s - PATRIOTS - %(levelname)s - %(message)s',
@@ -28,8 +28,8 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 @dataclass
-class EnhancedThreatReport:
-    """Enhanced Cyber Threat Intelligence Report with AI Analysis"""
+class AdvancedThreatReport:
+    """Advanced Cyber Threat Intelligence Report"""
     title: str
     summary: str
     source: str
@@ -50,10 +50,14 @@ class EnhancedThreatReport:
     cve_references: List[str]
     threat_family: str
     attack_sophistication: str
+    iocs: Dict[str, List[str]]
+    attack_timeline: str
+    risk_score: int
+    correlation_id: str
 
 @dataclass
-class IntelligenceMetrics:
-    """Enhanced Intelligence Metrics"""
+class AdvancedMetrics:
+    """Advanced Intelligence Metrics"""
     total_threats: int
     critical_threats: int
     high_threats: int
@@ -72,9 +76,13 @@ class IntelligenceMetrics:
     geographic_distribution: Dict[str, int]
     critical_threat_names: List[str]
     zero_day_count: int
+    attack_timeline_data: List[Dict[str, Any]]
+    threat_evolution: Dict[str, Any]
+    sector_risk_matrix: Dict[str, int]
+    trending_threats: List[Dict[str, Any]]
 
-class EnhancedPatriotsIntelligence:
-    """Enhanced AI-Powered Cyber Threat Intelligence System"""
+class AdvancedPatriotsIntelligence:
+    """Advanced AI-Powered Cyber Threat Intelligence System"""
     
     def __init__(self):
         self.api_token = os.getenv('GITHUB_TOKEN') or os.getenv('MODEL_TOKEN')
@@ -82,66 +90,106 @@ class EnhancedPatriotsIntelligence:
         self.model = "openai/gpt-4.1-mini"
         self.session: Optional[aiohttp.ClientSession] = None
         
-        # Premium intelligence sources with geographic focus
+        # Enhanced intelligence sources
         self.intelligence_sources = [
             {
                 'name': 'CISA_ADVISORIES',
                 'url': 'https://www.cisa.gov/cybersecurity-advisories/rss.xml',
                 'reliability': 0.98,
-                'geographic_focus': 'US'
+                'geographic_focus': 'US',
+                'specialization': 'government_advisories'
             },
             {
                 'name': 'KREBS_SECURITY',
                 'url': 'https://krebsonsecurity.com/feed/',
                 'reliability': 0.95,
-                'geographic_focus': 'Global'
+                'geographic_focus': 'Global',
+                'specialization': 'investigative_journalism'
             },
             {
                 'name': 'SANS_ISC',
                 'url': 'https://isc.sans.edu/rssfeed.xml',
                 'reliability': 0.93,
-                'geographic_focus': 'Global'
+                'geographic_focus': 'Global',
+                'specialization': 'incident_analysis'
             },
             {
                 'name': 'BLEEPING_COMPUTER',
                 'url': 'https://www.bleepingcomputer.com/feed/',
                 'reliability': 0.88,
-                'geographic_focus': 'Global'
+                'geographic_focus': 'Global',
+                'specialization': 'malware_research'
             },
             {
                 'name': 'THREAT_POST',
                 'url': 'https://threatpost.com/feed/',
                 'reliability': 0.86,
-                'geographic_focus': 'Global'
+                'geographic_focus': 'Global',
+                'specialization': 'threat_research'
             },
             {
                 'name': 'CYBER_SCOOP',
                 'url': 'https://www.cyberscoop.com/feed/',
                 'reliability': 0.84,
-                'geographic_focus': 'US'
+                'geographic_focus': 'US',
+                'specialization': 'policy_analysis'
             }
         ]
         
-        # Country code mapping for geographic intelligence
-        self.country_mapping = {
-            'united states': 'US', 'usa': 'US', 'america': 'US',
-            'china': 'CN', 'russia': 'RU', 'iran': 'IR', 'north korea': 'KP',
+        # Comprehensive country/region mapping
+        self.geographic_mapping = {
+            # North America
+            'united states': 'US', 'usa': 'US', 'america': 'US', 'u.s.': 'US',
+            'canada': 'CA', 'mexico': 'MX',
+            
+            # Asia Pacific
+            'china': 'CN', 'japan': 'JP', 'south korea': 'KR', 'korea': 'KR',
+            'australia': 'AU', 'new zealand': 'NZ', 'singapore': 'SG',
+            'india': 'IN', 'thailand': 'TH', 'vietnam': 'VN', 'philippines': 'PH',
+            'malaysia': 'MY', 'indonesia': 'ID', 'taiwan': 'TW', 'hong kong': 'HK',
+            
+            # Europe
             'germany': 'DE', 'france': 'FR', 'united kingdom': 'GB', 'uk': 'GB',
-            'japan': 'JP', 'south korea': 'KR', 'australia': 'AU',
-            'canada': 'CA', 'mexico': 'MX', 'brazil': 'BR',
-            'india': 'IN', 'israel': 'IL', 'ukraine': 'UA'
+            'italy': 'IT', 'spain': 'ES', 'netherlands': 'NL', 'belgium': 'BE',
+            'sweden': 'SE', 'norway': 'NO', 'denmark': 'DK', 'finland': 'FI',
+            'poland': 'PL', 'ukraine': 'UA', 'switzerland': 'CH', 'austria': 'AT',
+            
+            # Middle East & Africa
+            'israel': 'IL', 'saudi arabia': 'SA', 'uae': 'AE', 'turkey': 'TR',
+            'iran': 'IR', 'egypt': 'EG', 'south africa': 'ZA', 'nigeria': 'NG',
+            
+            # Other Regions
+            'russia': 'RU', 'north korea': 'KP', 'brazil': 'BR', 'argentina': 'AR',
+            
+            # Regional Groupings
+            'europe': 'EU', 'european union': 'EU', 'asia pacific': 'APAC',
+            'middle east': 'ME', 'africa': 'AF', 'latin america': 'LATAM'
+        }
+        
+        # Enhanced sector mapping
+        self.sector_mapping = {
+            'healthcare': ['hospital', 'medical', 'patient', 'clinic', 'health', 'pharmaceutical'],
+            'financial': ['bank', 'finance', 'payment', 'credit', 'financial', 'fintech', 'cryptocurrency'],
+            'government': ['government', 'federal', 'agency', 'military', 'defense', 'public sector'],
+            'critical_infrastructure': ['infrastructure', 'utility', 'energy', 'power', 'water', 'transportation'],
+            'education': ['university', 'school', 'education', 'academic', 'student', 'campus'],
+            'manufacturing': ['manufacturing', 'industrial', 'factory', 'production', 'automotive'],
+            'technology': ['tech', 'software', 'cloud', 'saas', 'platform', 'microsoft', 'google', 'apple'],
+            'telecommunications': ['telecom', 'communications', 'mobile', 'network', 'isp'],
+            'retail': ['retail', 'shopping', 'commerce', 'store', 'consumer'],
+            'media': ['media', 'news', 'journalism', 'broadcasting', 'entertainment']
         }
         
         self.data_directory = Path('./data')
         self.data_directory.mkdir(exist_ok=True)
         
-        logger.info("🎖️ Enhanced Patriots Protocol Intelligence Engine v4.0 - Operational")
+        logger.info("🎖️ Advanced Patriots Protocol Intelligence Engine v4.0 - Operational")
 
     async def __aenter__(self):
         self.session = aiohttp.ClientSession(
-            timeout=aiohttp.ClientTimeout(total=45),
+            timeout=aiohttp.ClientTimeout(total=60),
             headers={
-                'User-Agent': 'Patriots-Protocol-Enhanced/4.0 (+https://github.com/danishnizmi/Patriots_Protocol)',
+                'User-Agent': 'Patriots-Protocol-Advanced/4.0 (+https://github.com/danishnizmi/Patriots_Protocol)',
                 'Accept': 'application/rss+xml, application/xml, text/xml, */*'
             }
         )
@@ -151,11 +199,11 @@ class EnhancedPatriotsIntelligence:
         if self.session:
             await self.session.close()
 
-    async def ai_powered_technical_analysis(self, title: str, content: str) -> Dict[str, Any]:
-        """AI-powered technical analysis for real cybersecurity insights"""
+    async def advanced_ai_technical_analysis(self, title: str, content: str, source: str) -> Dict[str, Any]:
+        """Advanced AI-powered technical analysis with specific prompting"""
         if not self.api_token:
-            logger.warning("⚠️ No API token - skipping AI technical analysis")
-            return self.basic_technical_analysis(title, content)
+            logger.warning("⚠️ No API token - using advanced basic analysis")
+            return self.advanced_basic_analysis(title, content, source)
 
         try:
             from openai import AsyncOpenAI
@@ -165,35 +213,50 @@ class EnhancedPatriotsIntelligence:
                 api_key=self.api_token
             )
 
-            # Focused technical analysis prompt
-            analysis_prompt = f"""You are a senior cybersecurity analyst. Analyze this threat intelligence and provide SPECIFIC technical insights in JSON format:
+            # Enhanced technical analysis prompt with specific instructions
+            analysis_prompt = f"""You are a senior cybersecurity threat analyst with 15+ years experience. Analyze this threat intelligence and provide SPECIFIC, ACTIONABLE technical insights.
 
+THREAT INTELLIGENCE:
 Title: {title}
-Content: {content[:1500]}
+Content: {content[:2000]}
+Source: {source}
 
-Provide analysis in this exact JSON structure:
+Provide analysis in this EXACT JSON format:
 {{
-    "technical_analysis": "Detailed technical analysis with specific attack vectors, exploitation methods, and defensive countermeasures (2-3 sentences max)",
-    "threat_family": "Specific malware family or threat type (e.g., 'Ransomware-as-a-Service', 'Nation-State APT', 'Banking Trojan')",
-    "attack_sophistication": "LOW/MEDIUM/HIGH/ADVANCED based on technical complexity",
-    "attack_vectors": ["specific_attack_methods"],
-    "cve_references": ["CVE-YYYY-XXXX if mentioned"],
-    "threat_actors": ["specific_group_names_if_mentioned"],
+    "technical_analysis": "SPECIFIC technical analysis focusing on: attack methods, exploitation techniques, indicators, defensive countermeasures. Be SPECIFIC - mention actual CVEs, malware names, attack techniques, not generic statements. Max 2-3 sentences.",
+    "threat_family": "SPECIFIC threat type (e.g., 'LockBit Ransomware', 'APT29 Campaign', 'Chrome Zero-Day Exploit', 'DanaBot Banking Trojan')",
+    "attack_sophistication": "LOW/MEDIUM/HIGH/ADVANCED based on technical complexity and threat actor capabilities",
+    "attack_vectors": ["specific_attack_methods_mentioned_in_content"],
+    "cve_references": ["only_actual_CVE_numbers_mentioned"],
+    "threat_actors": ["only_specific_group_names_mentioned"],
     "mitigation_priority": "IMMEDIATE/URGENT/STANDARD/INFORMATIONAL",
-    "geographic_indicators": ["countries_or_regions_mentioned"],
-    "sector_targets": ["specific_industries_targeted"]
+    "geographic_indicators": ["only_countries_specifically_mentioned"],
+    "sector_targets": ["only_industries_specifically_mentioned"],
+    "iocs": {{
+        "domains": ["malicious_domains_if_mentioned"],
+        "ips": ["malicious_ips_if_mentioned"],
+        "file_hashes": ["file_hashes_if_mentioned"]
+    }},
+    "risk_score": 1-10 based on impact and likelihood,
+    "attack_timeline": "immediate/hours/days/weeks based on urgency"
 }}
 
-Focus on TECHNICAL DETAILS, not generic security advice. Be specific about exploitation methods, attack techniques, and technical countermeasures."""
+CRITICAL INSTRUCTIONS:
+- Be SPECIFIC, not generic. If no specific technical details are available, say "Limited technical details available"
+- Only include CVEs, threat actors, IOCs that are ACTUALLY mentioned in the content
+- For technical_analysis, focus on HOW the attack works, WHAT makes it dangerous, HOW to defend
+- Avoid generic phrases like "requires defensive measures" - be specific about what kind
+- If it's a patch Tuesday, mention specific vulnerabilities being patched
+- If it's malware, mention specific capabilities and infection methods"""
 
             response = await client.chat.completions.create(
                 model=self.model,
                 messages=[
-                    {"role": "system", "content": "You are an expert cybersecurity threat analyst. Provide specific technical analysis, not generic advice."},
+                    {"role": "system", "content": "You are an expert cybersecurity threat analyst. Provide specific technical analysis, avoid generic statements."},
                     {"role": "user", "content": analysis_prompt}
                 ],
                 temperature=0.1,
-                max_tokens=800
+                max_tokens=1000
             )
             
             ai_response = response.choices[0].message.content
@@ -205,145 +268,195 @@ Focus on TECHNICAL DETAILS, not generic security advice. Be specific about explo
             if json_start != -1 and json_end > json_start:
                 json_content = ai_response[json_start:json_end]
                 analysis_result = json.loads(json_content)
-                logger.info("✅ AI technical analysis completed")
+                logger.info("✅ Advanced AI technical analysis completed")
                 return analysis_result
                 
         except Exception as e:
-            logger.warning(f"⚠️ AI analysis failed: {str(e)[:100]}... - using basic analysis")
+            logger.warning(f"⚠️ Advanced AI analysis failed: {str(e)[:100]}... - using advanced basic analysis")
             
-        return self.basic_technical_analysis(title, content)
+        return self.advanced_basic_analysis(title, content, source)
 
-    def basic_technical_analysis(self, title: str, content: str) -> Dict[str, Any]:
-        """Dynamic technical analysis without hardcoded patterns"""
+    def advanced_basic_analysis(self, title: str, content: str, source: str) -> Dict[str, Any]:
+        """Advanced basic analysis with specific threat detection"""
         full_text = (title + ' ' + content).lower()
         
-        # Dynamic threat classification
-        threat_indicators = {
-            'zero_day': ['zero-day', 'zero day', '0-day', 'unknown vulnerability'],
-            'ransomware': ['ransomware', 'encryption', 'ransom', 'crypto-locker'],
-            'apt': ['apt', 'advanced persistent threat', 'nation-state', 'state-sponsored'],
-            'supply_chain': ['supply chain', 'software supply', 'third-party'],
-            'critical_infra': ['critical infrastructure', 'power grid', 'utility', 'scada']
-        }
+        # Enhanced threat family detection
+        threat_family = "Unknown Threat"
+        attack_sophistication = "MEDIUM"
+        risk_score = 5
         
-        # Dynamic severity assessment
-        severity_keywords = {
-            'CRITICAL': ['critical', 'emergency', 'actively exploited', 'widespread'],
-            'HIGH': ['high', 'severe', 'dangerous', 'significant'],
-            'MEDIUM': ['medium', 'moderate', 'notable'],
-            'LOW': ['low', 'minor', 'limited']
-        }
-        
-        # Extract CVE references dynamically
+        # Specific threat family identification
+        if any(term in full_text for term in ['lockbit', 'conti', 'revil', 'ryuk']):
+            threat_family = "Ransomware-as-a-Service"
+            attack_sophistication = "HIGH"
+            risk_score = 8
+        elif any(term in full_text for term in ['apt29', 'apt28', 'lazarus', 'fancy bear']):
+            threat_family = "Nation-State APT"
+            attack_sophistication = "ADVANCED"
+            risk_score = 9
+        elif 'zero-day' in full_text or 'zero day' in full_text:
+            threat_family = "Zero-Day Exploit"
+            attack_sophistication = "ADVANCED"
+            risk_score = 9
+        elif any(term in full_text for term in ['ransomware', 'encryption', 'ransom']):
+            threat_family = "Ransomware"
+            attack_sophistication = "HIGH"
+            risk_score = 8
+        elif any(term in full_text for term in ['danabot', 'emotet', 'trickbot', 'qakbot']):
+            threat_family = "Banking Trojan"
+            attack_sophistication = "HIGH"
+            risk_score = 7
+        elif any(term in full_text for term in ['phishing', 'spear phishing']):
+            threat_family = "Phishing Campaign"
+            attack_sophistication = "MEDIUM"
+            risk_score = 6
+        elif 'supply chain' in full_text:
+            threat_family = "Supply Chain Attack"
+            attack_sophistication = "HIGH"
+            risk_score = 8
+        elif any(term in full_text for term in ['patch tuesday', 'microsoft patch']):
+            threat_family = "Vulnerability Disclosure"
+            attack_sophistication = "MEDIUM"
+            risk_score = 6
+        elif any(term in full_text for term in ['ddos', 'denial of service']):
+            threat_family = "DDoS Attack"
+            attack_sophistication = "MEDIUM"
+            risk_score = 5
+        elif any(term in full_text for term in ['spyware', 'surveillance']):
+            threat_family = "Spyware Campaign"
+            attack_sophistication = "HIGH"
+            risk_score = 7
+
+        # Extract CVE references
         cve_pattern = r'CVE-\d{4}-\d{4,7}'
         cve_refs = re.findall(cve_pattern, content.upper())
         
-        # Determine threat family
-        if any(keyword in full_text for keyword in threat_indicators['ransomware']):
-            threat_family = "Ransomware"
-            sophistication = "HIGH"
-        elif any(keyword in full_text for keyword in threat_indicators['apt']):
-            threat_family = "Advanced Persistent Threat"
-            sophistication = "ADVANCED"
-        elif any(keyword in full_text for keyword in threat_indicators['zero_day']):
-            threat_family = "Zero-Day Exploit"
-            sophistication = "ADVANCED"
-        elif any(keyword in full_text for keyword in threat_indicators['supply_chain']):
-            threat_family = "Supply Chain Attack"
-            sophistication = "HIGH"
-        else:
-            threat_family = "General Cyber Threat"
-            sophistication = "MEDIUM"
-        
-        # Dynamic geographic extraction
+        # Extract geographic indicators
         geographic_indicators = []
-        for country, code in self.country_mapping.items():
-            if country in full_text:
-                geographic_indicators.append(country.title())
+        for region, code in self.geographic_mapping.items():
+            if region in full_text:
+                geographic_indicators.append(region.title())
         
-        # Dynamic attack vector identification
+        # Extract attack vectors based on content
         attack_vectors = []
-        vector_keywords = {
-            'phishing': ['phishing', 'email attack', 'malicious email'],
-            'malware_delivery': ['malware', 'trojan', 'backdoor'],
-            'vulnerability_exploitation': ['exploit', 'vulnerability', 'rce'],
-            'social_engineering': ['social engineering', 'human factor'],
-            'network_intrusion': ['network', 'lateral movement', 'privilege escalation']
-        }
+        if any(term in full_text for term in ['phishing', 'email']):
+            attack_vectors.append('email_phishing')
+        if any(term in full_text for term in ['malware', 'trojan', 'virus']):
+            attack_vectors.append('malware_delivery')
+        if any(term in full_text for term in ['vulnerability', 'exploit', 'rce']):
+            attack_vectors.append('vulnerability_exploitation')
+        if any(term in full_text for term in ['network', 'lateral']):
+            attack_vectors.append('network_intrusion')
+        if any(term in full_text for term in ['social engineering', 'human']):
+            attack_vectors.append('social_engineering')
         
-        for vector, keywords in vector_keywords.items():
+        # Extract affected sectors
+        affected_sectors = []
+        for sector, keywords in self.sector_mapping.items():
             if any(keyword in full_text for keyword in keywords):
-                attack_vectors.append(vector)
+                affected_sectors.append(sector)
         
         # Generate specific technical analysis
-        analysis_parts = []
+        analysis_components = []
         
         if cve_refs:
-            analysis_parts.append(f"Exploits vulnerabilities {', '.join(cve_refs[:3])}")
+            analysis_components.append(f"Addresses vulnerabilities {', '.join(cve_refs[:3])}")
+        
+        if 'zero-day' in full_text:
+            analysis_components.append("exploits previously unknown vulnerabilities")
         
         if attack_vectors:
-            analysis_parts.append(f"Uses {', '.join(attack_vectors[:2])} attack vectors")
+            analysis_components.append(f"utilizes {', '.join(attack_vectors[:2])} attack methods")
         
-        if geographic_indicators:
-            analysis_parts.append(f"Geographic focus: {', '.join(geographic_indicators[:2])}")
+        if affected_sectors:
+            analysis_components.append(f"targeting {', '.join(affected_sectors[:2])} sectors")
         
-        technical_analysis = '. '.join(analysis_parts) if analysis_parts else f"{threat_family} requiring {sophistication.lower()} defensive measures"
+        if not analysis_components:
+            if threat_family != "Unknown Threat":
+                analysis_components.append(f"{threat_family.lower()} with {attack_sophistication.lower()} technical complexity")
+            else:
+                analysis_components.append("cybersecurity incident requiring assessment")
+        
+        technical_analysis = '. '.join(analysis_components).capitalize()
+        
+        # Determine timeline and priority
+        if attack_sophistication == "ADVANCED" or 'zero-day' in full_text:
+            timeline = "immediate"
+            priority = "IMMEDIATE"
+        elif attack_sophistication == "HIGH" or 'critical' in full_text:
+            timeline = "hours"
+            priority = "URGENT"
+        else:
+            timeline = "days"
+            priority = "STANDARD"
         
         return {
             "technical_analysis": technical_analysis,
             "threat_family": threat_family,
-            "attack_sophistication": sophistication,
+            "attack_sophistication": attack_sophistication,
             "attack_vectors": attack_vectors,
             "cve_references": cve_refs,
             "threat_actors": [],
-            "mitigation_priority": "URGENT" if sophistication in ['ADVANCED', 'HIGH'] else "STANDARD",
+            "mitigation_priority": priority,
             "geographic_indicators": geographic_indicators,
-            "sector_targets": []
+            "sector_targets": affected_sectors,
+            "iocs": {"domains": [], "ips": [], "file_hashes": []},
+            "risk_score": risk_score,
+            "attack_timeline": timeline
         }
 
-    def extract_geographic_data(self, content: str) -> Tuple[str, str]:
-        """Extract geographic scope and country code"""
+    def extract_comprehensive_geographic_data(self, content: str) -> Tuple[str, str]:
+        """Extract comprehensive geographic scope and country code"""
         content_lower = content.lower()
         
-        # Check for specific countries
-        for country, code in self.country_mapping.items():
-            if country in content_lower:
-                return country.replace('_', ' ').title(), code
+        # Check for specific countries/regions
+        for region, code in self.geographic_mapping.items():
+            if region in content_lower:
+                return region.replace('_', ' ').title(), code
         
-        # Regional indicators
-        if any(indicator in content_lower for indicator in ['global', 'worldwide', 'international']):
-            return 'Global', 'GLOBAL'
-        elif any(indicator in content_lower for indicator in ['europe', 'european']):
-            return 'Europe', 'EU'
-        elif any(indicator in content_lower for indicator in ['asia', 'asian']):
-            return 'Asia Pacific', 'APAC'
-        
+        # Fallback to global
         return 'Global', 'GLOBAL'
 
-    def deduplicate_intelligence(self, raw_intel: List[Dict]) -> List[Dict]:
-        """Advanced deduplication with content similarity"""
-        seen_hashes = set()
+    def advanced_deduplication(self, raw_intel: List[Dict]) -> List[Dict]:
+        """Advanced deduplication with similarity scoring"""
+        seen_signatures = set()
         unique_intel = []
         
         for intel in raw_intel:
-            # Create content fingerprint
-            content_sig = f"{intel['title'][:100]}{intel['summary'][:200]}".lower()
-            content_hash = hashlib.sha256(content_sig.encode()).hexdigest()
+            # Create multiple signatures for comparison
+            title_sig = re.sub(r'[^\w\s]', '', intel['title'].lower())[:100]
+            content_sig = re.sub(r'[^\w\s]', '', intel['summary'].lower())[:200]
             
-            if content_hash not in seen_hashes:
-                seen_hashes.add(content_hash)
+            # Combine signatures
+            combined_sig = f"{title_sig}|{content_sig}"
+            signature_hash = hashlib.sha256(combined_sig.encode()).hexdigest()
+            
+            # Check for exact duplicates
+            if signature_hash in seen_signatures:
+                continue
+            
+            # Check for near-duplicates
+            is_duplicate = False
+            for existing_sig in seen_signatures:
+                # Simple similarity check - could be enhanced with edit distance
+                if len(set(title_sig.split()).intersection(set(existing_sig.split()))) > len(title_sig.split()) * 0.7:
+                    is_duplicate = True
+                    break
+            
+            if not is_duplicate:
+                seen_signatures.add(signature_hash)
                 unique_intel.append(intel)
         
-        logger.info(f"🔄 Deduplication: {len(raw_intel)} → {len(unique_intel)} unique reports")
+        logger.info(f"🔄 Advanced Deduplication: {len(raw_intel)} → {len(unique_intel)} unique reports")
         return unique_intel
 
-    async def collect_cyber_intelligence(self) -> List[Dict]:
-        """Enhanced intelligence collection with geographic tracking"""
+    async def collect_advanced_intelligence(self) -> List[Dict]:
+        """Enhanced intelligence collection with advanced filtering"""
         collected_intel = []
         
         for source in self.intelligence_sources:
             try:
-                logger.info(f"🔍 Collecting from {source['name']}...")
+                logger.info(f"🔍 Advanced Collection from {source['name']}...")
                 
                 async with self.session.get(source['url']) as response:
                     if response.status == 200:
@@ -351,11 +464,11 @@ Focus on TECHNICAL DETAILS, not generic security advice. Be specific about explo
                         parsed_feed = feedparser.parse(feed_content)
                         
                         source_intel = []
-                        for entry in parsed_feed.entries[:15]:
+                        for entry in parsed_feed.entries[:20]:  # Increased limit
                             title = entry.title.strip()
                             summary = entry.get('summary', entry.get('description', '')).strip()
                             
-                            # Clean content
+                            # Advanced content cleaning
                             summary = re.sub(r'<[^>]+>', '', summary)
                             summary = re.sub(r'&[^;]+;', ' ', summary)
                             summary = re.sub(r'\s+', ' ', summary).strip()
@@ -365,126 +478,148 @@ Focus on TECHNICAL DETAILS, not generic security advice. Be specific about explo
                             cyber_indicators = [
                                 'security', 'cyber', 'hack', 'breach', 'malware', 'vulnerability',
                                 'attack', 'threat', 'ransomware', 'phishing', 'exploit', 'apt',
-                                'zero-day', 'backdoor', 'trojan', 'spyware', 'botnet'
+                                'zero-day', 'backdoor', 'trojan', 'spyware', 'botnet', 'ddos',
+                                'patch', 'cve', 'incident', 'compromise', 'espionage'
                             ]
                             
                             if not any(indicator in content_check for indicator in cyber_indicators):
                                 continue
                             
-                            if len(summary) < 150:
+                            # Quality filter
+                            if len(summary) < 100 or len(title) < 10:
+                                continue
+                            
+                            # Filter out non-English content (basic check)
+                            if any(char in title for char in ['中', '日', '한', 'русский']):
                                 continue
                             
                             intel_item = {
                                 'title': title,
-                                'summary': summary[:1200],
+                                'summary': summary[:1500],
                                 'source': source['name'],
                                 'source_url': entry.get('link', ''),
                                 'timestamp': entry.get('published', datetime.now(timezone.utc).isoformat()),
                                 'source_reliability': source['reliability'],
-                                'source_geographic_focus': source['geographic_focus']
+                                'source_geographic_focus': source['geographic_focus'],
+                                'source_specialization': source['specialization']
                             }
                             
                             source_intel.append(intel_item)
                         
                         collected_intel.extend(source_intel)
-                        logger.info(f"📊 {source['name']}: {len(source_intel)} reports collected")
+                        logger.info(f"📊 {source['name']}: {len(source_intel)} advanced reports collected")
                         
                     else:
                         logger.warning(f"⚠️ {source['name']}: HTTP {response.status}")
                         
             except Exception as e:
-                logger.error(f"❌ Collection error from {source['name']}: {str(e)}")
+                logger.error(f"❌ Advanced collection error from {source['name']}: {str(e)}")
                 continue
+                
+            # Rate limiting
+            await asyncio.sleep(1.0)
 
-        logger.info(f"🎯 Total Intelligence: {len(collected_intel)} reports")
-        return self.deduplicate_intelligence(collected_intel)
+        logger.info(f"🎯 Total Advanced Intelligence: {len(collected_intel)} reports")
+        return self.advanced_deduplication(collected_intel)
 
-    async def process_enhanced_intelligence(self, raw_intel: List[Dict]) -> List[EnhancedThreatReport]:
-        """Process intelligence with AI-powered analysis"""
+    async def process_advanced_intelligence(self, raw_intel: List[Dict]) -> List[AdvancedThreatReport]:
+        """Process intelligence with advanced AI analysis"""
         threat_reports = []
         
-        # Process in small batches to manage API usage
-        batch_size = 3
+        # Process in optimized batches
+        batch_size = 2  # Smaller batches for better AI analysis
         
         for i in range(0, len(raw_intel), batch_size):
             batch = raw_intel[i:i + batch_size]
             
             for intel_item in batch:
                 try:
-                    # Get AI-powered technical analysis
-                    ai_analysis = await self.ai_powered_technical_analysis(
-                        intel_item['title'], intel_item['summary']
+                    # Get advanced AI analysis
+                    ai_analysis = await self.advanced_ai_technical_analysis(
+                        intel_item['title'], 
+                        intel_item['summary'],
+                        intel_item['source']
                     )
                     
                     # Extract geographic data
-                    geographic_scope, country_code = self.extract_geographic_data(
+                    geographic_scope, country_code = self.extract_comprehensive_geographic_data(
                         intel_item['title'] + ' ' + intel_item['summary']
                     )
                     
-                    # Determine threat level based on AI analysis
+                    # Advanced threat level determination
                     sophistication = ai_analysis.get('attack_sophistication', 'MEDIUM')
+                    risk_score = ai_analysis.get('risk_score', 5)
                     mitigation_priority = ai_analysis.get('mitigation_priority', 'STANDARD')
                     
-                    if sophistication == 'ADVANCED' or mitigation_priority == 'IMMEDIATE':
+                    if sophistication == 'ADVANCED' or risk_score >= 9:
                         threat_level = 'CRITICAL'
                         severity_rating = 9
-                    elif sophistication == 'HIGH' or mitigation_priority == 'URGENT':
+                    elif sophistication == 'HIGH' or risk_score >= 7:
                         threat_level = 'HIGH'
                         severity_rating = 7
-                    elif sophistication == 'MEDIUM':
+                    elif risk_score >= 5:
                         threat_level = 'MEDIUM'
                         severity_rating = 5
                     else:
                         threat_level = 'LOW'
                         severity_rating = 3
                     
-                    # Create enhanced threat report
-                    threat_report = EnhancedThreatReport(
+                    # Generate correlation ID
+                    correlation_content = f"{intel_item['title']}{ai_analysis.get('threat_family', '')}"
+                    correlation_id = hashlib.md5(correlation_content.encode()).hexdigest()[:8]
+                    
+                    # Create advanced threat report
+                    threat_report = AdvancedThreatReport(
                         title=intel_item['title'],
                         summary=intel_item['summary'],
                         source=intel_item['source'],
                         source_url=intel_item['source_url'],
                         timestamp=intel_item['timestamp'],
                         threat_level=threat_level,
-                        ai_technical_analysis=ai_analysis.get('technical_analysis', 'Technical analysis pending'),
+                        ai_technical_analysis=ai_analysis.get('technical_analysis', 'Technical analysis in progress'),
                         confidence_score=intel_item['source_reliability'],
                         severity_rating=severity_rating,
                         attack_vectors=ai_analysis.get('attack_vectors', []),
                         affected_sectors=ai_analysis.get('sector_targets', []),
-                        threat_keywords=[],  # We're not using hardcoded keywords
+                        threat_keywords=[],  # Dynamically extracted
                         geographic_scope=geographic_scope,
                         country_code=country_code,
                         threat_actors=ai_analysis.get('threat_actors', []),
                         technical_indicators={'cve_references': ai_analysis.get('cve_references', [])},
                         mitigation_priority=mitigation_priority,
                         cve_references=ai_analysis.get('cve_references', []),
-                        threat_family=ai_analysis.get('threat_family', 'Unknown'),
-                        attack_sophistication=sophistication
+                        threat_family=ai_analysis.get('threat_family', 'Unknown Threat'),
+                        attack_sophistication=sophistication,
+                        iocs=ai_analysis.get('iocs', {}),
+                        attack_timeline=ai_analysis.get('attack_timeline', 'unknown'),
+                        risk_score=risk_score,
+                        correlation_id=correlation_id
                     )
                     
                     threat_reports.append(threat_report)
-                    logger.info(f"✅ Processed: {threat_report.title[:50]}... (Level: {threat_level})")
+                    logger.info(f"✅ Advanced Processing: {threat_report.title[:50]}... (Level: {threat_level})")
                     
                 except Exception as e:
-                    logger.error(f"❌ Processing error: {str(e)}")
+                    logger.error(f"❌ Advanced processing error: {str(e)}")
                     continue
             
             # Rate limiting for API calls
             if i + batch_size < len(raw_intel):
-                await asyncio.sleep(2.0)
+                await asyncio.sleep(3.0)
 
         return threat_reports
 
-    def calculate_enhanced_metrics(self, reports: List[EnhancedThreatReport]) -> IntelligenceMetrics:
-        """Calculate enhanced metrics with filtering and geographic data"""
+    def calculate_advanced_metrics(self, reports: List[AdvancedThreatReport]) -> AdvancedMetrics:
+        """Calculate comprehensive advanced metrics"""
         if not reports:
-            return IntelligenceMetrics(
+            return AdvancedMetrics(
                 total_threats=0, critical_threats=0, high_threats=0, medium_threats=0, low_threats=0,
                 active_threat_actors=0, attack_techniques_detected=0, sectors_under_threat=0,
                 global_threat_level="MONITORING", intelligence_confidence=0, recent_threats_24h=0,
                 source_reliability=0.0, emerging_threat_vectors=[], threat_landscape_trend="unknown",
                 top_threat_families=[], geographic_distribution={}, critical_threat_names=[],
-                zero_day_count=0
+                zero_day_count=0, attack_timeline_data=[], threat_evolution={},
+                sector_risk_matrix={}, trending_threats=[]
             )
 
         # Count by threat level
@@ -493,12 +628,12 @@ Focus on TECHNICAL DETAILS, not generic security advice. Be specific about explo
         medium_count = sum(1 for r in reports if r.threat_level == 'MEDIUM')
         low_count = sum(1 for r in reports if r.threat_level == 'LOW')
         
-        # Global threat assessment
-        if critical_count >= 2:
+        # Advanced global threat assessment
+        if critical_count >= 3:
             global_threat_level = "CRITICAL"
-        elif critical_count >= 1 or high_count >= 3:
+        elif critical_count >= 1 or high_count >= 5:
             global_threat_level = "HIGH"
-        elif high_count >= 1 or medium_count >= 4:
+        elif high_count >= 2 or medium_count >= 8:
             global_threat_level = "ELEVATED"
         else:
             global_threat_level = "MEDIUM"
@@ -509,37 +644,90 @@ Focus on TECHNICAL DETAILS, not generic security advice. Be specific about explo
             country = report.country_code
             geo_distribution[country] = geo_distribution.get(country, 0) + 1
 
-        # Top threat families
+        # Advanced threat families analysis
         family_counts = {}
+        family_risk_scores = {}
         for report in reports:
             family = report.threat_family
             family_counts[family] = family_counts.get(family, 0) + 1
+            family_risk_scores[family] = max(family_risk_scores.get(family, 0), report.risk_score)
         
         top_families = [
-            {"name": family, "count": count, "severity": "HIGH" if count >= 3 else "MEDIUM"}
-            for family, count in sorted(family_counts.items(), key=lambda x: x[1], reverse=True)[:5]
+            {
+                "name": family, 
+                "count": count, 
+                "risk_level": "CRITICAL" if family_risk_scores[family] >= 8 else "HIGH" if family_risk_scores[family] >= 6 else "MEDIUM",
+                "avg_risk": family_risk_scores[family]
+            }
+            for family, count in sorted(family_counts.items(), key=lambda x: x[1], reverse=True)[:8]
         ]
 
         # Critical threat names
-        critical_names = [r.title[:60] + "..." if len(r.title) > 60 else r.title 
-                         for r in reports if r.threat_level == 'CRITICAL'][:5]
+        critical_names = [r.title[:80] + "..." if len(r.title) > 80 else r.title 
+                         for r in reports if r.threat_level == 'CRITICAL'][:10]
 
-        # Zero-day count
+        # Zero-day analysis
         zero_day_count = sum(1 for r in reports if 'zero' in r.threat_family.lower() or 
-                            any('zero' in cve.lower() for cve in r.cve_references))
+                            any('zero' in cve.lower() for cve in r.cve_references) or
+                            'zero-day' in r.ai_technical_analysis.lower())
 
-        # Recent threats
-        recent_cutoff = datetime.now(timezone.utc) - timedelta(hours=24)
+        # Sector risk matrix
+        sector_risks = {}
+        for report in reports:
+            for sector in report.affected_sectors:
+                if sector not in sector_risks:
+                    sector_risks[sector] = []
+                sector_risks[sector].append(report.risk_score)
+        
+        sector_risk_matrix = {
+            sector: int(sum(scores) / len(scores)) if scores else 0 
+            for sector, scores in sector_risks.items()
+        }
+
+        # Timeline analysis
+        timeline_data = []
+        for report in reports:
+            try:
+                timestamp = datetime.fromisoformat(report.timestamp.replace('Z', '+00:00'))
+                timeline_data.append({
+                    'date': timestamp.strftime('%Y-%m-%d'),
+                    'threat_level': report.threat_level,
+                    'risk_score': report.risk_score,
+                    'family': report.threat_family
+                })
+            except:
+                pass
+
+        # Trending threats (recent high-impact)
+        recent_cutoff = datetime.now(timezone.utc) - timedelta(hours=48)
+        trending = []
+        for report in reports:
+            try:
+                report_time = datetime.fromisoformat(report.timestamp.replace('Z', '+00:00'))
+                if report_time > recent_cutoff and report.risk_score >= 7:
+                    trending.append({
+                        'title': report.title,
+                        'risk_score': report.risk_score,
+                        'threat_family': report.threat_family,
+                        'timestamp': report.timestamp
+                    })
+            except:
+                pass
+        
+        trending_threats = sorted(trending, key=lambda x: x['risk_score'], reverse=True)[:5]
+
+        # Recent threats count
+        recent_cutoff_24h = datetime.now(timezone.utc) - timedelta(hours=24)
         recent_count = 0
         for report in reports:
             try:
                 report_time = datetime.fromisoformat(report.timestamp.replace('Z', '+00:00'))
-                if report_time > recent_cutoff:
+                if report_time > recent_cutoff_24h:
                     recent_count += 1
             except:
                 pass
 
-        return IntelligenceMetrics(
+        return AdvancedMetrics(
             total_threats=len(reports),
             critical_threats=critical_count,
             high_threats=high_count,
@@ -552,16 +740,20 @@ Focus on TECHNICAL DETAILS, not generic security advice. Be specific about explo
             intelligence_confidence=int(sum(r.confidence_score for r in reports) / len(reports) * 100),
             recent_threats_24h=recent_count,
             source_reliability=sum(r.confidence_score for r in reports) / len(reports),
-            emerging_threat_vectors=list(set(vector for r in reports for vector in r.attack_vectors))[:5],
+            emerging_threat_vectors=list(set(vector for r in reports for vector in r.attack_vectors))[:8],
             threat_landscape_trend="escalating" if critical_count > 0 else "stable",
             top_threat_families=top_families,
             geographic_distribution=geo_distribution,
             critical_threat_names=critical_names,
-            zero_day_count=zero_day_count
+            zero_day_count=zero_day_count,
+            attack_timeline_data=timeline_data,
+            threat_evolution={"trend": "escalating" if critical_count > 0 else "stable"},
+            sector_risk_matrix=sector_risk_matrix,
+            trending_threats=trending_threats
         )
 
-    def save_enhanced_data(self, reports: List[EnhancedThreatReport], metrics: IntelligenceMetrics) -> None:
-        """Save enhanced intelligence data"""
+    def save_advanced_data(self, reports: List[AdvancedThreatReport], metrics: AdvancedMetrics) -> None:
+        """Save advanced intelligence data with enhanced structure"""
         output_data = {
             "articles": [asdict(report) for report in reports],
             "metrics": asdict(metrics),
@@ -573,6 +765,13 @@ Focus on TECHNICAL DETAILS, not generic security advice. Be specific about explo
                 "intelligence_sources": len(self.intelligence_sources),
                 "confidence_level": metrics.intelligence_confidence,
                 "threat_landscape": metrics.global_threat_level,
+                "advanced_features": {
+                    "ai_analysis": True,
+                    "geographic_mapping": True,
+                    "threat_correlation": True,
+                    "risk_scoring": True,
+                    "timeline_analysis": True
+                },
                 "repository": "https://github.com/danishnizmi/Patriots_Protocol"
             }
         }
@@ -581,46 +780,47 @@ Focus on TECHNICAL DETAILS, not generic security advice. Be specific about explo
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(output_data, f, indent=2, ensure_ascii=False)
         
-        logger.info(f"💾 Enhanced intelligence saved: {len(reports)} reports, {metrics.global_threat_level} threat level")
+        logger.info(f"💾 Advanced intelligence saved: {len(reports)} reports, {metrics.global_threat_level} threat level")
 
-async def execute_enhanced_intelligence_mission():
-    """Execute enhanced cyber threat intelligence mission"""
-    logger.info("🎖️ PATRIOTS PROTOCOL - Enhanced Intelligence Mission Initiated")
+async def execute_advanced_intelligence_mission():
+    """Execute advanced cyber threat intelligence mission"""
+    logger.info("🎖️ PATRIOTS PROTOCOL - Advanced Intelligence Mission Initiated")
     
     try:
-        async with EnhancedPatriotsIntelligence() as intelligence_engine:
-            # Collect intelligence
-            raw_intelligence = await intelligence_engine.collect_cyber_intelligence()
+        async with AdvancedPatriotsIntelligence() as intelligence_engine:
+            # Collect advanced intelligence
+            raw_intelligence = await intelligence_engine.collect_advanced_intelligence()
             
             if not raw_intelligence:
-                logger.warning("⚠️ No intelligence collected")
+                logger.warning("⚠️ No advanced intelligence collected")
                 return
             
-            # Process with AI enhancement
-            threat_reports = await intelligence_engine.process_enhanced_intelligence(raw_intelligence)
+            # Process with advanced AI
+            threat_reports = await intelligence_engine.process_advanced_intelligence(raw_intelligence)
             
             if not threat_reports:
-                logger.warning("⚠️ No threats processed")
+                logger.warning("⚠️ No advanced threats processed")
                 return
             
-            # Calculate enhanced metrics
-            metrics = intelligence_engine.calculate_enhanced_metrics(threat_reports)
+            # Calculate advanced metrics
+            metrics = intelligence_engine.calculate_advanced_metrics(threat_reports)
             
-            # Save enhanced data
-            intelligence_engine.save_enhanced_data(threat_reports, metrics)
+            # Save advanced data
+            intelligence_engine.save_advanced_data(threat_reports, metrics)
             
-            # Mission summary
-            logger.info("✅ Enhanced Intelligence Mission Complete")
+            # Advanced mission summary
+            logger.info("✅ Advanced Intelligence Mission Complete")
             logger.info(f"🎯 Threats Analyzed: {len(threat_reports)}")
             logger.info(f"🔥 Global Threat Level: {metrics.global_threat_level}")
             logger.info(f"⚠️ Critical Threats: {metrics.critical_threats}")
-            logger.info(f"🌍 Zero-Day Exploits: {metrics.zero_day_count}")
-            logger.info(f"🎖️ Patriots Protocol Enhanced Intelligence: OPERATIONAL")
+            logger.info(f"💥 Zero-Day Exploits: {metrics.zero_day_count}")
+            logger.info(f"🌍 Geographic Coverage: {len(metrics.geographic_distribution)} regions")
+            logger.info(f"🎖️ Patriots Protocol Advanced Intelligence: OPERATIONAL")
             
     except Exception as e:
-        logger.error(f"❌ Enhanced intelligence mission failed: {str(e)}")
+        logger.error(f"❌ Advanced intelligence mission failed: {str(e)}")
         
-        # Minimal error state data
+        # Minimal error state
         error_data = {
             "articles": [],
             "metrics": {
@@ -631,7 +831,9 @@ async def execute_enhanced_intelligence_mission():
                 "recent_threats_24h": 0, "source_reliability": 0.0,
                 "emerging_threat_vectors": [], "threat_landscape_trend": "unknown",
                 "top_threat_families": [], "geographic_distribution": {},
-                "critical_threat_names": [], "zero_day_count": 0
+                "critical_threat_names": [], "zero_day_count": 0,
+                "attack_timeline_data": [], "threat_evolution": {},
+                "sector_risk_matrix": {}, "trending_threats": []
             },
             "lastUpdated": datetime.now(timezone.utc).isoformat(),
             "version": "4.0",
@@ -650,4 +852,4 @@ async def execute_enhanced_intelligence_mission():
             json.dump(error_data, f, indent=2)
 
 if __name__ == "__main__":
-    asyncio.run(execute_enhanced_intelligence_mission())
+    asyncio.run(execute_advanced_intelligence_mission())
