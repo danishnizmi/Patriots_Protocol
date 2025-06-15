@@ -9,11 +9,11 @@
       "source_credibility": 0.95,
       "timestamp": "Sat, 14 Jun 2025 07:01:12 GMT",
       "category": "GLOBAL",
-      "ai_analysis": "The report examines potential escalation scenarios between Israel and Iran, highlighting risks of broader regional conflict if strikes intensify. Worst-case outcomes include direct military confrontation, increased proxy warfare, and destabilization of neighboring countries, which could severely impact Middle Eastern security dynamics.",
+      "ai_analysis": "The report examines potential escalation scenarios between Israel and Iran, highlighting risks of broader regional conflict if strikes intensify. Worst-case outcomes include direct military confrontation, increased proxy warfare, and destabilization across the Middle East, which could draw in global powers and disrupt international security.",
       "confidence": 0.85,
       "threat_level": "HIGH",
       "strategic_importance": "HIGH",
-      "operational_impact": "Potential for expanded military operations and increased regional instability, complicating diplomatic efforts and threatening global energy supplies.",
+      "operational_impact": "Potential for expanded military operations and increased regional instability, complicating diplomatic efforts and threatening critical infrastructure and civilian populations.",
       "geo_relevance": [
         "Israel",
         "Iran",
@@ -26,7 +26,7 @@
         "BBC",
         "James Landale"
       ],
-      "priority_score": 7,
+      "priority_score": 8,
       "content_hash": "14a55b875b96fb04",
       "word_count": 22,
       "reading_time": "1 min read",
@@ -34,98 +34,101 @@
       "patriots_protocol_ref": "PATRIOTS PROTOCOL INTELLIGENCE NETWORK"
     },
     {
-      "title": "Iran is reeling from Israel's unprecedented attack - and it is only the start",
-      "full_summary": "Israel's Operation Rising Lion is more extensive and ambitious than anything that has come before, says Frank Gardner",
-      "executive_summary": "Israel's Operation Rising Lion is more extensive and ambitious than anything that has come before, says Frank Gardner.",
+      "title": "The first trial of its kind: A Russian soldier takes the stand for an execution",
+      "full_summary": "Dmitriy Kurashov is the first Russian soldier to stand trial in Ukraine over a battlefield execution.",
+      "executive_summary": "Dmitriy Kurashov is the first Russian soldier to stand trial in Ukraine over a battlefield execution.",
       "source": "BBC_WORLD_NEWS",
-      "source_url": "https://www.bbc.com/news/articles/cvg72ny4xeyo",
+      "source_url": "https://www.bbc.com/news/articles/cp8ylx534j0o",
       "source_credibility": 0.95,
-      "timestamp": "Fri, 13 Jun 2025 15:59:59 GMT",
-      "category": "SECURITY",
-      "ai_analysis": "Israel has launched Operation Rising Lion, described as a more extensive and ambitious military campaign than previous actions, targeting Iran. This marks a significant escalation in Israeli-Iranian hostilities, potentially destabilizing the region further and signaling a shift towards more aggressive Israeli operations against Iranian interests.",
-      "confidence": 0.85,
-      "threat_level": "HIGH",
-      "strategic_importance": "HIGH",
-      "operational_impact": "The operation likely involves multiple coordinated strikes or activities that could degrade Iranian military capabilities and influence, impacting regional security dynamics and prompting potential retaliatory actions.",
-      "geo_relevance": [
-        "Israel",
-        "Iran",
-        "Middle East"
-      ],
-      "keywords": [
-        "ATTACK",
-        "UN"
-      ],
-      "entities": [
-        "Israel",
-        "Iran",
-        "Frank Gardner"
-      ],
-      "priority_score": 8,
-      "content_hash": "ed016817a3f0d641",
-      "word_count": 32,
-      "reading_time": "1 min read",
-      "intelligence_value": "HIGH",
-      "patriots_protocol_ref": "PATRIOTS PROTOCOL INTELLIGENCE NETWORK"
-    },
-    {
-      "title": "'It's heavy on the heart': Israelis survey damage in city hit by Iranian missile",
-      "full_summary": "Two people were killed and several homes destroyed when a missile hit the city of Rishon LeZion early on Saturday.",
-      "executive_summary": "Two people were killed and several homes destroyed when a missile hit the city of Rishon LeZion early on Saturday.",
-      "source": "BBC_WORLD_NEWS",
-      "source_url": "https://www.bbc.com/news/articles/cx270vklvv7o",
-      "source_credibility": 0.95,
-      "timestamp": "Sat, 14 Jun 2025 18:44:48 GMT",
-      "category": "GLOBAL",
-      "ai_analysis": "An Iranian missile strike on Rishon LeZion, Israel, resulted in two fatalities and significant residential damage, indicating a direct escalation in Iranian-Israeli hostilities. This attack demonstrates Iran's capability and willingness to target Israeli urban centers, potentially increasing civilian casualties and destabilizing regional security.",
+      "timestamp": "Sun, 15 Jun 2025 00:25:47 GMT",
+      "category": "TECHNOLOGY",
+      "ai_analysis": "Dmitriy Kurashov, a Russian soldier, is the first to be tried in Ukraine for a battlefield execution, marking a significant precedent in holding individual combatants accountable for war crimes during the ongoing conflict. This trial could influence future prosecutions and impact the conduct of Russian forces in Ukraine by signaling increased legal scrutiny.",
       "confidence": 0.9,
       "threat_level": "HIGH",
       "strategic_importance": "HIGH",
-      "operational_impact": "The missile strike causes immediate loss of life and property damage, likely prompting heightened Israeli military readiness and potential retaliatory actions, escalating conflict dynamics.",
+      "operational_impact": "The trial may deter unlawful conduct by Russian troops and affect morale and discipline within Russian military ranks, while also bolstering Ukrainian legal and informational campaigns against Russian aggression.",
       "geo_relevance": [
-        "Israel",
-        "Iran"
+        "Ukraine",
+        "Russia"
       ],
-      "keywords": [],
+      "keywords": [
+        "AI"
+      ],
       "entities": [
-        "Iran",
-        "Israel",
-        "Rishon LeZion"
+        "Dmitriy Kurashov",
+        "Russian military",
+        "Ukrainian judicial system"
       ],
       "priority_score": 8,
-      "content_hash": "b9d68bdcbc87d7db",
-      "word_count": 34,
+      "content_hash": "6b3ac4da7dc35c84",
+      "word_count": 31,
       "reading_time": "1 min read",
       "intelligence_value": "HIGH",
       "patriots_protocol_ref": "PATRIOTS PROTOCOL INTELLIGENCE NETWORK"
     },
     {
-      "title": "Minnesota state lawmaker killed and another injured in targeted shootings",
-      "full_summary": "Hortman's husband was also killed and Hoffman's wife injured in what Governor Tim Walz called \"targeted political violence\".",
-      "executive_summary": "Hortman's husband was also killed and Hoffman's wife injured in what Governor Tim Walz called \"ta...",
+      "title": "Manhunt after two Minnesota state politicians targeted, one of them killed",
+      "full_summary": "Hortman and her husband were killed and Hoffman and his wife injured in what officials called \"targeted political violence\".",
+      "executive_summary": "Hortman and her husband were killed and Hoffman and his wife injured in what officials called \"ta...",
       "source": "BBC_WORLD_NEWS",
       "source_url": "https://www.bbc.com/news/articles/cgj83q2e562o",
       "source_credibility": 0.95,
-      "timestamp": "Sat, 14 Jun 2025 18:44:48 GMT",
+      "timestamp": "Sat, 14 Jun 2025 23:12:42 GMT",
       "category": "POLITICS",
-      "ai_analysis": "A Minnesota state lawmaker and her husband were killed, and another lawmaker was injured along with his wife in what has been described by Governor Tim Walz as targeted political violence. This incident indicates a serious escalation in politically motivated attacks within the state, raising concerns about the safety of public officials and the potential for further politically driven violence.",
+      "ai_analysis": "A targeted political attack in Minnesota resulted in the death of Hortman and her husband, while Hoffman and his wife were injured, indicating a severe escalation in politically motivated violence within the state. This incident underscores the rising threat to elected officials and may prompt increased security measures and political tensions locally.",
       "confidence": 0.9,
       "threat_level": "HIGH",
       "strategic_importance": "HIGH",
-      "operational_impact": "The targeted killings and injuries of elected officials could lead to increased security measures for politicians, potential disruptions in legislative activities, and heightened political tensions within Minnesota.",
+      "operational_impact": "The attack disrupts local governance and necessitates enhanced protection protocols for state politicians, potentially affecting legislative operations and public safety strategies.",
       "geo_relevance": [
-        "Minnesota",
-        "United States"
+        "Minnesota, USA"
       ],
-      "keywords": [],
+      "keywords": [
+        "UN"
+      ],
       "entities": [
-        "Governor Tim Walz",
         "Hortman",
         "Hoffman"
       ],
       "priority_score": 8,
-      "content_hash": "d0d2985a9356460f",
-      "word_count": 28,
+      "content_hash": "2d580c0f4dc511d8",
+      "word_count": 30,
+      "reading_time": "1 min read",
+      "intelligence_value": "HIGH",
+      "patriots_protocol_ref": "PATRIOTS PROTOCOL INTELLIGENCE NETWORK"
+    },
+    {
+      "title": "Macron visits Greenland in show of European unity and signal to Trump",
+      "full_summary": "France's Emmanuel Macron is visiting Greenland to hold talks on North Atlantic and Arctic security, climate change and critical minerals.",
+      "executive_summary": "France's Emmanuel Macron is visiting Greenland to hold talks on North Atlantic and Arctic securit...",
+      "source": "BBC_WORLD_NEWS",
+      "source_url": "https://www.bbc.com/news/articles/c0j7x2xe54eo",
+      "source_credibility": 0.95,
+      "timestamp": "Sat, 14 Jun 2025 23:43:21 GMT",
+      "category": "SECURITY",
+      "ai_analysis": "French President Emmanuel Macron's visit to Greenland underscores France's strategic interest in the Arctic region, focusing on security, climate change, and critical mineral resources. This move signals European efforts to assert influence in the Arctic amid increasing geopolitical competition, particularly as a counterbalance to U.S. policies under President Trump. The visit highlights the growing importance of the Arctic for resource access and security cooperation.",
+      "confidence": 0.9,
+      "threat_level": "MEDIUM",
+      "strategic_importance": "HIGH",
+      "operational_impact": "The visit may lead to enhanced European cooperation on Arctic security and resource development, potentially affecting regional power dynamics and resource competition.",
+      "geo_relevance": [
+        "Greenland",
+        "France",
+        "North Atlantic",
+        "Arctic region"
+      ],
+      "keywords": [
+        "UN"
+      ],
+      "entities": [
+        "Emmanuel Macron",
+        "France",
+        "Greenland",
+        "Trump administration"
+      ],
+      "priority_score": 7,
+      "content_hash": "200cd8fc01ad41da",
+      "word_count": 32,
       "reading_time": "1 min read",
       "intelligence_value": "HIGH",
       "patriots_protocol_ref": "PATRIOTS PROTOCOL INTELLIGENCE NETWORK"
@@ -139,11 +142,11 @@
       "source_credibility": 0.88,
       "timestamp": "Thu, 05 Jun 2025 09:00:00 +0000",
       "category": "SECURITY",
-      "ai_analysis": "ESET researchers have identified a cyberespionage campaign by BladedFeline, an Iran-aligned advanced persistent threat (APT) group likely connected to the OilRig group. This suggests ongoing Iranian state-sponsored cyber operations targeting sensitive information, potentially in sectors related to energy or government. The linkage to OilRig indicates a continuation or evolution of tactics within Iran's cyber espionage apparatus.",
+      "ai_analysis": "ESET researchers have identified a cyberespionage campaign attributed to BladedFeline, an Iran-aligned advanced persistent threat (APT) group likely connected to the known OilRig group. This suggests continued Iranian state-sponsored cyber operations targeting sensitive sectors, potentially for intelligence gathering or disruption. The linkage to OilRig indicates a sustained and evolving threat actor with established capabilities.",
       "confidence": 0.85,
       "threat_level": "HIGH",
       "strategic_importance": "HIGH",
-      "operational_impact": "The campaign poses significant risks to targeted organizations, potentially compromising confidential data and enabling further intelligence operations or sabotage. Entities in critical infrastructure or government sectors should enhance monitoring and defenses against this threat actor.",
+      "operational_impact": "The campaign poses significant risks to targeted organizations, likely involving espionage activities that could compromise sensitive information and intellectual property, impacting national security and economic interests.",
       "geo_relevance": [
         "Iran"
       ],
@@ -176,13 +179,13 @@
       "confidence": 0.85,
       "threat_level": "MEDIUM",
       "strategic_importance": "MEDIUM",
-      "operational_impact": "Neglecting dormant accounts can lead to increased risk of cyber intrusions and data breaches, affecting both individuals and organizations by providing attackers with easy access points.",
+      "operational_impact": "Neglecting dormant accounts can lead to increased risk of cyber intrusions, data breaches, and identity fraud, impacting individuals and organizations' security posture.",
       "geo_relevance": [
         "Global"
       ],
       "keywords": [
-        "UN",
         "DIGITAL",
+        "UN",
         "CYBER"
       ],
       "entities": [],
@@ -202,17 +205,17 @@
       "source_credibility": 0.88,
       "timestamp": "Fri, 30 May 2025 09:00:00 +0000",
       "category": "SECURITY",
-      "ai_analysis": "In May 2025, the UK retail sector experienced a surge in cyberattacks, indicating a targeted effort to exploit vulnerabilities in this industry. Concurrently, there was a notable increase in campaigns that compromise end-of-life routers, integrating them into botnets, which could amplify distributed denial-of-service (DDoS) capabilities and other malicious activities. These developments highlight ongoing risks to critical infrastructure and consumer-facing businesses in the UK.",
+      "ai_analysis": "In May 2025, the UK retail sector experienced a significant increase in cyberattacks, indicating a targeted effort to exploit vulnerabilities in this industry. Additionally, there was a notable rise in campaigns that compromise end-of-life routers to form botnets, which could be leveraged for large-scale distributed denial-of-service (DDoS) attacks or other malicious activities. These developments highlight ongoing threats to critical infrastructure and consumer-facing businesses in the UK.",
       "confidence": 0.85,
       "threat_level": "HIGH",
       "strategic_importance": "HIGH",
-      "operational_impact": "Increased cyberattacks on UK retailers may disrupt commerce and erode consumer trust, while the growth of router-based botnets enhances adversaries' capabilities to launch large-scale cyber operations.",
+      "operational_impact": "Increased risk of service disruptions and data breaches for UK retailers; expanded botnet capabilities from compromised routers pose broader network security challenges.",
       "geo_relevance": [
         "United Kingdom"
       ],
       "keywords": [
-        "ATTACK",
         "AI",
+        "ATTACK",
         "CYBER"
       ],
       "entities": [
@@ -236,17 +239,17 @@
       "source_credibility": 0.88,
       "timestamp": "Tue, 27 May 2025 09:00:00 +0000",
       "category": "SECURITY",
-      "ai_analysis": "Cybercriminals are exploiting the trusted Docusign brand by sending fraudulent emails that mimic legitimate e-signature notifications, aiming to deceive recipients into disclosing sensitive personal or corporate information. This tactic leverages brand trust to increase phishing success rates, posing significant risks to data security and organizational integrity.",
+      "ai_analysis": "Cybercriminals are exploiting the trusted Docusign brand by sending fraudulent emails that mimic legitimate notifications, aiming to deceive recipients into disclosing sensitive personal or corporate information. This phishing tactic leverages brand trust to increase the likelihood of successful data breaches, posing significant risks to both individuals and organizations reliant on electronic signature services.",
       "confidence": 0.9,
       "threat_level": "HIGH",
-      "strategic_importance": "MEDIUM",
-      "operational_impact": "Organizations and individuals face increased risk of data breaches and credential theft, potentially leading to financial loss, unauthorized access, and compromised corporate networks.",
+      "strategic_importance": "HIGH",
+      "operational_impact": "Increased risk of data breaches and credential theft for organizations using Docusign, potentially leading to unauthorized access to confidential documents and financial losses.",
       "geo_relevance": [
         "Global"
       ],
       "keywords": [
-        "AI",
         "WAR",
+        "AI",
         "CYBER"
       ],
       "entities": [
@@ -269,11 +272,11 @@
       "source_credibility": 0.87,
       "timestamp": "Fri, 13 Jun 2025 20:42:24 +0000",
       "category": "DEFENSE",
-      "ai_analysis": "The United States provided defensive support to Israel during an Iranian missile attack, which was a direct retaliation following Israeli airstrikes targeting Iran's nuclear facilities and military leaders. This escalation highlights the intensifying conflict between Israel and Iran, with the US actively involved in Israel's defense, potentially increasing regional tensions and the risk of broader confrontation.",
+      "ai_analysis": "The United States provided defensive support to Israel during an Iranian missile attack, which was a direct retaliation to Israel's recent airstrikes targeting Iran's nuclear facilities and military leadership. This escalation indicates a significant intensification of hostilities between Israel and Iran, with the US actively involved in Israel's defense, potentially broadening the conflict's scope.",
       "confidence": 0.85,
       "threat_level": "HIGH",
       "strategic_importance": "HIGH",
-      "operational_impact": "The US involvement in missile defense enhances Israel's immediate security posture but signals deeper US engagement in the Iran-Israel conflict, potentially complicating diplomatic efforts and increasing the likelihood of further military exchanges.",
+      "operational_impact": "The US involvement in defending Israel against Iranian missile attacks demonstrates increased military cooperation and raises the risk of wider regional conflict, potentially affecting US military assets and diplomatic relations in the Middle East.",
       "geo_relevance": [
         "Israel",
         "Iran",
@@ -281,9 +284,9 @@
         "Middle East"
       ],
       "keywords": [
-        "ATTACK",
+        "AI",
         "MILITARY",
-        "AI"
+        "ATTACK"
       ],
       "entities": [
         "Israel",
@@ -306,11 +309,11 @@
       "source_credibility": 0.87,
       "timestamp": "Wed, 21 May 2025 18:57:42 +0000",
       "category": "TECHNOLOGY",
-      "ai_analysis": "The Pentagon's acceptance of a Qatari jet and plans to contract Boeing for converting a 747-8 into a new Air Force One indicate ongoing modernization of U.S. presidential air transport capabilities. This reflects strategic efforts to enhance secure, long-range, and technologically advanced presidential mobility amid evolving global threats.",
-      "confidence": 0.9,
+      "ai_analysis": "The Pentagon's acceptance of a Qatari jet for Air Force One indicates progress in modernizing the U.S. presidential transport fleet. The planned contract to convert a Boeing 747-8 into a presidential plane reflects ongoing efforts to upgrade capabilities, ensuring enhanced security and operational readiness for presidential travel.",
+      "confidence": 0.85,
       "threat_level": "LOW",
-      "strategic_importance": "HIGH",
-      "operational_impact": "The upgrade will improve the operational readiness and security of presidential air transport, ensuring continuity of government and command during crises.",
+      "strategic_importance": "MEDIUM",
+      "operational_impact": "The upgrade will improve the reliability and security of presidential air transport, potentially enhancing command and control capabilities during travel.",
       "geo_relevance": [
         "United States",
         "Qatar"
@@ -339,7 +342,7 @@
     "threat_level": "HIGH",
     "system_status": "OPERATIONAL",
     "average_article_length": 28,
-    "total_word_count": 289,
+    "total_word_count": 288,
     "average_reading_time": "1 min",
     "high_value_intelligence": 8,
     "critical_intelligence": 0,
@@ -347,7 +350,7 @@
     "emerging_threats": [
       "AI",
       "CYBER",
-      "ATTACK"
+      "UN"
     ],
     "primary_regions": [
       "Iran",
@@ -358,20 +361,20 @@
     "credibility_average": 0.9059999999999999,
     "primary_sources": [
       "CYBERSECURITY_INTEL",
-      "DEFENSE_NEWS",
-      "BBC_WORLD_NEWS"
+      "BBC_WORLD_NEWS",
+      "DEFENSE_NEWS"
     ],
     "ai_confidence": 86,
     "processing_time": "< 45 seconds",
     "api_status": "ACTIVE",
-    "strategic_assessment": "Patriots Protocol analyzed 10 intelligence reports with professional AI assessment. Identified 8 high-value intelligence items requiring attention. Detected 8 elevated threat indicators.",
-    "intelligence_summary": "Patriots Protocol processed 10 intelligence reports. Primary categories: TECHNOLOGY, SECURITY, POLITICS, GLOBAL, DEFENSE.",
+    "strategic_assessment": "Patriots Protocol analyzed 10 intelligence reports with professional AI assessment. Identified 8 high-value intelligence items requiring attention. Detected 7 elevated threat indicators.",
+    "intelligence_summary": "Patriots Protocol processed 10 intelligence reports. Primary categories: TECHNOLOGY, GLOBAL, DEFENSE, POLITICS, SECURITY.",
     "threat_vector_analysis": "Threat environment: HIGH. Active monitoring of 5 key indicators.",
-    "last_analysis": "2025-06-14T21:03:54.182350+00:00",
-    "last_update": "06/14/2025, 09:03:54 PM",
+    "last_analysis": "2025-06-15T03:30:20.174777+00:00",
+    "last_update": "06/15/2025, 03:30:20 AM",
     "patriots_protocol_status": "PATRIOTS PROTOCOL OPERATIONAL"
   },
-  "lastUpdated": "2025-06-14T21:03:54.182801+00:00",
+  "lastUpdated": "2025-06-15T03:30:20.175221+00:00",
   "version": "4.0",
   "generatedBy": "Patriots Protocol AI Intelligence System v4.0",
   "patriots_protocol_info": {
@@ -379,7 +382,7 @@
     "description": "AI-DRIVEN INTELLIGENCE NETWORK",
     "repository": "https://github.com/danishnizmi/Patriots_Protocol",
     "ai_integration": "GitHub Models API",
-    "last_enhanced": "2025-06-14T21:03:54.182806+00:00",
+    "last_enhanced": "2025-06-15T03:30:20.175225+00:00",
     "status": "OPERATIONAL"
   },
   "system_status": {
