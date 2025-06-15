@@ -1714,7 +1714,7 @@
     "threat_velocity": "stable",
     "impact_forecast": "elevated"
   },
-  "lastUpdated": "2025-06-15T11:09:26.504378+00:00",
+  "lastUpdated": "2025-06-15T11:12:32.443471+00:00",
   "version": "4.1",
   "ai_usage": {
     "api_calls_made": 12,
@@ -1727,7 +1727,7 @@
     "intelligence_confidence": 80,
     "threat_landscape": "CRITICAL",
     "cost_optimization": "ENABLED",
-    "next_update": "2025-06-15T17:09:26.504390+00:00",
+    "next_update": "2025-06-15T17:12:32.443481+00:00",
     "repository": "https://github.com/danishnizmi/Patriots_Protocol"
   }
 }
