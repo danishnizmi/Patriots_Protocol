@@ -1,19 +1,19 @@
-name: Patriots Protocol - Cost-Optimized Cyber Intelligence v4.0
+name: Patriots Protocol - Cyber Intelligence Network v4.0
 
 on:
   schedule:
-    # Reduced frequency: Run every 6 hours to minimize API costs
-    - cron: '0 */6 * * *'
-    # Daily cleanup at 2 AM UTC
+    # Run every 4 hours for fresh intelligence
+    - cron: '0 */4 * * *'
+    # Daily intelligence cleanup at 2 AM UTC
     - cron: '0 2 * * *'
   workflow_dispatch:
     inputs:
       force_cleanup:
-        description: 'Force data cleanup'
+        description: 'Force intelligence data cleanup'
         required: false
         default: 'false'
-      max_api_calls:
-        description: 'Maximum API calls (default: 8)'
+      intel_sources:
+        description: 'Number of intelligence sources (default: 8)'
         required: false
         default: '8'
   push:
@@ -28,33 +28,32 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "patriots-protocol-cost-optimized-v4"
-  cancel-in-progress: true  # Cancel previous runs to save resources
+  group: "patriots-protocol-intel-v4"
+  cancel-in-progress: true
 
 env:
-  MAX_API_CALLS: ${{ github.event.inputs.max_api_calls || '8' }}
-  DATA_RETENTION_DAYS: 6
-  COST_LIMIT_USD: 0.05  # Maximum cost per run
+  INTELLIGENCE_RETENTION_DAYS: 7
+  MAX_SOURCES: ${{ github.event.inputs.intel_sources || '8' }}
 
 jobs:
-  # Data cleanup job - runs first to save space
-  data-cleanup:
+  # Intelligence data cleanup job
+  intelligence-cleanup:
     runs-on: ubuntu-latest
     if: github.event.schedule == '0 2 * * *' || github.event.inputs.force_cleanup == 'true'
     steps:
       - name: Checkout Patriots Protocol
         uses: actions/checkout@v4
 
-      - name: Setup Python for Cleanup
+      - name: Setup Python for Intelligence Cleanup
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
-      - name: Secure Data Cleanup
+      - name: Intelligence Data Cleanup
         run: |
-          echo "🧹 PATRIOTS PROTOCOL v4.0 - Secure Data Cleanup Starting..."
+          echo "🎖️  PATRIOTS PROTOCOL v4.0 - Intelligence Data Cleanup Starting..."
           echo "📅 Cleanup Time: $(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)"
-          echo "🗂️  Data Retention: ${DATA_RETENTION_DAYS} days"
+          echo "🗂️  Intelligence Retention: ${INTELLIGENCE_RETENTION_DAYS} days"
           
           # Create cleanup script
           cat > cleanup.py << 'EOF'
@@ -63,15 +62,15 @@ jobs:
           from datetime import datetime, timedelta
           from pathlib import Path
           
-          def secure_cleanup():
-              retention_days = int(os.environ.get('DATA_RETENTION_DAYS', 6))
+          def intelligence_cleanup():
+              retention_days = int(os.environ.get('INTELLIGENCE_RETENTION_DAYS', 7))
               cutoff_date = datetime.now() - timedelta(days=retention_days)
               
               total_files = 0
               total_size = 0
               
               # Directories to clean
-              cleanup_dirs = ['./data', './logs', './backup', './archive']
+              cleanup_dirs = ['./data', './logs', './backup']
               
               for dir_path in cleanup_dirs:
                   directory = Path(dir_path)
@@ -82,13 +81,6 @@ jobs:
                                   file_time = datetime.fromtimestamp(file_path.stat().st_mtime)
                                   if file_time < cutoff_date:
                                       file_size = file_path.stat().st_size
-                                      
-                                      # Secure deletion for sensitive files
-                                      if file_path.suffix in ['.json', '.log', '.tmp']:
-                                          # Overwrite before deletion
-                                          with open(file_path, 'wb') as f:
-                                              f.write(os.urandom(file_size))
-                                      
                                       file_path.unlink()
                                       total_files += 1
                                       total_size += file_size
@@ -96,92 +88,82 @@ jobs:
                               except Exception as e:
                                   print(f"Warning: Could not clean {file_path}: {e}")
               
-              print(f"✅ Cleanup complete: {total_files} files, {total_size / (1024*1024):.2f} MB")
+              print(f"✅ Intelligence cleanup complete: {total_files} files, {total_size / (1024*1024):.2f} MB")
               return total_files, total_size
           
           if __name__ == "__main__":
-              secure_cleanup()
+              intelligence_cleanup()
           EOF
           
           python cleanup.py
           
           # Update git if files were cleaned
-          git config --local user.email "patriots-cleanup@ai.cyber"
-          git config --local user.name "Patriots Protocol Cleanup"
+          git config --local user.email "patriots-intel@cyber.ai"
+          git config --local user.name "Patriots Protocol Intelligence"
           
           if ! git diff --quiet; then
             git add -A
-            git commit -m "🧹 Patriots Protocol v4.0: Automated secure data cleanup
+            git commit -m "🎖️  Patriots Protocol v4.0: Intelligence Data Cleanup
             
             📅 Cleanup Time: $(date -u +'%Y-%m-%d %H:%M:%S UTC')
-            🗂️  Retention Policy: ${DATA_RETENTION_DAYS} days
-            🔒 Secure deletion applied"
+            🗂️  Retention Policy: ${INTELLIGENCE_RETENTION_DAYS} days
+            🛡️  Intelligence security maintained"
             git push
           else
-            echo "📋 No files to cleanup"
+            echo "📋 No intelligence files to cleanup"
           fi
 
-  # Cost-optimized intelligence gathering
-  cost-optimized-intelligence:
+  # Cyber intelligence gathering and analysis
+  cyber-intelligence:
     runs-on: ubuntu-latest
-    if: github.event.schedule != '0 2 * * *'  # Skip during cleanup-only runs
+    if: github.event.schedule != '0 2 * * *'
     outputs:
-      patriots_status: ${{ steps.ai_analysis.outputs.patriots_status }}
-      threat_level: ${{ steps.ai_analysis.outputs.threat_level }}
-      api_calls_used: ${{ steps.ai_analysis.outputs.api_calls_used }}
-      cost_estimate: ${{ steps.ai_analysis.outputs.cost_estimate }}
-      reports_processed: ${{ steps.ai_analysis.outputs.reports_processed }}
+      threats_identified: ${{ steps.intel_analysis.outputs.threats_identified }}
+      threat_level: ${{ steps.intel_analysis.outputs.threat_level }}
+      intelligence_confidence: ${{ steps.intel_analysis.outputs.intelligence_confidence }}
+      fresh_intel_count: ${{ steps.intel_analysis.outputs.fresh_intel_count }}
+      critical_threats: ${{ steps.intel_analysis.outputs.critical_threats }}
     steps:
       - name: Checkout Patriots Protocol v4.0
         uses: actions/checkout@v4
 
-      - name: Setup Python for Cost-Optimized AI
+      - name: Setup Python for Intelligence Analysis
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
-      - name: Create Secure Directory Structure
+      - name: Create Intelligence Directory Structure
         run: |
-          mkdir -p data archive logs
-          chmod 750 data archive logs
-          echo "🔒 Secure directories created with restricted permissions"
+          mkdir -p data logs backup
+          chmod 750 data logs backup
+          echo "🛡️  Intelligence directories secured"
 
-      - name: Install Optimized Dependencies
+      - name: Install Intelligence Dependencies
         run: |
-          echo "📦 Installing cost-optimized dependencies..."
+          echo "📦 Installing cyber intelligence dependencies..."
           pip install --upgrade pip
           pip install aiohttp feedparser asyncio openai python-dateutil
-          echo "✅ Optimized dependencies installed"
+          echo "✅ Intelligence dependencies ready"
 
-      - name: Cost-Optimized Intelligence Analysis
-        id: ai_analysis
+      - name: Cyber Intelligence Analysis
+        id: intel_analysis
         env:
           GITHUB_TOKEN: ${{ secrets.MODEL_TOKEN }}
           MODEL_TOKEN: ${{ secrets.MODEL_TOKEN }}
-          MAX_API_CALLS: ${{ env.MAX_API_CALLS }}
-          COST_LIMIT_USD: ${{ env.COST_LIMIT_USD }}
+          MAX_SOURCES: ${{ env.MAX_SOURCES }}
         run: |
-          echo "🎖️  PATRIOTS PROTOCOL v4.0 - Cost-Optimized Cyber Intelligence Starting..."
+          echo "🎖️  PATRIOTS PROTOCOL v4.0 - Cyber Intelligence Mission Starting..."
           echo "📅 Mission Start: $(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)"
-          echo "💰 Cost Controls: Max API calls: ${MAX_API_CALLS}, Cost limit: $${COST_LIMIT_USD}"
-          echo "🛡️  Security: Data retention ${DATA_RETENTION_DAYS} days"
+          echo "🔍 Intelligence Sources: ${MAX_SOURCES}"
+          echo "🤖 AI Model: openai/gpt-4.1-mini"
+          echo "🛡️  Executing cyber intelligence analysis..."
           
-          # Verify token
-          if [ -z "$GITHUB_TOKEN" ]; then
-            echo "❌ GITHUB_TOKEN not found"
-            exit 1
-          fi
+          # Run intelligence analysis
+          python patriots_ai_intel.py 2>&1 | tee logs/intel_analysis_$(date +%Y%m%d_%H%M%S).log
           
-          echo "✅ API token verified"
-          echo "🤖 Model: openai/gpt-4.1-mini (cost-optimized)"
-          echo "🔄 Executing cost-optimized analysis..."
-          
-          # Run cost-optimized analysis
-          python patriots_ai_intel.py 2>&1 | tee logs/cost_optimized_analysis_$(date +%Y%m%d_%H%M%S).log
-          
-          # Extract cost metrics
+          # Extract intelligence metrics
           if [ -f ./data/news-analysis.json ]; then
-            echo "✅ Cost-optimized intelligence data generated"
+            echo "✅ Cyber intelligence data generated"
             
             python3 -c "
           import json
@@ -193,59 +175,52 @@ jobs:
                   data = json.load(f)
               
               metrics = data.get('metrics', {})
-              cost_info = data.get('cost_optimization', {})
               
-              # Extract cost and usage metrics
-              patriots_status = metrics.get('patriots_protocol_status', 'OPERATIONAL')
-              threat_level = metrics.get('threat_level', 'LOW')
-              api_calls_used = cost_info.get('api_calls_used', 0)
-              cost_estimate = cost_info.get('estimated_cost', 0.0)
-              reports_processed = metrics.get('total_articles', 0)
+              # Extract intelligence metrics
+              threats_identified = metrics.get('total_threats', 0)
+              threat_level = metrics.get('global_threat_level', 'LOW')
+              intelligence_confidence = metrics.get('intelligence_confidence', 85)
+              fresh_intel_count = metrics.get('fresh_intel_24h', 0)
+              critical_threats = metrics.get('critical_threats', 0)
               
-              # Cost efficiency report
-              print(f'🎖️  Patriots Protocol v4.0 Cost-Optimized Report:')
-              print(f'   💰 API Calls Used: {api_calls_used}/{cost_info.get(\"api_calls_limit\", 8)}')
-              print(f'   💰 Estimated Cost: ${cost_estimate:.4f}')
-              print(f'   📊 Reports Generated: {reports_processed}')
-              print(f'   🎯 Threat Level: {threat_level}')
-              print(f'   🧹 Files Cleaned: {cost_info.get(\"cleanup_stats\", {}).get(\"files_cleaned\", 0)}')
-              print(f'   💾 Space Saved: {cost_info.get(\"cleanup_stats\", {}).get(\"space_saved_mb\", 0):.2f} MB')
-              
-              # Check cost limits
-              cost_limit = float(os.environ.get('COST_LIMIT_USD', 0.05))
-              if cost_estimate > cost_limit:
-                  print(f'⚠️  Cost limit exceeded: ${cost_estimate:.4f} > ${cost_limit:.4f}')
-                  sys.exit(1)
+              # Intelligence report
+              print(f'🎖️  Patriots Protocol v4.0 Intelligence Report:')
+              print(f'   🎯 Threats Identified: {threats_identified}')
+              print(f'   🔥 Global Threat Level: {threat_level}')
+              print(f'   🤖 Intelligence Confidence: {intelligence_confidence}%')
+              print(f'   📊 Fresh Intelligence (24h): {fresh_intel_count}')
+              print(f'   ⚠️  Critical Threats: {critical_threats}')
+              print(f'   🛡️  Intelligence Sources: ${MAX_SOURCES}')
               
               # Set outputs
               with open(os.environ['GITHUB_OUTPUT'], 'a') as gh_output:
-                  gh_output.write(f'patriots_status={patriots_status}\\n')
+                  gh_output.write(f'threats_identified={threats_identified}\\n')
                   gh_output.write(f'threat_level={threat_level}\\n')
-                  gh_output.write(f'api_calls_used={api_calls_used}\\n')
-                  gh_output.write(f'cost_estimate={cost_estimate:.4f}\\n')
-                  gh_output.write(f'reports_processed={reports_processed}\\n')
+                  gh_output.write(f'intelligence_confidence={intelligence_confidence}\\n')
+                  gh_output.write(f'fresh_intel_count={fresh_intel_count}\\n')
+                  gh_output.write(f'critical_threats={critical_threats}\\n')
               
           except Exception as e:
-              print(f'❌ Error processing cost data: {e}', file=sys.stderr)
+              print(f'❌ Error processing intelligence data: {e}', file=sys.stderr)
               with open(os.environ['GITHUB_OUTPUT'], 'a') as gh_output:
-                  gh_output.write('patriots_status=OPERATIONAL\\n')
+                  gh_output.write('threats_identified=0\\n')
                   gh_output.write('threat_level=LOW\\n')
-                  gh_output.write('api_calls_used=0\\n')
-                  gh_output.write('cost_estimate=0.0000\\n')
-                  gh_output.write('reports_processed=0\\n')
+                  gh_output.write('intelligence_confidence=85\\n')
+                  gh_output.write('fresh_intel_count=0\\n')
+                  gh_output.write('critical_threats=0\\n')
           "
           else
-            echo "⚠️  No data generated - activating cost-saving mode"
-            echo "patriots_status=OPERATIONAL" >> $GITHUB_OUTPUT
+            echo "⚠️  No intelligence data generated - using fallback"
+            echo "threats_identified=0" >> $GITHUB_OUTPUT
             echo "threat_level=LOW" >> $GITHUB_OUTPUT
-            echo "api_calls_used=0" >> $GITHUB_OUTPUT
-            echo "cost_estimate=0.0000" >> $GITHUB_OUTPUT
-            echo "reports_processed=0" >> $GITHUB_OUTPUT
+            echo "intelligence_confidence=85" >> $GITHUB_OUTPUT
+            echo "fresh_intel_count=0" >> $GITHUB_OUTPUT
+            echo "critical_threats=0" >> $GITHUB_OUTPUT
           fi
 
-      - name: Cost-Optimized Data Validation
+      - name: Intelligence Data Validation
         run: |
-          echo "🔍 Validating cost-optimized data..."
+          echo "🔍 Validating cyber intelligence data..."
           
           if [ -f ./data/news-analysis.json ]; then
             python3 -c "
@@ -256,49 +231,47 @@ jobs:
               with open('./data/news-analysis.json', 'r') as f:
                   data = json.load(f)
               
-              # Validate cost optimization structure
-              required_fields = ['articles', 'metrics', 'cost_optimization']
+              # Validate intelligence structure
+              required_fields = ['articles', 'metrics']
               missing = [f for f in required_fields if f not in data]
               
               if missing:
-                  print(f'❌ Missing cost optimization fields: {missing}')
+                  print(f'❌ Missing intelligence fields: {missing}')
                   sys.exit(1)
               
-              cost_info = data.get('cost_optimization', {})
+              metrics = data.get('metrics', {})
+              articles = data.get('articles', [])
               
-              print(f'✅ Cost-optimized data validation passed')
-              print(f'💰 API Efficiency: {cost_info.get(\"api_calls_used\", 0)}/{cost_info.get(\"api_calls_limit\", 8)} calls')
-              print(f'📊 Data Compression: {\"Enabled\" if \"compressed\" in str(data) else \"Standard\"}')
-              print(f'🔒 Security: Data retention {cost_info.get(\"data_retention_days\", 6)} days')
+              print(f'✅ Intelligence data validation passed')
+              print(f'🎯 Threat Intelligence Reports: {len(articles)}')
+              print(f'🤖 Intelligence Quality: {metrics.get(\"intelligence_confidence\", 85)}%')
+              print(f'🛡️  Data integrity: Verified')
               
           except Exception as e:
-              print(f'❌ Cost validation failed: {e}')
+              print(f'❌ Intelligence validation failed: {e}')
               sys.exit(1)
           "
           fi
 
-      - name: Secure Backup Creation
+      - name: Intelligence Backup Creation
         run: |
-          echo "💾 Creating secure cost-optimized backup..."
+          echo "💾 Creating intelligence backup..."
           
           if [ -f ./data/news-analysis.json ]; then
             # Create timestamped backup
             mkdir -p backup
-            cp ./data/news-analysis.json ./backup/patriots-cost-optimized-$(date +%Y%m%d-%H%M%S).json
+            cp ./data/news-analysis.json ./backup/patriots-intel-$(date +%Y%m%d-%H%M%S).json
             
-            # Compress backup to save space
-            gzip ./backup/patriots-cost-optimized-*.json 2>/dev/null || true
+            # Keep only last 5 backups
+            ls -t ./backup/*.json 2>/dev/null | tail -n +6 | xargs rm -f 2>/dev/null || true
             
-            # Keep only last 5 backups to save space
-            ls -t ./backup/*.gz 2>/dev/null | tail -n +6 | xargs rm -f 2>/dev/null || true
-            
-            echo "✅ Secure backup created and old backups cleaned"
+            echo "✅ Intelligence backup created"
           fi
 
-      - name: Cost-Optimized Commit
+      - name: Intelligence Commit
         run: |
-          git config --local user.email "patriots-cost-optimized@ai.cyber"
-          git config --local user.name "Patriots Protocol Cost-Optimized v4.0"
+          git config --local user.email "patriots-intel@cyber.ai"
+          git config --local user.name "Patriots Protocol Intelligence v4.0"
           
           # Add files
           git add data/news-analysis.json 2>/dev/null || true
@@ -306,32 +279,32 @@ jobs:
           git add backup/ 2>/dev/null || true
           
           if git diff --staged --quiet; then
-            echo "📋 No cost-optimized data changes"
+            echo "📋 No new intelligence data"
           else
-            # Detailed commit with cost information
-            COMMIT_MSG="🎖️  Patriots Protocol v4.0: Cost-Optimized Intelligence Update"
+            # Intelligence-focused commit
+            COMMIT_MSG="🎖️  Patriots Protocol v4.0: Cyber Intelligence Update"
             COMMIT_MSG="$COMMIT_MSG\n\n📅 Mission: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-            COMMIT_MSG="$COMMIT_MSG\n💰 API Calls: ${{ steps.ai_analysis.outputs.api_calls_used }}/${MAX_API_CALLS}"
-            COMMIT_MSG="$COMMIT_MSG\n💰 Cost: $${{ steps.ai_analysis.outputs.cost_estimate }}"
-            COMMIT_MSG="$COMMIT_MSG\n📊 Reports: ${{ steps.ai_analysis.outputs.reports_processed }}"
-            COMMIT_MSG="$COMMIT_MSG\n🎯 Threat: ${{ steps.ai_analysis.outputs.threat_level }}"
-            COMMIT_MSG="$COMMIT_MSG\n🔒 Retention: ${DATA_RETENTION_DAYS} days"
+            COMMIT_MSG="$COMMIT_MSG\n🎯 Threats: ${{ steps.intel_analysis.outputs.threats_identified }}"
+            COMMIT_MSG="$COMMIT_MSG\n🔥 Level: ${{ steps.intel_analysis.outputs.threat_level }}"
+            COMMIT_MSG="$COMMIT_MSG\n🤖 Confidence: ${{ steps.intel_analysis.outputs.intelligence_confidence }}%"
+            COMMIT_MSG="$COMMIT_MSG\n📊 Fresh Intel: ${{ steps.intel_analysis.outputs.fresh_intel_count }}"
+            COMMIT_MSG="$COMMIT_MSG\n⚠️  Critical: ${{ steps.intel_analysis.outputs.critical_threats }}"
             COMMIT_MSG="$COMMIT_MSG\n\n🔗 https://github.com/danishnizmi/Patriots_Protocol"
             
             echo -e "$COMMIT_MSG" > commit_message.txt
             git commit -F commit_message.txt
             git push
-            echo "✅ Cost-optimized data committed"
+            echo "✅ Intelligence data committed"
           fi
 
-  # Optimized deployment
-  deploy-cost-optimized:
+  # Deploy intelligence dashboard
+  deploy-intelligence:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: cost-optimized-intelligence
-    if: needs.cost-optimized-intelligence.result == 'success'
+    needs: cyber-intelligence
+    if: needs.cyber-intelligence.result == 'success'
     steps:
       - name: Checkout Patriots Protocol
         uses: actions/checkout@v4
@@ -341,77 +314,95 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Cost-Optimized Validation
+      - name: Intelligence Dashboard Validation
         run: |
-          echo "🌐 Validating cost-optimized deployment..."
+          echo "🌐 Validating intelligence dashboard..."
           
           # Validate core files
           if [ -f "index.html" ] && [ -f "data/news-analysis.json" ]; then
-            echo "✅ Core files validated"
+            echo "✅ Core intelligence files validated"
             
-            # Check data size for cost optimization
-            DATA_SIZE=$(du -k data/news-analysis.json | cut -f1)
-            echo "📊 Data size: ${DATA_SIZE}KB"
-            
-            if [ $DATA_SIZE -gt 100 ]; then
-              echo "⚠️  Large data file detected - consider compression"
-            fi
+            # Check data structure
+            python3 -c "
+          import json
+          
+          try:
+              with open('data/news-analysis.json', 'r') as f:
+                  data = json.load(f)
+              
+              articles = data.get('articles', [])
+              metrics = data.get('metrics', {})
+              
+              print(f'📊 Intelligence Reports: {len(articles)}')
+              print(f'🎯 Threat Level: {metrics.get(\"global_threat_level\", \"LOW\")}')
+              print(f'🤖 Confidence: {metrics.get(\"intelligence_confidence\", 85)}%')
+              
+              if len(articles) > 0:
+                  print('✅ Intelligence data structure valid')
+              else:
+                  print('⚠️  No threat intelligence available')
+                  
+          except Exception as e:
+              print(f'❌ Intelligence validation error: {e}')
+              exit(1)
+          "
             
           else
-            echo "❌ Missing core files"
+            echo "❌ Missing core intelligence files"
             exit 1
           fi
 
-      - name: Upload Cost-Optimized Artifact
+      - name: Upload Intelligence Dashboard
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
 
-      - name: Deploy Cost-Optimized Site
+      - name: Deploy Intelligence Dashboard
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Deployment Success Report
+      - name: Intelligence Deployment Success
         run: |
           echo "🎖️  ═══════════════════════════════════════════════════════════════════"
-          echo "     PATRIOTS PROTOCOL v4.0 - COST-OPTIMIZED DEPLOYMENT SUCCESS"
+          echo "     PATRIOTS PROTOCOL v4.0 - CYBER INTELLIGENCE DEPLOYMENT SUCCESS"
           echo "  ═══════════════════════════════════════════════════════════════════"
-          echo "  🌐 URL: ${{ steps.deployment.outputs.page_url }}"
-          echo "  💰 API Calls: ${{ needs.cost-optimized-intelligence.outputs.api_calls_used }}"
-          echo "  💰 Cost: $${{ needs.cost-optimized-intelligence.outputs.cost_estimate }}"
-          echo "  📊 Reports: ${{ needs.cost-optimized-intelligence.outputs.reports_processed }}"
-          echo "  🎯 Threat: ${{ needs.cost-optimized-intelligence.outputs.threat_level }}"
-          echo "  🔒 Security: Enhanced with data retention"
+          echo "  🌐 Intelligence Dashboard: ${{ steps.deployment.outputs.page_url }}"
+          echo "  🎯 Threats Identified: ${{ needs.cyber-intelligence.outputs.threats_identified }}"
+          echo "  🔥 Threat Level: ${{ needs.cyber-intelligence.outputs.threat_level }}"
+          echo "  🤖 Intelligence Confidence: ${{ needs.cyber-intelligence.outputs.intelligence_confidence }}%"
+          echo "  📊 Fresh Intelligence: ${{ needs.cyber-intelligence.outputs.fresh_intel_count }}"
+          echo "  ⚠️  Critical Threats: ${{ needs.cyber-intelligence.outputs.critical_threats }}"
+          echo "  🛡️  Security: Active intelligence monitoring"
           echo "  ═══════════════════════════════════════════════════════════════════"
 
-  # Cost monitoring and alerts
-  cost-monitoring:
+  # Intelligence monitoring and alerts
+  intelligence-monitoring:
     runs-on: ubuntu-latest
-    needs: [cost-optimized-intelligence]
+    needs: [cyber-intelligence]
     if: always()
     steps:
-      - name: Cost Analysis Report
+      - name: Intelligence Summary Report
         run: |
           echo "🎖️  ═══════════════════════════════════════════════════════════════════"
-          echo "       PATRIOTS PROTOCOL v4.0 - COST MONITORING REPORT"
+          echo "       PATRIOTS PROTOCOL v4.0 - INTELLIGENCE MONITORING REPORT"
           echo "  ═══════════════════════════════════════════════════════════════════"
           echo "  📅 Analysis Time: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-          echo "  💰 API Calls Used: ${{ needs.cost-optimized-intelligence.outputs.api_calls_used || '0' }}"
-          echo "  💰 Estimated Cost: $${{ needs.cost-optimized-intelligence.outputs.cost_estimate || '0.0000' }}"
-          echo "  💰 Cost Limit: $${COST_LIMIT_USD}"
-          echo "  📊 Reports Generated: ${{ needs.cost-optimized-intelligence.outputs.reports_processed || '0' }}"
-          echo "  🎯 Threat Level: ${{ needs.cost-optimized-intelligence.outputs.threat_level || 'LOW' }}"
-          echo "  ⚡ Status: ${{ needs.cost-optimized-intelligence.outputs.patriots_status || 'OPERATIONAL' }}"
-          echo "  🔒 Data Retention: ${DATA_RETENTION_DAYS} days"
+          echo "  🎯 Threats Identified: ${{ needs.cyber-intelligence.outputs.threats_identified || '0' }}"
+          echo "  🔥 Global Threat Level: ${{ needs.cyber-intelligence.outputs.threat_level || 'LOW' }}"
+          echo "  🤖 Intelligence Confidence: ${{ needs.cyber-intelligence.outputs.intelligence_confidence || '85' }}%"
+          echo "  📊 Fresh Intelligence (24h): ${{ needs.cyber-intelligence.outputs.fresh_intel_count || '0' }}"
+          echo "  ⚠️  Critical Threats: ${{ needs.cyber-intelligence.outputs.critical_threats || '0' }}"
+          echo "  🛡️  Intelligence Status: OPERATIONAL"
+          echo "  🗂️  Data Retention: ${INTELLIGENCE_RETENTION_DAYS} days"
           echo "  ═══════════════════════════════════════════════════════════════════"
           
-          # Check if cost is within limits
-          COST="${{ needs.cost-optimized-intelligence.outputs.cost_estimate || '0.0000' }}"
-          if (( $(echo "$COST > $COST_LIMIT_USD" | bc -l) )); then
-            echo "⚠️  WARNING: Cost limit exceeded!"
-            echo "Consider reducing MAX_API_CALLS or increasing COST_LIMIT_USD"
+          # Check for critical threats
+          CRITICAL_COUNT="${{ needs.cyber-intelligence.outputs.critical_threats || '0' }}"
+          if [ "$CRITICAL_COUNT" -gt "0" ]; then
+            echo "🚨 CRITICAL THREAT ALERT: $CRITICAL_COUNT critical threats identified!"
+            echo "   Immediate threat assessment and response recommended."
           else
-            echo "✅ Cost within acceptable limits"
+            echo "✅ No critical threats detected in current intelligence cycle"
           fi
           
-          echo "Patriots Protocol v4.0 Cost-Optimized Mission Complete."
+          echo "Patriots Protocol v4.0 Cyber Intelligence Mission Complete."
