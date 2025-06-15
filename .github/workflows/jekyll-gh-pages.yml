@@ -1,12 +1,12 @@
-# Patriots Protocol - Static Site Deployment
-name: Deploy Patriots Protocol to GitHub Pages
+# Patriots Protocol - Intelligence Dashboard Deployment
+name: Deploy Patriots Protocol Intelligence Dashboard
 
 on:
   # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
     paths-ignore:
-      - 'data/**'  # Ignore data updates from AI workflow
+      - 'data/**'  # Ignore data updates from intelligence workflow
   
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -34,62 +34,78 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
         
-      - name: Create data directory if missing
+      - name: Create intelligence data directory if missing
         run: |
           mkdir -p data
-          # Create fallback data file if it doesn't exist
+          # Create fallback intelligence data file if it doesn't exist
           if [ ! -f data/news-analysis.json ]; then
             cat > data/news-analysis.json << 'EOF'
           {
             "articles": [
               {
-                "title": "Patriots Protocol System Initialization",
-                "summary": "AI-driven intelligence network successfully deployed. Monitoring global feeds and preparing tactical assessments.",
-                "source": "SYSTEM",
+                "title": "Patriots Protocol Intelligence Network Initialization",
+                "summary": "AI-driven cyber threat intelligence network successfully deployed. Monitoring global threat feeds and preparing tactical assessments for enhanced security posture.",
+                "source": "PATRIOTS_PROTOCOL",
                 "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)",
-                "category": "SYSTEM",
-                "aiAnalysis": "System operational. All AI models active and ready for intelligence processing.",
+                "threat_level": "LOW",
+                "ai_analysis": "Intelligence network operational. All AI threat analysis models active and ready for comprehensive cyber threat processing and assessment.",
                 "confidence": 0.95,
-                "threatLevel": "LOW"
+                "severity_score": 2,
+                "keywords": ["INTELLIGENCE", "NETWORK", "OPERATIONAL"],
+                "attack_vectors": ["monitoring"],
+                "affected_sectors": ["intelligence"],
+                "geolocation": "Global",
+                "threat_actors": ["none"],
+                "technical_details": {
+                  "malware_families": [],
+                  "attack_techniques": [],
+                  "vulnerabilities": [],
+                  "indicators": []
+                }
               }
             ],
             "metrics": {
-              "totalArticles": 1,
-              "aiAnalysisComplete": 1,
-              "threatLevel": "LOW",
-              "systemStatus": "OPERATIONAL",
-              "newArticles": 1,
-              "lastAnalysis": "$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)",
-              "aiConfidence": 95,
-              "securityReports": 0,
-              "economicReports": 0,
-              "techReports": 1,
-              "strategicAssessment": "Patriots Protocol successfully deployed and operational. AI systems ready for intelligence gathering.",
-              "emergingTrends": ["AI Integration", "System Deployment", "Intelligence Network"],
-              "averageConfidence": 95,
-              "dataQuality": "EXCELLENT",
-              "processingTime": "< 30 seconds",
-              "apiStatus": "ACTIVE",
-              "lastUpdate": "$(date)"
+              "total_threats": 0,
+              "critical_threats": 0,
+              "high_threats": 0,
+              "medium_threats": 0,
+              "low_threats": 0,
+              "threat_actors_identified": 0,
+              "attack_techniques_observed": 0,
+              "sectors_targeted": 0,
+              "global_threat_level": "LOW",
+              "intelligence_confidence": 95,
+              "fresh_intel_24h": 0,
+              "source_credibility": 0.95,
+              "emerging_trends": ["Intelligence Network Deployment", "AI Integration", "Threat Monitoring"],
+              "threat_evolution": "stable"
             },
             "lastUpdated": "$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)",
-            "version": "1.0"
+            "version": "4.0",
+            "intelligence_summary": {
+              "mission_status": "OPERATIONAL",
+              "threats_analyzed": 0,
+              "intelligence_sources": 8,
+              "confidence_level": 95,
+              "threat_landscape": "LOW",
+              "repository": "https://github.com/danishnizmi/Patriots_Protocol"
+            }
           }
           EOF
           fi
 
-      - name: Validate HTML structure
+      - name: Validate Intelligence Dashboard structure
         run: |
-          echo "🔍 Validating Patriots Protocol structure..."
+          echo "🔍 Validating Patriots Protocol Intelligence Dashboard..."
           
           # Check if index.html exists and contains required elements
           if [ -f "index.html" ]; then
             echo "✅ index.html found"
             
             if grep -q "PATRIOTS PROTOCOL" index.html; then
-              echo "✅ Site title found"
+              echo "✅ Dashboard title found"
             else
-              echo "❌ Site title missing"
+              echo "❌ Dashboard title missing"
               exit 1
             fi
             
@@ -99,18 +115,64 @@ jobs:
               echo "⚠️  React framework not detected"
             fi
             
-            if grep -q "AI-DRIVEN INTELLIGENCE NETWORK" index.html; then
-              echo "✅ Subtitle found"
+            if grep -q "CYBER INTELLIGENCE" index.html; then
+              echo "✅ Intelligence subtitle found"
             else
-              echo "❌ Subtitle missing"
+              echo "❌ Intelligence subtitle missing"
               exit 1
             fi
+            
+            # Check for intelligence-specific content
+            if grep -q "CYBER THREAT INTELLIGENCE" index.html; then
+              echo "✅ Cyber threat intelligence content found"
+            else
+              echo "❌ Cyber threat intelligence content missing"
+              exit 1
+            fi
+            
           else
             echo "❌ index.html not found"
             exit 1
           fi
           
-          echo "🎯 Patriots Protocol validation complete"
+          # Validate intelligence data structure
+          if [ -f "data/news-analysis.json" ]; then
+            echo "✅ Intelligence data file found"
+            
+            python3 -c "
+          import json
+          import sys
+          
+          try:
+              with open('data/news-analysis.json', 'r') as f:
+                  data = json.load(f)
+              
+              # Check required intelligence fields
+              required_fields = ['articles', 'metrics']
+              missing = [f for f in required_fields if f not in data]
+              
+              if missing:
+                  print(f'❌ Missing intelligence fields: {missing}')
+                  sys.exit(1)
+              
+              metrics = data.get('metrics', {})
+              articles = data.get('articles', [])
+              
+              print(f'✅ Intelligence data structure valid')
+              print(f'📊 Articles: {len(articles)}')
+              print(f'🎯 Threat Level: {metrics.get(\"global_threat_level\", \"LOW\")}')
+              print(f'🤖 Confidence: {metrics.get(\"intelligence_confidence\", 85)}%')
+              
+          except Exception as e:
+              print(f'❌ Intelligence data validation failed: {e}')
+              sys.exit(1)
+          "
+          else
+            echo "❌ Intelligence data file missing"
+            exit 1
+          fi
+          
+          echo "🎯 Patriots Protocol Intelligence Dashboard validation complete"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -129,8 +191,9 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         
-      - name: Deployment Success Notification
+      - name: Intelligence Dashboard Deployment Success
         run: |
-          echo "🎖️  Patriots Protocol deployed successfully!"
-          echo "🌐 Site URL: ${{ steps.deployment.outputs.page_url }}"
-          echo "⚡ Status: OPERATIONAL"
+          echo "🎖️  Patriots Protocol Intelligence Dashboard deployed successfully!"
+          echo "🌐 Intelligence Dashboard URL: ${{ steps.deployment.outputs.page_url }}"
+          echo "🎯 Status: OPERATIONAL"
+          echo "🛡️  Cyber Intelligence Network: ACTIVE"
