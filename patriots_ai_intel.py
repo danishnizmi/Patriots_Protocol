@@ -316,43 +316,52 @@ CRITICAL: Be specific, avoid generic statements. If details aren't in content, u
         }
 
     def enhanced_basic_analysis(self, title: str, content: str, source: str) -> Dict[str, Any]:
-        """Enhanced basic analysis with better threat detection"""
+        """Enhanced basic analysis with better threat detection and content focus"""
         full_text = (title + ' ' + content).lower()
         
-        # Enhanced threat family detection with scoring
+        # More accurate threat family detection
         threat_families = {
-            'zero-day exploit': ['zero-day', 'zero day', '0-day', 'unknown vulnerability'],
+            'data breach': ['data breach', 'breach', 'personal information', 'customer data', 'stolen data'],
             'ransomware': ['ransomware', 'encryption', 'ransom', 'lockbit', 'conti', 'revil'],
-            'nation-state apt': ['apt', 'nation-state', 'state-sponsored', 'lazarus', 'fancy bear'],
-            'banking trojan': ['banking trojan', 'danabot', 'emotet', 'trickbot', 'qakbot'],
-            'supply chain attack': ['supply chain', 'software supply', 'third-party'],
+            'vulnerability disclosure': ['patch tuesday', 'security update', 'vulnerability', 'cve-', 'patches'],
+            'zero-day exploit': ['zero-day', 'zero day', '0-day', 'unknown vulnerability'],
+            'supply chain attack': ['supply chain', 'software supply', 'third-party compromise'],
             'phishing campaign': ['phishing', 'spear phishing', 'business email compromise'],
-            'vulnerability disclosure': ['patch tuesday', 'security update', 'vulnerability'],
-            'ddos attack': ['ddos', 'denial of service', 'botnet'],
-            'data breach': ['data breach', 'data leak', 'personal information'],
-            'malware': ['malware', 'trojan', 'virus', 'backdoor', 'spyware']
+            'malware campaign': ['malware', 'trojan', 'virus', 'backdoor', 'spyware'],
+            'ddos attack': ['ddos', 'denial of service', 'botnet attack'],
+            'corporate security incident': ['systems restored', 'security incident', 'cyber attack', 'disrupting systems'],
+            'nation-state apt': ['apt', 'nation-state', 'state-sponsored', 'lazarus', 'fancy bear', 'sophisticated actor']
         }
         
-        detected_family = 'Unknown Threat'
+        detected_family = 'Security Incident'
         max_score = 0
+        detected_keywords = []
         
         for family, keywords in threat_families.items():
-            score = sum(1 for keyword in keywords if keyword in full_text)
-            if score > max_score:
-                max_score = score
+            matches = [keyword for keyword in keywords if keyword in full_text]
+            if len(matches) > max_score:
+                max_score = len(matches)
                 detected_family = family.title()
+                detected_keywords = matches
         
-        # Enhanced risk scoring
-        risk_factors = {
-            'zero-day': 9, 'critical': 8, 'remote code execution': 8, 'rce': 8,
-            'ransomware': 7, 'apt': 7, 'supply chain': 7, 'breach': 6,
-            'vulnerability': 5, 'phishing': 4, 'ddos': 4, 'malware': 5
-        }
-        
+        # More context-aware risk scoring
         risk_score = 3  # Base score
-        for factor, score in risk_factors.items():
-            if factor in full_text:
-                risk_score = max(risk_score, score)
+        
+        # Specific risk factors based on content
+        if any(word in full_text for word in ['zero-day', '0-day']):
+            risk_score = 9
+        elif any(word in full_text for word in ['critical vulnerability', 'remote code execution']):
+            risk_score = 8
+        elif any(word in full_text for word in ['ransomware', 'encryption', 'ransom']):
+            risk_score = 7
+        elif any(word in full_text for word in ['data breach', 'stolen data', 'personal information']):
+            risk_score = 6
+        elif any(word in full_text for word in ['malware', 'trojan', 'virus']):
+            risk_score = 5
+        elif any(word in full_text for word in ['phishing', 'spam']):
+            risk_score = 4
+        elif any(word in full_text for word in ['systems restored', 'incident resolved']):
+            risk_score = 3  # Lower risk for resolved incidents
         
         # Determine threat level
         if risk_score >= 8:
@@ -368,20 +377,55 @@ CRITICAL: Be specific, avoid generic statements. If details aren't in content, u
             threat_level = 'LOW'
             urgency = 'ROUTINE'
         
-        # Extract actionable items
+        # Content-based actionable items
         actionable_items = []
-        if 'patch' in full_text:
-            actionable_items.append('Apply security patches immediately')
-        if 'update' in full_text:
-            actionable_items.append('Update affected systems')
-        if 'monitor' in full_text:
-            actionable_items.append('Enhance monitoring for indicators')
+        if 'patch' in full_text or 'update' in full_text:
+            actionable_items.append('Review and apply relevant security updates')
+        if 'breach' in full_text or 'stolen' in full_text:
+            actionable_items.append('Verify data integrity and access controls')
+        if 'ransomware' in full_text:
+            actionable_items.append('Ensure backup systems are secure and accessible')
+        if 'phishing' in full_text:
+            actionable_items.append('Enhance email security and user awareness')
+        if 'vulnerability' in full_text:
+            actionable_items.append('Scan systems for similar vulnerabilities')
+        
+        # Create more specific technical analysis based on actual content
+        if detected_keywords:
+            analysis_parts = []
+            if 'systems restored' in full_text:
+                analysis_parts.append("Security incident with system recovery")
+            elif detected_keywords:
+                analysis_parts.append(f"Incident involving {', '.join(detected_keywords[:2])}")
+            else:
+                analysis_parts.append("Security incident requiring assessment")
+            
+            if risk_score >= 7:
+                analysis_parts.append("with high business impact")
+            elif risk_score >= 5:
+                analysis_parts.append("with moderate business impact")
+            else:
+                analysis_parts.append("with limited business impact")
+                
+            technical_analysis = ' '.join(analysis_parts)
+        else:
+            technical_analysis = f"Security incident classified as {detected_family.lower()}"
+        
+        # More accurate business impact
+        if 'systems restored' in full_text:
+            business_impact = "Systems have been restored, monitor for residual effects"
+        elif risk_score >= 7:
+            business_impact = "High impact incident requiring immediate attention and resource allocation"
+        elif risk_score >= 5:
+            business_impact = "Moderate impact incident requiring security team review"
+        else:
+            business_impact = "Low to moderate impact incident for awareness and monitoring"
         
         return {
-            'technical_analysis': f"{detected_family} detected with {threat_level.lower()} risk impact requiring {urgency.lower()} attention",
+            'technical_analysis': technical_analysis,
             'threat_family': detected_family,
-            'attack_sophistication': 'HIGH' if risk_score >= 7 else 'MEDIUM',
-            'attack_vectors': ['email_phishing'] if 'phishing' in full_text else ['network_intrusion'],
+            'attack_sophistication': 'HIGH' if risk_score >= 7 else 'MEDIUM' if risk_score >= 5 else 'LOW',
+            'attack_vectors': self.extract_attack_vectors(full_text),
             'affected_sectors': self.extract_sectors(full_text),
             'geographic_scope': self.extract_geography(full_text),
             'cve_references': re.findall(r'CVE-\d{4}-\d{4,7}', content.upper()),
@@ -390,10 +434,25 @@ CRITICAL: Be specific, avoid generic statements. If details aren't in content, u
             'severity': threat_level,
             'urgency': urgency,
             'confidence': 0.8,
-            'actionable_items': actionable_items or ['Monitor for additional indicators'],
-            'business_impact': f"{threat_level.title()} impact threat requiring organizational attention",
+            'actionable_items': actionable_items or ['Monitor situation and review security posture'],
+            'business_impact': business_impact,
             'technical_indicators': []
         }
+
+    def extract_attack_vectors(self, content: str) -> List[str]:
+        """Extract attack vectors based on content"""
+        vectors = []
+        if any(term in content for term in ['phishing', 'email']):
+            vectors.append('email_attack')
+        if any(term in content for term in ['web', 'website', 'online']):
+            vectors.append('web_attack')
+        if any(term in content for term in ['network', 'remote']):
+            vectors.append('network_attack')
+        if any(term in content for term in ['malware', 'trojan', 'virus']):
+            vectors.append('malware_delivery')
+        if any(term in content for term in ['social', 'human']):
+            vectors.append('social_engineering')
+        return vectors[:3]  # Limit to top 3
 
     def extract_sectors(self, content: str) -> List[str]:
         """Extract affected sectors from content"""
@@ -412,20 +471,25 @@ CRITICAL: Be specific, avoid generic statements. If details aren't in content, u
         return geography[:3]  # Limit to top 3
 
     def create_smart_summary(self, full_summary: str) -> Tuple[str, str]:
-        """Create smart summary preview and full summary"""
+        """Create smart summary preview and full summary without cutting off content"""
         # Clean the summary
         clean_summary = re.sub(r'<[^>]+>', '', full_summary)
         clean_summary = re.sub(r'&[^;]+;', ' ', clean_summary)
         clean_summary = re.sub(r'\s+', ' ', clean_summary).strip()
         
-        # Create preview (first sentence or 200 chars)
+        # Create preview (first 2-3 sentences or 300 chars)
         sentences = clean_summary.split('. ')
-        if len(sentences[0]) <= 200:
+        if len(sentences) >= 2 and len('. '.join(sentences[:2])) <= 300:
+            preview = '. '.join(sentences[:2]) + ('.' if not sentences[1].endswith('.') else '')
+        elif len(sentences[0]) <= 250:
             preview = sentences[0] + ('.' if not sentences[0].endswith('.') else '')
         else:
-            preview = clean_summary[:200] + ('...' if len(clean_summary) > 200 else '')
+            preview = clean_summary[:250] + ('...' if len(clean_summary) > 250 else '')
         
-        return preview, clean_summary[:1500]  # Limit full summary too
+        # Keep full summary without arbitrary truncation
+        full_clean = clean_summary[:2000] if len(clean_summary) > 2000 else clean_summary
+        
+        return preview, full_clean
 
     async def collect_intelligence(self) -> List[Dict]:
         """Enhanced intelligence collection with smart filtering"""
