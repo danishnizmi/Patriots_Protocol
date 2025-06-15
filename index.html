@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PATRIOTS PROTOCOL - Cyber Intelligence Network</title>
+    <title>PATRIOTS PROTOCOL - Cyber Threat Intelligence</title>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono:wght@400&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
@@ -30,7 +30,7 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.08;
+            opacity: 0.06;
         }
 
         .header {
@@ -44,61 +44,10 @@
         .title {
             font-size: 3rem;
             text-shadow: 0 0 20px #00ff41;
-            animation: glow 2s ease-in-out infinite alternate, pixelFlicker 0.1s infinite;
+            animation: glow 2s ease-in-out infinite alternate;
             margin-bottom: 0.5rem;
             font-family: 'Share Tech Mono', monospace;
             letter-spacing: 4px;
-            position: relative;
-            image-rendering: pixelated;
-            filter: contrast(1.2) brightness(1.1);
-        }
-
-        .title::before {
-            content: 'PATRIOTS PROTOCOL';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            color: #00ff41;
-            z-index: -1;
-            transform: translate(2px, 2px);
-            opacity: 0.3;
-            filter: blur(1px);
-        }
-
-        .title::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 2px,
-                rgba(0, 255, 65, 0.1) 2px,
-                rgba(0, 255, 65, 0.1) 4px
-            );
-            pointer-events: none;
-            animation: scanlines 2s linear infinite;
-        }
-
-        @keyframes glow {
-            from { text-shadow: 0 0 20px #00ff41; }
-            to { text-shadow: 0 0 30px #00ff41, 0 0 40px #00ff41; }
-        }
-
-        @keyframes pixelFlicker {
-            0%, 98% { opacity: 1; }
-            99% { opacity: 0.95; }
-            100% { opacity: 1; }
-        }
-
-        @keyframes scanlines {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(4px); }
         }
 
         .subtitle {
@@ -106,13 +55,7 @@
             color: #ff4444;
             opacity: 0.9;
             margin-bottom: 0.8rem;
-            animation: subtitleFlicker 3s ease-in-out infinite;
             font-weight: bold;
-        }
-
-        @keyframes subtitleFlicker {
-            0%, 100% { opacity: 0.9; }
-            50% { opacity: 0.7; }
         }
 
         .version-badge {
@@ -123,13 +66,11 @@
             border-radius: 15px;
             font-size: 0.8rem;
             display: inline-block;
-            margin-bottom: 0.5rem;
-            animation: badgePulse 2s ease-in-out infinite;
         }
 
-        @keyframes badgePulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 5px rgba(255, 68, 68, 0.3); }
-            50% { transform: scale(1.05); box-shadow: 0 0 15px rgba(255, 68, 68, 0.6); }
+        @keyframes glow {
+            from { text-shadow: 0 0 20px #00ff41; }
+            to { text-shadow: 0 0 30px #00ff41, 0 0 40px #00ff41; }
         }
 
         .container {
@@ -138,27 +79,14 @@
             padding: 2rem;
         }
 
-        /* Intelligence Dashboard */
-        .intel-overview {
-            margin-bottom: 2rem;
-        }
-
-        .intel-title {
-            font-size: 1.8rem;
-            color: #ff4444;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            text-shadow: 0 0 10px #ff4444;
-        }
-
-        .threat-grid {
+        .metrics-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
             margin-bottom: 2rem;
         }
 
-        .threat-card {
+        .metric-card {
             background: rgba(255, 68, 68, 0.1);
             border: 1px solid #ff4444;
             padding: 1.5rem;
@@ -169,7 +97,7 @@
             overflow: hidden;
         }
 
-        .threat-card::before {
+        .metric-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -185,59 +113,49 @@
             100% { transform: translateX(100%); }
         }
 
-        .threat-card:hover {
+        .metric-card:hover {
             background: rgba(255, 68, 68, 0.15);
             box-shadow: 0 5px 25px rgba(255, 68, 68, 0.3);
             transform: translateY(-3px);
         }
 
-        .threat-card.critical {
+        .metric-card.critical {
             border-color: #ff0000;
             background: rgba(255, 0, 0, 0.15);
             animation: criticalPulse 2s infinite;
         }
 
         @keyframes criticalPulse {
-            0%, 100% { 
-                box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-            }
-            50% { 
-                box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
-            }
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
+            50% { box-shadow: 0 0 30px rgba(255, 0, 0, 0.8); }
         }
 
-        .threat-header {
+        .metric-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1rem;
         }
 
-        .threat-metric-title {
+        .metric-title {
             font-size: 0.9rem;
             color: #ff6666;
             font-weight: bold;
             text-transform: uppercase;
         }
 
-        .threat-icon {
+        .metric-icon {
             font-size: 1.2rem;
         }
 
-        .threat-value {
+        .metric-value {
             font-size: 2.5rem;
             font-weight: bold;
             margin-bottom: 0.8rem;
             text-shadow: 0 0 10px currentColor;
-            animation: valueGlow 2s ease-in-out infinite alternate;
         }
 
-        @keyframes valueGlow {
-            from { text-shadow: 0 0 10px currentColor; }
-            to { text-shadow: 0 0 20px currentColor, 0 0 30px currentColor; }
-        }
-
-        .threat-details {
+        .metric-details {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 0.5rem;
@@ -245,84 +163,7 @@
             color: #ffcccc;
         }
 
-        /* Intelligence Landscape Section */
-        .threat-landscape {
-            margin: 3rem 0;
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 2rem;
-        }
-
-        @media (max-width: 1024px) {
-            .threat-landscape {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .landscape-section {
-            background: rgba(255, 68, 68, 0.05);
-            border: 1px solid #ff4444;
-            padding: 2rem;
-            border-radius: 12px;
-            backdrop-filter: blur(15px);
-        }
-
-        .tactical-section {
-            background: rgba(255, 215, 0, 0.05);
-            border: 1px solid #ffd700;
-            padding: 2rem;
-            border-radius: 12px;
-            backdrop-filter: blur(15px);
-        }
-
-        .section-header {
-            font-size: 1.4rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 1px solid rgba(255, 68, 68, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: #ff4444;
-        }
-
-        .landscape-content {
-            color: #ffffff;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        .intel-highlights {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-
-        .intel-highlight {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 1rem;
-            border-radius: 8px;
-            text-align: center;
-            border: 1px solid rgba(255, 68, 68, 0.2);
-        }
-
-        .intel-highlight-value {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #ff4444;
-            margin-bottom: 0.3rem;
-        }
-
-        .intel-highlight-label {
-            font-size: 0.8rem;
-            color: #ffcccc;
-            text-transform: uppercase;
-        }
-
-        /* Intelligence Reports Section */
-        .intel-section {
+        .intelligence-section {
             margin-top: 3rem;
         }
 
@@ -345,13 +186,13 @@
             font-size: 0.9rem;
         }
 
-        .intel-grid {
+        .threat-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
             gap: 2rem;
         }
 
-        .intel-card {
+        .threat-card {
             background: rgba(0, 0, 0, 0.85);
             border: 1px solid #ff4444;
             padding: 2rem;
@@ -361,29 +202,13 @@
             overflow: hidden;
         }
 
-        .intel-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #ff4444, transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .intel-card:hover::before {
-            opacity: 1;
-        }
-
-        .intel-card:hover {
+        .threat-card:hover {
             background: rgba(255, 68, 68, 0.05);
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(255, 68, 68, 0.2);
         }
 
-        .intel-card.critical-threat {
+        .threat-card.critical-threat {
             border-left: 4px solid #ff0000;
             background: rgba(255, 0, 0, 0.08);
             animation: criticalBlink 3s infinite;
@@ -394,7 +219,7 @@
             96%, 100% { border-left-color: #ff4444; }
         }
 
-        .intel-card.high-threat {
+        .threat-card.high-threat {
             border-left: 4px solid #ffd700;
             background: rgba(255, 215, 0, 0.05);
         }
@@ -438,12 +263,17 @@
             color: #000;
         }
 
-        .intel-header {
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .threat-header {
             margin-bottom: 1.5rem;
             padding-right: 5rem;
         }
 
-        .intel-title-text {
+        .threat-title {
             font-size: 1.3rem;
             margin-bottom: 1rem;
             color: #ffffff;
@@ -466,23 +296,34 @@
         .threat-high { background-color: #ff4444; }
         .threat-critical { 
             background-color: #ff0000; 
-            animation: criticalThreatBlink 1s infinite;
+            animation: criticalIndicator 1s infinite;
             box-shadow: 0 0 10px #ff0000;
         }
 
-        @keyframes criticalThreatBlink {
+        @keyframes criticalIndicator {
             0%, 50% { opacity: 1; }
             51%, 100% { opacity: 0.3; }
         }
 
-        .intel-summary {
+        .critical-link {
+            color: #ff4444;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .critical-link:hover {
+            color: #ff6666;
+            text-shadow: 0 0 10px #ff4444;
+        }
+
+        .threat-summary {
             color: #cccccc;
             line-height: 1.6;
             margin-bottom: 1.5rem;
             font-size: 0.95rem;
         }
 
-        .intel-meta-grid {
+        .threat-meta {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
@@ -546,23 +387,6 @@
             height: 100%;
             background: linear-gradient(90deg, #ff4444, #ffd700, #00ff41);
             transition: width 0.8s ease;
-            position: relative;
-        }
-
-        .confidence-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            width: 10px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8));
-            animation: shine 2s infinite;
-        }
-
-        @keyframes shine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
         }
 
         .keywords-section {
@@ -597,7 +421,7 @@
             transform: scale(1.05);
         }
 
-        .ai-analysis {
+        .technical-analysis {
             background: rgba(255, 215, 0, 0.08);
             border: 1px solid #ffd700;
             border-radius: 10px;
@@ -605,14 +429,14 @@
             margin-top: 1.5rem;
         }
 
-        .ai-header {
+        .analysis-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1rem;
         }
 
-        .ai-label {
+        .analysis-label {
             color: #ffd700;
             font-size: 0.9rem;
             font-weight: bold;
@@ -630,11 +454,25 @@
             color: #ffd700;
         }
 
-        .ai-text {
+        .analysis-text {
             color: #ffec8c;
             font-size: 0.95rem;
             line-height: 1.6;
             margin-bottom: 1rem;
+        }
+
+        .technical-details {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .detail-item {
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-label {
+            color: #ffd700;
+            font-weight: bold;
         }
 
         .patriots-footer {
@@ -673,6 +511,16 @@
             51%, 100% { opacity: 0; }
         }
 
+        .error-display {
+            background: rgba(255, 68, 68, 0.1);
+            border: 1px solid #ff4444;
+            padding: 1.5rem;
+            border-radius: 10px;
+            color: #ff6666;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
         .status-bar {
             position: fixed;
             bottom: 0;
@@ -700,9 +548,6 @@
             color: #ffd700;
             text-decoration: none;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
         }
 
         .status-bar a:hover {
@@ -710,30 +555,20 @@
             text-shadow: 0 0 10px #ffd700;
         }
 
-        .error-display {
-            background: rgba(255, 68, 68, 0.1);
-            border: 1px solid #ff4444;
-            padding: 1.5rem;
-            border-radius: 10px;
-            color: #ff6666;
-            margin: 2rem 0;
-            text-align: center;
-        }
-
         @media (max-width: 768px) {
             .title {
                 font-size: 2.5rem;
+            }
+            
+            .metrics-grid {
+                grid-template-columns: 1fr;
             }
             
             .threat-grid {
                 grid-template-columns: 1fr;
             }
             
-            .intel-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .intel-header {
+            .threat-header {
                 padding-right: 0;
             }
             
@@ -750,17 +585,6 @@
                 padding: 1.5rem;
             }
         }
-
-        @keyframes pulse {
-            0%, 100% { 
-                box-shadow: 0 0 5px rgba(255, 68, 68, 0.5); 
-                transform: scale(1);
-            }
-            50% { 
-                box-shadow: 0 0 20px rgba(255, 68, 68, 0.8); 
-                transform: scale(1.05);
-            }
-        }
     </style>
 </head>
 <body>
@@ -768,7 +592,7 @@
     
     <div class="header">
         <h1 class="title">PATRIOTS PROTOCOL</h1>
-        <p class="subtitle">AI-DRIVEN CYBER INTELLIGENCE NETWORK</p>
+        <p class="subtitle">CYBER THREAT INTELLIGENCE COMMAND CENTER</p>
         <div class="version-badge">CYBER v4.0</div>
     </div>
 
@@ -776,10 +600,10 @@
 
     <div class="status-bar">
         <div class="status-item">
-            <span id="intelStatus">INTELLIGENCE: ACTIVE</span>
+            <span id="intelStatus">INTELLIGENCE: CONNECTING...</span>
         </div>
         <div class="status-item">
-            LAST UPDATE: <span id="lastUpdate">CONNECTING...</span>
+            LAST UPDATE: <span id="lastUpdate">INITIALIZING...</span>
         </div>
         <div class="status-item">
             <span id="threatLevel">THREAT LEVEL: MONITORING</span>
@@ -792,7 +616,6 @@
     <script type="text/babel">
         const { useState, useEffect, useRef } = React;
 
-        // Matrix Background
         function MatrixBackground() {
             const canvasRef = useRef(null);
 
@@ -808,8 +631,8 @@
                 resizeCanvas();
                 window.addEventListener('resize', resizeCanvas);
 
-                const matrix = "CYBERTHREATINTELAPTMALWAREZERODAY0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%^&*+=";
-                const matrixArray = matrix.split("");
+                const characters = "CYBERTHREATINTELAPTMALWAREZERODAY0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%^&*+=";
+                const matrix = characters.split("");
                 const fontSize = 12;
                 const columns = canvas.width / fontSize;
                 const drops = [];
@@ -826,7 +649,7 @@
                     ctx.font = fontSize + 'px Share Tech Mono';
 
                     for (let i = 0; i < drops.length; i++) {
-                        const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+                        const text = matrix[Math.floor(Math.random() * matrix.length)];
                         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
                         if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
@@ -846,137 +669,45 @@
             return <canvas ref={canvasRef} className="matrix-bg" />;
         }
 
-        function App() {
+        function ThreatDashboard() {
             const [threatData, setThreatData] = useState([]);
             const [metrics, setMetrics] = useState({});
             const [loading, setLoading] = useState(true);
-            const [error, setError] = useState(null);
             const [lastUpdate, setLastUpdate] = useState('');
 
             useEffect(() => {
-                loadIntelligenceData();
-                const interval = setInterval(loadIntelligenceData, 300000); // Check every 5 minutes
+                loadThreatIntelligence();
+                const interval = setInterval(loadThreatIntelligence, 300000);
                 return () => clearInterval(interval);
             }, []);
 
-            async function loadIntelligenceData() {
+            async function loadThreatIntelligence() {
                 try {
-                    setError(null);
-                    
                     const response = await fetch('./data/news-analysis.json?t=' + Date.now());
                     
                     if (response.ok) {
                         const data = await response.json();
-                        console.log('🎖️ Patriots Protocol intelligence data loaded:', data);
                         
                         setThreatData(data.articles || []);
                         setMetrics(data.metrics || {});
                         setLastUpdate(new Date().toLocaleString());
                         
-                        updateStatusBar(data.metrics);
+                        updateStatusIndicators(data.metrics);
                         
                     } else {
-                        throw new Error(`HTTP ${response.status}: Unable to load intelligence data`);
+                        throw new Error(`Failed to load intelligence data: ${response.status}`);
                     }
                 } catch (error) {
-                    console.error('Patriots Protocol intelligence loading error:', error);
-                    setError('Cyber Intelligence Network - Loading threat data...');
-                    
-                    // Fallback intelligence data
-                    const fallbackData = {
-                        articles: [
-                            {
-                                title: "Advanced Persistent Threat Campaign Targeting Critical Infrastructure",
-                                summary: "Nation-state actors are conducting sophisticated attacks against energy sector organizations using zero-day exploits and custom malware toolkits. The campaign demonstrates advanced technical capabilities with multi-stage payloads and persistence mechanisms designed to evade detection.",
-                                source: "CISA_ADVISORIES",
-                                threat_level: "CRITICAL",
-                                keywords: ["APT", "CRITICAL_INFRASTRUCTURE", "ZERO_DAY", "ENERGY"],
-                                attack_vectors: ["advanced_persistent_threat", "zero_day", "malware"],
-                                affected_sectors: ["energy", "critical_infrastructure"],
-                                ai_analysis: "This campaign represents a significant threat to national security infrastructure with sophisticated attack vectors and high persistence capabilities. Immediate defensive measures, threat hunting activities, and infrastructure hardening are strongly recommended.",
-                                confidence: 0.94,
-                                severity_score: 9,
-                                geolocation: "Global",
-                                threat_actors: ["unknown_nation_state"],
-                                timestamp: new Date().toISOString(),
-                                technical_details: {
-                                    malware_families: ["custom_backdoor"],
-                                    attack_techniques: ["spear_phishing", "lateral_movement", "privilege_escalation"],
-                                    vulnerabilities: ["zero_day_exploits"],
-                                    indicators: ["custom_hashes", "c2_domains"]
-                                }
-                            },
-                            {
-                                title: "Ransomware-as-a-Service Platform Targets Healthcare Organizations",
-                                summary: "Cybercriminals are leveraging advanced ransomware tools to target hospitals and healthcare systems worldwide, disrupting critical patient care services and demanding substantial payments. The attacks utilize sophisticated encryption and data exfiltration techniques.",
-                                source: "KREBS_SECURITY",
-                                threat_level: "HIGH",
-                                keywords: ["RANSOMWARE", "HEALTHCARE", "PATIENT_CARE", "ENCRYPTION"],
-                                attack_vectors: ["ransomware", "phishing", "data_exfiltration"],
-                                affected_sectors: ["healthcare"],
-                                ai_analysis: "Healthcare sector continues to be prime target due to critical nature of services and often legacy security infrastructure. Organizations should implement immediate backup verification, network segmentation, and incident response procedures.",
-                                confidence: 0.89,
-                                severity_score: 8,
-                                geolocation: "North_America",
-                                threat_actors: ["ransomware_group"],
-                                timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
-                                technical_details: {
-                                    malware_families: ["lockbit", "conti"],
-                                    attack_techniques: ["email_phishing", "credential_dumping"],
-                                    vulnerabilities: ["unpatched_systems"],
-                                    indicators: ["file_extensions", "ransom_notes"]
-                                }
-                            },
-                            {
-                                title: "Supply Chain Attack on Software Distribution Platform",
-                                summary: "Threat actors have compromised a widely-used software distribution platform, injecting malicious code into legitimate software packages. The supply chain attack affects thousands of downstream organizations and demonstrates sophisticated tradecraft.",
-                                source: "SANS_ISC",
-                                threat_level: "HIGH",
-                                keywords: ["SUPPLY_CHAIN", "SOFTWARE", "DISTRIBUTION", "MALICIOUS_CODE"],
-                                attack_vectors: ["supply_chain", "malware", "software_compromise"],
-                                affected_sectors: ["technology", "multiple"],
-                                ai_analysis: "Supply chain attacks represent one of the most significant threat vectors in current cyber landscape. Organizations should verify software integrity, implement code signing verification, and establish trusted vendor relationships.",
-                                confidence: 0.92,
-                                severity_score: 8,
-                                geolocation: "Global",
-                                threat_actors: ["apt_group"],
-                                timestamp: new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString(),
-                                technical_details: {
-                                    malware_families: ["solarwinds_style"],
-                                    attack_techniques: ["supply_chain_compromise", "code_injection"],
-                                    vulnerabilities: ["trusted_software"],
-                                    indicators: ["compromised_packages"]
-                                }
-                            }
-                        ],
-                        metrics: {
-                            total_threats: 3,
-                            critical_threats: 1,
-                            high_threats: 2,
-                            medium_threats: 0,
-                            low_threats: 0,
-                            threat_actors_identified: 3,
-                            attack_techniques_observed: 8,
-                            sectors_targeted: 4,
-                            global_threat_level: "HIGH",
-                            intelligence_confidence: 92,
-                            fresh_intel_24h: 3,
-                            source_credibility: 0.93,
-                            emerging_trends: ["supply_chain_attacks", "healthcare_targeting", "infrastructure_focus"],
-                            threat_evolution: "escalating"
-                        }
-                    };
-                    
-                    setThreatData(fallbackData.articles);
-                    setMetrics(fallbackData.metrics);
-                    
+                    console.error('Intelligence loading error:', error);
+                    setThreatData([]);
+                    setMetrics({ intelligence_confidence: 0, global_threat_level: 'OFFLINE' });
                 } finally {
                     setLoading(false);
                     setLastUpdate(new Date().toLocaleString());
                 }
             }
 
-            function updateStatusBar(metricsData) {
+            function updateStatusIndicators(metricsData) {
                 const intelStatus = document.getElementById('intelStatus');
                 const lastUpdateEl = document.getElementById('lastUpdate');
                 const threatLevel = document.getElementById('threatLevel');
@@ -984,7 +715,7 @@
                 if (intelStatus) {
                     const threatCount = metricsData?.total_threats || 0;
                     const criticalCount = metricsData?.critical_threats || 0;
-                    intelStatus.textContent = `INTELLIGENCE: ${threatCount} THREATS ACTIVE ${criticalCount > 0 ? '🚨' : ''}`;
+                    intelStatus.textContent = `INTELLIGENCE: ${threatCount} THREATS ${criticalCount > 0 ? '🚨' : 'ACTIVE'}`;
                 }
                 
                 if (lastUpdateEl) {
@@ -993,56 +724,80 @@
                 
                 if (threatLevel) {
                     const level = metricsData?.global_threat_level || 'MONITORING';
-                    const confidence = metricsData?.intelligence_confidence || 85;
+                    const confidence = metricsData?.intelligence_confidence || 0;
                     threatLevel.textContent = `THREAT LEVEL: ${level} (${confidence}% CONFIDENCE)`;
                 }
             }
 
-            function getThreatCardClass(threatLevel) {
-                if (threatLevel === 'CRITICAL') {
-                    return 'threat-card critical';
-                }
-                return 'threat-card';
-            }
-
-            function getIntelCardClass(threat) {
-                if (threat.threat_level === 'CRITICAL') {
-                    return 'intel-card critical-threat';
-                }
-                if (threat.threat_level === 'HIGH') {
-                    return 'intel-card high-threat';
-                }
-                return 'intel-card';
+            function getCardClass(threatLevel) {
+                const baseClass = 'threat-card';
+                if (threatLevel === 'CRITICAL') return `${baseClass} critical-threat`;
+                if (threatLevel === 'HIGH') return `${baseClass} high-threat`;
+                return baseClass;
             }
 
             function getThreatBadges(threat) {
                 const badges = [];
-                
                 const level = threat.threat_level?.toLowerCase() || 'medium';
+                
                 badges.push(
                     <span key="level" className={`threat-badge ${level}`}>
                         {threat.threat_level || 'MEDIUM'}
                     </span>
                 );
                 
-                if (threat.severity_score >= 9) {
+                if (threat.severity_rating >= 9) {
                     badges.push(<span key="severe" className="threat-badge critical">SEVERE</span>);
-                } else if (threat.severity_score >= 8) {
-                    badges.push(<span key="high" className="threat-badge high">HIGH IMPACT</span>);
                 }
                 
                 return badges;
+            }
+
+            function renderThreatTitle(threat) {
+                const indicator = <span className={`threat-indicator threat-${(threat.threat_level || 'medium').toLowerCase()}`}></span>;
+                
+                if (threat.threat_level === 'CRITICAL' && threat.source_url) {
+                    return (
+                        <>
+                            {indicator}
+                            <a href={threat.source_url} target="_blank" rel="noopener noreferrer" className="critical-link">
+                                🚨 {threat.title}
+                            </a>
+                        </>
+                    );
+                }
+                
+                return (
+                    <>
+                        {indicator}
+                        <span>{threat.title}</span>
+                    </>
+                );
             }
 
             if (loading) {
                 return (
                     <div className="container">
                         <div className="loading">
-                            🎖️ PATRIOTS PROTOCOL CYBER INTELLIGENCE INITIALIZING<span className="terminal-cursor">_</span>
+                            🎖️ PATRIOTS PROTOCOL CYBER INTELLIGENCE LOADING<span className="terminal-cursor">_</span>
                             <div className="loading-details">
-                                Connecting to threat intelligence networks...<br/>
-                                Loading real-time cyber threat data...<br/>
-                                Activating AI threat analysis systems...
+                                Connecting to threat intelligence sources...<br/>
+                                Processing real-time cyber threat data...<br/>
+                                Analyzing technical indicators...
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            if (threatData.length === 0 && metrics.intelligence_confidence === 0) {
+                return (
+                    <div className="container">
+                        <div className="error-display">
+                            ⚠️ CYBER INTELLIGENCE NETWORK OFFLINE<br/>
+                            <div style={{fontSize: '0.9rem', marginTop: '1rem', color: '#ff6666'}}>
+                                Unable to connect to threat intelligence sources.<br/>
+                                System attempting to re-establish connections...
                             </div>
                         </div>
                     </div>
@@ -1051,173 +806,80 @@
 
             return (
                 <div className="container">
-                    {error && (
-                        <div className="error-display">
-                            ⚠️ {error}
-                        </div>
-                    )}
-
-                    {/* Cyber Intelligence Dashboard */}
-                    <div className="intel-overview">
-                        <h2 className="intel-title">🎯 CYBER THREAT INTELLIGENCE COMMAND CENTER</h2>
-                        <div className="threat-grid">
-                            <div className={getThreatCardClass(metrics.global_threat_level)}>
-                                <div className="threat-header">
-                                    <div className="threat-metric-title">Active Threats</div>
-                                    <div className="threat-icon">🛡️</div>
-                                </div>
-                                <div className="threat-value">{metrics.total_threats || 0}</div>
-                                <div className="threat-details">
-                                    <span>Critical: {metrics.critical_threats || 0}</span>
-                                    <span>High Priority: {metrics.high_threats || 0}</span>
-                                </div>
+                    <div className="metrics-grid">
+                        <div className={`metric-card ${metrics.global_threat_level === 'CRITICAL' ? 'critical' : ''}`}>
+                            <div className="metric-header">
+                                <div className="metric-title">Active Threats</div>
+                                <div className="metric-icon">🛡️</div>
                             </div>
-                            
-                            <div className="threat-card">
-                                <div className="threat-header">
-                                    <div className="threat-metric-title">Intelligence Confidence</div>
-                                    <div className="threat-icon">🤖</div>
-                                </div>
-                                <div className="threat-value">{metrics.intelligence_confidence || 85}%</div>
-                                <div className="threat-details">
-                                    <span>Fresh Intel: {metrics.fresh_intel_24h || 0}</span>
-                                    <span>Source Quality: {Math.round((metrics.source_credibility || 0.9) * 100)}%</span>
-                                </div>
-                            </div>
-                            
-                            <div className="threat-card">
-                                <div className="threat-header">
-                                    <div className="threat-metric-title">Threat Landscape</div>
-                                    <div className="threat-icon">🔥</div>
-                                </div>
-                                <div className="threat-value">{metrics.global_threat_level || 'MEDIUM'}</div>
-                                <div className="threat-details">
-                                    <span>Actors: {metrics.threat_actors_identified || 0}</span>
-                                    <span>Techniques: {metrics.attack_techniques_observed || 0}</span>
-                                </div>
-                            </div>
-                            
-                            <div className="threat-card">
-                                <div className="threat-header">
-                                    <div className="threat-metric-title">Targeted Sectors</div>
-                                    <div className="threat-icon">🏢</div>
-                                </div>
-                                <div className="threat-value">{metrics.sectors_targeted || 0}</div>
-                                <div className="threat-details">
-                                    <span>Healthcare: {threatData.filter(t => t.affected_sectors?.includes('healthcare')).length}</span>
-                                    <span>Critical Infra: {threatData.filter(t => t.affected_sectors?.includes('critical_infrastructure')).length}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Intelligence Landscape Assessment */}
-                    <div className="threat-landscape">
-                        <div className="landscape-section">
-                            <div className="section-header">
-                                🎯 STRATEGIC THREAT INTELLIGENCE ASSESSMENT
-                            </div>
-                            
-                            <div className="landscape-content">
-                                Patriots Protocol has identified <strong>{threatData.length}</strong> active cyber threats requiring immediate attention. 
-                                Current global threat level is <strong>{metrics.global_threat_level || 'MEDIUM'}</strong> with 
-                                <strong> {metrics.critical_threats || 0}</strong> critical incidents under active monitoring.
-                                
-                                {metrics.emerging_trends && metrics.emerging_trends.length > 0 && (
-                                    <div style={{marginTop: '1rem'}}>
-                                        <strong>Emerging trends:</strong> {metrics.emerging_trends.join(', ').replace(/_/g, ' ')}
-                                    </div>
-                                )}
-                            </div>
-                            
-                            <div className="intel-highlights">
-                                <div className="intel-highlight">
-                                    <div className="intel-highlight-value">{metrics.critical_threats || 0}</div>
-                                    <div className="intel-highlight-label">Critical Threats</div>
-                                </div>
-                                <div className="intel-highlight">
-                                    <div className="intel-highlight-value">{threatData.filter(t => t.attack_vectors?.includes('advanced_persistent_threat')).length}</div>
-                                    <div className="intel-highlight-label">APT Campaigns</div>
-                                </div>
-                                <div className="intel-highlight">
-                                    <div className="intel-highlight-value">{threatData.filter(t => t.attack_vectors?.includes('ransomware')).length}</div>
-                                    <div className="intel-highlight-label">Ransomware Active</div>
-                                </div>
-                                <div className="intel-highlight">
-                                    <div className="intel-highlight-value">{threatData.filter(t => t.attack_vectors?.includes('zero_day')).length}</div>
-                                    <div className="intel-highlight-label">Zero-Day Exploits</div>
-                                </div>
+                            <div className="metric-value">{metrics.total_threats || 0}</div>
+                            <div className="metric-details">
+                                <span>Critical: {metrics.critical_threats || 0}</span>
+                                <span>High: {metrics.high_threats || 0}</span>
                             </div>
                         </div>
                         
-                        <div className="tactical-section">
-                            <div className="section-header" style={{borderBottomColor: 'rgba(255, 215, 0, 0.3)', color: '#ffd700'}}>
-                                ⚡ TACTICAL INTELLIGENCE ANALYSIS
+                        <div className="metric-card">
+                            <div className="metric-header">
+                                <div className="metric-title">Intelligence Confidence</div>
+                                <div className="metric-icon">🎯</div>
                             </div>
-                            
-                            <div className="intel-highlights">
-                                <div className="intel-highlight">
-                                    <div className="intel-highlight-value" style={{color: '#ffd700'}}>{metrics.intelligence_confidence || 85}%</div>
-                                    <div className="intel-highlight-label">AI CONFIDENCE</div>
-                                </div>
-                                <div className="intel-highlight">
-                                    <div className="intel-highlight-value" style={{color: '#ffd700'}}>{threatData.filter(t => t.severity_score >= 8).length}</div>
-                                    <div className="intel-highlight-label">HIGH SEVERITY</div>
-                                </div>
-                                <div className="intel-highlight">
-                                    <div className="intel-highlight-value" style={{color: '#ffd700'}}>{metrics.fresh_intel_24h || 0}</div>
-                                    <div className="intel-highlight-label">FRESH INTEL 24H</div>
-                                </div>
+                            <div className="metric-value">{metrics.intelligence_confidence || 0}%</div>
+                            <div className="metric-details">
+                                <span>Recent: {metrics.recent_threats_24h || 0}</span>
+                                <span>Sources: {Math.round((metrics.source_reliability || 0) * 100)}%</span>
                             </div>
-                            
-                            <div style={{marginTop: '1.5rem'}}>
-                                <div style={{color: '#ffd700', fontSize: '0.9rem', fontWeight: 'bold', marginBottom: '0.8rem'}}>
-                                    🎯 PRIMARY ATTACK VECTORS
-                                </div>
-                                <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', fontSize: '0.85rem'}}>
-                                    <div style={{color: '#ffec8c'}}>
-                                        APT: {threatData.filter(t => t.attack_vectors?.includes('advanced_persistent_threat')).length}
-                                    </div>
-                                    <div style={{color: '#ffec8c'}}>
-                                        Ransomware: {threatData.filter(t => t.attack_vectors?.includes('ransomware')).length}
-                                    </div>
-                                    <div style={{color: '#ffec8c'}}>
-                                        Phishing: {threatData.filter(t => t.attack_vectors?.includes('phishing')).length}
-                                    </div>
-                                    <div style={{color: '#ffec8c'}}>
-                                        Supply Chain: {threatData.filter(t => t.attack_vectors?.includes('supply_chain')).length}
-                                    </div>
-                                </div>
+                        </div>
+                        
+                        <div className="metric-card">
+                            <div className="metric-header">
+                                <div className="metric-title">Threat Landscape</div>
+                                <div className="metric-icon">🔥</div>
+                            </div>
+                            <div className="metric-value">{metrics.global_threat_level || 'MONITORING'}</div>
+                            <div className="metric-details">
+                                <span>Actors: {metrics.active_threat_actors || 0}</span>
+                                <span>Techniques: {metrics.attack_techniques_detected || 0}</span>
+                            </div>
+                        </div>
+                        
+                        <div className="metric-card">
+                            <div className="metric-header">
+                                <div className="metric-title">Targeted Sectors</div>
+                                <div className="metric-icon">🏢</div>
+                            </div>
+                            <div className="metric-value">{metrics.sectors_under_threat || 0}</div>
+                            <div className="metric-details">
+                                <span>Healthcare: {threatData.filter(t => t.affected_sectors?.includes('healthcare')).length}</span>
+                                <span>Finance: {threatData.filter(t => t.affected_sectors?.includes('financial')).length}</span>
                             </div>
                         </div>
                     </div>
 
-                    {/* Threat Intelligence Reports */}
-                    <div className="intel-section">
+                    <div className="intelligence-section">
                         <h2 className="section-title">
                             🎖️ ACTIVE THREAT INTELLIGENCE REPORTS
                             <span className="section-badge">PATRIOTS PROTOCOL v4.0</span>
                         </h2>
                         
-                        <div className="intel-grid">
+                        <div className="threat-grid">
                             {threatData.map((threat, index) => (
-                                <div key={index} className={getIntelCardClass(threat)}>
+                                <div key={index} className={getCardClass(threat.threat_level)}>
                                     <div className="threat-badges">
                                         {getThreatBadges(threat)}
                                     </div>
                                     
-                                    <div className="intel-header">
-                                        <h3 className="intel-title-text">
-                                            <span className={`threat-indicator threat-${(threat.threat_level || 'medium').toLowerCase()}`}></span>
-                                            <span>{threat.title}</span>
+                                    <div className="threat-header">
+                                        <h3 className="threat-title">
+                                            {renderThreatTitle(threat)}
                                         </h3>
                                     </div>
                                     
-                                    <div className="intel-summary">
+                                    <div className="threat-summary">
                                         {threat.summary}
                                     </div>
                                     
-                                    <div className="intel-meta-grid">
+                                    <div className="threat-meta">
                                         <div className="meta-item">
                                             <div className="meta-label">Intelligence Source</div>
                                             <div className="meta-value">
@@ -1235,61 +897,79 @@
                                             <div className="meta-value">{threat.threat_level || 'MEDIUM'}</div>
                                         </div>
                                         <div className="meta-item">
-                                            <div className="meta-label">Severity Score</div>
-                                            <div className="meta-value">{threat.severity_score || 5}/10</div>
+                                            <div className="meta-label">Impact Rating</div>
+                                            <div className="meta-value">{threat.severity_rating || 5}/10</div>
                                         </div>
                                         <div className="meta-item">
-                                            <div className="meta-label">Geographic Focus</div>
-                                            <div className="meta-value">{(threat.geolocation || 'Global').replace(/_/g, ' ')}</div>
+                                            <div className="meta-label">Geographic Scope</div>
+                                            <div className="meta-value">{(threat.geographic_scope || 'global').replace(/_/g, ' ')}</div>
                                         </div>
                                     </div>
                                     
-                                    {threat.confidence && (
+                                    {threat.confidence_score && (
                                         <div className="confidence-section">
                                             <div className="confidence-header">
                                                 <span style={{fontSize: '0.8rem', color: '#ff6666', fontWeight: 'bold'}}>
                                                     INTELLIGENCE CONFIDENCE
                                                 </span>
                                                 <span style={{fontSize: '0.9rem', color: '#ffffff'}}>
-                                                    {Math.round((threat.confidence || 0) * 100)}%
+                                                    {Math.round((threat.confidence_score || 0) * 100)}%
                                                 </span>
                                             </div>
                                             <div className="confidence-bar">
                                                 <div 
                                                     className="confidence-fill" 
-                                                    style={{width: `${(threat.confidence || 0) * 100}%`}}
+                                                    style={{width: `${(threat.confidence_score || 0) * 100}%`}}
                                                 ></div>
                                             </div>
                                         </div>
                                     )}
                                     
-                                    {(threat.keywords && threat.keywords.length > 0) && (
+                                    {threat.threat_keywords && threat.threat_keywords.length > 0 && (
                                         <div className="keywords-section">
                                             <div className="keywords-title">🔍 THREAT INDICATORS</div>
                                             <div className="keywords-list">
-                                                {threat.keywords.slice(0, 8).map((keyword, idx) => (
+                                                {threat.threat_keywords.slice(0, 8).map((keyword, idx) => (
                                                     <span key={idx} className="keyword-tag">{keyword.replace(/_/g, ' ')}</span>
                                                 ))}
                                             </div>
                                         </div>
                                     )}
                                     
-                                    {threat.ai_analysis && (
-                                        <div className="ai-analysis">
-                                            <div className="ai-header">
-                                                <div className="ai-label">
-                                                    🤖 AI THREAT ANALYSIS
+                                    {threat.technical_analysis && (
+                                        <div className="technical-analysis">
+                                            <div className="analysis-header">
+                                                <div className="analysis-label">
+                                                    🔍 TECHNICAL ANALYSIS
                                                 </div>
-                                                {threat.severity_score && (
-                                                    <div className="severity-badge">
-                                                        SEVERITY {threat.severity_score}/10
-                                                    </div>
-                                                )}
+                                                <div className="severity-badge">
+                                                    IMPACT {threat.severity_rating || 5}/10
+                                                </div>
                                             </div>
                                             
-                                            <div className="ai-text">
-                                                {threat.ai_analysis}
+                                            <div className="analysis-text">
+                                                {threat.technical_analysis}
                                             </div>
+                                            
+                                            {threat.technical_indicators && (
+                                                <div className="technical-details">
+                                                    {threat.technical_indicators.attack_techniques && threat.technical_indicators.attack_techniques.length > 0 && (
+                                                        <div className="detail-item">
+                                                            <span className="detail-label">Techniques:</span> {threat.technical_indicators.attack_techniques.slice(0, 3).join(', ')}
+                                                        </div>
+                                                    )}
+                                                    {threat.technical_indicators.malware_families && threat.technical_indicators.malware_families.length > 0 && (
+                                                        <div className="detail-item">
+                                                            <span className="detail-label">Malware:</span> {threat.technical_indicators.malware_families.slice(0, 3).join(', ')}
+                                                        </div>
+                                                    )}
+                                                    {threat.technical_indicators.vulnerabilities && threat.technical_indicators.vulnerabilities.length > 0 && (
+                                                        <div className="detail-item">
+                                                            <span className="detail-label">Vulnerabilities:</span> {threat.technical_indicators.vulnerabilities.slice(0, 3).join(', ')}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            )}
                                         </div>
                                     )}
                                     
@@ -1309,30 +989,24 @@
             );
         }
 
-        // Initialize Patriots Protocol System
         ReactDOM.render(
             <>
                 <MatrixBackground />
-                <App />
+                <ThreatDashboard />
             </>,
             document.getElementById('app')
         );
 
-        console.log('🎖️ PATRIOTS PROTOCOL CYBER INTELLIGENCE v4.0 - Network Initialized');
+        console.log('🎖️ PATRIOTS PROTOCOL CYBER INTELLIGENCE v4.0 - Interface Operational');
     </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             console.log('🎖️ Patriots Protocol Cyber Intelligence v4.0 Interface Activated');
             
-            // Status updates
             setInterval(function() {
-                const now = new Date();
                 const lastUpdateEl = document.getElementById('lastUpdate');
-                if (lastUpdateEl) {
-                    lastUpdateEl.textContent = now.toLocaleString();
-                    
-                    // Brief highlight animation
+                if (lastUpdateEl && !lastUpdateEl.textContent.includes('INITIALIZING')) {
                     lastUpdateEl.style.color = '#ff4444';
                     setTimeout(() => {
                         lastUpdateEl.style.color = '#00ff41';
