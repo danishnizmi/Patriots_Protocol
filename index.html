@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PATRIOTS PROTOCOL - Enhanced Cyber Intelligence</title>
+    <title>PATRIOTS PROTOCOL - Advanced Cyber Intelligence</title>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono:wght@400&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
@@ -30,24 +30,24 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.06;
+            opacity: 0.04;
         }
 
         .header {
             text-align: center;
-            padding: 2rem;
+            padding: 1.5rem;
             border-bottom: 2px solid #00ff41;
             background: rgba(0, 0, 0, 0.95);
             position: relative;
         }
 
         .title {
-            font-size: 3rem;
+            font-size: 2.8rem;
             text-shadow: 0 0 20px #00ff41;
             animation: glow 2s ease-in-out infinite alternate;
             margin-bottom: 0.5rem;
             font-family: 'Share Tech Mono', monospace;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
         }
 
         .version-badge {
@@ -66,65 +66,136 @@
         }
 
         .container {
-            max-width: 1600px;
+            max-width: 1800px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 1.5rem;
         }
 
-        .control-panel {
+        .advanced-controls {
+            background: rgba(255, 68, 68, 0.08);
+            border: 1px solid #ff4444;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .controls-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
-            padding: 1rem;
-            background: rgba(255, 68, 68, 0.1);
-            border: 1px solid #ff4444;
-            border-radius: 10px;
+            margin-bottom: 1.5rem;
         }
 
-        .filter-section {
+        .controls-title {
+            color: #ff4444;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #00ff41;
+            font-size: 0.9rem;
+        }
+
+        .live-dot {
+            width: 8px;
+            height: 8px;
+            background: #00ff41;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-label {
+            color: #ff6666;
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .filter-select, .search-input {
+            background: rgba(0, 0, 0, 0.8);
+            border: 1px solid #ff4444;
+            color: #00ff41;
+            padding: 0.6rem;
+            border-radius: 6px;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .search-input {
+            border-color: #ffd700;
+        }
+
+        .search-input:focus, .filter-select:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
+        }
+
+        .action-buttons {
             display: flex;
             gap: 1rem;
             align-items: center;
         }
 
-        .filter-label {
-            color: #ff6666;
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
-
-        .filter-select {
-            background: rgba(0, 0, 0, 0.8);
-            border: 1px solid #ff4444;
-            color: #00ff41;
-            padding: 0.5rem;
-            border-radius: 5px;
+        .action-btn {
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid #ffd700;
+            color: #ffd700;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
             font-family: 'Share Tech Mono', monospace;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .stats-overview {
+        .action-btn:hover {
+            background: rgba(255, 215, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .dashboard-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
             gap: 2rem;
             margin-bottom: 2rem;
         }
 
-        .metrics-grid {
+        .metrics-section {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 1rem;
         }
 
         .metric-card {
             background: rgba(255, 68, 68, 0.1);
             border: 1px solid #ff4444;
-            padding: 1.5rem;
+            padding: 1.2rem;
             border-radius: 10px;
             backdrop-filter: blur(15px);
             transition: all 0.3s ease;
             position: relative;
-            overflow: hidden;
         }
 
         .metric-card.critical {
@@ -135,11 +206,11 @@
 
         @keyframes criticalPulse {
             0%, 100% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
-            50% { box-shadow: 0 0 30px rgba(255, 0, 0, 0.8); }
+            50% { box-shadow: 0 0 25px rgba(255, 0, 0, 0.8); }
         }
 
         .metric-title {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: #ff6666;
             margin-bottom: 0.5rem;
             text-transform: uppercase;
@@ -147,28 +218,27 @@
         }
 
         .metric-value {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
             text-shadow: 0 0 10px currentColor;
         }
 
         .metric-details {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             color: #ffcccc;
         }
 
-        .threat-map-container {
-            background: rgba(255, 68, 68, 0.1);
+        .analytics-panel {
+            background: rgba(255, 68, 68, 0.08);
             border: 1px solid #ff4444;
+            border-radius: 12px;
             padding: 1.5rem;
-            border-radius: 10px;
-            backdrop-filter: blur(15px);
         }
 
-        .map-title {
+        .analytics-title {
             color: #ff4444;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 1rem;
             text-align: center;
             font-weight: bold;
@@ -176,19 +246,21 @@
 
         .threat-map {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 0.8rem;
-            max-height: 300px;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 0.6rem;
+            max-height: 250px;
             overflow-y: auto;
+            margin-bottom: 1rem;
         }
 
         .country-threat {
             background: rgba(0, 0, 0, 0.6);
             border: 1px solid #ff6666;
-            padding: 0.8rem;
-            border-radius: 8px;
+            padding: 0.6rem;
+            border-radius: 6px;
             text-align: center;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .country-threat:hover {
@@ -197,89 +269,167 @@
         }
 
         .country-code {
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: bold;
             color: #ff4444;
         }
 
         .threat-count {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             color: #ffcccc;
-            margin-top: 0.2rem;
         }
 
-        .top-threats-section {
-            margin: 2rem 0;
+        .trending-section {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 68, 68, 0.3);
         }
 
-        .section-title {
-            font-size: 1.8rem;
-            color: #ff4444;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #ff4444;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .top-threats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .top-threat-card {
-            background: rgba(255, 0, 0, 0.1);
-            border: 2px solid #ff0000;
-            padding: 1.5rem;
-            border-radius: 10px;
-            animation: criticalAlert 3s infinite;
-        }
-
-        @keyframes criticalAlert {
-            0%, 100% { border-color: #ff0000; }
-            50% { border-color: #ff6666; }
-        }
-
-        .threat-title-top {
-            font-size: 1.1rem;
-            color: #ff4444;
+        .trending-title {
+            color: #ffd700;
+            font-size: 0.9rem;
             margin-bottom: 0.8rem;
             font-weight: bold;
         }
 
-        .threat-family {
-            background: rgba(255, 68, 68, 0.3);
-            color: #fff;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            display: inline-block;
+        .trending-item {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            padding: 0.8rem;
+            border-radius: 6px;
             margin-bottom: 0.5rem;
+            font-size: 0.8rem;
         }
 
-        .threat-analysis-preview {
-            font-size: 0.9rem;
+        .trending-title-text {
+            color: #ffd700;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+
+        .trending-details {
+            color: #ffec8c;
+        }
+
+        .critical-alerts {
+            margin: 2rem 0;
+        }
+
+        .alerts-title {
+            font-size: 1.6rem;
+            color: #ff0000;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            animation: criticalBlink 2s infinite;
+        }
+
+        @keyframes criticalBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .alerts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .critical-alert-card {
+            background: rgba(255, 0, 0, 0.12);
+            border: 2px solid #ff0000;
+            padding: 1.5rem;
+            border-radius: 10px;
+            animation: criticalCardPulse 3s infinite;
+        }
+
+        @keyframes criticalCardPulse {
+            0%, 100% { border-color: #ff0000; }
+            50% { border-color: #ff6666; }
+        }
+
+        .alert-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .alert-title {
+            font-size: 1.1rem;
+            color: #ff4444;
+            font-weight: bold;
+            line-height: 1.3;
+        }
+
+        .alert-risk-score {
+            background: rgba(255, 0, 0, 0.8);
+            color: #fff;
+            padding: 0.3rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .alert-analysis {
             color: #ffcccc;
+            font-size: 0.9rem;
             line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .alert-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.8rem;
+            font-size: 0.8rem;
+        }
+
+        .alert-detail-item {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+
+        .alert-detail-label {
+            color: #ff6666;
+            font-weight: bold;
+            margin-bottom: 0.2rem;
         }
 
         .intelligence-section {
             margin-top: 3rem;
         }
 
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid #ff4444;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #ff4444;
+        }
+
+        .section-stats {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.9rem;
+        }
+
         .threat-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .threat-card {
             background: rgba(0, 0, 0, 0.85);
             border: 1px solid #ff4444;
-            padding: 2rem;
+            padding: 1.8rem;
             border-radius: 12px;
             transition: all 0.3s ease;
             position: relative;
@@ -288,8 +438,8 @@
 
         .threat-card:hover {
             background: rgba(255, 68, 68, 0.05);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 68, 68, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 68, 68, 0.2);
         }
 
         .threat-card.critical-threat {
@@ -304,20 +454,20 @@
 
         .threat-badges {
             position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
+            top: 1.2rem;
+            right: 1.2rem;
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 0.4rem;
         }
 
         .threat-badge {
-            padding: 0.3rem 0.8rem;
-            border-radius: 12px;
-            font-size: 0.7rem;
+            padding: 0.25rem 0.6rem;
+            border-radius: 10px;
+            font-size: 0.65rem;
             font-weight: bold;
             text-align: center;
-            min-width: 70px;
+            min-width: 60px;
         }
 
         .threat-badge.critical {
@@ -341,15 +491,15 @@
         }
 
         .threat-header {
-            margin-bottom: 1.5rem;
-            padding-right: 5rem;
+            margin-bottom: 1.2rem;
+            padding-right: 4rem;
         }
 
         .threat-title {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
+            font-size: 1.15rem;
+            margin-bottom: 0.8rem;
             color: #ffffff;
-            line-height: 1.4;
+            line-height: 1.3;
         }
 
         .critical-link {
@@ -360,21 +510,21 @@
 
         .critical-link:hover {
             color: #ff6666;
-            text-shadow: 0 0 10px #ff4444;
+            text-shadow: 0 0 8px #ff4444;
         }
 
         .threat-summary {
             color: #cccccc;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1.2rem;
+            font-size: 0.9rem;
         }
 
         .threat-meta {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.8rem;
+            margin-bottom: 1.2rem;
             padding: 1rem;
             background: rgba(0, 0, 0, 0.3);
             border-radius: 8px;
@@ -384,18 +534,18 @@
         .meta-item {
             display: flex;
             flex-direction: column;
-            gap: 0.3rem;
+            gap: 0.2rem;
         }
 
         .meta-label {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: #ff6666;
             text-transform: uppercase;
             font-weight: bold;
         }
 
         .meta-value {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: #ffffff;
         }
 
@@ -414,51 +564,51 @@
             background: rgba(255, 215, 0, 0.08);
             border: 1px solid #ffd700;
             border-radius: 10px;
-            padding: 1.5rem;
-            margin-top: 1.5rem;
+            padding: 1.2rem;
+            margin-top: 1.2rem;
         }
 
         .analysis-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .analysis-label {
             color: #ffd700;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: bold;
         }
 
         .analysis-text {
             color: #ffec8c;
-            font-size: 0.95rem;
-            line-height: 1.6;
+            font-size: 0.9rem;
+            line-height: 1.5;
             margin-bottom: 1rem;
         }
 
-        .technical-details {
+        .technical-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            font-size: 0.85rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.8rem;
+            font-size: 0.8rem;
         }
 
-        .detail-item {
+        .tech-detail {
             background: rgba(0, 0, 0, 0.3);
-            padding: 0.8rem;
+            padding: 0.6rem;
             border-radius: 6px;
             border: 1px solid rgba(255, 215, 0, 0.2);
         }
 
-        .detail-label {
+        .tech-label {
             color: #ffd700;
             font-weight: bold;
             margin-bottom: 0.3rem;
         }
 
-        .detail-value {
+        .tech-value {
             color: #ffec8c;
         }
 
@@ -486,12 +636,13 @@
             right: 0;
             background: rgba(0, 0, 0, 0.95);
             border-top: 2px solid #ff4444;
-            padding: 1rem;
-            font-size: 0.9rem;
+            padding: 0.8rem 1rem;
+            font-size: 0.8rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             backdrop-filter: blur(10px);
+            z-index: 1000;
         }
 
         .status-item {
@@ -505,22 +656,73 @@
             text-decoration: none;
         }
 
+        .export-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid #ffd700;
+            border-radius: 6px;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            z-index: 100;
+        }
+
+        .export-item {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: #ffd700;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .export-item:hover {
+            background: rgba(255, 215, 0, 0.2);
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .action-btn {
+                width: 100%;
+            }
+        }
+
         @media (max-width: 768px) {
             .title {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
             
-            .control-panel {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .stats-overview {
-                grid-template-columns: 1fr;
+            .metrics-section {
+                grid-template-columns: repeat(2, 1fr);
             }
             
             .threat-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .status-bar {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 1rem;
             }
         }
     </style>
@@ -606,20 +808,33 @@
             return <canvas ref={canvasRef} className="matrix-bg" />;
         }
 
-        function EnhancedThreatDashboard() {
+        function AdvancedThreatDashboard() {
             const [threatData, setThreatData] = useState([]);
             const [metrics, setMetrics] = useState({});
             const [loading, setLoading] = useState(true);
+            const [searchTerm, setSearchTerm] = useState('');
             const [filterLevel, setFilterLevel] = useState('ALL');
             const [filterRegion, setFilterRegion] = useState('ALL');
+            const [filterFamily, setFilterFamily] = useState('ALL');
+            const [sortBy, setSortBy] = useState('timestamp');
+            const [showExportMenu, setShowExportMenu] = useState(false);
+
+            // Comprehensive region list including Australia
+            const regions = [
+                'ALL', 'GLOBAL', 'US', 'CA', 'AU', 'NZ', 'CN', 'JP', 'KR', 'SG',
+                'IN', 'TH', 'VN', 'PH', 'MY', 'ID', 'TW', 'HK', 'GB', 'DE', 'FR',
+                'IT', 'ES', 'NL', 'BE', 'SE', 'NO', 'DK', 'FI', 'PL', 'UA', 'CH',
+                'AT', 'IL', 'SA', 'AE', 'TR', 'IR', 'EG', 'ZA', 'NG', 'RU', 'KP',
+                'BR', 'AR', 'EU', 'APAC', 'ME', 'AF', 'LATAM'
+            ];
 
             useEffect(() => {
-                loadEnhancedIntelligence();
-                const interval = setInterval(loadEnhancedIntelligence, 300000);
+                loadAdvancedIntelligence();
+                const interval = setInterval(loadAdvancedIntelligence, 180000); // 3 minutes
                 return () => clearInterval(interval);
             }, []);
 
-            async function loadEnhancedIntelligence() {
+            async function loadAdvancedIntelligence() {
                 try {
                     const response = await fetch('./data/news-analysis.json?t=' + Date.now());
                     
@@ -632,7 +847,7 @@
                         throw new Error(`Failed to load: ${response.status}`);
                     }
                 } catch (error) {
-                    console.error('Intelligence loading error:', error);
+                    console.error('Advanced intelligence loading error:', error);
                     setThreatData([]);
                     setMetrics({ intelligence_confidence: 0, global_threat_level: 'OFFLINE' });
                 } finally {
@@ -643,6 +858,7 @@
             function updateStatusIndicators(metricsData) {
                 const intelStatus = document.getElementById('intelStatus');
                 const threatLevel = document.getElementById('threatLevel');
+                const lastUpdate = document.getElementById('lastUpdate');
                 
                 if (intelStatus) {
                     const total = metricsData?.total_threats || 0;
@@ -655,15 +871,30 @@
                     const conf = metricsData?.intelligence_confidence || 0;
                     threatLevel.textContent = `THREAT LEVEL: ${level} (${conf}% CONFIDENCE)`;
                 }
+                
+                if (lastUpdate) {
+                    lastUpdate.textContent = new Date().toLocaleString();
+                }
             }
 
-            function getFilteredThreats() {
+            function getFilteredAndSortedThreats() {
                 let filtered = threatData;
                 
+                // Search filter
+                if (searchTerm) {
+                    filtered = filtered.filter(threat => 
+                        threat.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        threat.summary.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        threat.threat_family?.toLowerCase().includes(searchTerm.toLowerCase())
+                    );
+                }
+                
+                // Level filter
                 if (filterLevel !== 'ALL') {
                     filtered = filtered.filter(threat => threat.threat_level === filterLevel);
                 }
                 
+                // Region filter
                 if (filterRegion !== 'ALL') {
                     filtered = filtered.filter(threat => 
                         threat.country_code === filterRegion || 
@@ -671,50 +902,140 @@
                     );
                 }
                 
+                // Family filter
+                if (filterFamily !== 'ALL') {
+                    filtered = filtered.filter(threat => threat.threat_family === filterFamily);
+                }
+                
+                // Sort
+                filtered.sort((a, b) => {
+                    switch (sortBy) {
+                        case 'risk':
+                            return (b.risk_score || 0) - (a.risk_score || 0);
+                        case 'level':
+                            const levelOrder = { 'CRITICAL': 4, 'HIGH': 3, 'MEDIUM': 2, 'LOW': 1 };
+                            return levelOrder[b.threat_level] - levelOrder[a.threat_level];
+                        case 'timestamp':
+                        default:
+                            return new Date(b.timestamp || 0) - new Date(a.timestamp || 0);
+                    }
+                });
+                
                 return filtered;
+            }
+
+            function getThreatFamilies() {
+                const families = [...new Set(threatData.map(t => t.threat_family).filter(Boolean))];
+                return ['ALL', ...families.sort()];
+            }
+
+            function exportData(format) {
+                const filtered = getFilteredAndSortedThreats();
+                const timestamp = new Date().toISOString().split('T')[0];
+                
+                if (format === 'json') {
+                    const data = JSON.stringify({ threats: filtered, metrics, exported: new Date() }, null, 2);
+                    downloadFile(data, `patriots-protocol-${timestamp}.json`, 'application/json');
+                } else if (format === 'csv') {
+                    const headers = ['Title', 'Threat Level', 'Risk Score', 'Family', 'Source', 'Geographic Scope'];
+                    const rows = filtered.map(t => [
+                        t.title, t.threat_level, t.risk_score || 0, t.threat_family || '', 
+                        t.source, t.geographic_scope || ''
+                    ]);
+                    const csv = [headers, ...rows].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
+                    downloadFile(csv, `patriots-protocol-${timestamp}.csv`, 'text/csv');
+                }
+                setShowExportMenu(false);
+            }
+
+            function downloadFile(content, filename, contentType) {
+                const blob = new Blob([content], { type: contentType });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = filename;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
             }
 
             function renderThreatMap() {
                 const geoDistribution = metrics.geographic_distribution || {};
                 
                 return (
-                    <div className="threat-map-container">
-                        <div className="map-title">🌍 GLOBAL THREAT DISTRIBUTION</div>
+                    <div className="analytics-panel">
+                        <div className="analytics-title">🌍 GLOBAL THREAT DISTRIBUTION</div>
                         <div className="threat-map">
-                            {Object.entries(geoDistribution).map(([country, count]) => (
-                                <div key={country} className="country-threat">
+                            {Object.entries(geoDistribution)
+                                .sort(([,a], [,b]) => b - a)
+                                .map(([country, count]) => (
+                                <div key={country} className="country-threat"
+                                     onClick={() => setFilterRegion(country)}>
                                     <div className="country-code">{country}</div>
                                     <div className="threat-count">{count} threats</div>
                                 </div>
                             ))}
                         </div>
+                        
+                        {metrics.trending_threats && metrics.trending_threats.length > 0 && (
+                            <div className="trending-section">
+                                <div className="trending-title">📈 TRENDING THREATS</div>
+                                {metrics.trending_threats.slice(0, 3).map((trend, index) => (
+                                    <div key={index} className="trending-item">
+                                        <div className="trending-title-text">{trend.title?.substring(0, 60)}...</div>
+                                        <div className="trending-details">
+                                            Risk: {trend.risk_score}/10 | {trend.threat_family}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 );
             }
 
-            function renderTopThreats() {
-                const criticalThreats = threatData.filter(t => t.threat_level === 'CRITICAL').slice(0, 3);
+            function renderCriticalAlerts() {
+                const criticalThreats = threatData.filter(t => t.threat_level === 'CRITICAL').slice(0, 4);
                 
                 if (criticalThreats.length === 0) return null;
                 
                 return (
-                    <div className="top-threats-section">
-                        <div className="section-title">
-                            🚨 CRITICAL THREATS REQUIRING IMMEDIATE ATTENTION
-                        </div>
-                        <div className="top-threats-grid">
+                    <div className="critical-alerts">
+                        <div className="alerts-title">🚨 CRITICAL THREATS REQUIRING IMMEDIATE ATTENTION</div>
+                        <div className="alerts-grid">
                             {criticalThreats.map((threat, index) => (
-                                <div key={index} className="top-threat-card">
-                                    <div className="threat-family">{threat.threat_family || 'Critical Threat'}</div>
-                                    <div className="threat-title-top">
-                                        {threat.source_url ? (
-                                            <a href={threat.source_url} target="_blank" rel="noopener noreferrer" className="critical-link">
-                                                🚨 {threat.title}
-                                            </a>
-                                        ) : threat.title}
+                                <div key={index} className="critical-alert-card">
+                                    <div className="alert-header">
+                                        <div className="alert-title">
+                                            {threat.source_url ? (
+                                                <a href={threat.source_url} target="_blank" rel="noopener noreferrer" className="critical-link">
+                                                    🚨 {threat.title}
+                                                </a>
+                                            ) : threat.title}
+                                        </div>
+                                        <div className="alert-risk-score">RISK {threat.risk_score || 9}/10</div>
                                     </div>
-                                    <div className="threat-analysis-preview">
-                                        {threat.ai_technical_analysis || 'Technical analysis in progress...'}
+                                    <div className="alert-analysis">
+                                        {threat.ai_technical_analysis || 'Critical threat requiring immediate assessment'}
+                                    </div>
+                                    <div className="alert-details">
+                                        <div className="alert-detail-item">
+                                            <div className="alert-detail-label">FAMILY</div>
+                                            <div>{threat.threat_family}</div>
+                                        </div>
+                                        <div className="alert-detail-item">
+                                            <div className="alert-detail-label">TIMELINE</div>
+                                            <div>{threat.attack_timeline || 'immediate'}</div>
+                                        </div>
+                                        <div className="alert-detail-item">
+                                            <div className="alert-detail-label">PRIORITY</div>
+                                            <div>{threat.mitigation_priority || 'IMMEDIATE'}</div>
+                                        </div>
+                                        <div className="alert-detail-item">
+                                            <div className="alert-detail-label">SCOPE</div>
+                                            <div>{threat.geographic_scope}</div>
+                                        </div>
                                     </div>
                                 </div>
                             ))}
@@ -723,15 +1044,10 @@
                 );
             }
 
-            function getThreatCardClass(threatLevel) {
-                const baseClass = 'threat-card';
-                if (threatLevel === 'CRITICAL') return `${baseClass} critical-threat`;
-                if (threatLevel === 'HIGH') return `${baseClass} high-threat`;
-                return baseClass;
-            }
-
             function renderTechnicalAnalysis(threat) {
-                if (!threat.ai_technical_analysis || threat.ai_technical_analysis === 'Technical analysis pending') {
+                if (!threat.ai_technical_analysis || 
+                    threat.ai_technical_analysis.includes('Technical analysis in progress') ||
+                    threat.ai_technical_analysis.includes('requiring medium defensive measures')) {
                     return null;
                 }
 
@@ -746,32 +1062,46 @@
                             {threat.ai_technical_analysis}
                         </div>
                         
-                        <div className="technical-details">
+                        <div className="technical-grid">
                             {threat.cve_references && threat.cve_references.length > 0 && (
-                                <div className="detail-item">
-                                    <div className="detail-label">CVE References</div>
-                                    <div className="detail-value">{threat.cve_references.join(', ')}</div>
+                                <div className="tech-detail">
+                                    <div className="tech-label">CVE References</div>
+                                    <div className="tech-value">{threat.cve_references.join(', ')}</div>
                                 </div>
                             )}
                             
                             {threat.attack_vectors && threat.attack_vectors.length > 0 && (
-                                <div className="detail-item">
-                                    <div className="detail-label">Attack Vectors</div>
-                                    <div className="detail-value">{threat.attack_vectors.join(', ')}</div>
+                                <div className="tech-detail">
+                                    <div className="tech-label">Attack Vectors</div>
+                                    <div className="tech-value">{threat.attack_vectors.join(', ')}</div>
                                 </div>
                             )}
                             
-                            {threat.threat_family && (
-                                <div className="detail-item">
-                                    <div className="detail-label">Threat Family</div>
-                                    <div className="detail-value">{threat.threat_family}</div>
+                            {threat.threat_family && threat.threat_family !== 'Unknown Threat' && (
+                                <div className="tech-detail">
+                                    <div className="tech-label">Threat Family</div>
+                                    <div className="tech-value">{threat.threat_family}</div>
+                                </div>
+                            )}
+                            
+                            {threat.risk_score && (
+                                <div className="tech-detail">
+                                    <div className="tech-label">Risk Score</div>
+                                    <div className="tech-value">{threat.risk_score}/10</div>
+                                </div>
+                            )}
+                            
+                            {threat.attack_timeline && (
+                                <div className="tech-detail">
+                                    <div className="tech-label">Timeline</div>
+                                    <div className="tech-value">{threat.attack_timeline}</div>
                                 </div>
                             )}
                             
                             {threat.mitigation_priority && (
-                                <div className="detail-item">
-                                    <div className="detail-label">Priority</div>
-                                    <div className="detail-value">{threat.mitigation_priority}</div>
+                                <div className="tech-detail">
+                                    <div className="tech-label">Priority</div>
+                                    <div className="tech-value">{threat.mitigation_priority}</div>
                                 </div>
                             )}
                         </div>
@@ -783,7 +1113,7 @@
                 return (
                     <div className="container">
                         <div className="loading">
-                            🎖️ PATRIOTS PROTOCOL ENHANCED INTELLIGENCE LOADING...
+                            🎖️ PATRIOTS PROTOCOL ADVANCED INTELLIGENCE LOADING...
                         </div>
                     </div>
                 );
@@ -799,45 +1129,123 @@
                 );
             }
 
-            const filteredThreats = getFilteredThreats();
+            const filteredThreats = getFilteredAndSortedThreats();
+            const threatFamilies = getThreatFamilies();
 
             return (
                 <div className="container">
-                    <div className="control-panel">
-                        <div className="filter-section">
-                            <span className="filter-label">FILTER BY THREAT LEVEL:</span>
-                            <select 
-                                className="filter-select" 
-                                value={filterLevel} 
-                                onChange={(e) => setFilterLevel(e.target.value)}
-                            >
-                                <option value="ALL">ALL THREATS</option>
-                                <option value="CRITICAL">CRITICAL</option>
-                                <option value="HIGH">HIGH</option>
-                                <option value="MEDIUM">MEDIUM</option>
-                                <option value="LOW">LOW</option>
-                            </select>
+                    <div className="advanced-controls">
+                        <div className="controls-header">
+                            <div className="controls-title">🎯 ADVANCED THREAT INTELLIGENCE CONTROLS</div>
+                            <div className="live-indicator">
+                                <div className="live-dot"></div>
+                                LIVE MONITORING
+                            </div>
                         </div>
                         
-                        <div className="filter-section">
-                            <span className="filter-label">FILTER BY REGION:</span>
-                            <select 
-                                className="filter-select" 
-                                value={filterRegion} 
-                                onChange={(e) => setFilterRegion(e.target.value)}
-                            >
-                                <option value="ALL">ALL REGIONS</option>
-                                <option value="US">UNITED STATES</option>
-                                <option value="GLOBAL">GLOBAL</option>
-                                <option value="EU">EUROPE</option>
-                                <option value="CN">CHINA</option>
-                                <option value="RU">RUSSIA</option>
-                            </select>
+                        <div className="filter-grid">
+                            <div className="filter-group">
+                                <div className="filter-label">Search Threats</div>
+                                <input 
+                                    type="text" 
+                                    className="search-input"
+                                    placeholder="Search titles, families, CVEs..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                />
+                            </div>
+                            
+                            <div className="filter-group">
+                                <div className="filter-label">Threat Level</div>
+                                <select 
+                                    className="filter-select" 
+                                    value={filterLevel} 
+                                    onChange={(e) => setFilterLevel(e.target.value)}
+                                >
+                                    <option value="ALL">ALL THREATS</option>
+                                    <option value="CRITICAL">CRITICAL</option>
+                                    <option value="HIGH">HIGH</option>
+                                    <option value="MEDIUM">MEDIUM</option>
+                                    <option value="LOW">LOW</option>
+                                </select>
+                            </div>
+                            
+                            <div className="filter-group">
+                                <div className="filter-label">Geographic Region</div>
+                                <select 
+                                    className="filter-select" 
+                                    value={filterRegion} 
+                                    onChange={(e) => setFilterRegion(e.target.value)}
+                                >
+                                    {regions.map(region => (
+                                        <option key={region} value={region}>{region}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            
+                            <div className="filter-group">
+                                <div className="filter-label">Threat Family</div>
+                                <select 
+                                    className="filter-select" 
+                                    value={filterFamily} 
+                                    onChange={(e) => setFilterFamily(e.target.value)}
+                                >
+                                    {threatFamilies.map(family => (
+                                        <option key={family} value={family}>{family}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            
+                            <div className="filter-group">
+                                <div className="filter-label">Sort By</div>
+                                <select 
+                                    className="filter-select" 
+                                    value={sortBy} 
+                                    onChange={(e) => setSortBy(e.target.value)}
+                                >
+                                    <option value="timestamp">Latest First</option>
+                                    <option value="risk">Risk Score</option>
+                                    <option value="level">Threat Level</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div className="action-buttons">
+                            <button className="action-btn" onClick={() => loadAdvancedIntelligence()}>
+                                🔄 REFRESH
+                            </button>
+                            <div style={{position: 'relative'}}>
+                                <button 
+                                    className="action-btn" 
+                                    onClick={() => setShowExportMenu(!showExportMenu)}
+                                >
+                                    📊 EXPORT
+                                </button>
+                                {showExportMenu && (
+                                    <div className="export-menu">
+                                        <a className="export-item" onClick={() => exportData('json')}>
+                                            Export JSON
+                                        </a>
+                                        <a className="export-item" onClick={() => exportData('csv')}>
+                                            Export CSV
+                                        </a>
+                                    </div>
+                                )}
+                            </div>
+                            <button className="action-btn" onClick={() => {
+                                setSearchTerm('');
+                                setFilterLevel('ALL');
+                                setFilterRegion('ALL');
+                                setFilterFamily('ALL');
+                                setSortBy('timestamp');
+                            }}>
+                                🗑️ CLEAR
+                            </button>
                         </div>
                     </div>
 
-                    <div className="stats-overview">
-                        <div className="metrics-grid">
+                    <div className="dashboard-grid">
+                        <div className="metrics-section">
                             <div className={`metric-card ${metrics.global_threat_level === 'CRITICAL' ? 'critical' : ''}`}>
                                 <div className="metric-title">ACTIVE THREATS</div>
                                 <div className="metric-value">{metrics.total_threats || 0}</div>
@@ -861,26 +1269,48 @@
                                 <div className="metric-value">{metrics.sectors_under_threat || 0}</div>
                                 <div className="metric-details">Actors: {metrics.active_threat_actors || 0}</div>
                             </div>
+                            
+                            <div className="metric-card">
+                                <div className="metric-title">GEOGRAPHIC COVERAGE</div>
+                                <div className="metric-value">{Object.keys(metrics.geographic_distribution || {}).length}</div>
+                                <div className="metric-details">Regions monitored</div>
+                            </div>
+                            
+                            <div className="metric-card">
+                                <div className="metric-title">THREAT FAMILIES</div>
+                                <div className="metric-value">{metrics.top_threat_families?.length || 0}</div>
+                                <div className="metric-details">Active families</div>
+                            </div>
                         </div>
 
                         {renderThreatMap()}
                     </div>
 
-                    {renderTopThreats()}
+                    {renderCriticalAlerts()}
 
                     <div className="intelligence-section">
-                        <div className="section-title">
-                            🎖️ THREAT INTELLIGENCE REPORTS
-                            <span>Showing {filteredThreats.length} of {threatData.length} threats</span>
+                        <div className="section-header">
+                            <div className="section-title">🎖️ THREAT INTELLIGENCE REPORTS</div>
+                            <div className="section-stats">
+                                <span>Showing {filteredThreats.length} of {threatData.length} threats</span>
+                                <span>Filter: {filterLevel !== 'ALL' ? filterLevel : 'All Levels'}</span>
+                                <span>Region: {filterRegion !== 'ALL' ? filterRegion : 'Global'}</span>
+                            </div>
                         </div>
                         
                         <div className="threat-grid">
                             {filteredThreats.map((threat, index) => (
-                                <div key={index} className={getThreatCardClass(threat.threat_level)}>
+                                <div key={index} className={`threat-card ${
+                                    threat.threat_level === 'CRITICAL' ? 'critical-threat' : 
+                                    threat.threat_level === 'HIGH' ? 'high-threat' : ''
+                                }`}>
                                     <div className="threat-badges">
                                         <span className={`threat-badge ${threat.threat_level?.toLowerCase() || 'medium'}`}>
                                             {threat.threat_level || 'MEDIUM'}
                                         </span>
+                                        {threat.risk_score >= 8 && (
+                                            <span className="threat-badge critical">HIGH RISK</span>
+                                        )}
                                     </div>
                                     
                                     <div className="threat-header">
@@ -915,6 +1345,16 @@
                                         </div>
                                         
                                         <div className="meta-item">
+                                            <div className="meta-label">FAMILY</div>
+                                            <div className="meta-value">{threat.threat_family || 'Unknown'}</div>
+                                        </div>
+                                        
+                                        <div className="meta-item">
+                                            <div className="meta-label">RISK SCORE</div>
+                                            <div className="meta-value">{threat.risk_score || 5}/10</div>
+                                        </div>
+                                        
+                                        <div className="meta-item">
                                             <div className="meta-label">GEOGRAPHIC SCOPE</div>
                                             <div className="meta-value">{threat.geographic_scope || 'Global'}</div>
                                         </div>
@@ -937,7 +1377,7 @@
         ReactDOM.render(
             <>
                 <MatrixBackground />
-                <EnhancedThreatDashboard />
+                <AdvancedThreatDashboard />
             </>,
             document.getElementById('app')
         );
