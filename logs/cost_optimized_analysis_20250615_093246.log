@@ -1,0 +1,34 @@
+🎖️  2025-06-15 09:32:46 UTC - PATRIOTS PROTOCOL v4.0 - INFO - 🎖️  PATRIOTS PROTOCOL v4.0 - Cost-Optimized Cyber Intelligence System Starting...
+🎖️  2025-06-15 09:32:46 UTC - PATRIOTS PROTOCOL v4.0 - INFO - 📅 Mission Start: 2025-06-15T09:32:46.761297+00:00
+🎖️  2025-06-15 09:32:46 UTC - PATRIOTS PROTOCOL v4.0 - INFO - 🚀 Patriots Protocol Cost-Optimized Cyber Intelligence System v4.0 initialized
+🎖️  2025-06-15 09:32:46 UTC - PATRIOTS PROTOCOL v4.0 - INFO - 💰 Max API calls per run: 8
+🎖️  2025-06-15 09:32:46 UTC - PATRIOTS PROTOCOL v4.0 - INFO - 🗂️  Data retention: 6 days
+🎖️  2025-06-15 09:32:46 UTC - PATRIOTS PROTOCOL v4.0 - INFO - 🛡️  Security directories created
+🎖️  2025-06-15 09:32:46 UTC - PATRIOTS PROTOCOL v4.0 - INFO - 🧹 Starting data cleanup - retention: 6 days
+🎖️  2025-06-15 09:32:46 UTC - PATRIOTS PROTOCOL v4.0 - INFO - ✅ Cleanup complete: 0 files removed, 0.00 MB freed
+🎖️  2025-06-15 09:32:46 UTC - PATRIOTS PROTOCOL v4.0 - INFO - 🔍 Fetching from CYBERSECURITY_INTEL (Priority: 1)...
+🎖️  2025-06-15 09:32:46 UTC - PATRIOTS PROTOCOL v4.0 - INFO - 📊 CYBERSECURITY_INTEL: 0 fresh cyber articles collected
+🎖️  2025-06-15 09:32:46 UTC - PATRIOTS PROTOCOL v4.0 - INFO - 🔍 Fetching from KREBS_SECURITY (Priority: 1)...
+🎖️  2025-06-15 09:32:47 UTC - PATRIOTS PROTOCOL v4.0 - INFO - 📊 KREBS_SECURITY: 0 fresh cyber articles collected
+🎖️  2025-06-15 09:32:47 UTC - PATRIOTS PROTOCOL v4.0 - INFO - 🔍 Fetching from DARK_READING (Priority: 2)...
+🎖️  2025-06-15 09:32:47 UTC - PATRIOTS PROTOCOL v4.0 - WARNING - ⚠️  DARK_READING returned 403
+🎖️  2025-06-15 09:32:47 UTC - PATRIOTS PROTOCOL v4.0 - INFO - 🔍 Fetching from BLEEPING_COMPUTER (Priority: 2)...
+🎖️  2025-06-15 09:32:47 UTC - PATRIOTS PROTOCOL v4.0 - INFO - 📊 BLEEPING_COMPUTER: 2 fresh cyber articles collected
+🎖️  2025-06-15 09:32:47 UTC - PATRIOTS PROTOCOL v4.0 - INFO - 📊 Collected 2 optimized cyber intelligence articles
+🎖️  2025-06-15 09:32:47 UTC - PATRIOTS PROTOCOL v4.0 - INFO - 🔍 Processing batch 1: 2 articles
+🎖️  2025-06-15 09:32:48 UTC - PATRIOTS PROTOCOL v4.0 - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:32:48 UTC - PATRIOTS PROTOCOL v4.0 - INFO - Retrying request to /chat/completions in 0.413879 seconds
+🎖️  2025-06-15 09:32:49 UTC - PATRIOTS PROTOCOL v4.0 - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:32:49 UTC - PATRIOTS PROTOCOL v4.0 - INFO - Retrying request to /chat/completions in 0.811533 seconds
+🎖️  2025-06-15 09:32:50 UTC - PATRIOTS PROTOCOL v4.0 - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:32:50 UTC - PATRIOTS PROTOCOL v4.0 - ERROR - ❌ Batch AI request failed: Error code: 429 - {'error': {'code': 'RateLimitReached', 'message': 'Rate limit of 150 per 86400s exceeded for UserByModelByDay. Please wait 18098 seconds before retrying.', 'details': 'Rate limit of 150 per 86400s exceeded for UserByModelByDay. Please wait 18098 seconds before retrying.'}}
+🎖️  2025-06-15 09:32:50 UTC - PATRIOTS PROTOCOL v4.0 - INFO - ⚠️  No AI result for article 0 in batch
+🎖️  2025-06-15 09:32:50 UTC - PATRIOTS PROTOCOL v4.0 - INFO - ⚠️  No AI result for article 1 in batch
+🎖️  2025-06-15 09:32:52 UTC - PATRIOTS PROTOCOL v4.0 - INFO - 📊 Batch processing complete: 0 reports generated from 0 API calls
+🎖️  2025-06-15 09:32:52 UTC - PATRIOTS PROTOCOL v4.0 - INFO - 💾 Data saved: 934 bytes, compressed: 574 bytes (38.5% reduction)
+🎖️  2025-06-15 09:32:52 UTC - PATRIOTS PROTOCOL v4.0 - INFO - ✅ Patriots Protocol Cost-Optimized Mission Complete
+🎖️  2025-06-15 09:32:52 UTC - PATRIOTS PROTOCOL v4.0 - INFO - 💰 API Calls Used: 0/8
+🎖️  2025-06-15 09:32:52 UTC - PATRIOTS PROTOCOL v4.0 - INFO - 💰 Estimated Cost: $0.0000
+🎖️  2025-06-15 09:32:52 UTC - PATRIOTS PROTOCOL v4.0 - INFO - 📊 Reports Generated: 0
+🎖️  2025-06-15 09:32:52 UTC - PATRIOTS PROTOCOL v4.0 - INFO - 🧹 Files Cleaned: 0
+🎖️  2025-06-15 09:32:52 UTC - PATRIOTS PROTOCOL v4.0 - INFO - 💾 Space Saved: 0.00 MB
