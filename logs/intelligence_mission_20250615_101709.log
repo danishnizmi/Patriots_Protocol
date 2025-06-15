@@ -1,0 +1,57 @@
+🎖️  2025-06-15 10:17:09 UTC - PATRIOTS - INFO - 🎖️ PATRIOTS PROTOCOL - Intelligence Mission Initiated
+🎖️  2025-06-15 10:17:09 UTC - PATRIOTS - INFO - 🎖️ Patriots Protocol Intelligence Engine v4.0 - Operational
+🎖️  2025-06-15 10:17:09 UTC - PATRIOTS - INFO - 🔍 Collecting from CISA_ADVISORIES...
+🎖️  2025-06-15 10:17:10 UTC - PATRIOTS - WARNING - ⚠️ CISA_ADVISORIES returned status 404
+🎖️  2025-06-15 10:17:11 UTC - PATRIOTS - INFO - 🔍 Collecting from KREBS_SECURITY...
+🎖️  2025-06-15 10:17:11 UTC - PATRIOTS - INFO - 📊 KREBS_SECURITY: 8 reports collected
+🎖️  2025-06-15 10:17:12 UTC - PATRIOTS - INFO - 🔍 Collecting from SANS_ISC...
+🎖️  2025-06-15 10:17:13 UTC - PATRIOTS - INFO - 📊 SANS_ISC: 3 reports collected
+🎖️  2025-06-15 10:17:14 UTC - PATRIOTS - INFO - 🔍 Collecting from BLEEPING_COMPUTER...
+🎖️  2025-06-15 10:17:14 UTC - PATRIOTS - INFO - 📊 BLEEPING_COMPUTER: 7 reports collected
+🎖️  2025-06-15 10:17:15 UTC - PATRIOTS - INFO - 🔍 Collecting from THREAT_POST...
+🎖️  2025-06-15 10:17:16 UTC - PATRIOTS - INFO - 📊 THREAT_POST: 8 reports collected
+🎖️  2025-06-15 10:17:17 UTC - PATRIOTS - INFO - 🔍 Collecting from CYBER_SCOOP...
+🎖️  2025-06-15 10:17:17 UTC - PATRIOTS - INFO - 📊 CYBER_SCOOP: 10 reports collected
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - 🎯 Total Intelligence Collected: 36 reports
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - 🔄 Intelligence Deduplication: 36 → 35 unique reports
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Inside a Dark Adtech Empire Fed by Fake CAPTCHAs... (Level: HIGH)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Patch Tuesday, June 2025 Edition... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: U.S. Sanctions Cloud Provider ‘Funnull’ as Top Sou... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Pakistan Arrests 21 in ‘Heartsender’ Malware Servi... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Oops: DanaBot Malware Devs Infected Their Own PCs... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: KrebsOnSecurity Hit With Near-Record 6.3 Tbps DDoS... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Breachforums Boss to Pay $700k in Healthcare Breac... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: &#x5b;Guest Diary&#x5d; Anatomy of a Linux SSH Hon... (Level: HIGH)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Quasar RAT Delivered Through Bat Files, (Wed, Jun ... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Microsoft Patch Tuesday June 2025, (Tue, Jun 10th)... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: WestJet investigates cyberattack disrupting intern... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Anubis ransomware adds wiper to destroy files beyo... (Level: HIGH)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Discord flaw lets hackers reuse expired invites in... (Level: MEDIUM)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Victoria’s Secret restores critical systems after ... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Cloudflare: Outage not caused by security incident... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Trend Micro fixes critical vulnerabilities in mult... (Level: HIGH)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Graphite spyware used in Apple iOS zero-click atta... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Watering Hole Attacks Push ScanBox Keylogger... (Level: HIGH)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Tentacles of ‘0ktapus’ Threat Group Victimize 130 ... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Ransomware Attacks are on the Rise... (Level: HIGH)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Cybercriminals Are Selling Access to Chinese Surve... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Twitter Whistleblower Complaint: The TL;DR Version... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Firewall Bug Under Active Attack Triggers CISA War... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: iPhone Users Urged to Update to Patch 2 Zero-Days... (Level: CRITICAL)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Google Patches Chrome’s Fifth Zero-Day of the Year... (Level: CRITICAL)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Predator spyware activity surfaces in new places w... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Paragon spyware found on the phones of Euro journo... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Digital rights groups sound alarm on Stop CSAM Act... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Global law enforcement action in Asia nets large i... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Dems want watchdog study of two troubled federally... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: How Amazon Web Services uses AI to be a security ‘... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: Microsoft Patch Tuesday addresses 66 vulnerabiliti... (Level: CRITICAL)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: House Homeland Chairman Mark Green’s departure cou... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: United Natural Foods fulfilling orders on ‘limited... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Processed: House committee sets CISA budget cut at $135M, not... (Level: LOW)
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - 💾 Intelligence data saved: 35 reports, CRITICAL threat level
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ✅ Intelligence Mission Complete
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - 🎯 Threats Analyzed: 35
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - 🔥 Global Threat Level: CRITICAL
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - ⚠️ Critical Threats: 3
+🎖️  2025-06-15 10:17:18 UTC - PATRIOTS - INFO - 🎖️ Patriots Protocol Intelligence: OPERATIONAL
