@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
-PATRIOTS PROTOCOL - Professional AI Intelligence System v4.0
-Cyber Security Intelligence Network with Real-Time Analysis
+PATRIOTS PROTOCOL - Cost-Optimized Cyber Intelligence System v4.0
+Secure, Efficient AI-Driven Intelligence Network with Cost Management
 
-Enhanced system with premium cyber security feeds and detailed analysis.
+Enhanced system with API cost optimization, data lifecycle management,
+and security features.
 
 Source: PATRIOTS PROTOCOL - https://github.com/danishnizmi/Patriots_Protocol
 """
@@ -14,13 +15,16 @@ import asyncio
 import aiohttp
 import time
 import re
+import gzip
+import shutil
 from datetime import datetime, timezone, timedelta
-from typing import Dict, List, Any, Optional
+from typing import Dict, List, Any, Optional, Tuple
 from dataclasses import dataclass, asdict
 import feedparser
 import hashlib
 import logging
 from urllib.parse import urlparse, urljoin
+from pathlib import Path
 
 # Configure logging
 logging.basicConfig(
@@ -32,125 +36,93 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class IntelligenceReport:
-    """Professional Intelligence Report"""
+    """Optimized Intelligence Report"""
     title: str
-    full_summary: str
-    executive_summary: str
+    summary: str  # Reduced from full_summary to save space
     source: str
     source_url: str
-    source_credibility: float
     timestamp: str
     category: str
     ai_analysis: str
     confidence: float
     threat_level: str
-    strategic_importance: str
-    operational_impact: str
-    geo_relevance: List[str]
     keywords: List[str]
-    entities: List[str]
     priority_score: int
     content_hash: str
-    word_count: int
     reading_time: str
     intelligence_value: str
-    patriots_protocol_ref: str = "PATRIOTS PROTOCOL INTELLIGENCE NETWORK"
 
 @dataclass
 class IntelligenceMetrics:
-    """Professional Intelligence Metrics"""
+    """Optimized Intelligence Metrics"""
     total_articles: int
-    ai_analysis_complete: int
     threat_level: str
     system_status: str
-    average_article_length: int
-    total_word_count: int
-    average_reading_time: str
     high_value_intelligence: int
     critical_intelligence: int
-    actionable_intelligence: int
     emerging_threats: List[str]
     primary_regions: List[str]
-    source_diversity: int
-    credibility_average: float
-    primary_sources: List[str]
     ai_confidence: int
     processing_time: str
     api_status: str
-    strategic_assessment: str
-    intelligence_summary: str
-    threat_vector_analysis: str
-    last_analysis: str
-    last_update: str
+    api_calls_made: int  # Track API usage
+    cost_estimate: float  # Track estimated costs
+    last_cleanup: str
+    data_retention_days: int
     patriots_protocol_status: str = "PATRIOTS PROTOCOL OPERATIONAL"
 
-class PatriotsProtocolAI:
-    """Professional AI Intelligence Analysis System - Cyber Security Focus"""
+class CostOptimizedPatriotsAI:
+    """Cost-Optimized AI Intelligence Analysis System"""
     
     def __init__(self):
-        # Use GITHUB_TOKEN as MODEL_TOKEN for GitHub Models API
         self.api_token = os.getenv('GITHUB_TOKEN') or os.getenv('MODEL_TOKEN')
         self.base_url = "https://models.github.ai/inference"
         self.model = "openai/gpt-4.1-mini"
         self.session = None
         
-        # Enhanced cyber security intelligence sources
+        # Cost optimization settings
+        self.max_api_calls_per_run = 8  # Limit API calls to control costs
+        self.api_calls_made = 0
+        self.estimated_cost_per_call = 0.001  # Estimated cost per API call
+        self.data_retention_days = 6  # Delete data after 6 days
+        self.max_articles_to_process = 12  # Limit articles processed
+        
+        # Security settings
+        self.data_dir = Path('./data')
+        self.archive_dir = Path('./archive')
+        self.logs_dir = Path('./logs')
+        
+        # Optimized cyber security sources (reduced for cost efficiency)
         self.intelligence_sources = [
             {
                 'name': 'CYBERSECURITY_INTEL',
                 'url': 'https://feeds.feedburner.com/eset/blog',
-                'base_url': 'https://www.welivesecurity.com',
                 'credibility': 0.92,
-                'category': 'SECURITY'
+                'priority': 1  # High priority sources processed first
             },
             {
                 'name': 'KREBS_SECURITY',
                 'url': 'https://krebsonsecurity.com/feed/',
-                'base_url': 'https://krebsonsecurity.com',
                 'credibility': 0.95,
-                'category': 'SECURITY'
+                'priority': 1
             },
             {
                 'name': 'DARK_READING',
                 'url': 'https://www.darkreading.com/rss_simple.asp',
-                'base_url': 'https://www.darkreading.com',
                 'credibility': 0.89,
-                'category': 'SECURITY'
+                'priority': 2
             },
             {
                 'name': 'BLEEPING_COMPUTER',
                 'url': 'https://www.bleepingcomputer.com/feed/',
-                'base_url': 'https://www.bleepingcomputer.com',
                 'credibility': 0.87,
-                'category': 'SECURITY'
-            },
-            {
-                'name': 'HACKER_NEWS_CYBER',
-                'url': 'https://thehackernews.com/feeds/posts/default',
-                'base_url': 'https://thehackernews.com',
-                'credibility': 0.85,
-                'category': 'SECURITY'
+                'priority': 2
             },
             {
                 'name': 'SECURITY_WEEK',
                 'url': 'https://www.securityweek.com/feed',
-                'base_url': 'https://www.securityweek.com',
                 'credibility': 0.88,
-                'category': 'SECURITY'
-            },
-            {
-                'name': 'CYBERSECURITY_DIVE',
-                'url': 'https://www.cybersecuritydive.com/feeds/latest/',
-                'base_url': 'https://www.cybersecuritydive.com',
-                'credibility': 0.90,
-                'category': 'SECURITY'
-            },
-            {
-                'name': 'INFOSEC_MAGAZINE',
-                'url': 'https://www.infosecurity-magazine.com/rss/news/',
-                'base_url': 'https://www.infosecurity-magazine.com',
-                'credibility': 0.86,
-                'category': 'SECURITY'
+                'priority': 3  # Lower priority, process only if API budget allows
             }
         ]
         
@@ -158,19 +130,32 @@ class PatriotsProtocolAI:
             logger.error("❌ GITHUB_TOKEN/MODEL_TOKEN environment variable not set")
             raise ValueError("GITHUB_TOKEN or MODEL_TOKEN is required for AI operations")
         
-        logger.info("🚀 Patriots Protocol AI Cyber Intelligence System v4.0 initialized")
-        logger.info(f"🔑 API Token available: {bool(self.api_token)}")
-        logger.info(f"🤖 Model: {self.model}")
-        logger.info(f"🌐 Endpoint: {self.base_url}")
-        logger.info(f"🛡️  Cyber Security Sources: {len(self.intelligence_sources)}")
+        # Create secure directories
+        self._setup_secure_directories()
+        
+        logger.info("🚀 Patriots Protocol Cost-Optimized Cyber Intelligence System v4.0 initialized")
+        logger.info(f"💰 Max API calls per run: {self.max_api_calls_per_run}")
+        logger.info(f"🗂️  Data retention: {self.data_retention_days} days")
+        logger.info(f"🛡️  Security directories created")
+
+    def _setup_secure_directories(self):
+        """Setup secure directory structure"""
+        for directory in [self.data_dir, self.archive_dir, self.logs_dir]:
+            directory.mkdir(exist_ok=True, mode=0o750)  # Secure permissions
+        
+        # Create .gitignore for sensitive data
+        gitignore_path = self.data_dir / '.gitignore'
+        if not gitignore_path.exists():
+            with open(gitignore_path, 'w') as f:
+                f.write("*.tmp\n*.cache\n*.log\nsensitive_*\n")
 
     async def __aenter__(self):
         """Async context manager entry"""
         self.session = aiohttp.ClientSession(
-            timeout=aiohttp.ClientTimeout(total=60),
+            timeout=aiohttp.ClientTimeout(total=45),  # Reduced timeout
             headers={
-                'User-Agent': 'Patriots-Protocol-Cyber-Intel-v4.0/Professional-Security-Analysis',
-                'Accept': 'application/rss+xml, application/xml, text/xml, application/atom+xml'
+                'User-Agent': 'Patriots-Protocol-Cyber-Intel-Optimized/v4.0',
+                'Accept': 'application/rss+xml, application/xml, text/xml'
             }
         )
         return self
@@ -180,47 +165,120 @@ class PatriotsProtocolAI:
         if self.session:
             await self.session.close()
 
+    def cleanup_old_data(self):
+        """Secure cleanup of old data to save space and maintain security"""
+        logger.info(f"🧹 Starting data cleanup - retention: {self.data_retention_days} days")
+        
+        cutoff_date = datetime.now() - timedelta(days=self.data_retention_days)
+        files_cleaned = 0
+        space_saved = 0
+        
+        # Clean old files from all directories
+        for directory in [self.data_dir, self.archive_dir, self.logs_dir]:
+            if directory.exists():
+                for file_path in directory.rglob('*'):
+                    if file_path.is_file():
+                        try:
+                            file_time = datetime.fromtimestamp(file_path.stat().st_mtime)
+                            if file_time < cutoff_date:
+                                file_size = file_path.stat().st_size
+                                
+                                # Secure deletion
+                                if file_path.suffix in ['.json', '.log', '.tmp']:
+                                    # Overwrite file before deletion for security
+                                    with open(file_path, 'wb') as f:
+                                        f.write(os.urandom(file_size))
+                                
+                                file_path.unlink()
+                                files_cleaned += 1
+                                space_saved += file_size
+                                
+                        except Exception as e:
+                            logger.warning(f"⚠️  Could not clean {file_path}: {str(e)}")
+        
+        space_mb = space_saved / (1024 * 1024)
+        logger.info(f"✅ Cleanup complete: {files_cleaned} files removed, {space_mb:.2f} MB freed")
+        
+        return {"files_cleaned": files_cleaned, "space_saved_mb": space_mb}
+
     def generate_content_hash(self, content: str) -> str:
-        """Generate unique content hash"""
+        """Generate secure content hash"""
         return hashlib.sha256(content.encode('utf-8')).hexdigest()[:16]
 
+    def load_processed_hashes(self) -> set:
+        """Load previously processed content hashes to avoid duplicate API calls"""
+        hash_file = self.data_dir / 'processed_hashes.json'
+        if hash_file.exists():
+            try:
+                with open(hash_file, 'r') as f:
+                    data = json.load(f)
+                    # Clean old hashes (older than retention period)
+                    cutoff_time = datetime.now().timestamp() - (self.data_retention_days * 24 * 3600)
+                    fresh_hashes = {h: t for h, t in data.items() if t > cutoff_time}
+                    
+                    # Save cleaned hashes
+                    with open(hash_file, 'w') as f:
+                        json.dump(fresh_hashes, f)
+                    
+                    return set(fresh_hashes.keys())
+            except Exception as e:
+                logger.warning(f"⚠️  Could not load processed hashes: {str(e)}")
+        
+        return set()
+
+    def save_processed_hash(self, content_hash: str):
+        """Save processed content hash with timestamp"""
+        hash_file = self.data_dir / 'processed_hashes.json'
+        
+        try:
+            # Load existing hashes
+            existing_hashes = {}
+            if hash_file.exists():
+                with open(hash_file, 'r') as f:
+                    existing_hashes = json.load(f)
+            
+            # Add new hash with current timestamp
+            existing_hashes[content_hash] = datetime.now().timestamp()
+            
+            # Save updated hashes
+            with open(hash_file, 'w') as f:
+                json.dump(existing_hashes, f)
+                
+        except Exception as e:
+            logger.warning(f"⚠️  Could not save processed hash: {str(e)}")
+
     def is_fresh_content(self, published_date: str) -> bool:
-        """Check if content is fresh (within last 7 days)"""
+        """Check if content is fresh (within last 24 hours for cost optimization)"""
         try:
             if not published_date:
-                return True  # Include if no date available
+                return True
                 
-            # Parse various date formats
             try:
                 from dateutil import parser
                 pub_date = parser.parse(published_date)
             except:
-                # Fallback for basic ISO format
                 pub_date = datetime.fromisoformat(published_date.replace('Z', '+00:00'))
             
-            # Make timezone aware if needed
             if pub_date.tzinfo is None:
                 pub_date = pub_date.replace(tzinfo=timezone.utc)
             
-            # Check if within last 7 days
-            cutoff_date = datetime.now(timezone.utc) - timedelta(days=7)
+            # Only process very fresh content (24 hours) to reduce API calls
+            cutoff_date = datetime.now(timezone.utc) - timedelta(hours=24)
             is_fresh = pub_date > cutoff_date
             
-            if is_fresh:
-                logger.info(f"✅ Fresh content from {pub_date.strftime('%Y-%m-%d %H:%M')}")
-            else:
-                logger.info(f"⏰ Old content from {pub_date.strftime('%Y-%m-%d %H:%M')} - skipping")
-                
             return is_fresh
             
         except Exception as e:
-            logger.warning(f"⚠️  Date parsing error: {str(e)} - including content anyway")
-            return True
+            logger.warning(f"⚠️  Date parsing error: {str(e)}")
+            return False  # Don't process if we can't verify freshness
 
-    async def make_ai_request(self, prompt: str, context: str) -> Dict[str, Any]:
-        """Enhanced AI request for cyber security analysis"""
+    async def make_optimized_ai_request(self, articles_batch: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """Batch process multiple articles in single API call to reduce costs"""
+        if self.api_calls_made >= self.max_api_calls_per_run:
+            logger.warning(f"💰 API call limit reached ({self.max_api_calls_per_run})")
+            return []
+
         try:
-            # Use OpenAI client with GitHub Models endpoint
             from openai import AsyncOpenAI
             
             client = AsyncOpenAI(
@@ -228,163 +286,133 @@ class PatriotsProtocolAI:
                 api_key=self.api_token
             )
 
+            # Batch multiple articles for analysis
+            batch_content = ""
+            for i, article in enumerate(articles_batch):
+                batch_content += f"\n--- ARTICLE {i+1} ---\n"
+                batch_content += f"Title: {article['title']}\n"
+                batch_content += f"Content: {article['summary'][:300]}...\n"  # Limit content to reduce token usage
+
             response = await client.chat.completions.create(
                 model=self.model,
                 messages=[
                     {
                         "role": "system", 
-                        "content": """You are a professional cyber security intelligence analyst. Provide detailed, factual analysis of cyber security events with specific technical details.
-
-Analyze the provided content and return a JSON response with these exact fields:
+                        "content": """You are a cyber security analyst. Analyze the provided articles and return JSON with this structure:
 {
-    "analysis": "Detailed 3-4 sentence technical analysis explaining what happened, the attack method/vulnerability, impact, and implications. Be specific about the technical aspects.",
-    "threat_level": "CRITICAL/HIGH/MEDIUM/LOW based on actual severity and scope",
-    "strategic_importance": "CRITICAL/HIGH/MEDIUM/LOW",
-    "operational_impact": "Specific assessment of business/operational implications",
-    "geo_relevance": ["Specific countries/regions affected"],
-    "confidence_score": 0.85,
-    "priority_score": 7,
-    "entities": ["Specific companies, threat actors, software mentioned"],
-    "intelligence_value": "CRITICAL/HIGH/MEDIUM/LOW",
-    "attack_vector": "Specific attack method if applicable",
-    "affected_systems": ["Systems/software affected"],
-    "mitigation_urgency": "IMMEDIATE/HIGH/MEDIUM/LOW"
+    "analyses": [
+        {
+            "article_index": 0,
+            "analysis": "Brief analysis (max 100 words)",
+            "threat_level": "CRITICAL/HIGH/MEDIUM/LOW",
+            "confidence_score": 0.85,
+            "priority_score": 7,
+            "intelligence_value": "CRITICAL/HIGH/MEDIUM/LOW",
+            "keywords": ["keyword1", "keyword2"]
+        }
+    ]
 }
 
-Focus on:
-- Technical details of the threat/vulnerability
-- Specific impact and scope
-- Actionable intelligence for security teams
-- Real-world implications for organizations"""
+Keep analyses brief to minimize token usage. Focus only on actionable cyber security intelligence."""
                     },
                     {
                         "role": "user", 
-                        "content": f"Analyze this cyber security intelligence:\n\nTitle: {context.split('Content:')[0].replace('Title:', '').strip() if 'Content:' in context else context[:100]}\n\nContent: {context.split('Content:')[1] if 'Content:' in context else context}\n\nProvide detailed technical analysis in JSON format."
+                        "content": f"Analyze these cyber security articles:\n{batch_content}"
                     }
                 ],
-                temperature=0.1,  # Lower temperature for more factual analysis
-                max_tokens=1200
+                temperature=0.1,
+                max_tokens=800  # Reduced token limit to control costs
             )
             
-            ai_response = response.choices[0].message.content
-            logger.info(f"🤖 AI Response received: {ai_response[:100]}...")
+            self.api_calls_made += 1
+            logger.info(f"💰 API call {self.api_calls_made}/{self.max_api_calls_per_run} - Cost estimate: ${self.api_calls_made * self.estimated_cost_per_call:.4f}")
             
-            # Extract JSON from response
+            ai_response = response.choices[0].message.content
+            
+            # Parse batch response
             try:
                 json_start = ai_response.find('{')
                 json_end = ai_response.rfind('}') + 1
                 
                 if json_start != -1 and json_end > json_start:
                     json_content = ai_response[json_start:json_end]
-                    structured_data = json.loads(json_content)
+                    batch_results = json.loads(json_content)
                     
-                    # Get analysis text
-                    analysis = structured_data.get('analysis', '').strip()
-                    
-                    # Validate we got meaningful cyber security analysis
-                    if not analysis or len(analysis) < 80:
-                        logger.warning("⚠️  Analysis too short for cyber intel, skipping...")
-                        return {'success': False}
-                    
-                    # Check for meaningful cyber security content
-                    cyber_keywords = ['vulnerability', 'attack', 'breach', 'malware', 'exploit', 'threat', 'security', 'cyber', 'hack', 'ransomware', 'phishing']
-                    if not any(keyword in analysis.lower() for keyword in cyber_keywords):
-                        logger.warning("⚠️  No cyber security content detected, skipping...")
-                        return {'success': False}
-                    
-                    logger.info(f"✅ Cyber intelligence analysis extracted: {analysis[:100]}...")
-                    
-                    return {
-                        'success': True,
-                        'analysis': analysis,
-                        'threat_level': structured_data.get('threat_level', 'MEDIUM'),
-                        'strategic_importance': structured_data.get('strategic_importance', 'MEDIUM'),
-                        'operational_impact': structured_data.get('operational_impact', 'Security assessment required'),
-                        'geo_relevance': structured_data.get('geo_relevance', ['GLOBAL']),
-                        'confidence_score': structured_data.get('confidence_score', 0.82),
-                        'priority_score': structured_data.get('priority_score', 6),
-                        'entities': structured_data.get('entities', []),
-                        'intelligence_value': structured_data.get('intelligence_value', 'HIGH'),
-                        'attack_vector': structured_data.get('attack_vector', 'Multiple vectors'),
-                        'affected_systems': structured_data.get('affected_systems', ['Enterprise systems']),
-                        'mitigation_urgency': structured_data.get('mitigation_urgency', 'MEDIUM')
-                    }
+                    return batch_results.get('analyses', [])
             
             except (json.JSONDecodeError, ValueError) as e:
-                logger.warning(f"⚠️  JSON parsing failed: {str(e)}")
-                # Try to extract analysis from text if JSON fails
-                if len(ai_response) > 100 and any(word in ai_response.lower() for word in ['security', 'cyber', 'threat', 'attack']):
-                    logger.info("🔄 Using text response as cyber analysis...")
-                    return {
-                        'success': True,
-                        'analysis': ai_response[:500] + "..." if len(ai_response) > 500 else ai_response,
-                        'threat_level': 'HIGH',
-                        'strategic_importance': 'HIGH',
-                        'operational_impact': 'Cyber security assessment based on available intelligence',
-                        'geo_relevance': ['GLOBAL'],
-                        'confidence_score': 0.78,
-                        'priority_score': 7,
-                        'entities': [],
-                        'intelligence_value': 'HIGH'
-                    }
-                return {'success': False}
+                logger.warning(f"⚠️  Batch JSON parsing failed: {str(e)}")
+                return []
             
         except Exception as e:
-            logger.error(f"❌ AI request failed: {str(e)}")
-            return {'success': False}
+            logger.error(f"❌ Batch AI request failed: {str(e)}")
+            return []
 
-    async def fetch_intelligence_feeds(self) -> List[Dict[str, Any]]:
-        """Fetch fresh cyber security intelligence from feeds"""
+    async def fetch_optimized_intelligence_feeds(self) -> List[Dict[str, Any]]:
+        """Fetch intelligence with cost optimization and caching"""
         all_articles = []
+        processed_hashes = self.load_processed_hashes()
         
-        for source in self.intelligence_sources:
+        # Sort sources by priority
+        sorted_sources = sorted(self.intelligence_sources, key=lambda x: x['priority'])
+        
+        for source in sorted_sources:
             try:
-                logger.info(f"🔍 Fetching from {source['name']}...")
+                logger.info(f"🔍 Fetching from {source['name']} (Priority: {source['priority']})...")
                 
                 async with self.session.get(source['url']) as response:
                     if response.status == 200:
                         content = await response.text()
                         feed = feedparser.parse(content)
                         
-                        logger.info(f"📊 Found {len(feed.entries)} entries from {source['name']}")
+                        fresh_articles = 0
                         
-                        for entry in feed.entries[:8]:  # More articles per source
+                        for entry in feed.entries[:6]:  # Limit per source
                             title = entry.title
-                            summary = self._clean_text(entry.get('summary', entry.get('description', entry.get('content', [{}])[0].get('value', '') if entry.get('content') else '')))
+                            summary = self._clean_text(entry.get('summary', entry.get('description', '')))
                             
-                            # Skip if summary is too short
                             if len(summary) < 50:
-                                logger.info(f"⚠️  Skipping short content: {title[:50]}...")
                                 continue
                             
-                            # Check for fresh content
+                            # Check if content is fresh
                             published_date = entry.get('published', entry.get('updated', ''))
                             if not self.is_fresh_content(published_date):
                                 continue
                             
-                            # Build proper source URL
-                            source_url = entry.get('link', '')
-                            if source_url and not source_url.startswith('http'):
-                                source_url = urljoin(source['base_url'], source_url)
+                            # Check if already processed
+                            content_hash = self.generate_content_hash(f"{title}{summary}")
+                            if content_hash in processed_hashes:
+                                logger.info(f"⚡ Skipping already processed: {title[:50]}...")
+                                continue
                             
-                            full_content = f"{title}. {summary}"
-                            word_count = len(full_content.split())
-                            reading_time = max(1, word_count // 200)
+                            # Filter for cyber security content
+                            cyber_keywords = ['security', 'cyber', 'hack', 'breach', 'malware', 'vulnerability', 'attack', 'threat']
+                            if not any(keyword in (title + summary).lower() for keyword in cyber_keywords):
+                                continue
                             
                             article = {
                                 'title': title,
-                                'summary': summary,
+                                'summary': summary[:400],  # Limit summary length
                                 'source': source['name'],
-                                'source_url': source_url,
+                                'source_url': entry.get('link', ''),
                                 'timestamp': published_date or datetime.now(timezone.utc).isoformat(),
                                 'credibility': source['credibility'],
-                                'word_count': word_count,
-                                'reading_time': f"{reading_time} min read",
-                                'content_hash': self.generate_content_hash(full_content),
-                                'category': source['category']
+                                'content_hash': content_hash,
+                                'priority': source['priority']
                             }
                             
                             all_articles.append(article)
+                            fresh_articles += 1
+                            
+                            # Stop if we have enough articles
+                            if len(all_articles) >= self.max_articles_to_process:
+                                break
+                        
+                        logger.info(f"📊 {source['name']}: {fresh_articles} fresh cyber articles collected")
+                        
+                        # Stop if we have enough or if this is a lower priority source
+                        if len(all_articles) >= self.max_articles_to_process or source['priority'] > 1:
+                            break
                             
                     else:
                         logger.warning(f"⚠️  {source['name']} returned {response.status}")
@@ -393,151 +421,93 @@ Focus on:
                 logger.error(f"❌ Error fetching {source['name']}: {str(e)}")
                 continue
 
-        # Remove duplicates and sort by timestamp (newest first)
-        unique_articles = {}
-        for article in all_articles:
-            if article['content_hash'] not in unique_articles:
-                unique_articles[article['content_hash']] = article
-
-        # Sort by timestamp (newest first)
-        sorted_articles = sorted(unique_articles.values(), 
-                               key=lambda x: x['timestamp'], 
-                               reverse=True)
-
-        logger.info(f"📊 Collected {len(sorted_articles)} unique fresh cyber intelligence reports")
-        return sorted_articles
+        logger.info(f"📊 Collected {len(all_articles)} optimized cyber intelligence articles")
+        return all_articles
 
     def _clean_text(self, text: str) -> str:
-        """Clean and enhance text content for cyber security analysis"""
+        """Clean text content efficiently"""
         if not text:
             return ""
         
-        # Remove HTML and clean
         text = re.sub(r'<[^>]+>', '', text)
         text = re.sub(r'\s+', ' ', text).strip()
         text = re.sub(r'\[.*?\]', '', text)
-        text = re.sub(r'Read more.*$', '', text, flags=re.IGNORECASE)
         
-        # Keep longer summaries for better analysis
-        return text[:800] if len(text) > 800 else text
+        return text[:400]  # Limit text length to save space
 
-    async def analyze_article(self, article: Dict[str, Any]) -> Optional[IntelligenceReport]:
-        """Enhanced cyber security article analysis"""
-        logger.info(f"🔍 Analyzing cyber intel: {article['title'][:60]}...")
+    async def process_articles_batch(self, articles: List[Dict[str, Any]]) -> List[IntelligenceReport]:
+        """Process articles in batches to optimize API usage"""
+        reports = []
         
-        try:
-            # AI analysis
-            ai_result = await self.make_ai_request(
-                "Cyber security intelligence analysis",
-                f"Title: {article['title']}\nContent: {article['summary']}"
-            )
-            
-            # Skip if AI couldn't provide meaningful analysis
-            if not ai_result.get('success'):
-                logger.info(f"⚠️  Skipping article - no meaningful cyber analysis available")
-                return None
-            
-            # Enhanced keyword extraction for cyber security
-            keywords = self._extract_cyber_keywords(f"{article['title']} {article['summary']}")
-            entities = ai_result.get('entities', [])
-            
-            # Generate enhanced executive summary
-            executive_summary = self._generate_cyber_executive_summary(article['summary'], ai_result.get('analysis', ''))
-            
-            report = IntelligenceReport(
-                title=article['title'],
-                full_summary=article['summary'],
-                executive_summary=executive_summary,
-                source=article['source'],
-                source_url=article.get('source_url', ''),
-                source_credibility=article['credibility'],
-                timestamp=article['timestamp'],
-                category='SECURITY',  # All articles are cyber security focused
-                ai_analysis=ai_result['analysis'],
-                confidence=ai_result['confidence_score'],
-                threat_level=ai_result['threat_level'],
-                strategic_importance=ai_result['strategic_importance'],
-                operational_impact=ai_result['operational_impact'],
-                geo_relevance=ai_result['geo_relevance'],
-                keywords=keywords,
-                entities=entities,
-                priority_score=ai_result['priority_score'],
-                content_hash=article['content_hash'],
-                word_count=article['word_count'],
-                reading_time=article['reading_time'],
-                intelligence_value=ai_result['intelligence_value']
-            )
-            
-            logger.info(f"✅ Cyber analysis complete - Threat: {report.threat_level}, Value: {report.intelligence_value}")
-            return report
-            
-        except Exception as e:
-            logger.error(f"❌ Error analyzing cyber article '{article['title'][:50]}...': {str(e)}")
-            return None
-
-    def _generate_cyber_executive_summary(self, summary: str, ai_analysis: str) -> str:
-        """Generate enhanced executive summary for cyber security"""
-        if not summary:
-            return "Cyber security intelligence requires assessment."
+        # Process in batches of 3-4 articles per API call
+        batch_size = 3
         
-        # Try to extract key threat information
-        threat_indicators = ['vulnerability', 'exploit', 'attack', 'breach', 'malware', 'ransomware', 'phishing', 'zero-day']
-        
-        sentences = summary.split('. ')
-        key_sentence = ""
-        
-        # Find sentence with threat indicators
-        for sentence in sentences:
-            if any(indicator in sentence.lower() for indicator in threat_indicators):
-                key_sentence = sentence
+        for i in range(0, len(articles), batch_size):
+            if self.api_calls_made >= self.max_api_calls_per_run:
+                logger.warning(f"💰 Stopping processing - API limit reached")
                 break
-        
-        if not key_sentence and sentences:
-            key_sentence = sentences[0]
-        
-        # Ensure proper ending
-        if key_sentence and not key_sentence.endswith('.'):
-            key_sentence += '.'
-        
-        return key_sentence[:150] + "..." if len(key_sentence) > 150 else key_sentence
+                
+            batch = articles[i:i + batch_size]
+            logger.info(f"🔍 Processing batch {i//batch_size + 1}: {len(batch)} articles")
+            
+            # Get AI analysis for batch
+            ai_results = await self.make_optimized_ai_request(batch)
+            
+            # Create reports from batch results
+            for j, article in enumerate(batch):
+                try:
+                    # Find corresponding AI result
+                    ai_result = None
+                    for result in ai_results:
+                        if result.get('article_index') == j:
+                            ai_result = result
+                            break
+                    
+                    if not ai_result:
+                        logger.info(f"⚠️  No AI result for article {j} in batch")
+                        continue
+                    
+                    # Create optimized report
+                    report = IntelligenceReport(
+                        title=article['title'],
+                        summary=article['summary'],
+                        source=article['source'],
+                        source_url=article.get('source_url', ''),
+                        timestamp=article['timestamp'],
+                        category='SECURITY',
+                        ai_analysis=ai_result.get('analysis', 'Analysis available'),
+                        confidence=ai_result.get('confidence_score', 0.8),
+                        threat_level=ai_result.get('threat_level', 'MEDIUM'),
+                        keywords=ai_result.get('keywords', [])[:6],  # Limit keywords
+                        priority_score=ai_result.get('priority_score', 5),
+                        content_hash=article['content_hash'],
+                        reading_time=f"{max(1, len(article['summary']) // 200)} min",
+                        intelligence_value=ai_result.get('intelligence_value', 'MEDIUM')
+                    )
+                    
+                    reports.append(report)
+                    
+                    # Save processed hash
+                    self.save_processed_hash(article['content_hash'])
+                    
+                    logger.info(f"✅ Processed: {report.title[:50]}... (Threat: {report.threat_level})")
+                    
+                except Exception as e:
+                    logger.error(f"❌ Error creating report for article {j}: {str(e)}")
+                    continue
+            
+            # Rate limiting between batches
+            await asyncio.sleep(2.0)
 
-    def _extract_cyber_keywords(self, text: str) -> List[str]:
-        """Extract cyber security specific keywords"""
-        text_lower = text.lower()
-        keywords = []
-        
-        cyber_keyword_categories = {
-            'threats': ['malware', 'ransomware', 'phishing', 'ddos', 'botnet', 'apt', 'trojan', 'virus', 'worm'],
-            'attacks': ['breach', 'exploit', 'hack', 'attack', 'intrusion', 'compromise', 'penetration'],
-            'vulnerabilities': ['vulnerability', 'zero-day', 'cve', 'patch', 'flaw', 'bug', 'weakness'],
-            'technologies': ['firewall', 'vpn', 'encryption', 'authentication', 'endpoint', 'cloud', 'ai', 'machine learning'],
-            'sectors': ['healthcare', 'finance', 'government', 'critical infrastructure', 'energy', 'telecommunications'],
-            'techniques': ['social engineering', 'spear phishing', 'credential stuffing', 'supply chain', 'lateral movement']
-        }
-        
-        for category, terms in cyber_keyword_categories.items():
-            for term in terms:
-                if term in text_lower:
-                    keywords.append(term.upper().replace(' ', '_'))
-        
-        # Add some common cyber terms
-        common_cyber = ['cyber', 'security', 'threat', 'risk', 'incident', 'response', 'forensics', 'detection']
-        for term in common_cyber:
-            if term in text_lower:
-                keywords.append(term.upper())
-        
-        return list(set(keywords))[:10]  # More keywords for cyber intel
+        logger.info(f"📊 Batch processing complete: {len(reports)} reports generated from {self.api_calls_made} API calls")
+        return reports
 
-    def calculate_metrics(self, reports: List[IntelligenceReport]) -> IntelligenceMetrics:
-        """Calculate enhanced cyber security intelligence metrics"""
+    def calculate_optimized_metrics(self, reports: List[IntelligenceReport]) -> IntelligenceMetrics:
+        """Calculate metrics with cost tracking"""
         if not reports:
             return self._generate_baseline_metrics()
 
-        # Basic metrics
-        total_words = sum(r.word_count for r in reports)
-        avg_length = total_words // len(reports) if reports else 0
-        
-        # Cyber intelligence metrics
+        # Calculate intelligence metrics
         high_value = len([r for r in reports if r.intelligence_value in ['HIGH', 'CRITICAL']])
         critical = len([r for r in reports if r.intelligence_value == 'CRITICAL'])
         
@@ -547,213 +517,137 @@ Focus on:
             threat_counts[report.threat_level] += 1
         
         overall_threat = 'CRITICAL' if threat_counts['CRITICAL'] > 0 else (
-                        'HIGH' if threat_counts['HIGH'] > 0 else (
-                        'MEDIUM' if threat_counts['MEDIUM'] > 0 else 'LOW'))
+                        'HIGH' if threat_counts['HIGH'] > 0 else 'MEDIUM')
         
-        # Extract trending cyber threats
+        # Extract trending keywords
         all_keywords = []
-        all_entities = []
         for report in reports:
             all_keywords.extend(report.keywords)
-            all_entities.extend(report.entities)
         
         keyword_freq = {}
         for kw in all_keywords:
             keyword_freq[kw] = keyword_freq.get(kw, 0) + 1
         
-        trending_threats = [kw for kw, count in sorted(keyword_freq.items(), key=lambda x: x[1], reverse=True)[:5]]
+        trending = [kw for kw, count in sorted(keyword_freq.items(), key=lambda x: x[1], reverse=True)[:3]]
         
-        # Geographic analysis
-        all_geo = []
-        for report in reports:
-            all_geo.extend(report.geo_relevance)
-        
-        geo_freq = {}
-        for geo in all_geo:
-            geo_freq[geo] = geo_freq.get(geo, 0) + 1
-        
-        primary_regions = [geo for geo, count in sorted(geo_freq.items(), key=lambda x: x[1], reverse=True)[:4]]
-        
-        # Enhanced strategic assessment for cyber security
-        strategic_assessment = f"Patriots Protocol analyzed {len(reports)} cyber security intelligence reports. "
-        if high_value > 0:
-            strategic_assessment += f"Identified {high_value} high-value cyber threats requiring immediate attention. "
-        if threat_counts['CRITICAL'] > 0:
-            strategic_assessment += f"CRITICAL: {threat_counts['CRITICAL']} critical cyber threats detected. "
-        if threat_counts['HIGH'] > 0:
-            strategic_assessment += f"Monitoring {threat_counts['HIGH']} high-priority cyber incidents. "
-        
-        if trending_threats:
-            strategic_assessment += f"Emerging threat vectors: {', '.join(trending_threats[:3])}."
-        
-        # Cyber-specific threat vector analysis
-        threat_analysis = f"Cyber threat environment: {overall_threat}. "
-        if trending_threats:
-            threat_analysis += f"Active monitoring of {len(trending_threats)} threat indicators including {', '.join(trending_threats[:2])}. "
-        threat_analysis += f"Source credibility: {int(sum(r.source_credibility for r in reports) / len(reports) * 100)}%. "
-        threat_analysis += f"Geographic focus: {', '.join(primary_regions[:2]) if primary_regions else 'Global'}."
+        # Calculate costs
+        estimated_cost = self.api_calls_made * self.estimated_cost_per_call
         
         return IntelligenceMetrics(
             total_articles=len(reports),
-            ai_analysis_complete=len(reports),
             threat_level=overall_threat,
             system_status="OPERATIONAL",
-            average_article_length=avg_length,
-            total_word_count=total_words,
-            average_reading_time=f"{max(1, avg_length // 200)} min",
             high_value_intelligence=high_value,
             critical_intelligence=critical,
-            actionable_intelligence=len([r for r in reports if r.priority_score >= 7]),
-            emerging_threats=trending_threats[:5] if trending_threats else ["Active_Monitoring"],
-            primary_regions=primary_regions if primary_regions else ["GLOBAL"],
-            source_diversity=len(set(r.source for r in reports)),
-            credibility_average=sum(r.source_credibility for r in reports) / len(reports),
-            primary_sources=list(set(r.source for r in reports))[:4],
-            ai_confidence=int(sum(r.confidence for r in reports) / len(reports) * 100),
-            processing_time="< 45 seconds",
+            emerging_threats=trending if trending else ["MONITORING"],
+            primary_regions=["GLOBAL"],
+            ai_confidence=int(sum(r.confidence for r in reports) / len(reports) * 100) if reports else 85,
+            processing_time=f"< {30 + self.api_calls_made * 5} seconds",
             api_status="ACTIVE",
-            strategic_assessment=strategic_assessment,
-            intelligence_summary=f"Patriots Protocol processed {len(reports)} cyber security reports. Active threat monitoring across {len(set(r.source for r in reports))} intelligence sources.",
-            threat_vector_analysis=threat_analysis,
-            last_analysis=datetime.now(timezone.utc).isoformat(),
-            last_update=datetime.now().strftime("%d/%m/%Y, %H:%M:%S UTC")
+            api_calls_made=self.api_calls_made,
+            cost_estimate=estimated_cost,
+            last_cleanup=datetime.now().strftime("%Y-%m-%d %H:%M UTC"),
+            data_retention_days=self.data_retention_days
         )
 
     def _generate_baseline_metrics(self) -> IntelligenceMetrics:
-        """Generate baseline metrics for cyber security focus"""
+        """Generate baseline metrics with cost tracking"""
         return IntelligenceMetrics(
             total_articles=0,
-            ai_analysis_complete=0,
             threat_level="LOW",
             system_status="OPERATIONAL",
-            average_article_length=0,
-            total_word_count=0,
-            average_reading_time="0 min",
             high_value_intelligence=0,
             critical_intelligence=0,
-            actionable_intelligence=0,
-            emerging_threats=["Monitoring_Active"],
+            emerging_threats=["MONITORING"],
             primary_regions=["GLOBAL"],
-            source_diversity=0,
-            credibility_average=0.88,
-            primary_sources=["CYBER_INTEL_NETWORK"],
             ai_confidence=85,
             processing_time="< 30 seconds",
             api_status="ACTIVE",
-            strategic_assessment="Patriots Protocol cyber intelligence network operational - monitoring global threat landscape.",
-            intelligence_summary="Patriots Protocol cyber security intelligence standing by.",
-            threat_vector_analysis="No immediate cyber threats detected. Continuous monitoring active across all threat vectors.",
-            last_analysis=datetime.now(timezone.utc).isoformat(),
-            last_update=datetime.now().strftime("%d/%m/%Y, %H:%M:%S UTC")
+            api_calls_made=self.api_calls_made,
+            cost_estimate=self.api_calls_made * self.estimated_cost_per_call,
+            last_cleanup=datetime.now().strftime("%Y-%m-%d %H:%M UTC"),
+            data_retention_days=self.data_retention_days
         )
 
+    def save_compressed_data(self, data: dict, filename: str):
+        """Save data with compression to save space"""
+        try:
+            # Save regular JSON
+            json_path = self.data_dir / filename
+            with open(json_path, 'w', encoding='utf-8') as f:
+                json.dump(data, f, separators=(',', ':'))  # Compact JSON
+            
+            # Save compressed version
+            compressed_path = self.data_dir / f"{filename}.gz"
+            with gzip.open(compressed_path, 'wt', encoding='utf-8') as f:
+                json.dump(data, f, separators=(',', ':'))
+            
+            # Check compression ratio
+            original_size = json_path.stat().st_size
+            compressed_size = compressed_path.stat().st_size
+            compression_ratio = (1 - compressed_size / original_size) * 100
+            
+            logger.info(f"💾 Data saved: {original_size} bytes, compressed: {compressed_size} bytes ({compression_ratio:.1f}% reduction)")
+            
+        except Exception as e:
+            logger.error(f"❌ Error saving compressed data: {str(e)}")
+
 async def main():
-    """Main Patriots Protocol Cyber Intelligence Pipeline"""
-    logger.info("🎖️  PATRIOTS PROTOCOL v4.0 - Cyber Security Intelligence System Starting...")
+    """Main Patriots Protocol Cost-Optimized Intelligence Pipeline"""
+    logger.info("🎖️  PATRIOTS PROTOCOL v4.0 - Cost-Optimized Cyber Intelligence System Starting...")
     logger.info(f"📅 Mission Start: {datetime.now(timezone.utc).isoformat()}")
     
     try:
-        async with PatriotsProtocolAI() as ai_system:
-            # Test API connectivity
-            logger.info("🧪 Testing GitHub Models API connectivity for cyber intelligence...")
+        async with CostOptimizedPatriotsAI() as ai_system:
+            # Cleanup old data first to save space
+            cleanup_stats = ai_system.cleanup_old_data()
             
-            try:
-                test_result = await ai_system.make_ai_request(
-                    "Test connectivity", 
-                    "Title: Cyber Security Intelligence Test\nContent: Testing advanced cyber threat analysis capabilities for ransomware detection and vulnerability assessment using AI-powered threat intelligence."
-                )
-                
-                if test_result.get('success'):
-                    logger.info("✅ GitHub Models API cyber intelligence connection successful")
-                    logger.info(f"🎯 Test cyber analysis: {test_result.get('analysis', 'N/A')[:100]}...")
-                else:
-                    logger.warning("⚠️  GitHub Models API test failed - continuing with processing")
-                    
-            except Exception as e:
-                logger.warning(f"⚠️  API test error: {str(e)} - continuing with cyber intelligence gathering")
+            # Fetch optimized intelligence
+            articles = await ai_system.fetch_optimized_intelligence_feeds()
             
-            # Fetch fresh cyber intelligence
-            articles = await ai_system.fetch_intelligence_feeds()
-            
-            # Process articles with enhanced cyber security AI analysis
+            # Process articles in cost-optimized batches
             reports = []
-            processed_count = 0
+            if articles:
+                reports = await ai_system.process_articles_batch(articles)
             
-            for i, article in enumerate(articles[:25]):  # Process more articles for cyber intel
-                try:
-                    logger.info(f"🔍 Processing cyber intel {i+1}/{min(25, len(articles))}: {article['title'][:60]}...")
-                    processed_count += 1
-                    
-                    report = await ai_system.analyze_article(article)
-                    
-                    if report:  # Only add if we got meaningful cyber analysis
-                        reports.append(report)
-                        logger.info(f"✅ Cyber intelligence analyzed: {report.title[:60]}... (Threat: {report.threat_level})")
-                    else:
-                        logger.info(f"⚠️  Skipped article - insufficient cyber security analysis quality")
-                    
-                    # Rate limiting for better quality
-                    await asyncio.sleep(1.2)
-                    
-                    # Stop if we have enough quality cyber reports
-                    if len(reports) >= 15:
-                        logger.info(f"📊 Reached target of {len(reports)} quality cyber intelligence reports")
-                        break
-                    
-                except Exception as e:
-                    logger.error(f"❌ Cyber analysis error for article {i+1}: {str(e)}")
-                    continue
-
-            logger.info(f"📊 Cyber intelligence analysis complete - {len(reports)} reports with meaningful analysis from {processed_count} articles processed")
-
-            # Calculate enhanced cyber metrics
-            if not reports:
-                logger.warning("⚠️  No articles produced meaningful cyber analysis - creating operational baseline")
-                metrics = ai_system._generate_baseline_metrics()
-                metrics.intelligence_summary = f"Patriots Protocol cyber intelligence operational - processed {processed_count} articles, enhancing analysis parameters."
-            else:
-                metrics = ai_system.calculate_metrics(reports)
-
-            # Prepare enhanced output data
+            # Calculate metrics with cost tracking
+            metrics = ai_system.calculate_optimized_metrics(reports)
+            
+            # Prepare optimized output data
             output_data = {
                 "articles": [asdict(report) for report in reports],
                 "metrics": asdict(metrics),
                 "lastUpdated": datetime.now(timezone.utc).isoformat(),
-                "version": "4.0",
-                "generatedBy": "Patriots Protocol Cyber Intelligence System v4.0",
+                "version": "4.0-optimized",
+                "cost_optimization": {
+                    "api_calls_used": ai_system.api_calls_made,
+                    "api_calls_limit": ai_system.max_api_calls_per_run,
+                    "estimated_cost": metrics.cost_estimate,
+                    "data_retention_days": ai_system.data_retention_days,
+                    "cleanup_stats": cleanup_stats
+                },
                 "patriots_protocol_info": {
                     "system_name": "PATRIOTS PROTOCOL",
-                    "description": "AI-DRIVEN CYBER INTELLIGENCE NETWORK",
+                    "description": "COST-OPTIMIZED CYBER INTELLIGENCE NETWORK",
                     "repository": "https://github.com/danishnizmi/Patriots_Protocol",
-                    "ai_integration": "GitHub Models API",
-                    "focus": "Cyber Security Intelligence",
-                    "last_enhanced": datetime.now(timezone.utc).isoformat(),
-                    "status": "OPERATIONAL",
-                    "intelligence_sources": len(ai_system.intelligence_sources)
-                },
-                "system_status": {
-                    "ai_models": "ACTIVE",
-                    "cyber_intelligence_gathering": "OPERATIONAL", 
-                    "threat_assessment": "ONLINE",
-                    "strategic_analysis": "READY",
-                    "feed_monitoring": "ACTIVE"
+                    "optimization": "Cost & Security Enhanced",
+                    "status": "OPERATIONAL"
                 }
             }
 
-            # Save enhanced data
-            os.makedirs('./data', exist_ok=True)
-            with open('./data/news-analysis.json', 'w', encoding='utf-8') as f:
-                json.dump(output_data, f, indent=2, ensure_ascii=False)
+            # Save compressed data
+            ai_system.save_compressed_data(output_data, 'news-analysis.json')
 
-            logger.info("✅ Patriots Protocol Cyber Intelligence Mission Complete")
-            logger.info(f"📁 Cyber intelligence data saved to ./data/news-analysis.json")
-            logger.info(f"📈 Cyber Threat Level: {metrics.threat_level}")
-            logger.info(f"🎯 AI Confidence: {metrics.ai_confidence}%")
-            logger.info(f"🛡️  High-Value Cyber Intel: {metrics.high_value_intelligence}")
-            logger.info(f"🔥 Critical Threats: {metrics.critical_intelligence}")
+            logger.info("✅ Patriots Protocol Cost-Optimized Mission Complete")
+            logger.info(f"💰 API Calls Used: {ai_system.api_calls_made}/{ai_system.max_api_calls_per_run}")
+            logger.info(f"💰 Estimated Cost: ${metrics.cost_estimate:.4f}")
+            logger.info(f"📊 Reports Generated: {len(reports)}")
+            logger.info(f"🧹 Files Cleaned: {cleanup_stats['files_cleaned']}")
+            logger.info(f"💾 Space Saved: {cleanup_stats['space_saved_mb']:.2f} MB")
             
     except Exception as e:
-        logger.error(f"❌ Patriots Protocol cyber intelligence mission error: {str(e)}")
+        logger.error(f"❌ Patriots Protocol cost-optimized mission error: {str(e)}")
+        
         # Create minimal operational data
         minimal_data = {
             "articles": [],
@@ -762,22 +656,19 @@ async def main():
                 "threat_level": "LOW", 
                 "system_status": "OPERATIONAL",
                 "ai_confidence": 85,
-                "patriots_protocol_status": "PATRIOTS PROTOCOL CYBER INTELLIGENCE OPERATIONAL"
+                "api_calls_made": 0,
+                "cost_estimate": 0.0
             },
             "lastUpdated": datetime.now(timezone.utc).isoformat(),
-            "version": "4.0",
-            "patriots_protocol_info": {
-                "system_name": "PATRIOTS PROTOCOL",
-                "description": "AI-DRIVEN CYBER INTELLIGENCE NETWORK", 
-                "status": "OPERATIONAL"
-            }
+            "version": "4.0-optimized"
         }
         
+        # Save minimal data
         os.makedirs('./data', exist_ok=True)
         with open('./data/news-analysis.json', 'w') as f:
-            json.dump(minimal_data, f, indent=2)
+            json.dump(minimal_data, f, separators=(',', ':'))
         
-        logger.info("✅ Minimal cyber intelligence operational data generated")
+        logger.info("✅ Minimal operational data generated")
 
 if __name__ == "__main__":
     asyncio.run(main())
