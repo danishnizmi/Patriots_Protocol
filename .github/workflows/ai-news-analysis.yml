@@ -2,25 +2,20 @@ name: Patriots Protocol - Cyber Intelligence Network v4.0
 
 on:
   schedule:
-    # Run every 4 hours for fresh intelligence
-    - cron: '0 */4 * * *'
-    # Daily intelligence cleanup at 2 AM UTC
-    - cron: '0 2 * * *'
+    - cron: '0 */4 * * *'  # Every 4 hours for fresh intelligence
   workflow_dispatch:
     inputs:
-      force_cleanup:
-        description: 'Force intelligence data cleanup'
+      force_analysis:
+        description: 'Force immediate intelligence analysis'
         required: false
         default: 'false'
-      intel_sources:
-        description: 'Number of intelligence sources (default: 8)'
-        required: false
-        default: '8'
+        type: boolean
   push:
     branches: ["main"]
     paths-ignore:
       - 'archive/**'
       - '*.md'
+      - 'docs/**'
 
 permissions:
   contents: write
@@ -28,143 +23,75 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "patriots-protocol-intel-v4"
+  group: "patriots-protocol-intelligence"
   cancel-in-progress: true
 
 env:
   INTELLIGENCE_RETENTION_DAYS: 7
-  MAX_SOURCES: ${{ github.event.inputs.intel_sources || '8' }}
+  PYTHON_VERSION: '3.11'
 
 jobs:
-  # Intelligence data cleanup job
-  intelligence-cleanup:
+  cyber-intelligence-analysis:
     runs-on: ubuntu-latest
-    if: github.event.schedule == '0 2 * * *' || github.event.inputs.force_cleanup == 'true'
-    steps:
-      - name: Checkout Patriots Protocol
-        uses: actions/checkout@v4
-
-      - name: Setup Python for Intelligence Cleanup
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-
-      - name: Intelligence Data Cleanup
-        run: |
-          echo "🎖️  PATRIOTS PROTOCOL v4.0 - Intelligence Data Cleanup Starting..."
-          echo "📅 Cleanup Time: $(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)"
-          echo "🗂️  Intelligence Retention: ${INTELLIGENCE_RETENTION_DAYS} days"
-          
-          # Create cleanup script
-          cat > cleanup.py << 'EOF'
-          import os
-          import shutil
-          from datetime import datetime, timedelta
-          from pathlib import Path
-          
-          def intelligence_cleanup():
-              retention_days = int(os.environ.get('INTELLIGENCE_RETENTION_DAYS', 7))
-              cutoff_date = datetime.now() - timedelta(days=retention_days)
-              
-              total_files = 0
-              total_size = 0
-              
-              # Directories to clean
-              cleanup_dirs = ['./data', './logs', './backup']
-              
-              for dir_path in cleanup_dirs:
-                  directory = Path(dir_path)
-                  if directory.exists():
-                      for file_path in directory.rglob('*'):
-                          if file_path.is_file():
-                              try:
-                                  file_time = datetime.fromtimestamp(file_path.stat().st_mtime)
-                                  if file_time < cutoff_date:
-                                      file_size = file_path.stat().st_size
-                                      file_path.unlink()
-                                      total_files += 1
-                                      total_size += file_size
-                                      
-                              except Exception as e:
-                                  print(f"Warning: Could not clean {file_path}: {e}")
-              
-              print(f"✅ Intelligence cleanup complete: {total_files} files, {total_size / (1024*1024):.2f} MB")
-              return total_files, total_size
-          
-          if __name__ == "__main__":
-              intelligence_cleanup()
-          EOF
-          
-          python cleanup.py
-          
-          # Update git if files were cleaned
-          git config --local user.email "patriots-intel@cyber.ai"
-          git config --local user.name "Patriots Protocol Intelligence"
-          
-          if ! git diff --quiet; then
-            git add -A
-            git commit -m "🎖️  Patriots Protocol v4.0: Intelligence Data Cleanup
-            
-            📅 Cleanup Time: $(date -u +'%Y-%m-%d %H:%M:%S UTC')
-            🗂️  Retention Policy: ${INTELLIGENCE_RETENTION_DAYS} days
-            🛡️  Intelligence security maintained"
-            git push
-          else
-            echo "📋 No intelligence files to cleanup"
-          fi
-
-  # Cyber intelligence gathering and analysis
-  cyber-intelligence:
-    runs-on: ubuntu-latest
-    if: github.event.schedule != '0 2 * * *'
     outputs:
-      threats_identified: ${{ steps.intel_analysis.outputs.threats_identified }}
-      threat_level: ${{ steps.intel_analysis.outputs.threat_level }}
-      intelligence_confidence: ${{ steps.intel_analysis.outputs.intelligence_confidence }}
-      fresh_intel_count: ${{ steps.intel_analysis.outputs.fresh_intel_count }}
-      critical_threats: ${{ steps.intel_analysis.outputs.critical_threats }}
+      threats_detected: ${{ steps.intelligence.outputs.threats_detected }}
+      threat_level: ${{ steps.intelligence.outputs.threat_level }}
+      intelligence_confidence: ${{ steps.intelligence.outputs.intelligence_confidence }}
+      critical_threats: ${{ steps.intelligence.outputs.critical_threats }}
+      mission_status: ${{ steps.intelligence.outputs.mission_status }}
     steps:
-      - name: Checkout Patriots Protocol v4.0
+      - name: Checkout Patriots Protocol Repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Setup Python for Intelligence Analysis
+      - name: Setup Python Intelligence Environment
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
-
-      - name: Create Intelligence Directory Structure
-        run: |
-          mkdir -p data logs backup
-          chmod 750 data logs backup
-          echo "🛡️  Intelligence directories secured"
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
 
       - name: Install Intelligence Dependencies
         run: |
-          echo "📦 Installing cyber intelligence dependencies..."
+          echo "🎖️ Installing Patriots Protocol Intelligence Dependencies..."
           pip install --upgrade pip
-          pip install aiohttp feedparser asyncio openai python-dateutil
-          echo "✅ Intelligence dependencies ready"
+          pip install aiohttp feedparser python-dateutil
+          
+          # Optional OpenAI for enhanced analysis
+          pip install openai || echo "⚠️ OpenAI library not available - will use basic analysis"
+          
+          echo "✅ Dependencies installed successfully"
 
-      - name: Cyber Intelligence Analysis
-        id: intel_analysis
-        env:
-          GITHUB_TOKEN: ${{ secrets.MODEL_TOKEN }}
-          MODEL_TOKEN: ${{ secrets.MODEL_TOKEN }}
-          MAX_SOURCES: ${{ env.MAX_SOURCES }}
+      - name: Create Intelligence Directory Structure
         run: |
-          echo "🎖️  PATRIOTS PROTOCOL v4.0 - Cyber Intelligence Mission Starting..."
+          echo "🛡️ Creating secure intelligence directories..."
+          mkdir -p data logs backup
+          chmod 750 data logs backup
+          
+          # Create logs directory with proper permissions
+          touch logs/.gitkeep
+          
+          echo "✅ Intelligence directories configured"
+
+      - name: Execute Cyber Intelligence Mission
+        id: intelligence
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MODEL_TOKEN: ${{ secrets.MODEL_TOKEN }}
+        run: |
+          echo "🎖️ PATRIOTS PROTOCOL v4.0 - Cyber Intelligence Mission Starting..."
           echo "📅 Mission Start: $(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)"
-          echo "🔍 Intelligence Sources: ${MAX_SOURCES}"
-          echo "🤖 AI Model: openai/gpt-4.1-mini"
-          echo "🛡️  Executing cyber intelligence analysis..."
+          echo "🔍 Intelligence Analysis: Professional Grade"
+          echo "🛡️ Executing comprehensive cyber threat intelligence analysis..."
           
-          # Run intelligence analysis
-          python patriots_ai_intel.py 2>&1 | tee logs/intel_analysis_$(date +%Y%m%d_%H%M%S).log
+          # Execute intelligence gathering with logging
+          python patriots_ai_intel.py 2>&1 | tee logs/intelligence_mission_$(date +%Y%m%d_%H%M%S).log
           
-          # Extract intelligence metrics
+          # Extract intelligence metrics for workflow outputs
           if [ -f ./data/news-analysis.json ]; then
-            echo "✅ Cyber intelligence data generated"
+            echo "✅ Intelligence data generated successfully"
             
+            # Extract metrics using Python
             python3 -c "
           import json
           import sys
@@ -175,54 +102,56 @@ jobs:
                   data = json.load(f)
               
               metrics = data.get('metrics', {})
+              summary = data.get('intelligence_summary', {})
               
-              # Extract intelligence metrics
-              threats_identified = metrics.get('total_threats', 0)
-              threat_level = metrics.get('global_threat_level', 'LOW')
-              intelligence_confidence = metrics.get('intelligence_confidence', 85)
-              fresh_intel_count = metrics.get('fresh_intel_24h', 0)
+              # Extract key intelligence metrics
+              threats_detected = metrics.get('total_threats', 0)
+              threat_level = metrics.get('global_threat_level', 'MONITORING')
+              intelligence_confidence = metrics.get('intelligence_confidence', 0)
               critical_threats = metrics.get('critical_threats', 0)
+              mission_status = summary.get('mission_status', 'UNKNOWN')
               
-              # Intelligence report
-              print(f'🎖️  Patriots Protocol v4.0 Intelligence Report:')
-              print(f'   🎯 Threats Identified: {threats_identified}')
+              # Display intelligence summary
+              print(f'🎖️ Patriots Protocol v4.0 Intelligence Summary:')
+              print(f'   🎯 Threats Detected: {threats_detected}')
               print(f'   🔥 Global Threat Level: {threat_level}')
-              print(f'   🤖 Intelligence Confidence: {intelligence_confidence}%')
-              print(f'   📊 Fresh Intelligence (24h): {fresh_intel_count}')
-              print(f'   ⚠️  Critical Threats: {critical_threats}')
-              print(f'   🛡️  Intelligence Sources: ${MAX_SOURCES}')
+              print(f'   🎯 Intelligence Confidence: {intelligence_confidence}%')
+              print(f'   ⚠️ Critical Threats: {critical_threats}')
+              print(f'   📊 Mission Status: {mission_status}')
               
-              # Set outputs
+              # Set GitHub Actions outputs
               with open(os.environ['GITHUB_OUTPUT'], 'a') as gh_output:
-                  gh_output.write(f'threats_identified={threats_identified}\\n')
+                  gh_output.write(f'threats_detected={threats_detected}\\n')
                   gh_output.write(f'threat_level={threat_level}\\n')
                   gh_output.write(f'intelligence_confidence={intelligence_confidence}\\n')
-                  gh_output.write(f'fresh_intel_count={fresh_intel_count}\\n')
                   gh_output.write(f'critical_threats={critical_threats}\\n')
+                  gh_output.write(f'mission_status={mission_status}\\n')
               
           except Exception as e:
-              print(f'❌ Error processing intelligence data: {e}', file=sys.stderr)
+              print(f'❌ Intelligence metrics extraction failed: {e}', file=sys.stderr)
+              # Set fallback values
               with open(os.environ['GITHUB_OUTPUT'], 'a') as gh_output:
-                  gh_output.write('threats_identified=0\\n')
-                  gh_output.write('threat_level=LOW\\n')
-                  gh_output.write('intelligence_confidence=85\\n')
-                  gh_output.write('fresh_intel_count=0\\n')
+                  gh_output.write('threats_detected=0\\n')
+                  gh_output.write('threat_level=OFFLINE\\n')
+                  gh_output.write('intelligence_confidence=0\\n')
                   gh_output.write('critical_threats=0\\n')
+                  gh_output.write('mission_status=ERROR\\n')
           "
           else
-            echo "⚠️  No intelligence data generated - using fallback"
-            echo "threats_identified=0" >> $GITHUB_OUTPUT
-            echo "threat_level=LOW" >> $GITHUB_OUTPUT
-            echo "intelligence_confidence=85" >> $GITHUB_OUTPUT
-            echo "fresh_intel_count=0" >> $GITHUB_OUTPUT
+            echo "⚠️ No intelligence data file generated"
+            echo "threats_detected=0" >> $GITHUB_OUTPUT
+            echo "threat_level=OFFLINE" >> $GITHUB_OUTPUT
+            echo "intelligence_confidence=0" >> $GITHUB_OUTPUT
             echo "critical_threats=0" >> $GITHUB_OUTPUT
+            echo "mission_status=ERROR" >> $GITHUB_OUTPUT
           fi
 
       - name: Intelligence Data Validation
         run: |
-          echo "🔍 Validating cyber intelligence data..."
+          echo "🔍 Validating cyber intelligence data integrity..."
           
           if [ -f ./data/news-analysis.json ]; then
+            # Validate JSON structure
             python3 -c "
           import json
           import sys
@@ -231,98 +160,159 @@ jobs:
               with open('./data/news-analysis.json', 'r') as f:
                   data = json.load(f)
               
-              # Validate intelligence structure
-              required_fields = ['articles', 'metrics']
-              missing = [f for f in required_fields if f not in data]
+              # Validate required fields
+              required_fields = ['articles', 'metrics', 'intelligence_summary']
+              missing_fields = [field for field in required_fields if field not in data]
               
-              if missing:
-                  print(f'❌ Missing intelligence fields: {missing}')
+              if missing_fields:
+                  print(f'❌ Missing required fields: {missing_fields}')
                   sys.exit(1)
               
-              metrics = data.get('metrics', {})
               articles = data.get('articles', [])
+              metrics = data.get('metrics', {})
               
               print(f'✅ Intelligence data validation passed')
-              print(f'🎯 Threat Intelligence Reports: {len(articles)}')
-              print(f'🤖 Intelligence Quality: {metrics.get(\"intelligence_confidence\", 85)}%')
-              print(f'🛡️  Data integrity: Verified')
+              print(f'📊 Threat Reports: {len(articles)}')
+              print(f'🎯 Intelligence Quality: {metrics.get(\"intelligence_confidence\", 0)}%')
+              print(f'🛡️ Data Integrity: Verified')
               
+          except json.JSONDecodeError as e:
+              print(f'❌ Invalid JSON format: {e}')
+              sys.exit(1)
           except Exception as e:
-              print(f'❌ Intelligence validation failed: {e}')
+              print(f'❌ Validation error: {e}')
               sys.exit(1)
           "
+          else
+            echo "❌ Intelligence data file not found"
+            exit 1
           fi
 
-      - name: Intelligence Backup Creation
+      - name: Create Intelligence Backup
         run: |
-          echo "💾 Creating intelligence backup..."
+          echo "💾 Creating intelligence backup archive..."
           
           if [ -f ./data/news-analysis.json ]; then
             # Create timestamped backup
             mkdir -p backup
-            cp ./data/news-analysis.json ./backup/patriots-intel-$(date +%Y%m%d-%H%M%S).json
+            timestamp=$(date +%Y%m%d-%H%M%S)
+            cp ./data/news-analysis.json ./backup/patriots-intel-${timestamp}.json
             
-            # Keep only last 5 backups
-            ls -t ./backup/*.json 2>/dev/null | tail -n +6 | xargs rm -f 2>/dev/null || true
+            # Compress older backups to save space
+            find ./backup -name "*.json" -mtime +1 -exec gzip {} \;
             
-            echo "✅ Intelligence backup created"
+            # Keep only last 10 backups (including compressed)
+            ls -t ./backup/patriots-intel-* 2>/dev/null | tail -n +11 | xargs rm -f 2>/dev/null || true
+            
+            echo "✅ Intelligence backup created: patriots-intel-${timestamp}.json"
+            
+            # Display backup summary
+            backup_count=$(ls -1 ./backup/patriots-intel-* 2>/dev/null | wc -l)
+            echo "📦 Total backups maintained: ${backup_count}"
+          else
+            echo "⚠️ No intelligence data to backup"
           fi
 
-      - name: Intelligence Commit
+      - name: Cleanup Old Intelligence Data
         run: |
-          git config --local user.email "patriots-intel@cyber.ai"
+          echo "🧹 Cleaning up old intelligence data..."
+          
+          # Remove old log files (older than retention period)
+          find ./logs -name "*.log" -mtime +${INTELLIGENCE_RETENTION_DAYS} -delete 2>/dev/null || true
+          
+          # Remove old compressed backups
+          find ./backup -name "*.gz" -mtime +${INTELLIGENCE_RETENTION_DAYS} -delete 2>/dev/null || true
+          
+          # Count remaining files
+          log_count=$(find ./logs -name "*.log" 2>/dev/null | wc -l)
+          backup_count=$(find ./backup -name "*" -type f 2>/dev/null | wc -l)
+          
+          echo "📁 Log files maintained: ${log_count}"
+          echo "📦 Backup files maintained: ${backup_count}"
+          echo "✅ Cleanup completed"
+
+      - name: Commit Intelligence Data
+        run: |
+          # Configure git for Patriots Protocol
+          git config --local user.email "patriots-intelligence@cyber.ai"
           git config --local user.name "Patriots Protocol Intelligence v4.0"
           
-          # Add files
+          # Stage intelligence files
           git add data/news-analysis.json 2>/dev/null || true
           git add logs/ 2>/dev/null || true
           git add backup/ 2>/dev/null || true
           
+          # Check if there are changes to commit
           if git diff --staged --quiet; then
-            echo "📋 No new intelligence data"
+            echo "📋 No new intelligence data to commit"
           else
-            # Intelligence-focused commit
-            COMMIT_MSG="🎖️  Patriots Protocol v4.0: Cyber Intelligence Update"
-            COMMIT_MSG="$COMMIT_MSG\n\n📅 Mission: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-            COMMIT_MSG="$COMMIT_MSG\n🎯 Threats: ${{ steps.intel_analysis.outputs.threats_identified }}"
-            COMMIT_MSG="$COMMIT_MSG\n🔥 Level: ${{ steps.intel_analysis.outputs.threat_level }}"
-            COMMIT_MSG="$COMMIT_MSG\n🤖 Confidence: ${{ steps.intel_analysis.outputs.intelligence_confidence }}%"
-            COMMIT_MSG="$COMMIT_MSG\n📊 Fresh Intel: ${{ steps.intel_analysis.outputs.fresh_intel_count }}"
-            COMMIT_MSG="$COMMIT_MSG\n⚠️  Critical: ${{ steps.intel_analysis.outputs.critical_threats }}"
-            COMMIT_MSG="$COMMIT_MSG\n\n🔗 https://github.com/danishnizmi/Patriots_Protocol"
+            # Create professional commit message
+            COMMIT_MSG="🎖️ Patriots Protocol v4.0: Cyber Intelligence Update"
+            COMMIT_MSG="${COMMIT_MSG}\n\n📅 Mission: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+            COMMIT_MSG="${COMMIT_MSG}\n🎯 Threats: ${{ steps.intelligence.outputs.threats_detected }}"
+            COMMIT_MSG="${COMMIT_MSG}\n🔥 Level: ${{ steps.intelligence.outputs.threat_level }}"
+            COMMIT_MSG="${COMMIT_MSG}\n🎯 Confidence: ${{ steps.intelligence.outputs.intelligence_confidence }}%"
+            COMMIT_MSG="${COMMIT_MSG}\n⚠️ Critical: ${{ steps.intelligence.outputs.critical_threats }}"
+            COMMIT_MSG="${COMMIT_MSG}\n📊 Status: ${{ steps.intelligence.outputs.mission_status }}"
+            COMMIT_MSG="${COMMIT_MSG}\n\n🔗 https://github.com/danishnizmi/Patriots_Protocol"
             
+            # Commit with detailed message
             echo -e "$COMMIT_MSG" > commit_message.txt
             git commit -F commit_message.txt
             git push
-            echo "✅ Intelligence data committed"
+            
+            echo "✅ Intelligence data committed and pushed"
           fi
 
-  # Deploy intelligence dashboard
-  deploy-intelligence:
+  deploy-intelligence-dashboard:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: cyber-intelligence
-    if: needs.cyber-intelligence.result == 'success'
+    needs: cyber-intelligence-analysis
+    if: always() # Deploy even if intelligence gathering had issues
     steps:
-      - name: Checkout Patriots Protocol
+      - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           ref: main
 
-      - name: Setup Pages
+      - name: Setup Pages Configuration
         uses: actions/configure-pages@v5
 
       - name: Intelligence Dashboard Validation
         run: |
-          echo "🌐 Validating intelligence dashboard..."
+          echo "🌐 Validating Patriots Protocol Intelligence Dashboard..."
           
-          # Validate core files
-          if [ -f "index.html" ] && [ -f "data/news-analysis.json" ]; then
-            echo "✅ Core intelligence files validated"
+          # Validate core dashboard files
+          if [ -f "index.html" ]; then
+            echo "✅ Dashboard interface file found"
             
-            # Check data structure
+            # Check for required dashboard elements
+            if grep -q "PATRIOTS PROTOCOL" index.html; then
+              echo "✅ Dashboard title verified"
+            else
+              echo "❌ Dashboard title missing"
+              exit 1
+            fi
+            
+            if grep -q "CYBER THREAT INTELLIGENCE" index.html; then
+              echo "✅ Intelligence interface verified"
+            else
+              echo "❌ Intelligence interface missing"
+              exit 1
+            fi
+            
+          else
+            echo "❌ Dashboard interface file missing"
+            exit 1
+          fi
+          
+          # Validate intelligence data file
+          if [ -f "data/news-analysis.json" ]; then
+            echo "✅ Intelligence data file found"
+            
+            # Basic JSON validation
             python3 -c "
           import json
           
@@ -334,25 +324,23 @@ jobs:
               metrics = data.get('metrics', {})
               
               print(f'📊 Intelligence Reports: {len(articles)}')
-              print(f'🎯 Threat Level: {metrics.get(\"global_threat_level\", \"LOW\")}')
-              print(f'🤖 Confidence: {metrics.get(\"intelligence_confidence\", 85)}%')
+              print(f'🎯 Threat Level: {metrics.get(\"global_threat_level\", \"UNKNOWN\")}')
+              print(f'🎯 Confidence: {metrics.get(\"intelligence_confidence\", 0)}%')
+              print('✅ Intelligence data structure valid')
               
-              if len(articles) > 0:
-                  print('✅ Intelligence data structure valid')
-              else:
-                  print('⚠️  No threat intelligence available')
-                  
           except Exception as e:
-              print(f'❌ Intelligence validation error: {e}')
+              print(f'❌ Intelligence data validation error: {e}')
               exit(1)
           "
             
           else
-            echo "❌ Missing core intelligence files"
+            echo "❌ Intelligence data file missing"
             exit 1
           fi
+          
+          echo "🎯 Patriots Protocol Intelligence Dashboard validation complete"
 
-      - name: Upload Intelligence Dashboard
+      - name: Upload Dashboard Artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
@@ -361,48 +349,65 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Intelligence Deployment Success
+      - name: Dashboard Deployment Success
         run: |
-          echo "🎖️  ═══════════════════════════════════════════════════════════════════"
-          echo "     PATRIOTS PROTOCOL v4.0 - CYBER INTELLIGENCE DEPLOYMENT SUCCESS"
+          echo "🎖️ ═══════════════════════════════════════════════════════════════════"
+          echo "     PATRIOTS PROTOCOL v4.0 - INTELLIGENCE DASHBOARD DEPLOYED"
           echo "  ═══════════════════════════════════════════════════════════════════"
-          echo "  🌐 Intelligence Dashboard: ${{ steps.deployment.outputs.page_url }}"
-          echo "  🎯 Threats Identified: ${{ needs.cyber-intelligence.outputs.threats_identified }}"
-          echo "  🔥 Threat Level: ${{ needs.cyber-intelligence.outputs.threat_level }}"
-          echo "  🤖 Intelligence Confidence: ${{ needs.cyber-intelligence.outputs.intelligence_confidence }}%"
-          echo "  📊 Fresh Intelligence: ${{ needs.cyber-intelligence.outputs.fresh_intel_count }}"
-          echo "  ⚠️  Critical Threats: ${{ needs.cyber-intelligence.outputs.critical_threats }}"
-          echo "  🛡️  Security: Active intelligence monitoring"
+          echo "  🌐 Dashboard URL: ${{ steps.deployment.outputs.page_url }}"
+          echo "  🎯 Threats Detected: ${{ needs.cyber-intelligence-analysis.outputs.threats_detected }}"
+          echo "  🔥 Threat Level: ${{ needs.cyber-intelligence-analysis.outputs.threat_level }}"
+          echo "  🎯 Intelligence Confidence: ${{ needs.cyber-intelligence-analysis.outputs.intelligence_confidence }}%"
+          echo "  ⚠️ Critical Threats: ${{ needs.cyber-intelligence-analysis.outputs.critical_threats }}"
+          echo "  📊 Mission Status: ${{ needs.cyber-intelligence-analysis.outputs.mission_status }}"
+          echo "  🛡️ Security: Professional threat intelligence monitoring"
           echo "  ═══════════════════════════════════════════════════════════════════"
 
-  # Intelligence monitoring and alerts
-  intelligence-monitoring:
+  intelligence-mission-summary:
     runs-on: ubuntu-latest
-    needs: [cyber-intelligence]
+    needs: [cyber-intelligence-analysis, deploy-intelligence-dashboard]
     if: always()
     steps:
-      - name: Intelligence Summary Report
+      - name: Patriots Protocol Mission Summary
         run: |
-          echo "🎖️  ═══════════════════════════════════════════════════════════════════"
-          echo "       PATRIOTS PROTOCOL v4.0 - INTELLIGENCE MONITORING REPORT"
+          echo "🎖️ ═══════════════════════════════════════════════════════════════════"
+          echo "       PATRIOTS PROTOCOL v4.0 - CYBER INTELLIGENCE MISSION SUMMARY"
           echo "  ═══════════════════════════════════════════════════════════════════"
-          echo "  📅 Analysis Time: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-          echo "  🎯 Threats Identified: ${{ needs.cyber-intelligence.outputs.threats_identified || '0' }}"
-          echo "  🔥 Global Threat Level: ${{ needs.cyber-intelligence.outputs.threat_level || 'LOW' }}"
-          echo "  🤖 Intelligence Confidence: ${{ needs.cyber-intelligence.outputs.intelligence_confidence || '85' }}%"
-          echo "  📊 Fresh Intelligence (24h): ${{ needs.cyber-intelligence.outputs.fresh_intel_count || '0' }}"
-          echo "  ⚠️  Critical Threats: ${{ needs.cyber-intelligence.outputs.critical_threats || '0' }}"
-          echo "  🛡️  Intelligence Status: OPERATIONAL"
-          echo "  🗂️  Data Retention: ${INTELLIGENCE_RETENTION_DAYS} days"
+          echo "  📅 Mission Time: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          echo "  🎯 Threats Detected: ${{ needs.cyber-intelligence-analysis.outputs.threats_detected || '0' }}"
+          echo "  🔥 Global Threat Level: ${{ needs.cyber-intelligence-analysis.outputs.threat_level || 'UNKNOWN' }}"
+          echo "  🎯 Intelligence Confidence: ${{ needs.cyber-intelligence-analysis.outputs.intelligence_confidence || '0' }}%"
+          echo "  ⚠️ Critical Threats: ${{ needs.cyber-intelligence-analysis.outputs.critical_threats || '0' }}"
+          echo "  📊 Mission Status: ${{ needs.cyber-intelligence-analysis.outputs.mission_status || 'UNKNOWN' }}"
+          echo "  🛡️ Intelligence Network: OPERATIONAL"
+          echo "  🗂️ Data Retention: ${INTELLIGENCE_RETENTION_DAYS} days"
           echo "  ═══════════════════════════════════════════════════════════════════"
           
-          # Check for critical threats
-          CRITICAL_COUNT="${{ needs.cyber-intelligence.outputs.critical_threats || '0' }}"
+          # Critical threat alert
+          CRITICAL_COUNT="${{ needs.cyber-intelligence-analysis.outputs.critical_threats || '0' }}"
           if [ "$CRITICAL_COUNT" -gt "0" ]; then
             echo "🚨 CRITICAL THREAT ALERT: $CRITICAL_COUNT critical threats identified!"
-            echo "   Immediate threat assessment and response recommended."
+            echo "   Immediate threat assessment and incident response recommended."
+            echo "   Review intelligence dashboard for detailed threat analysis."
           else
             echo "✅ No critical threats detected in current intelligence cycle"
           fi
           
-          echo "Patriots Protocol v4.0 Cyber Intelligence Mission Complete."
+          # Mission status assessment
+          MISSION_STATUS="${{ needs.cyber-intelligence-analysis.outputs.mission_status || 'UNKNOWN' }}"
+          case "$MISSION_STATUS" in
+            "OPERATIONAL")
+              echo "✅ Patriots Protocol Intelligence Mission: SUCCESS"
+              ;;
+            "ERROR")
+              echo "⚠️ Patriots Protocol Intelligence Mission: PARTIAL SUCCESS"
+              echo "   Some intelligence sources may be unavailable"
+              ;;
+            *)
+              echo "❓ Patriots Protocol Intelligence Mission: STATUS UNKNOWN"
+              ;;
+          esac
+          
+          echo ""
+          echo "🎖️ Patriots Protocol v4.0 Cyber Intelligence Mission Complete."
+          echo "   Repository: https://github.com/danishnizmi/Patriots_Protocol"
