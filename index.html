@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PATRIOTS PROTOCOL - Enhanced Cyber Intelligence v4.1</title>
-    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono:wght@400&display=swap" rel="stylesheet">
+    <title>PATRIOTS PROTOCOL - Enhanced Cyber Intelligence v4.2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono:wght@400&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -31,8 +31,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -2;
-            opacity: 0.06;
+            z-index: -3;
+            opacity: 0.08;
         }
 
         .matrix-overlay {
@@ -41,223 +41,326 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1;
-            background: radial-gradient(ellipse at center, 
-                rgba(0, 255, 65, 0.03) 0%, 
-                rgba(0, 0, 0, 0.8) 70%, 
-                rgba(0, 0, 0, 0.95) 100%);
+            z-index: -2;
+            background: 
+                radial-gradient(ellipse at 20% 80%, rgba(255, 68, 68, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(0, 255, 65, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 40% 40%, rgba(255, 215, 0, 0.04) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.95) 100%);
             pointer-events: none;
         }
 
-        /* Floating cyber messages */
-        .cyber-message {
+        /* Enhanced Matrix Rain */
+        .cyber-rain {
             position: fixed;
-            font-size: 10px;
-            color: #ff4444;
-            opacity: 0.4;
-            pointer-events: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: -1;
-            white-space: nowrap;
-            animation: float-message 15s linear infinite;
+            pointer-events: none;
+            overflow: hidden;
         }
 
-        @keyframes float-message {
-            0% {
-                transform: translateY(100vh) translateX(0);
-                opacity: 0;
+        .rain-column {
+            position: absolute;
+            top: -100px;
+            color: #00ff41;
+            font-size: 12px;
+            line-height: 14px;
+            animation: matrix-fall linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes matrix-fall {
+            to {
+                transform: translateY(calc(100vh + 100px));
             }
-            10% {
-                opacity: 0.4;
-            }
-            90% {
-                opacity: 0.4;
-            }
-            100% {
-                transform: translateY(-100px) translateX(50px);
-                opacity: 0;
-            }
+        }
+
+        /* Cyber Glitch Effects */
+        .glitch-text {
+            position: relative;
+            animation: glitch 3s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-1px, 1px); }
+            40% { transform: translate(-1px, -1px); }
+            60% { transform: translate(1px, 1px); }
+            80% { transform: translate(1px, -1px); }
         }
 
         .header {
             text-align: center;
-            padding: 1.5rem;
+            padding: 2rem;
             border-bottom: 2px solid #00ff41;
-            background: rgba(0, 0, 0, 0.95);
+            background: 
+                linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.9)),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 98px,
+                    rgba(0, 255, 65, 0.02) 100px
+                );
             position: relative;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 4px 32px rgba(0, 255, 65, 0.3);
         }
 
         .title {
-            font-size: 2.8rem;
-            text-shadow: 0 0 20px #00ff41, 0 0 40px #00ff41;
-            animation: glow 3s ease-in-out infinite alternate;
-            margin-bottom: 0.5rem;
-            font-family: 'Share Tech Mono', monospace;
-            letter-spacing: 3px;
+            font-family: 'Orbitron', monospace;
+            font-size: 3.2rem;
+            font-weight: 900;
+            text-shadow: 
+                0 0 10px #00ff41,
+                0 0 20px #00ff41,
+                0 0 40px #00ff41,
+                0 0 80px #00ff41;
+            animation: neon-glow 4s ease-in-out infinite alternate;
+            margin-bottom: 1rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        @keyframes neon-glow {
+            from { 
+                text-shadow: 
+                    0 0 10px #00ff41,
+                    0 0 20px #00ff41,
+                    0 0 40px #00ff41;
+            }
+            to { 
+                text-shadow: 
+                    0 0 20px #00ff41,
+                    0 0 30px #00ff41,
+                    0 0 60px #00ff41,
+                    0 0 100px #00ff41;
+            }
         }
 
         .version-badge {
-            background: linear-gradient(45deg, rgba(255, 68, 68, 0.3), rgba(255, 68, 68, 0.1));
-            border: 1px solid #ff4444;
+            background: linear-gradient(45deg, rgba(255, 68, 68, 0.4), rgba(255, 68, 68, 0.2));
+            border: 2px solid #ff4444;
             color: #ff4444;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
+            padding: 0.6rem 1.4rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: bold;
             display: inline-block;
-            box-shadow: 0 0 15px rgba(255, 68, 68, 0.3);
+            box-shadow: 
+                0 0 20px rgba(255, 68, 68, 0.4),
+                inset 0 0 20px rgba(255, 68, 68, 0.1);
+            animation: version-pulse 2s infinite;
         }
 
-        @keyframes glow {
-            from { 
-                text-shadow: 0 0 20px #00ff41, 0 0 30px #00ff41; 
-            }
-            to { 
-                text-shadow: 0 0 30px #00ff41, 0 0 40px #00ff41, 0 0 50px #00ff41; 
-            }
+        @keyframes version-pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 68, 68, 0.4); }
+            50% { box-shadow: 0 0 30px rgba(255, 68, 68, 0.6), 0 0 40px rgba(255, 68, 68, 0.2); }
         }
 
         .container {
-            max-width: 1800px;
+            max-width: 1900px;
             margin: 0 auto;
-            padding: 1.5rem;
+            padding: 2rem;
             position: relative;
         }
 
         .enhanced-controls {
-            background: rgba(255, 68, 68, 0.08);
-            border: 1px solid #ff4444;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 8px 32px rgba(255, 68, 68, 0.1);
+            background: 
+                linear-gradient(135deg, rgba(255, 68, 68, 0.12), rgba(255, 68, 68, 0.06)),
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 4px,
+                    rgba(255, 68, 68, 0.02) 6px
+                );
+            border: 2px solid #ff4444;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            backdrop-filter: blur(20px);
+            box-shadow: 
+                0 8px 32px rgba(255, 68, 68, 0.2),
+                inset 0 0 50px rgba(255, 68, 68, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .enhanced-controls::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.1), transparent);
+            animation: scan-line 3s infinite;
+        }
+
+        @keyframes scan-line {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
         .controls-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .controls-title {
             color: #ff4444;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: bold;
-            text-shadow: 0 0 10px #ff4444;
+            text-shadow: 0 0 15px #ff4444;
+            font-family: 'Orbitron', monospace;
         }
 
         .live-indicator {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.8rem;
             color: #00ff41;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            font-weight: bold;
         }
 
         .live-dot {
-            width: 8px;
-            height: 8px;
+            width: 12px;
+            height: 12px;
             background: #00ff41;
             border-radius: 50%;
-            animation: pulse 2s infinite;
-            box-shadow: 0 0 10px #00ff41;
+            animation: cyber-pulse 2s infinite;
+            box-shadow: 0 0 20px #00ff41;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.2); }
+        @keyframes cyber-pulse {
+            0%, 100% { 
+                opacity: 1; 
+                transform: scale(1);
+                box-shadow: 0 0 20px #00ff41;
+            }
+            50% { 
+                opacity: 0.7; 
+                transform: scale(1.3);
+                box-shadow: 0 0 30px #00ff41, 0 0 40px #00ff41;
+            }
         }
 
         .filter-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .filter-group {
             display: flex;
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 0.8rem;
         }
 
         .filter-label {
             color: #ff6666;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: bold;
             text-transform: uppercase;
-            text-shadow: 0 0 5px #ff6666;
+            text-shadow: 0 0 8px #ff6666;
+            letter-spacing: 1px;
         }
 
         .filter-select, .search-input {
             background: rgba(0, 0, 0, 0.8);
-            border: 1px solid #ff4444;
+            border: 2px solid #ff4444;
             color: #00ff41;
-            padding: 0.6rem;
-            border-radius: 6px;
+            padding: 0.8rem;
+            border-radius: 8px;
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             transition: all 0.3s ease;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
         }
 
         .search-input {
             border-color: #ffd700;
+            color: #ffd700;
         }
 
-        .search-input:focus, .filter-select:focus {
+        .search-input::placeholder {
+            color: rgba(255, 215, 0, 0.6);
+        }
+
+        .filter-select:focus, .search-input:focus {
             outline: none;
-            box-shadow: 0 0 15px rgba(255, 68, 68, 0.5);
-            transform: translateY(-1px);
+            box-shadow: 
+                0 0 20px rgba(255, 68, 68, 0.6),
+                inset 0 0 20px rgba(0, 0, 0, 0.5);
+            transform: translateY(-2px);
+            border-color: #00ff41;
         }
 
         .action-buttons {
             display: flex;
-            gap: 1rem;
+            gap: 1.5rem;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .action-btn {
-            background: linear-gradient(45deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
-            border: 1px solid #ffd700;
+            background: linear-gradient(45deg, rgba(255, 215, 0, 0.3), rgba(255, 215, 0, 0.1));
+            border: 2px solid #ffd700;
             color: #ffd700;
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
+            padding: 0.8rem 1.6rem;
+            border-radius: 8px;
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
+            font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .action-btn:hover {
-            background: linear-gradient(45deg, rgba(255, 215, 0, 0.3), rgba(255, 215, 0, 0.2));
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+            background: linear-gradient(45deg, rgba(255, 215, 0, 0.5), rgba(255, 215, 0, 0.3));
+            transform: translateY(-3px);
+            box-shadow: 
+                0 8px 25px rgba(255, 215, 0, 0.5),
+                0 0 30px rgba(255, 215, 0, 0.3);
+            text-shadow: 0 0 10px #ffd700;
         }
 
         .dashboard-grid {
             display: grid;
             grid-template-columns: 2fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
         }
 
         .metrics-section {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
         }
 
         .metric-card {
-            background: linear-gradient(135deg, rgba(255, 68, 68, 0.08), rgba(255, 68, 68, 0.03));
-            border: 1px solid rgba(255, 68, 68, 0.6);
-            padding: 1.2rem;
-            border-radius: 10px;
-            backdrop-filter: blur(8px);
-            transition: all 0.3s ease;
+            background: 
+                linear-gradient(135deg, rgba(255, 68, 68, 0.12), rgba(255, 68, 68, 0.06)),
+                radial-gradient(circle at 30% 70%, rgba(0, 255, 65, 0.05), transparent);
+            border: 2px solid rgba(255, 68, 68, 0.8);
+            padding: 1.8rem;
+            border-radius: 12px;
+            backdrop-filter: blur(15px);
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            box-shadow: 
+                0 8px 32px rgba(255, 68, 68, 0.2),
+                inset 0 0 30px rgba(255, 68, 68, 0.05);
         }
 
         .metric-card::before {
@@ -267,8 +370,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.1), transparent);
-            transition: left 0.5s;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.15), transparent);
+            transition: left 0.6s;
         }
 
         .metric-card:hover::before {
@@ -276,99 +379,148 @@
         }
 
         .metric-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 68, 68, 0.3);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 
+                0 15px 40px rgba(255, 68, 68, 0.4),
+                0 0 50px rgba(0, 255, 65, 0.2);
+            border-color: #00ff41;
         }
 
         .metric-card.critical {
             border-color: #ff0000;
-            background: linear-gradient(135deg, rgba(255, 0, 0, 0.15), rgba(255, 0, 0, 0.08));
-            animation: criticalPulse 3s infinite;
+            background: 
+                linear-gradient(135deg, rgba(255, 0, 0, 0.2), rgba(255, 0, 0, 0.1)),
+                radial-gradient(circle at 50% 50%, rgba(255, 0, 0, 0.1), transparent);
+            animation: critical-alert 3s infinite;
         }
 
-        @keyframes criticalPulse {
-            0%, 100% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.5); }
-            50% { box-shadow: 0 0 25px rgba(255, 0, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.4); }
+        @keyframes critical-alert {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+                border-color: #ff0000;
+            }
+            50% { 
+                box-shadow: 
+                    0 0 40px rgba(255, 0, 0, 0.8), 
+                    0 0 60px rgba(255, 0, 0, 0.4);
+                border-color: #ff4444;
+            }
         }
 
         .metric-title {
-            font-size: 0.7rem;
+            font-size: 0.8rem;
             color: #ff6666;
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
             text-transform: uppercase;
             font-weight: bold;
-            text-shadow: 0 0 5px #ff6666;
+            text-shadow: 0 0 8px #ff6666;
+            letter-spacing: 1px;
         }
 
         .metric-value {
-            font-size: 1.8rem;
+            font-size: 2.4rem;
             font-weight: bold;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 10px currentColor;
+            margin-bottom: 0.8rem;
+            text-shadow: 0 0 15px currentColor;
+            font-family: 'Orbitron', monospace;
         }
 
         .metric-details {
-            font-size: 0.75rem;
-            color: #ffcccc;
+            font-size: 0.8rem;
+            color: #cccccc;
+            line-height: 1.4;
         }
 
         .analytics-panel {
-            background: linear-gradient(135deg, rgba(255, 68, 68, 0.08), rgba(255, 68, 68, 0.04));
-            border: 1px solid #ff4444;
-            border-radius: 12px;
-            padding: 1.5rem;
-            backdrop-filter: blur(15px);
+            background: 
+                linear-gradient(135deg, rgba(255, 68, 68, 0.1), rgba(255, 68, 68, 0.05)),
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 3px,
+                    rgba(0, 255, 65, 0.02) 5px
+                );
+            border: 2px solid #ff4444;
+            border-radius: 15px;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(255, 68, 68, 0.2);
         }
 
         .analytics-title {
             color: #ff4444;
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
             text-align: center;
             font-weight: bold;
-            text-shadow: 0 0 10px #ff4444;
+            text-shadow: 0 0 15px #ff4444;
+            font-family: 'Orbitron', monospace;
         }
 
         .intelligence-section {
-            margin-top: 3rem;
+            margin-top: 4rem;
         }
 
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 2px solid #ff4444;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid #ff4444;
+            position: relative;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #ff4444, #00ff41, #ffd700, #ff4444);
+            animation: border-flow 3s linear infinite;
+        }
+
+        @keyframes border-flow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
         }
 
         .section-title {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             color: #ff4444;
-            text-shadow: 0 0 15px #ff4444;
+            text-shadow: 0 0 20px #ff4444;
+            font-family: 'Orbitron', monospace;
+            font-weight: bold;
         }
 
         .section-stats {
             display: flex;
             gap: 2rem;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            align-items: center;
         }
 
         .threat-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 2rem;
         }
 
         .threat-card {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));
-            border: 1px solid rgba(255, 68, 68, 0.6);
-            padding: 1.8rem;
-            border-radius: 12px;
-            transition: all 0.3s ease;
+            background: 
+                linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)),
+                radial-gradient(circle at 20% 80%, rgba(255, 68, 68, 0.05), transparent),
+                radial-gradient(circle at 80% 20%, rgba(0, 255, 65, 0.03), transparent);
+            border: 2px solid rgba(255, 68, 68, 0.6);
+            padding: 2.5rem;
+            border-radius: 15px;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
         }
 
         .threat-card::before {
@@ -378,8 +530,8 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.05), transparent);
-            transition: left 0.5s;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.08), transparent);
+            transition: left 0.6s;
         }
 
         .threat-card:hover::before {
@@ -387,62 +539,129 @@
         }
 
         .threat-card:hover {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5));
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 255, 65, 0.15);
-            border-color: rgba(0, 255, 65, 0.8);
+            background: 
+                linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)),
+                radial-gradient(circle at 50% 50%, rgba(0, 255, 65, 0.08), transparent);
+            transform: translateY(-5px);
+            box-shadow: 
+                0 15px 40px rgba(0, 255, 65, 0.2),
+                0 0 50px rgba(0, 255, 65, 0.1);
+            border-color: rgba(0, 255, 65, 0.9);
         }
 
         .threat-card.critical-threat {
-            border-left: 4px solid #ff0000;
-            background: linear-gradient(135deg, rgba(255, 0, 0, 0.1), rgba(0, 0, 0, 0.6));
+            border-left: 6px solid #ff0000;
+            background: 
+                linear-gradient(135deg, rgba(255, 0, 0, 0.15), rgba(0, 0, 0, 0.8)),
+                radial-gradient(circle at 30% 70%, rgba(255, 0, 0, 0.1), transparent);
+            animation: critical-threat-pulse 4s infinite;
+        }
+
+        @keyframes critical-threat-pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 0, 0, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(255, 0, 0, 0.6), 0 0 60px rgba(255, 0, 0, 0.2); }
         }
 
         .threat-card.high-threat {
-            border-left: 4px solid #ffd700;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.08), rgba(0, 0, 0, 0.6));
+            border-left: 6px solid #ffd700;
+            background: 
+                linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(0, 0, 0, 0.8)),
+                radial-gradient(circle at 30% 70%, rgba(255, 215, 0, 0.05), transparent);
         }
 
         .threat-header {
-            margin-bottom: 1.2rem;
-            padding-right: 4rem;
+            margin-bottom: 1.5rem;
+            position: relative;
         }
 
         .threat-title {
-            font-size: 1.15rem;
-            margin-bottom: 0.8rem;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
             color: #ffffff;
-            line-height: 1.3;
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            line-height: 1.4;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+            font-weight: bold;
         }
 
         .threat-title.expandable {
             cursor: pointer;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .threat-title.expandable:hover {
             color: #00ff41;
-            text-shadow: 0 0 10px #00ff41;
+            text-shadow: 0 0 15px #00ff41;
         }
 
         .critical-link {
             color: #ff4444;
             text-decoration: none;
             transition: all 0.3s ease;
+            position: relative;
         }
 
         .critical-link:hover {
             color: #ff6666;
-            text-shadow: 0 0 8px #ff4444;
+            text-shadow: 0 0 12px #ff4444;
         }
 
-        /* Enhanced Summary Management */
+        .threat-badges {
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .threat-badge {
+            padding: 0.4rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-align: center;
+            min-width: 70px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .threat-badge.critical {
+            background: linear-gradient(45deg, #ff0000, #cc0000);
+            color: #fff;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+            animation: badge-critical 2s infinite;
+        }
+
+        @keyframes badge-critical {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .threat-badge.high {
+            background: linear-gradient(45deg, #ffd700, #ffb300);
+            color: #000;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+        }
+
+        .threat-badge.medium {
+            background: linear-gradient(45deg, #ff9500, #ff7300);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(255, 149, 0, 0.5);
+        }
+
+        .threat-badge.low {
+            background: linear-gradient(45deg, #00ff41, #00cc33);
+            color: #000;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.5);
+        }
+
+        /* Enhanced Content Display */
         .threat-summary {
             color: #cccccc;
-            line-height: 1.5;
-            margin-bottom: 1.2rem;
-            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
             position: relative;
         }
 
@@ -452,92 +671,101 @@
 
         .summary-full {
             display: none;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 68, 68, 0.3);
         }
 
         .summary-toggle {
             color: #ffd700;
             cursor: pointer;
-            font-size: 0.8rem;
-            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            margin-top: 0.8rem;
             display: inline-block;
             transition: all 0.3s ease;
             text-decoration: underline;
+            font-weight: bold;
         }
 
         .summary-toggle:hover {
             color: #ffec8c;
-            text-shadow: 0 0 5px #ffd700;
+            text-shadow: 0 0 8px #ffd700;
+            transform: translateX(5px);
         }
 
-        .threat-badges {
-            position: absolute;
-            top: 1.2rem;
-            right: 1.2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.4rem;
-        }
-
-        .threat-badge {
-            padding: 0.25rem 0.6rem;
+        /* Key Insights Section */
+        .key-insights {
+            background: rgba(0, 255, 65, 0.05);
+            border: 1px solid #00ff41;
             border-radius: 10px;
-            font-size: 0.65rem;
+            padding: 1.2rem;
+            margin: 1.5rem 0;
+        }
+
+        .insights-title {
+            color: #00ff41;
+            font-size: 0.85rem;
             font-weight: bold;
-            text-align: center;
-            min-width: 60px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            text-shadow: 0 0 8px #00ff41;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .threat-badge.critical {
-            background: linear-gradient(45deg, #ff0000, #cc0000);
-            color: #fff;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+        .insights-list {
+            list-style: none;
+            padding: 0;
         }
 
-        .threat-badge.high {
-            background: linear-gradient(45deg, #ffd700, #ffb300);
-            color: #000;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        .insight-item {
+            color: #ccffcc;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            padding-left: 1.2rem;
+            position: relative;
+            line-height: 1.4;
         }
 
-        .threat-badge.medium {
-            background: linear-gradient(45deg, #ff9500, #ff7300);
-            color: #fff;
-        }
-
-        .threat-badge.low {
-            background: linear-gradient(45deg, #00ff41, #00cc33);
-            color: #000;
+        .insight-item::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: #00ff41;
+            font-size: 0.8rem;
         }
 
         .threat-meta {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 0.8rem;
-            margin-bottom: 1.2rem;
-            padding: 1rem;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
-            border: 1px solid rgba(255, 68, 68, 0.2);
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 68, 68, 0.3);
         }
 
         .meta-item {
             display: flex;
             flex-direction: column;
-            gap: 0.2rem;
+            gap: 0.3rem;
         }
 
         .meta-label {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             color: #ff6666;
             text-transform: uppercase;
             font-weight: bold;
             text-shadow: 0 0 5px #ff6666;
+            letter-spacing: 1px;
         }
 
         .meta-value {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: #ffffff;
+            font-weight: 500;
         }
 
         .source-link {
@@ -548,52 +776,80 @@
 
         .source-link:hover {
             color: #99ddff;
-            text-shadow: 0 0 5px #66ccff;
+            text-shadow: 0 0 8px #66ccff;
         }
 
         /* Enhanced Technical Analysis */
         .technical-analysis {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.08), rgba(255, 215, 0, 0.04));
-            border: 1px solid #ffd700;
-            border-radius: 10px;
-            padding: 1.2rem;
-            margin-top: 1.2rem;
+            background: 
+                linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.05)),
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255, 215, 0, 0.02) 4px
+                );
+            border: 2px solid #ffd700;
+            border-radius: 12px;
+            padding: 1.8rem;
+            margin-top: 1.5rem;
             backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .technical-analysis::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ffd700, transparent);
+            animation: analysis-scan 2s infinite;
+        }
+
+        @keyframes analysis-scan {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
         .analysis-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.8rem;
+            margin-bottom: 1.2rem;
         }
 
         .analysis-label {
             color: #ffd700;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: bold;
-            text-shadow: 0 0 5px #ffd700;
+            text-shadow: 0 0 8px #ffd700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .analysis-text {
             color: #ffec8c;
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.2rem;
         }
 
         .actionable-items {
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255, 215, 0, 0.3);
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 215, 0, 0.4);
         }
 
         .actionable-title {
             color: #ffd700;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-weight: bold;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             text-transform: uppercase;
+            text-shadow: 0 0 8px #ffd700;
         }
 
         .actionable-list {
@@ -603,14 +859,15 @@
 
         .actionable-item {
             color: #ffec8c;
-            font-size: 0.8rem;
-            margin-bottom: 0.3rem;
-            padding-left: 1rem;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            padding-left: 1.2rem;
             position: relative;
+            line-height: 1.4;
         }
 
         .actionable-item::before {
-            content: '▶';
+            content: '⚡';
             position: absolute;
             left: 0;
             color: #ffd700;
@@ -619,20 +876,22 @@
         .loading {
             text-align: center;
             color: #ff4444;
-            font-size: 1.4rem;
-            padding: 4rem;
-            text-shadow: 0 0 10px #ff4444;
+            font-size: 1.6rem;
+            padding: 5rem;
+            text-shadow: 0 0 15px #ff4444;
+            font-family: 'Orbitron', monospace;
         }
 
         .error-display {
-            background: linear-gradient(135deg, rgba(255, 68, 68, 0.1), rgba(255, 68, 68, 0.05));
-            border: 1px solid #ff4444;
-            padding: 1.5rem;
-            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(255, 68, 68, 0.15), rgba(255, 68, 68, 0.08));
+            border: 2px solid #ff4444;
+            padding: 2rem;
+            border-radius: 15px;
             color: #ff6666;
-            margin: 2rem 0;
+            margin: 3rem 0;
             text-align: center;
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(255, 68, 68, 0.3);
         }
 
         .status-bar {
@@ -640,63 +899,92 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.9));
+            background: 
+                linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.9)),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 48px,
+                    rgba(0, 255, 65, 0.02) 50px
+                );
             border-top: 2px solid #ff4444;
-            padding: 0.8rem 1rem;
-            font-size: 0.8rem;
+            padding: 1rem;
+            font-size: 0.85rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(15px);
             z-index: 1000;
+            box-shadow: 0 -4px 32px rgba(0, 0, 0, 0.8);
         }
 
         .status-item {
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            font-weight: bold;
         }
 
         .status-bar a {
             color: #ffd700;
             text-decoration: none;
             transition: all 0.3s ease;
+            font-weight: bold;
         }
 
         .status-bar a:hover {
-            text-shadow: 0 0 10px #ffd700;
+            text-shadow: 0 0 12px #ffd700;
+            color: #ffec8c;
         }
 
         .export-menu {
             position: absolute;
             top: 100%;
             right: 0;
-            background: rgba(0, 0, 0, 0.9);
-            border: 1px solid #ffd700;
-            border-radius: 6px;
-            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.95);
+            border: 2px solid #ffd700;
+            border-radius: 8px;
+            padding: 0.8rem;
             margin-top: 0.5rem;
             z-index: 100;
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(255, 215, 0, 0.3);
         }
 
         .export-item {
             display: block;
-            padding: 0.5rem 1rem;
+            padding: 0.8rem 1.2rem;
             color: #ffd700;
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 6px;
             transition: all 0.3s ease;
+            font-weight: bold;
         }
 
         .export-item:hover {
             background: rgba(255, 215, 0, 0.2);
-            text-shadow: 0 0 5px #ffd700;
+            text-shadow: 0 0 8px #ffd700;
+            transform: translateX(5px);
         }
 
-        @media (max-width: 1024px) {
+        /* Responsive Design */
+        @media (max-width: 1200px) {
             .dashboard-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .threat-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .metrics-section {
+                grid-template-columns: repeat(2, 1fr);
             }
             
             .filter-grid {
@@ -711,20 +999,6 @@
             .action-btn {
                 width: 100%;
             }
-        }
-
-        @media (max-width: 768px) {
-            .title {
-                font-size: 2.2rem;
-            }
-            
-            .metrics-section {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .threat-grid {
-                grid-template-columns: 1fr;
-            }
             
             .section-header {
                 flex-direction: column;
@@ -734,8 +1008,12 @@
             
             .status-bar {
                 flex-direction: column;
-                gap: 0.5rem;
-                padding: 1rem;
+                gap: 0.8rem;
+                padding: 1.5rem;
+            }
+
+            .threat-card {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -743,26 +1021,27 @@
 <body>
     <canvas class="matrix-bg" id="matrix"></canvas>
     <div class="matrix-overlay"></div>
+    <div class="cyber-rain" id="cyberRain"></div>
     
     <div class="header">
-        <h1 class="title">PATRIOTS PROTOCOL</h1>
-        <div class="version-badge">ENHANCED v4.1</div>
+        <h1 class="title glitch-text">PATRIOTS PROTOCOL</h1>
+        <div class="version-badge">ENHANCED v4.2</div>
     </div>
 
     <div id="app"></div>
 
     <div class="status-bar">
         <div class="status-item">
-            <span id="intelStatus">INTELLIGENCE: CONNECTING...</span>
+            <span id="intelStatus">INTELLIGENCE: INITIALIZING...</span>
         </div>
         <div class="status-item">
-            LAST UPDATE: <span id="lastUpdate">INITIALIZING...</span>
+            LAST UPDATE: <span id="lastUpdate">SYSTEM BOOT...</span>
         </div>
         <div class="status-item">
             <span id="threatLevel">THREAT LEVEL: MONITORING</span>
         </div>
         <a href="https://github.com/danishnizmi/Patriots_Protocol" target="_blank">
-            🎖️ PATRIOTS PROTOCOL ENHANCED v4.1
+            🎖️ PATRIOTS PROTOCOL ENHANCED v4.2
         </a>
     </div>
 
@@ -784,42 +1063,46 @@
                 resizeCanvas();
                 window.addEventListener('resize', resizeCanvas);
 
-                // Enhanced characters with cyber terms
-                const characters = "CYBERTHREATINTELAPTMALWAREZERODAY0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%^&*+=ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ";
+                // Enhanced Matrix characters with cyber terms
+                const characters = "CYBERTHREATINTELAPTMALWAREZERODAY10110010110ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%^&*+=ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ";
                 const matrix = characters.split("");
-                const fontSize = 14;
+                const fontSize = 16;
                 const columns = Math.floor(canvas.width / fontSize);
                 const drops = [];
 
                 for (let x = 0; x < columns; x++) {
-                    drops[x] = 1;
+                    drops[x] = Math.floor(Math.random() * -canvas.height);
                 }
 
                 function draw() {
-                    // Fade effect
-                    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                    // Enhanced fade effect
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.03)';
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-                    // Matrix rain
                     ctx.font = fontSize + 'px Share Tech Mono';
 
                     for (let i = 0; i < drops.length; i++) {
-                        // Random color variations
-                        const colors = ['#ff4444', '#00ff41', '#ffd700'];
+                        // Enhanced color variations with cyber theme
+                        const colors = ['#00ff41', '#ff4444', '#ffd700', '#66ccff'];
                         const colorIndex = Math.floor(Math.random() * colors.length);
+                        const alpha = Math.random() * 0.8 + 0.2;
+                        
                         ctx.fillStyle = colors[colorIndex];
+                        ctx.globalAlpha = alpha;
                         
                         const text = matrix[Math.floor(Math.random() * matrix.length)];
                         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                        
+                        ctx.globalAlpha = 1;
 
-                        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                            drops[i] = 0;
+                        if (drops[i] * fontSize > canvas.height && Math.random() > 0.98) {
+                            drops[i] = Math.floor(Math.random() * -50);
                         }
                         drops[i]++;
                     }
                 }
 
-                const interval = setInterval(draw, 50);
+                const interval = setInterval(draw, 45);
                 
                 return () => {
                     clearInterval(interval);
@@ -830,35 +1113,42 @@
             return <canvas ref={canvasRef} className="matrix-bg" />;
         }
 
-        function CyberMessages() {
-            const [messages, setMessages] = useState([]);
-
+        function CyberRain() {
             useEffect(() => {
+                const container = document.getElementById('cyberRain');
                 const cyberTerms = [
                     'THREAT DETECTED', 'MALWARE ANALYSIS', 'ZERO-DAY EXPLOIT', 'APT ACTIVITY',
                     'RANSOMWARE ALERT', 'PHISHING DETECTED', 'NETWORK INTRUSION', 'DATA BREACH',
                     'VULNERABILITY SCAN', 'INCIDENT RESPONSE', 'THREAT HUNTING', 'IOC ANALYSIS',
-                    'CYBER KILL CHAIN', 'ATTACK VECTOR', 'PAYLOAD ANALYSIS', 'C2 COMMUNICATION'
+                    'CYBER KILL CHAIN', 'ATTACK VECTOR', 'PAYLOAD ANALYSIS', 'C2 COMMUNICATION',
+                    'CRITICAL PATCH', 'SECURITY UPDATE', 'THREAT INTELLIGENCE', 'DEFENSE MATRIX'
                 ];
 
-                const interval = setInterval(() => {
-                    const message = cyberTerms[Math.floor(Math.random() * cyberTerms.length)];
-                    const left = Math.random() * 80; // 0-80% from left
-                    const delay = Math.random() * 2000; // 0-2s delay
+                function createRainColumn() {
+                    const column = document.createElement('div');
+                    column.className = 'rain-column';
+                    column.style.left = Math.random() * 100 + '%';
+                    column.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                    column.style.animationDelay = Math.random() * 2 + 's';
+                    
+                    // Create multiple lines for the column
+                    const lines = Math.floor(Math.random() * 3) + 2;
+                    for (let i = 0; i < lines; i++) {
+                        const line = document.createElement('div');
+                        line.textContent = cyberTerms[Math.floor(Math.random() * cyberTerms.length)];
+                        line.style.opacity = Math.random() * 0.5 + 0.3;
+                        column.appendChild(line);
+                    }
+                    
+                    container.appendChild(column);
                     
                     setTimeout(() => {
-                        const messageEl = document.createElement('div');
-                        messageEl.className = 'cyber-message';
-                        messageEl.textContent = message;
-                        messageEl.style.left = left + '%';
-                        document.body.appendChild(messageEl);
-                        
-                        setTimeout(() => {
-                            messageEl.remove();
-                        }, 15000);
-                    }, delay);
-                }, 3000);
+                        column.remove();
+                    }, 8000);
+                }
 
+                const interval = setInterval(createRainColumn, 800);
+                
                 return () => clearInterval(interval);
             }, []);
 
@@ -873,11 +1163,10 @@
             const [filterLevel, setFilterLevel] = useState('ALL');
             const [filterRegion, setFilterRegion] = useState('ALL');
             const [filterFamily, setFilterFamily] = useState('ALL');
-            const [sortBy, setSortBy] = useState('timestamp');
+            const [sortBy, setSortBy] = useState('risk');
             const [showExportMenu, setShowExportMenu] = useState(false);
             const [expandedSummaries, setExpandedSummaries] = useState(new Set());
 
-            // Enhanced regions list
             const regions = [
                 'ALL', 'GLOBAL', 'US', 'CA', 'AU', 'NZ', 'CN', 'JP', 'KR', 'SG',
                 'IN', 'TH', 'VN', 'PH', 'MY', 'ID', 'TW', 'HK', 'GB', 'DE', 'FR',
@@ -953,7 +1242,10 @@
                     filtered = filtered.filter(threat => 
                         threat.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                         threat.summary.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                        threat.threat_family?.toLowerCase().includes(searchTerm.toLowerCase())
+                        threat.threat_family?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        (threat.key_insights && threat.key_insights.some(insight => 
+                            insight.toLowerCase().includes(searchTerm.toLowerCase())
+                        ))
                     );
                 }
                 
@@ -1002,14 +1294,15 @@
                         threats: filtered, 
                         metrics, 
                         exported: new Date(),
-                        version: "4.1"
+                        version: "4.2"
                     }, null, 2);
                     downloadFile(data, `patriots-protocol-enhanced-${timestamp}.json`, 'application/json');
                 } else if (format === 'csv') {
-                    const headers = ['Title', 'Threat Level', 'Risk Score', 'Family', 'Source', 'Geographic Scope', 'AI Analysis'];
+                    const headers = ['Title', 'Threat Level', 'Risk Score', 'Family', 'Source', 'Geographic Scope', 'Key Insights'];
                     const rows = filtered.map(t => [
                         t.title, t.threat_level, t.risk_score || 0, t.threat_family || '', 
-                        t.source, t.geographic_scope || '', t.ai_technical_analysis?.substring(0, 100) || ''
+                        t.source, t.geographic_scope || '', 
+                        (t.key_insights || []).join('; ').substring(0, 200)
                     ]);
                     const csv = [headers, ...rows].map(row => row.map(cell => `"${cell}"`).join(',')).join('\n');
                     downloadFile(csv, `patriots-protocol-enhanced-${timestamp}.csv`, 'text/csv');
@@ -1029,7 +1322,7 @@
                 URL.revokeObjectURL(url);
             }
 
-            function renderThreatMap() {
+            function renderAnalyticsPanel() {
                 const geoDistribution = metrics.geographic_distribution || {};
                 
                 return (
@@ -1038,25 +1331,73 @@
                         <div className="threat-map">
                             {Object.entries(geoDistribution)
                                 .sort(([,a], [,b]) => b - a)
-                                .slice(0, 12)
+                                .slice(0, 8)
                                 .map(([country, count]) => (
                                 <div key={country} className="country-threat"
-                                     onClick={() => setFilterRegion(country)}>
-                                    <div className="country-code">{country}</div>
-                                    <div className="threat-count">{count} threats</div>
+                                     style={{
+                                         display: 'flex',
+                                         justifyContent: 'space-between',
+                                         padding: '0.8rem',
+                                         margin: '0.5rem 0',
+                                         background: 'rgba(255, 68, 68, 0.1)',
+                                         borderRadius: '8px',
+                                         border: '1px solid rgba(255, 68, 68, 0.3)',
+                                         cursor: 'pointer',
+                                         transition: 'all 0.3s ease'
+                                     }}
+                                     onClick={() => setFilterRegion(country)}
+                                     onMouseEnter={(e) => {
+                                         e.target.style.background = 'rgba(255, 68, 68, 0.2)';
+                                         e.target.style.transform = 'translateX(5px)';
+                                     }}
+                                     onMouseLeave={(e) => {
+                                         e.target.style.background = 'rgba(255, 68, 68, 0.1)';
+                                         e.target.style.transform = 'translateX(0)';
+                                     }}>
+                                    <span style={{color: '#ffffff', fontWeight: 'bold'}}>{country}</span>
+                                    <span style={{color: '#ff6666'}}>{count} threats</span>
                                 </div>
                             ))}
                         </div>
                         
                         {metrics.trending_threats && metrics.trending_threats.length > 0 && (
-                            <div className="trending-section">
-                                <div className="trending-title">📈 TRENDING HIGH-RISK THREATS</div>
+                            <div style={{marginTop: '2rem'}}>
+                                <div style={{
+                                    color: '#ffd700',
+                                    fontSize: '1.1rem',
+                                    fontWeight: 'bold',
+                                    marginBottom: '1rem',
+                                    textShadow: '0 0 10px #ffd700',
+                                    textAlign: 'center'
+                                }}>📈 TRENDING HIGH-RISK THREATS</div>
                                 {metrics.trending_threats.slice(0, 3).map((trend, index) => (
-                                    <div key={index} className="trending-item">
-                                        <div className="trending-title-text">{trend.title?.substring(0, 60)}...</div>
-                                        <div className="trending-details">
+                                    <div key={index} style={{
+                                        padding: '1rem',
+                                        margin: '0.8rem 0',
+                                        background: 'rgba(255, 215, 0, 0.08)',
+                                        border: '1px solid rgba(255, 215, 0, 0.3)',
+                                        borderRadius: '8px'
+                                    }}>
+                                        <div style={{
+                                            color: '#ffffff',
+                                            fontSize: '0.9rem',
+                                            fontWeight: 'bold',
+                                            marginBottom: '0.5rem'
+                                        }}>{trend.title?.substring(0, 60)}...</div>
+                                        <div style={{
+                                            color: '#ffcc99',
+                                            fontSize: '0.8rem'
+                                        }}>
                                             Risk: {trend.risk_score}/10 | {trend.threat_family} | {trend.threat_level}
                                         </div>
+                                        {trend.key_insight && (
+                                            <div style={{
+                                                color: '#ffd700',
+                                                fontSize: '0.75rem',
+                                                marginTop: '0.5rem',
+                                                fontStyle: 'italic'
+                                            }}>💡 {trend.key_insight}</div>
+                                        )}
                                     </div>
                                 ))}
                             </div>
@@ -1075,16 +1416,31 @@
                     <div className="technical-analysis">
                         <div className="analysis-header">
                             <div className="analysis-label">🔍 AI TECHNICAL ANALYSIS</div>
-                            <div className="threat-badge">{threat.attack_sophistication || 'MEDIUM'}</div>
+                            <div className="threat-badge" style={{fontSize: '0.6rem'}}>
+                                {threat.attack_sophistication || threat.smart_analysis?.analysis_type || 'ENHANCED'}
+                            </div>
                         </div>
                         
                         <div className="analysis-text">
                             {threat.ai_technical_analysis}
                         </div>
                         
+                        {threat.smart_analysis?.critical_finding && (
+                            <div style={{
+                                background: 'rgba(255, 68, 68, 0.1)',
+                                border: '1px solid #ff4444',
+                                padding: '0.8rem',
+                                borderRadius: '6px',
+                                margin: '1rem 0',
+                                fontSize: '0.9rem'
+                            }}>
+                                <strong style={{color: '#ff4444'}}>Critical Finding:</strong> {threat.smart_analysis.critical_finding}
+                            </div>
+                        )}
+                        
                         {threat.business_impact && (
                             <div className="analysis-text" style={{fontSize: '0.85rem', opacity: 0.9}}>
-                                <strong>Business Impact:</strong> {threat.business_impact}
+                                <strong style={{color: '#ffd700'}}>Business Impact:</strong> {threat.business_impact}
                             </div>
                         )}
                         
@@ -1092,8 +1448,30 @@
                             <div className="actionable-items">
                                 <div className="actionable-title">⚡ IMMEDIATE ACTIONS</div>
                                 <ul className="actionable-list">
-                                    {threat.actionable_items.slice(0, 3).map((item, idx) => (
+                                    {threat.actionable_items.slice(0, 4).map((item, idx) => (
                                         <li key={idx} className="actionable-item">{item}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+
+                        {threat.smart_analysis?.detection_guidance && threat.smart_analysis.detection_guidance.length > 0 && (
+                            <div style={{marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid rgba(255, 215, 0, 0.3)'}}>
+                                <div style={{color: '#ffd700', fontSize: '0.8rem', fontWeight: 'bold', marginBottom: '0.5rem', textTransform: 'uppercase'}}>
+                                    🔍 DETECTION GUIDANCE
+                                </div>
+                                <ul style={{listStyle: 'none', padding: 0}}>
+                                    {threat.smart_analysis.detection_guidance.slice(0, 3).map((guide, idx) => (
+                                        <li key={idx} style={{
+                                            color: '#ffec8c',
+                                            fontSize: '0.8rem',
+                                            marginBottom: '0.3rem',
+                                            paddingLeft: '1rem',
+                                            position: 'relative'
+                                        }}>
+                                            <span style={{position: 'absolute', left: 0, color: '#ffd700'}}>🔍</span>
+                                            {guide}
+                                        </li>
                                     ))}
                                 </ul>
                             </div>
@@ -1106,7 +1484,7 @@
                 return (
                     <div className="container">
                         <div className="loading">
-                            🎖️ PATRIOTS PROTOCOL ENHANCED INTELLIGENCE LOADING...
+                            🎖️ PATRIOTS PROTOCOL v4.2 ENHANCED INTELLIGENCE LOADING...
                         </div>
                     </div>
                 );
@@ -1117,6 +1495,9 @@
                     <div className="container">
                         <div className="error-display">
                             ⚠️ ENHANCED CYBER INTELLIGENCE NETWORK OFFLINE
+                            <div style={{marginTop: '1rem', fontSize: '0.9rem', opacity: 0.8}}>
+                                System attempting reconnection to intelligence sources...
+                            </div>
                         </div>
                     </div>
                 );
@@ -1142,7 +1523,7 @@
                                 <input 
                                     type="text" 
                                     className="search-input"
-                                    placeholder="Search titles, families, CVEs..."
+                                    placeholder="Search titles, families, insights..."
                                     value={searchTerm}
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                 />
@@ -1196,9 +1577,9 @@
                                     value={sortBy} 
                                     onChange={(e) => setSortBy(e.target.value)}
                                 >
-                                    <option value="timestamp">Latest First</option>
                                     <option value="risk">Risk Score</option>
                                     <option value="level">Threat Level</option>
+                                    <option value="timestamp">Latest First</option>
                                 </select>
                             </div>
                         </div>
@@ -1230,7 +1611,7 @@
                                 setFilterLevel('ALL');
                                 setFilterRegion('ALL');
                                 setFilterFamily('ALL');
-                                setSortBy('timestamp');
+                                setSortBy('risk');
                             }}>
                                 🗑️ CLEAR
                             </button>
@@ -1254,13 +1635,13 @@
                             <div className="metric-card">
                                 <div className="metric-title">THREAT LANDSCAPE</div>
                                 <div className="metric-value">{metrics.global_threat_level || 'MONITORING'}</div>
-                                <div className="metric-details">Velocity: {metrics.threat_velocity || 'stable'}</div>
+                                <div className="metric-details">Evolution: {metrics.threat_evolution || 'stable'}</div>
                             </div>
                             
                             <div className="metric-card">
-                                <div className="metric-title">ZERO-DAY EXPLOITS</div>
+                                <div className="metric-title">ZERO-DAY ACTIVITY</div>
                                 <div className="metric-value">{metrics.zero_day_count || 0}</div>
-                                <div className="metric-details">Recent 24h: {metrics.recent_threats_24h || 0}</div>
+                                <div className="metric-details">Recent 24h: {metrics.fresh_intel_24h || 0}</div>
                             </div>
                             
                             <div className="metric-card">
@@ -1276,7 +1657,7 @@
                             </div>
                         </div>
 
-                        {renderThreatMap()}
+                        {renderAnalyticsPanel()}
                     </div>
 
                     <div className="intelligence-section">
@@ -1319,19 +1700,33 @@
                                         </div>
                                     </div>
                                     
+                                    {/* Key Insights Section */}
+                                    {threat.key_insights && threat.key_insights.length > 0 && (
+                                        <div className="key-insights">
+                                            <div className="insights-title">
+                                                💡 KEY INSIGHTS
+                                            </div>
+                                            <ul className="insights-list">
+                                                {threat.key_insights.slice(0, 3).map((insight, idx) => (
+                                                    <li key={idx} className="insight-item">{insight}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                                    
                                     <div className="threat-summary">
                                         <div className="summary-preview">
                                             {threat.summary_preview || threat.summary}
                                         </div>
-                                        {threat.full_summary && threat.full_summary !== threat.summary && (
+                                        {threat.full_summary && threat.full_summary !== threat.summary && threat.full_summary.length > (threat.summary?.length || 0) + 50 && (
                                             <>
-                                                <div className={`summary-full ${expandedSummaries.has(index) ? 'summary-full' : ''}`} 
+                                                <div className={`summary-full`} 
                                                      style={{display: expandedSummaries.has(index) ? 'block' : 'none'}}>
                                                     {threat.full_summary}
                                                 </div>
                                                 <span className="summary-toggle" 
                                                       onClick={() => toggleSummary(index)}>
-                                                    {expandedSummaries.has(index) ? '▲ Show Less' : '▼ Read More'}
+                                                    {expandedSummaries.has(index) ? '▲ Show Less' : '▼ Read Full Summary'}
                                                 </span>
                                             </>
                                         )}
@@ -1371,7 +1766,7 @@
                                         
                                         <div className="meta-item">
                                             <div className="meta-label">PRIORITY</div>
-                                            <div className="meta-value">{threat.mitigation_priority || 'STANDARD'}</div>
+                                            <div className="meta-value">{threat.mitigation_priority || 'ROUTINE'}</div>
                                         </div>
                                     </div>
                                     
@@ -1387,7 +1782,7 @@
         ReactDOM.render(
             <>
                 <EnhancedMatrixBackground />
-                <CyberMessages />
+                <CyberRain />
                 <EnhancedThreatDashboard />
             </>,
             document.getElementById('app')
