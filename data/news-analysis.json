@@ -1,62 +1,534 @@
 {
   "articles": [
     {
-      "title": "Inside a Dark Adtech Empire Fed by Fake CAPTCHAs",
-      "summary": "Late last year, security researchers made a startling discovery: Kremlin-backed disinformation campaigns were bypassing moderation on social media platforms by leveraging the same malicious advertising technology that powers a sprawling ecosystem of ...",
-      "source": "KREBS_SECURITY",
-      "source_url": "https://krebsonsecurity.com/2025/06/inside-a-dark-adtech-empire-fed-by-fake-captchas/",
-      "timestamp": "Thu, 12 Jun 2025 22:14:00 +0000",
-      "threat_level": "LOW",
-      "ai_technical_analysis": "Incident involving apt with limited business impact",
-      "confidence_score": 0.8,
-      "severity_rating": 3,
+      "title": "Victoria’s Secret restores critical systems after cyberattack",
+      "summary": "Victoria's Secret has restored all critical systems impacted by a May 24 security incident that forced it to shut down corporate systems and the e-commerce website.",
+      "source": "BLEEPING_COMPUTER",
+      "source_url": "https://www.bleepingcomputer.com/news/security/victorias-secret-restores-critical-systems-after-cyberattack/",
+      "timestamp": "Fri, 13 Jun 2025 07:56:16 -0400",
+      "threat_level": "CRITICAL",
+      "ai_technical_analysis": "Security incident involving corporate security incident with critical impact potential",
+      "confidence_score": 0.7,
+      "severity_rating": 9,
       "attack_vectors": [
-        "web_attack",
-        "social_engineering"
+        "web"
       ],
+      "affected_sectors": [],
+      "geographic_scope": "Global",
+      "country_code": "GLOBAL",
+      "threat_actors": [],
+      "mitigation_priority": "IMMEDIATE",
+      "cve_references": [],
+      "threat_family": "Corporate Security Incident",
+      "attack_sophistication": "HIGH",
+      "risk_score": 9,
+      "correlation_id": "6c5d7ff0",
+      "summary_preview": "Victoria's Secret has restored all critical systems impacted by a May 24 security incident that forced it to shut down corporate systems and the e-commerce website.",
+      "full_summary": "Victoria's Secret has restored all critical systems impacted by a May 24 security incident that forced it to shut down corporate systems and the e-commerce website. [...]",
+      "key_insights": [],
+      "actionable_items": [
+        "Monitor threat developments and assess security posture"
+      ],
+      "technical_indicators": [
+        "security incident"
+      ],
+      "business_impact": "High business impact - immediate executive attention and resource allocation required",
+      "timeline_urgency": "IMMEDIATE",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.7,
+        "critical_finding": "Corporate Security Incident detected requiring immediate response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
+    },
+    {
+      "title": "iPhone Users Urged to Update to Patch 2 Zero-Days",
+      "summary": "Separate fixes to macOS and iOS patch respective flaws in the kernel and WebKit that can allow threat actors to take over devices and are under attack.",
+      "source": "THREAT_POST",
+      "source_url": "https://threatpost.com/iphone-users-urged-to-update-to-patch-2-zero-days-under-attack/180448/",
+      "timestamp": "Fri, 19 Aug 2022 15:25:56 +0000",
+      "threat_level": "CRITICAL",
+      "ai_technical_analysis": "Security incident involving zero-day exploit with critical impact potential",
+      "confidence_score": 0.7,
+      "severity_rating": 9,
+      "attack_vectors": [
+        "web"
+      ],
+      "affected_sectors": [],
+      "geographic_scope": "Global",
+      "country_code": "GLOBAL",
+      "threat_actors": [],
+      "mitigation_priority": "IMMEDIATE",
+      "cve_references": [],
+      "threat_family": "Zero-Day Exploit",
+      "attack_sophistication": "HIGH",
+      "risk_score": 9,
+      "correlation_id": "12dca194",
+      "summary_preview": "Separate fixes to macOS and iOS patch respective flaws in the kernel and WebKit that can allow threat actors to take over devices and are under attack.",
+      "full_summary": "Separate fixes to macOS and iOS patch respective flaws in the kernel and WebKit that can allow threat actors to take over devices and are under attack.",
+      "key_insights": [
+        "Zero-day vulnerability requires immediate attention and patch management"
+      ],
+      "actionable_items": [
+        "Review and apply relevant security updates immediately"
+      ],
+      "technical_indicators": [
+        "zero-day"
+      ],
+      "business_impact": "High business impact - immediate executive attention and resource allocation required",
+      "timeline_urgency": "IMMEDIATE",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.7,
+        "critical_finding": "Zero-Day Exploit detected requiring immediate response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
+    },
+    {
+      "title": "Microsoft Patch Tuesday addresses 66 vulnerabilities, including an actively exploited zero-day",
+      "summary": "The post Microsoft Patch Tuesday addresses 66 vulnerabilities, including an actively exploited zero-day appeared first on CyberScoop.. A researcher tells CyberScoop that up to 80% of enterprises could be vulnerable to the zero-day Microsoft patched in its June update.",
+      "source": "CYBER_SCOOP",
+      "source_url": "https://cyberscoop.com/microsoft-patch-tuesday-june-2025/",
+      "timestamp": "Tue, 10 Jun 2025 21:58:43 +0000",
+      "threat_level": "CRITICAL",
+      "ai_technical_analysis": "Security incident involving zero-day exploit with critical impact potential",
+      "confidence_score": 0.7,
+      "severity_rating": 9,
+      "attack_vectors": [],
       "affected_sectors": [
-        "critical_infrastructure",
-        "technology",
-        "media"
+        "technology"
       ],
       "geographic_scope": "Global",
       "country_code": "GLOBAL",
       "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
+      "mitigation_priority": "IMMEDIATE",
       "cve_references": [],
-      "threat_family": "Nation-State Apt",
-      "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
-      "risk_score": 3,
-      "correlation_id": "2ac00834",
-      "summary_preview": "Late last year, security researchers made a startling discovery: Kremlin-backed disinformation campaigns were bypassing moderation on social media platforms by leveraging the same malicious advertising technology that powers a sprawling ecosystem of ...",
-      "full_summary": "Late last year, security researchers made a startling discovery: Kremlin-backed disinformation campaigns were bypassing moderation on social media platforms by leveraging the same malicious advertising technology that powers a sprawling ecosystem of online hucksters and website hackers. A new report on the fallout from that investigation finds this dark ad tech industry is far more resilient and incestuous than previously known.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Monitor situation and review security posture"
+      "threat_family": "Zero-Day Exploit",
+      "attack_sophistication": "HIGH",
+      "risk_score": 9,
+      "correlation_id": "937d6a5a",
+      "summary_preview": "The post Microsoft Patch Tuesday addresses 66 vulnerabilities, including an actively exploited zero-day appeared first on CyberScoop.. A researcher tells CyberScoop that up to 80% of enterprises could be vulnerable to the zero-day Microsoft patched in its June update.",
+      "full_summary": "A researcher tells CyberScoop that up to 80% of enterprises could be vulnerable to the zero-day Microsoft patched in its June update. The post Microsoft Patch Tuesday addresses 66 vulnerabilities, including an actively exploited zero-day appeared first on CyberScoop.",
+      "key_insights": [
+        "Zero-day vulnerability requires immediate attention and patch management"
       ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
+      "actionable_items": [
+        "Review and apply relevant security updates immediately"
+      ],
+      "technical_indicators": [
+        "zero-day"
+      ],
+      "business_impact": "High business impact - immediate executive attention and resource allocation required",
+      "timeline_urgency": "IMMEDIATE",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.7,
+        "critical_finding": "Zero-Day Exploit detected requiring immediate response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
+    },
+    {
+      "title": "Patch Tuesday, May 2025 Edition",
+      "summary": "Microsoft on Tuesday released software updates to fix at least 70 vulnerabilities in Windows and related products, including five zero-day flaws that are already seeing active exploitation.",
+      "source": "KREBS_SECURITY",
+      "source_url": "https://krebsonsecurity.com/2025/05/patch-tuesday-may-2025-edition/",
+      "timestamp": "Wed, 14 May 2025 11:57:48 +0000",
+      "threat_level": "CRITICAL",
+      "ai_technical_analysis": "Security incident involving zero-day exploit with critical impact potential",
+      "confidence_score": 0.7,
+      "severity_rating": 9,
+      "attack_vectors": [],
+      "affected_sectors": [
+        "government",
+        "technology"
+      ],
+      "geographic_scope": "Global",
+      "country_code": "GLOBAL",
+      "threat_actors": [],
+      "mitigation_priority": "IMMEDIATE",
+      "cve_references": [],
+      "threat_family": "Zero-Day Exploit",
+      "attack_sophistication": "HIGH",
+      "risk_score": 9,
+      "correlation_id": "e41b5500",
+      "summary_preview": "Microsoft on Tuesday released software updates to fix at least 70 vulnerabilities in Windows and related products, including five zero-day flaws that are already seeing active exploitation.",
+      "full_summary": "Microsoft on Tuesday released software updates to fix at least 70 vulnerabilities in Windows and related products, including five zero-day flaws that are already seeing active exploitation. Adding to the sense of urgency with this month's patch batch from Redmond are fixes for two other weaknesses that now have public proof-of-concept exploits available.",
+      "key_insights": [
+        "Zero-day vulnerability requires immediate attention and patch management"
+      ],
+      "actionable_items": [
+        "Review and apply relevant security updates immediately"
+      ],
+      "technical_indicators": [
+        "zero-day"
+      ],
+      "business_impact": "High business impact - immediate executive attention and resource allocation required",
+      "timeline_urgency": "IMMEDIATE",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.7,
+        "critical_finding": "Zero-Day Exploit detected requiring immediate response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
+    },
+    {
+      "title": "Google Patches Chrome’s Fifth Zero-Day of the Year",
+      "summary": "An insufficient validation input flaw, one of 11 patched in an update this week, could allow for arbitrary code execution and is under active attack.",
+      "source": "THREAT_POST",
+      "source_url": "https://threatpost.com/google-patches-chromes-fifth-zero-day-of-the-year/180432/",
+      "timestamp": "Thu, 18 Aug 2022 14:31:38 +0000",
+      "threat_level": "CRITICAL",
+      "ai_technical_analysis": "Security incident involving zero-day exploit with critical impact potential",
+      "confidence_score": 0.7,
+      "severity_rating": 9,
+      "attack_vectors": [],
+      "affected_sectors": [
+        "technology"
+      ],
+      "geographic_scope": "Global",
+      "country_code": "GLOBAL",
+      "threat_actors": [],
+      "mitigation_priority": "IMMEDIATE",
+      "cve_references": [],
+      "threat_family": "Zero-Day Exploit",
+      "attack_sophistication": "HIGH",
+      "risk_score": 9,
+      "correlation_id": "ad2f6e5c",
+      "summary_preview": "An insufficient validation input flaw, one of 11 patched in an update this week, could allow for arbitrary code execution and is under active attack.",
+      "full_summary": "An insufficient validation input flaw, one of 11 patched in an update this week, could allow for arbitrary code execution and is under active attack.",
+      "key_insights": [
+        "Zero-day vulnerability requires immediate attention and patch management"
+      ],
+      "actionable_items": [
+        "Review and apply relevant security updates immediately"
+      ],
+      "technical_indicators": [
+        "zero-day"
+      ],
+      "business_impact": "High business impact - immediate executive attention and resource allocation required",
+      "timeline_urgency": "IMMEDIATE",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.7,
+        "critical_finding": "Zero-Day Exploit detected requiring immediate response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
+    },
+    {
+      "title": "How Amazon Web Services uses AI to be a security ‘force multiplier’",
+      "summary": "Amazon CSO Stephen Schmidt says AI is transforming the way the company does security reviews and incident response. The post How Amazon Web Services uses AI to be a security ‘force multiplier’ appeared first on CyberScoop.",
+      "source": "CYBER_SCOOP",
+      "source_url": "https://cyberscoop.com/aws-ai-stephen-schmidt-dc-summit-appsec-reviews/",
+      "timestamp": "Wed, 11 Jun 2025 16:49:00 +0000",
+      "threat_level": "CRITICAL",
+      "ai_technical_analysis": "Security incident involving security incident with critical impact potential",
+      "confidence_score": 0.6,
+      "severity_rating": 9,
+      "attack_vectors": [
+        "web"
+      ],
+      "affected_sectors": [],
+      "geographic_scope": "Global",
+      "country_code": "GLOBAL",
+      "threat_actors": [],
+      "mitigation_priority": "IMMEDIATE",
+      "cve_references": [],
+      "threat_family": "Security Incident",
+      "attack_sophistication": "HIGH",
+      "risk_score": 9,
+      "correlation_id": "d1bbada6",
+      "summary_preview": "Amazon CSO Stephen Schmidt says AI is transforming the way the company does security reviews and incident response. The post How Amazon Web Services uses AI to be a security ‘force multiplier’ appeared first on CyberScoop.",
+      "full_summary": "Amazon CSO Stephen Schmidt says AI is transforming the way the company does security reviews and incident response. The post How Amazon Web Services uses AI to be a security ‘force multiplier’ appeared first on CyberScoop.",
+      "key_insights": [],
+      "actionable_items": [
+        "Monitor threat developments and assess security posture"
+      ],
+      "technical_indicators": [],
+      "business_impact": "High business impact - immediate executive attention and resource allocation required",
+      "timeline_urgency": "IMMEDIATE",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.6,
+        "critical_finding": "Security Incident detected requiring immediate response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
+    },
+    {
+      "title": "House Homeland Chairman Mark Green’s departure could leave congressional cyber agenda in limbo",
+      "summary": "Green, R-Tenn., has championed legislation on the cyber workforce, renewal of a cyber threat information sharing bill and more. The post House Homeland Chairman Mark Green’s departure could leave congressional cyber agenda in limbo appeared first on CyberScoop.",
+      "source": "CYBER_SCOOP",
+      "source_url": "https://cyberscoop.com/mark-green-house-homeland-chairman-cybersecurity-agenda/",
+      "timestamp": "Tue, 10 Jun 2025 21:10:18 +0000",
+      "threat_level": "CRITICAL",
+      "ai_technical_analysis": "Security incident involving security incident with critical impact potential",
+      "confidence_score": 0.6,
+      "severity_rating": 9,
+      "attack_vectors": [],
+      "affected_sectors": [],
+      "geographic_scope": "Global",
+      "country_code": "GLOBAL",
+      "threat_actors": [],
+      "mitigation_priority": "IMMEDIATE",
+      "cve_references": [],
+      "threat_family": "Security Incident",
+      "attack_sophistication": "HIGH",
+      "risk_score": 9,
+      "correlation_id": "7e852f75",
+      "summary_preview": "Green, R-Tenn., has championed legislation on the cyber workforce, renewal of a cyber threat information sharing bill and more. The post House Homeland Chairman Mark Green’s departure could leave congressional cyber agenda in limbo appeared first on CyberScoop.",
+      "full_summary": "Green, R-Tenn., has championed legislation on the cyber workforce, renewal of a cyber threat information sharing bill and more. The post House Homeland Chairman Mark Green’s departure could leave congressional cyber agenda in limbo appeared first on CyberScoop.",
+      "key_insights": [],
+      "actionable_items": [
+        "Monitor threat developments and assess security posture"
+      ],
+      "technical_indicators": [],
+      "business_impact": "High business impact - immediate executive attention and resource allocation required",
+      "timeline_urgency": "IMMEDIATE",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.6,
+        "critical_finding": "Security Incident detected requiring immediate response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
+    },
+    {
+      "title": "U.S. Sanctions Cloud Provider ‘Funnull’ as Top Source of ‘Pig Butchering’ Scams",
+      "summary": "The U.S. government today imposed economic sanctions on Funnull Technology Inc., a Philippines-based company that provides computer infrastructure for hundreds of thousands of websites involved in virtual currency investment scams, commonly known as “pig butchering.\" In January 2",
+      "source": "KREBS_SECURITY",
+      "source_url": "https://krebsonsecurity.com/2025/05/u-s-sanctions-cloud-provider-funnull-as-top-source-of-pig-butchering-scams/",
+      "timestamp": "Fri, 30 May 2025 01:55:16 +0000",
+      "threat_level": "CRITICAL",
+      "ai_technical_analysis": "Security incident involving critical infrastructure with critical impact potential",
+      "confidence_score": 0.7,
+      "severity_rating": 9,
+      "attack_vectors": [
+        "web",
+        "network"
+      ],
+      "affected_sectors": [
+        "government",
+        "technology"
+      ],
+      "geographic_scope": "Usa, U.S.",
+      "country_code": "US",
+      "threat_actors": [],
+      "mitigation_priority": "IMMEDIATE",
+      "cve_references": [],
+      "threat_family": "Critical Infrastructure",
+      "attack_sophistication": "HIGH",
+      "risk_score": 9,
+      "correlation_id": "d5155637",
+      "summary_preview": "The U.S. government today imposed economic sanctions on Funnull Technology Inc., a Philippines-based company that provides computer infrastructure for hundreds of thousands of websites involved in virtual currency investment scams, commonly known as “pig butchering.\" In January 2",
+      "full_summary": "The U.S. government today imposed economic sanctions on Funnull Technology Inc., a Philippines-based company that provides computer infrastructure for hundreds of thousands of websites involved in virtual currency investment scams, commonly known as “pig butchering.\" In January 2025, KrebsOnSecurity detailed how Funnull was being used as a content delivery network that catered to cybercriminals seeking to route their traffic through U.S.-based cloud providers.",
+      "key_insights": [],
+      "actionable_items": [
+        "Monitor threat developments and assess security posture"
+      ],
+      "technical_indicators": [
+        "infrastructure"
+      ],
+      "business_impact": "High business impact - immediate executive attention and resource allocation required",
+      "timeline_urgency": "IMMEDIATE",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.7,
+        "critical_finding": "Critical Infrastructure detected requiring immediate response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
+    },
+    {
+      "title": "&#x5b;Guest Diary&#x5d; Anatomy of a Linux SSH Honeypot Attack: Detailed Analysis of Captured Malware, (Fri, Jun 13th)",
+      "summary": "x26 x5b This is a Guest Diary by Michal Ambrozkiewicz, an ISC intern as part of the SANS.edu Bachelor x26 39 s Degree in Applied Cybersecurity (BACS) program x26 x5b 1 .",
+      "source": "SANS_ISC",
+      "source_url": "https://isc.sans.edu/diary/rss/32024",
+      "timestamp": "Fri, 13 Jun 2025 00:21:01 GMT",
+      "threat_level": "HIGH",
+      "ai_technical_analysis": "Security incident involving apt campaign with high impact potential",
+      "confidence_score": 0.7,
+      "severity_rating": 7,
+      "attack_vectors": [],
+      "affected_sectors": [],
+      "geographic_scope": "Global",
+      "country_code": "GLOBAL",
+      "threat_actors": [],
+      "mitigation_priority": "URGENT",
+      "cve_references": [],
+      "threat_family": "APT Campaign",
+      "attack_sophistication": "HIGH",
+      "risk_score": 7,
+      "correlation_id": "1f48638b",
+      "summary_preview": "x26 x5b This is a Guest Diary by Michal Ambrozkiewicz, an ISC intern as part of the SANS.edu Bachelor x26 39 s Degree in Applied Cybersecurity (BACS) program x26 x5b 1 .",
+      "full_summary": "x26 x5b This is a Guest Diary by Michal Ambrozkiewicz, an ISC intern as part of the SANS.edu Bachelor x26 39 s Degree in Applied Cybersecurity (BACS) program x26 x5b 1 .",
+      "key_insights": [],
+      "actionable_items": [
+        "Monitor threat developments and assess security posture"
+      ],
+      "technical_indicators": [
+        "apt"
+      ],
+      "business_impact": "Moderate business impact - security team escalation and response planning needed",
+      "timeline_urgency": "URGENT",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.7,
+        "critical_finding": "APT Campaign detected requiring urgent response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
+    },
+    {
+      "title": "Anubis ransomware adds wiper to destroy files beyond recovery",
+      "summary": "<The Anubis ransomware-as-a-service (RaaS) operation has added to its file-encrypting malware a wiper module that destroys targeted files, making recovery impossible even if the ransom is paid.",
+      "source": "BLEEPING_COMPUTER",
+      "source_url": "https://www.bleepingcomputer.com/news/security/anubis-ransomware-adds-wiper-to-destroy-files-beyond-recovery/",
+      "timestamp": "Sat, 14 Jun 2025 10:29:38 -0400",
+      "threat_level": "HIGH",
+      "ai_technical_analysis": "Security incident involving ransomware with high impact potential",
+      "confidence_score": 0.8,
+      "severity_rating": 7,
+      "attack_vectors": [],
+      "affected_sectors": [],
+      "geographic_scope": "Global",
+      "country_code": "GLOBAL",
+      "threat_actors": [],
+      "mitigation_priority": "URGENT",
+      "cve_references": [],
+      "threat_family": "Ransomware",
+      "attack_sophistication": "HIGH",
+      "risk_score": 7,
+      "correlation_id": "78419e03",
+      "summary_preview": "<The Anubis ransomware-as-a-service (RaaS) operation has added to its file-encrypting malware a wiper module that destroys targeted files, making recovery impossible even if the ransom is paid.",
+      "full_summary": "<The Anubis ransomware-as-a-service (RaaS) operation has added to its file-encrypting malware a wiper module that destroys targeted files, making recovery impossible even if the ransom is paid. [...]",
+      "key_insights": [
+        "Ransomware threat demands backup verification and incident response readiness"
+      ],
+      "actionable_items": [
+        "Verify backup systems integrity and test recovery procedures"
+      ],
+      "technical_indicators": [
+        "ransomware",
+        "ransom"
+      ],
+      "business_impact": "Moderate business impact - security team escalation and response planning needed",
+      "timeline_urgency": "URGENT",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.8,
+        "critical_finding": "Ransomware detected requiring urgent response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
+    },
+    {
+      "title": "Inside a Dark Adtech Empire Fed by Fake CAPTCHAs",
+      "summary": "Late last year, security researchers made a startling discovery: Kremlin-backed disinformation campaigns were bypassing moderation on social media platforms by leveraging the same malicious advertising technology that powers a sprawling ecosystem of online hucksters and website h",
+      "source": "KREBS_SECURITY",
+      "source_url": "https://krebsonsecurity.com/2025/06/inside-a-dark-adtech-empire-fed-by-fake-captchas/",
+      "timestamp": "Thu, 12 Jun 2025 22:14:00 +0000",
+      "threat_level": "HIGH",
+      "ai_technical_analysis": "Security incident involving apt campaign with high impact potential",
+      "confidence_score": 0.7,
+      "severity_rating": 7,
+      "attack_vectors": [
+        "web",
+        "social_engineering"
+      ],
+      "affected_sectors": [
+        "technology",
+        "critical_infrastructure"
+      ],
+      "geographic_scope": "Global",
+      "country_code": "GLOBAL",
+      "threat_actors": [],
+      "mitigation_priority": "URGENT",
+      "cve_references": [],
+      "threat_family": "APT Campaign",
+      "attack_sophistication": "HIGH",
+      "risk_score": 7,
+      "correlation_id": "2ac00834",
+      "summary_preview": "Late last year, security researchers made a startling discovery: Kremlin-backed disinformation campaigns were bypassing moderation on social media platforms by leveraging the same malicious advertising technology that powers a sprawling ecosystem of online hucksters and website h",
+      "full_summary": "Late last year, security researchers made a startling discovery: Kremlin-backed disinformation campaigns were bypassing moderation on social media platforms by leveraging the same malicious advertising technology that powers a sprawling ecosystem of online hucksters and website hackers. A new report on the fallout from that investigation finds this dark ad tech industry is far more resilient and incestuous than previously known.",
+      "key_insights": [],
+      "actionable_items": [
+        "Monitor threat developments and assess security posture"
+      ],
+      "technical_indicators": [
+        "apt"
+      ],
+      "business_impact": "Moderate business impact - security team escalation and response planning needed",
+      "timeline_urgency": "URGENT",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.7,
+        "critical_finding": "APT Campaign detected requiring urgent response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
+    },
+    {
+      "title": "Ransomware Attacks are on the Rise",
+      "summary": "Lockbit is by far this summer’s most prolific ransomware group, trailed by two offshoots of the Conti group.",
+      "source": "THREAT_POST",
+      "source_url": "https://threatpost.com/ransomware-attacks-are-on-the-rise/180481/",
+      "timestamp": "Fri, 26 Aug 2022 16:44:27 +0000",
+      "threat_level": "HIGH",
+      "ai_technical_analysis": "Security incident involving ransomware with high impact potential",
+      "confidence_score": 0.9,
+      "severity_rating": 7,
+      "attack_vectors": [],
+      "affected_sectors": [],
+      "geographic_scope": "Global",
+      "country_code": "GLOBAL",
+      "threat_actors": [],
+      "mitigation_priority": "URGENT",
+      "cve_references": [],
+      "threat_family": "Ransomware",
+      "attack_sophistication": "HIGH",
+      "risk_score": 7,
+      "correlation_id": "9a63aedf",
+      "summary_preview": "Lockbit is by far this summer’s most prolific ransomware group, trailed by two offshoots of the Conti group.",
+      "full_summary": "Lockbit is by far this summer’s most prolific ransomware group, trailed by two offshoots of the Conti group.",
+      "key_insights": [
+        "Ransomware threat demands backup verification and incident response readiness"
+      ],
+      "actionable_items": [
+        "Verify backup systems integrity and test recovery procedures"
+      ],
+      "technical_indicators": [
+        "ransomware",
+        "ransom",
+        "lockbit"
+      ],
+      "business_impact": "Moderate business impact - security team escalation and response planning needed",
+      "timeline_urgency": "URGENT",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.9,
+        "critical_finding": "Ransomware detected requiring urgent response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
     },
     {
       "title": "Patch Tuesday, June 2025 Edition",
-      "summary": "Microsoft today released security updates to fix at least 67 vulnerabilities in its Windows operating systems and software.",
+      "summary": "Redmond warns that one of the flaws is already under active attack, and that software blueprints showing how to exploit a pervasive Windows bug patched this month are now public.",
       "source": "KREBS_SECURITY",
       "source_url": "https://krebsonsecurity.com/2025/06/patch-tuesday-june-2025-edition/",
       "timestamp": "Wed, 11 Jun 2025 00:10:53 +0000",
-      "threat_level": "LOW",
-      "ai_technical_analysis": "Incident involving patch tuesday, security update with limited business impact",
+      "threat_level": "MEDIUM",
+      "ai_technical_analysis": "Security incident involving vulnerability disclosure with medium impact potential",
       "confidence_score": 0.8,
-      "severity_rating": 3,
+      "severity_rating": 5,
       "attack_vectors": [],
       "affected_sectors": [
+        "government",
         "technology"
       ],
       "geographic_scope": "Global",
@@ -65,86 +537,218 @@
       "mitigation_priority": "ROUTINE",
       "cve_references": [],
       "threat_family": "Vulnerability Disclosure",
-      "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
-      "risk_score": 3,
+      "attack_sophistication": "MEDIUM",
+      "risk_score": 5,
       "correlation_id": "84f5ece0",
-      "summary_preview": "Microsoft today released security updates to fix at least 67 vulnerabilities in its Windows operating systems and software.",
+      "summary_preview": "Redmond warns that one of the flaws is already under active attack, and that software blueprints showing how to exploit a pervasive Windows bug patched this month are now public.",
       "full_summary": "Microsoft today released security updates to fix at least 67 vulnerabilities in its Windows operating systems and software. Redmond warns that one of the flaws is already under active attack, and that software blueprints showing how to exploit a pervasive Windows bug patched this month are now public.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
+      "key_insights": [],
       "actionable_items": [
-        "Review and apply relevant security updates"
+        "Review and apply relevant security updates immediately"
       ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
+      "technical_indicators": [
+        "patch tuesday",
+        "security update"
+      ],
+      "business_impact": "Limited business impact - standard monitoring and assessment protocols apply",
+      "timeline_urgency": "ROUTINE",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.8,
+        "critical_finding": "Vulnerability Disclosure detected requiring routine response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
     },
     {
-      "title": "U.S. Sanctions Cloud Provider ‘Funnull’ as Top Source of ‘Pig Butchering’ Scams",
-      "summary": "The U.S.",
-      "source": "KREBS_SECURITY",
-      "source_url": "https://krebsonsecurity.com/2025/05/u-s-sanctions-cloud-provider-funnull-as-top-source-of-pig-butchering-scams/",
-      "timestamp": "Fri, 30 May 2025 01:55:16 +0000",
-      "threat_level": "LOW",
-      "ai_technical_analysis": "Security incident classified as security incident",
+      "title": "Discord flaw lets hackers reuse expired invites in malware campaign",
+      "summary": "Hackers are hijacking expired or deleted Discord invite links to redirect users to malicious sites that deliver remote access trojans and information-stealing malware.",
+      "source": "BLEEPING_COMPUTER",
+      "source_url": "https://www.bleepingcomputer.com/news/security/discord-flaw-lets-hackers-reuse-expired-invites-in-malware-campaign/",
+      "timestamp": "Fri, 13 Jun 2025 12:10:51 -0400",
+      "threat_level": "MEDIUM",
+      "ai_technical_analysis": "Security incident involving malware campaign with medium impact potential",
       "confidence_score": 0.8,
-      "severity_rating": 3,
+      "severity_rating": 5,
       "attack_vectors": [
-        "web_attack",
-        "network_attack"
+        "network"
       ],
+      "affected_sectors": [],
+      "geographic_scope": "Global",
+      "country_code": "GLOBAL",
+      "threat_actors": [],
+      "mitigation_priority": "ROUTINE",
+      "cve_references": [],
+      "threat_family": "Malware Campaign",
+      "attack_sophistication": "MEDIUM",
+      "risk_score": 5,
+      "correlation_id": "01a110f2",
+      "summary_preview": "Hackers are hijacking expired or deleted Discord invite links to redirect users to malicious sites that deliver remote access trojans and information-stealing malware.",
+      "full_summary": "Hackers are hijacking expired or deleted Discord invite links to redirect users to malicious sites that deliver remote access trojans and information-stealing malware. [...]",
+      "key_insights": [],
+      "actionable_items": [
+        "Monitor threat developments and assess security posture"
+      ],
+      "technical_indicators": [
+        "malware",
+        "trojan"
+      ],
+      "business_impact": "Limited business impact - standard monitoring and assessment protocols apply",
+      "timeline_urgency": "ROUTINE",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.8,
+        "critical_finding": "Malware Campaign detected requiring routine response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
+    },
+    {
+      "title": "Microsoft Patch Tuesday June 2025, (Tue, Jun 10th)",
+      "summary": "One vulnerability has already been exploited and another vulnerability has been publicly disclosed before today.. Microsoft today released patches for 67 vulnerabilities.",
+      "source": "SANS_ISC",
+      "source_url": "https://isc.sans.edu/diary/rss/32032",
+      "timestamp": "Tue, 10 Jun 2025 17:50:23 GMT",
+      "threat_level": "MEDIUM",
+      "ai_technical_analysis": "Security incident involving vulnerability disclosure with medium impact potential",
+      "confidence_score": 0.9,
+      "severity_rating": 5,
+      "attack_vectors": [],
       "affected_sectors": [
         "government",
-        "critical_infrastructure",
         "technology"
       ],
-      "geographic_scope": "Usa, U.S.",
+      "geographic_scope": "Global",
+      "country_code": "GLOBAL",
+      "threat_actors": [],
+      "mitigation_priority": "ROUTINE",
+      "cve_references": [],
+      "threat_family": "Vulnerability Disclosure",
+      "attack_sophistication": "MEDIUM",
+      "risk_score": 5,
+      "correlation_id": "e6a2ab4c",
+      "summary_preview": "One vulnerability has already been exploited and another vulnerability has been publicly disclosed before today.. Microsoft today released patches for 67 vulnerabilities.",
+      "full_summary": "Microsoft today released patches for 67 vulnerabilities. 10 of these vulnerabilities are rated critical. One vulnerability has already been exploited and another vulnerability has been publicly disclosed before today.",
+      "key_insights": [
+        "Critical patches available - prioritize deployment and testing"
+      ],
+      "actionable_items": [
+        "Review and apply relevant security updates immediately"
+      ],
+      "technical_indicators": [
+        "patch tuesday",
+        "patches",
+        "vulnerability"
+      ],
+      "business_impact": "Limited business impact - standard monitoring and assessment protocols apply",
+      "timeline_urgency": "ROUTINE",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.9,
+        "critical_finding": "Vulnerability Disclosure detected requiring routine response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
+    },
+    {
+      "title": "Cybercriminals Are Selling Access to Chinese Surveillance Cameras",
+      "summary": "Tens of thousands of cameras have failed to patch a critical, 11-month-old CVE, leaving thousands of organizations exposed.",
+      "source": "THREAT_POST",
+      "source_url": "https://threatpost.com/cybercriminals-are-selling-access-to-chinese-surveillance-cameras/180478/",
+      "timestamp": "Thu, 25 Aug 2022 18:47:15 +0000",
+      "threat_level": "MEDIUM",
+      "ai_technical_analysis": "Security incident involving security incident with medium impact potential",
+      "confidence_score": 0.6,
+      "severity_rating": 5,
+      "attack_vectors": [],
+      "affected_sectors": [],
+      "geographic_scope": "Usa",
       "country_code": "US",
       "threat_actors": [],
       "mitigation_priority": "ROUTINE",
       "cve_references": [],
       "threat_family": "Security Incident",
-      "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
-      "risk_score": 3,
-      "correlation_id": "d5155637",
-      "summary_preview": "The U.S.",
-      "full_summary": "The U.S. government today imposed economic sanctions on Funnull Technology Inc., a Philippines-based company that provides computer infrastructure for hundreds of thousands of websites involved in virtual currency investment scams, commonly known as “pig butchering.\" In January 2025, KrebsOnSecurity detailed how Funnull was being used as a content delivery network that catered to cybercriminals seeking to route their traffic through U.S.-based cloud providers.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Monitor situation and review security posture"
+      "attack_sophistication": "MEDIUM",
+      "risk_score": 5,
+      "correlation_id": "747af87f",
+      "summary_preview": "Tens of thousands of cameras have failed to patch a critical, 11-month-old CVE, leaving thousands of organizations exposed.",
+      "full_summary": "Tens of thousands of cameras have failed to patch a critical, 11-month-old CVE, leaving thousands of organizations exposed.",
+      "key_insights": [
+        "Critical patches available - prioritize deployment and testing"
       ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
+      "actionable_items": [
+        "Review and apply relevant security updates immediately",
+        "Conduct data inventory and verify access controls"
+      ],
+      "technical_indicators": [],
+      "business_impact": "Limited business impact - standard monitoring and assessment protocols apply",
+      "timeline_urgency": "ROUTINE",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.6,
+        "critical_finding": "Security Incident detected requiring routine response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
+    },
+    {
+      "title": "Dems want watchdog study of two troubled federally-funded vulnerability tracking initiatives",
+      "summary": "The CVE program publishes standardized information about known cyber vulnerabilities, while the NVD is a storehouse for vulnerability management data. The post Dems want watchdog study of two troubled federally-funded vulnerability tracking initiatives appeared first on CyberScoop.",
+      "source": "CYBER_SCOOP",
+      "source_url": "https://cyberscoop.com/gao-vulnerability-management-letter-cve-nvd-bennie-thompson-zoe-lofgren/",
+      "timestamp": "Wed, 11 Jun 2025 17:15:53 +0000",
+      "threat_level": "MEDIUM",
+      "ai_technical_analysis": "Security incident involving vulnerability disclosure with medium impact potential",
+      "confidence_score": 0.7,
+      "severity_rating": 5,
+      "attack_vectors": [],
+      "affected_sectors": [
+        "government"
+      ],
+      "geographic_scope": "Global",
+      "country_code": "GLOBAL",
+      "threat_actors": [],
+      "mitigation_priority": "ROUTINE",
+      "cve_references": [],
+      "threat_family": "Vulnerability Disclosure",
+      "attack_sophistication": "MEDIUM",
+      "risk_score": 5,
+      "correlation_id": "efc0808b",
+      "summary_preview": "The CVE program publishes standardized information about known cyber vulnerabilities, while the NVD is a storehouse for vulnerability management data. The post Dems want watchdog study of two troubled federally-funded vulnerability tracking initiatives appeared first on CyberScoop.",
+      "full_summary": "The CVE program publishes standardized information about known cyber vulnerabilities, while the NVD is a storehouse for vulnerability management data. The post Dems want watchdog study of two troubled federally-funded vulnerability tracking initiatives appeared first on CyberScoop.",
+      "key_insights": [],
+      "actionable_items": [
+        "Monitor threat developments and assess security posture"
+      ],
+      "technical_indicators": [
+        "vulnerability"
+      ],
+      "business_impact": "Limited business impact - standard monitoring and assessment protocols apply",
+      "timeline_urgency": "ROUTINE",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.7,
+        "critical_finding": "Vulnerability Disclosure detected requiring routine response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
     },
     {
       "title": "Pakistan Arrests 21 in ‘Heartsender’ Malware Service",
-      "summary": "Authorities in Pakistan have arrested 21 individuals accused of operating \"Heartsender,\" a once popular spam and malware dissemination service that operated for more than a decade.",
+      "summary": "Authorities in Pakistan have arrested 21 individuals accused of operating \"Heartsender,\" a once popular spam and malware dissemination service that operated for more than a decade. The main clientele for HeartSender were organized crime groups that tried to trick victim companies",
       "source": "KREBS_SECURITY",
       "source_url": "https://krebsonsecurity.com/2025/05/pakistan-arrests-21-in-heartsender-malware-service/",
       "timestamp": "Wed, 28 May 2025 17:41:47 +0000",
       "threat_level": "MEDIUM",
-      "ai_technical_analysis": "Incident involving malware with moderate business impact",
-      "confidence_score": 0.8,
+      "ai_technical_analysis": "Security incident involving malware campaign with medium impact potential",
+      "confidence_score": 0.7,
       "severity_rating": 5,
       "attack_vectors": [
-        "malware_delivery"
+        "email"
       ],
       "affected_sectors": [
-        "financial"
+        "financial",
+        "government"
       ],
       "geographic_scope": "Global",
       "country_code": "GLOBAL",
@@ -153,38 +757,38 @@
       "cve_references": [],
       "threat_family": "Malware Campaign",
       "attack_sophistication": "MEDIUM",
-      "attack_timeline": "routine",
       "risk_score": 5,
       "correlation_id": "f0f8fc1e",
-      "summary_preview": "Authorities in Pakistan have arrested 21 individuals accused of operating \"Heartsender,\" a once popular spam and malware dissemination service that operated for more than a decade.",
+      "summary_preview": "Authorities in Pakistan have arrested 21 individuals accused of operating \"Heartsender,\" a once popular spam and malware dissemination service that operated for more than a decade. The main clientele for HeartSender were organized crime groups that tried to trick victim companies",
       "full_summary": "Authorities in Pakistan have arrested 21 individuals accused of operating \"Heartsender,\" a once popular spam and malware dissemination service that operated for more than a decade. The main clientele for HeartSender were organized crime groups that tried to trick victim companies into making payments to a third party, and its alleged proprietors were publicly identified by KrebsOnSecurity in 2021 after they inadvertently infected their computers with malware.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
+      "key_insights": [],
       "actionable_items": [
-        "Monitor situation and review security posture"
+        "Monitor threat developments and assess security posture"
       ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "MEDIUM"
-      },
-      "business_impact": "Moderate impact incident requiring security team review"
+      "technical_indicators": [
+        "malware"
+      ],
+      "business_impact": "Limited business impact - standard monitoring and assessment protocols apply",
+      "timeline_urgency": "ROUTINE",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.7,
+        "critical_finding": "Malware Campaign detected requiring routine response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
     },
     {
       "title": "Oops: DanaBot Malware Devs Infected Their Own PCs",
-      "summary": "The U.S. government today unsealed criminal charges against 16 individuals accused of operating and selling DanaBot, a prolific strain of information-stealing malware that has been sold on Russian cybercrime forums since 2018.",
+      "summary": "government today unsealed criminal charges against 16 individuals accused of operating and selling DanaBot, a prolific strain of information-stealing malware that has been sold on Russian cybercrime forums since 2018.",
       "source": "KREBS_SECURITY",
       "source_url": "https://krebsonsecurity.com/2025/05/oops-danabot-malware-devs-infected-their-own-pcs/",
       "timestamp": "Thu, 22 May 2025 21:53:21 +0000",
       "threat_level": "MEDIUM",
-      "ai_technical_analysis": "Incident involving malware with moderate business impact",
-      "confidence_score": 0.8,
+      "ai_technical_analysis": "Security incident involving malware campaign with medium impact potential",
+      "confidence_score": 0.7,
       "severity_rating": 5,
-      "attack_vectors": [
-        "malware_delivery"
-      ],
+      "attack_vectors": [],
       "affected_sectors": [
         "government"
       ],
@@ -195,24 +799,190 @@
       "cve_references": [],
       "threat_family": "Malware Campaign",
       "attack_sophistication": "MEDIUM",
-      "attack_timeline": "routine",
       "risk_score": 5,
       "correlation_id": "0499b2ad",
-      "summary_preview": "The U.S. government today unsealed criminal charges against 16 individuals accused of operating and selling DanaBot, a prolific strain of information-stealing malware that has been sold on Russian cybercrime forums since 2018.",
+      "summary_preview": "government today unsealed criminal charges against 16 individuals accused of operating and selling DanaBot, a prolific strain of information-stealing malware that has been sold on Russian cybercrime forums since 2018.",
       "full_summary": "The U.S. government today unsealed criminal charges against 16 individuals accused of operating and selling DanaBot, a prolific strain of information-stealing malware that has been sold on Russian cybercrime forums since 2018. The FBI says a newer version of DanaBot was used for espionage, and that many of the defendants exposed their real-life identities after accidentally infecting their own systems with the malware.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
+      "key_insights": [],
       "actionable_items": [
-        "Monitor situation and review security posture"
+        "Conduct data inventory and verify access controls"
       ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "MEDIUM"
-      },
-      "business_impact": "Moderate impact incident requiring security team review"
+      "technical_indicators": [
+        "malware"
+      ],
+      "business_impact": "Limited business impact - standard monitoring and assessment protocols apply",
+      "timeline_urgency": "ROUTINE",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.7,
+        "critical_finding": "Malware Campaign detected requiring routine response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
+    },
+    {
+      "title": "Tentacles of ‘0ktapus’ Threat Group Victimize 130 Firms",
+      "summary": "Over 130 companies tangled in sprawling phishing campaign that spoofed a multi-factor authentication system.",
+      "source": "THREAT_POST",
+      "source_url": "https://threatpost.com/0ktapus-victimize-130-firms/180487/",
+      "timestamp": "Mon, 29 Aug 2022 14:56:19 +0000",
+      "threat_level": "MEDIUM",
+      "ai_technical_analysis": "Security incident involving phishing campaign with medium impact potential",
+      "confidence_score": 0.7,
+      "severity_rating": 5,
+      "attack_vectors": [
+        "email"
+      ],
+      "affected_sectors": [],
+      "geographic_scope": "Global",
+      "country_code": "GLOBAL",
+      "threat_actors": [],
+      "mitigation_priority": "ROUTINE",
+      "cve_references": [],
+      "threat_family": "Phishing Campaign",
+      "attack_sophistication": "MEDIUM",
+      "risk_score": 5,
+      "correlation_id": "a5ec1c0b",
+      "summary_preview": "Over 130 companies tangled in sprawling phishing campaign that spoofed a multi-factor authentication system.",
+      "full_summary": "Over 130 companies tangled in sprawling phishing campaign that spoofed a multi-factor authentication system.",
+      "key_insights": [],
+      "actionable_items": [
+        "Enhance email security filters and user awareness training"
+      ],
+      "technical_indicators": [
+        "phishing"
+      ],
+      "business_impact": "Limited business impact - standard monitoring and assessment protocols apply",
+      "timeline_urgency": "ROUTINE",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.7,
+        "critical_finding": "Phishing Campaign detected requiring routine response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
+    },
+    {
+      "title": "Firewall Bug Under Active Attack Triggers CISA Warning",
+      "summary": "CISA is warning that Palo Alto Networks’ PAN-OS is under active attack and needs to be patched ASAP.",
+      "source": "THREAT_POST",
+      "source_url": "https://threatpost.com/firewall-bug-under-active-attack-cisa-warning/180467/",
+      "timestamp": "Tue, 23 Aug 2022 13:19:58 +0000",
+      "threat_level": "MEDIUM",
+      "ai_technical_analysis": "Security incident involving security incident with medium impact potential",
+      "confidence_score": 0.6,
+      "severity_rating": 5,
+      "attack_vectors": [
+        "network"
+      ],
+      "affected_sectors": [],
+      "geographic_scope": "Global",
+      "country_code": "GLOBAL",
+      "threat_actors": [],
+      "mitigation_priority": "ROUTINE",
+      "cve_references": [],
+      "threat_family": "Security Incident",
+      "attack_sophistication": "MEDIUM",
+      "risk_score": 5,
+      "correlation_id": "464dfa9d",
+      "summary_preview": "CISA is warning that Palo Alto Networks’ PAN-OS is under active attack and needs to be patched ASAP.",
+      "full_summary": "CISA is warning that Palo Alto Networks’ PAN-OS is under active attack and needs to be patched ASAP.",
+      "key_insights": [],
+      "actionable_items": [
+        "Review and apply relevant security updates immediately"
+      ],
+      "technical_indicators": [],
+      "business_impact": "Limited business impact - standard monitoring and assessment protocols apply",
+      "timeline_urgency": "ROUTINE",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.6,
+        "critical_finding": "Security Incident detected requiring routine response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
+    },
+    {
+      "title": "WestJet investigates cyberattack disrupting internal systems",
+      "summary": "WestJet, Canada's second-largest airline, is investigating a cyberattack that has disrupted access to some internal systems as it responds to the breach.",
+      "source": "BLEEPING_COMPUTER",
+      "source_url": "https://www.bleepingcomputer.com/news/security/westjet-investigates-cyberattack-disrupting-internal-systems/",
+      "timestamp": "Sat, 14 Jun 2025 13:34:10 -0400",
+      "threat_level": "LOW",
+      "ai_technical_analysis": "Security incident involving data breach with low impact potential",
+      "confidence_score": 0.7,
+      "severity_rating": 3,
+      "attack_vectors": [],
+      "affected_sectors": [],
+      "geographic_scope": "Canada",
+      "country_code": "CA",
+      "threat_actors": [],
+      "mitigation_priority": "ROUTINE",
+      "cve_references": [],
+      "threat_family": "Data Breach",
+      "attack_sophistication": "LOW",
+      "risk_score": 3,
+      "correlation_id": "232a22b3",
+      "summary_preview": "WestJet, Canada's second-largest airline, is investigating a cyberattack that has disrupted access to some internal systems as it responds to the breach.",
+      "full_summary": "WestJet, Canada's second-largest airline, is investigating a cyberattack that has disrupted access to some internal systems as it responds to the breach. [...]",
+      "key_insights": [],
+      "actionable_items": [
+        "Conduct data inventory and verify access controls"
+      ],
+      "technical_indicators": [
+        "breach"
+      ],
+      "business_impact": "Minimal business impact - awareness and routine security review sufficient",
+      "timeline_urgency": "ROUTINE",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.7,
+        "critical_finding": "Data Breach detected requiring routine response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
+    },
+    {
+      "title": "Cloudflare: Outage not caused by security incident, data is safe",
+      "summary": "Cloudflare has confirmed that the massive service outage yesterday was not caused by a security incident and no data has been lost.",
+      "source": "BLEEPING_COMPUTER",
+      "source_url": "https://www.bleepingcomputer.com/news/security/cloudflare-outage-not-caused-by-security-incident-data-is-safe/",
+      "timestamp": "Fri, 13 Jun 2025 06:09:24 -0400",
+      "threat_level": "LOW",
+      "ai_technical_analysis": "Security incident involving corporate security incident with low impact potential",
+      "confidence_score": 0.7,
+      "severity_rating": 3,
+      "attack_vectors": [],
+      "affected_sectors": [
+        "technology"
+      ],
+      "geographic_scope": "Global",
+      "country_code": "GLOBAL",
+      "threat_actors": [],
+      "mitigation_priority": "ROUTINE",
+      "cve_references": [],
+      "threat_family": "Corporate Security Incident",
+      "attack_sophistication": "LOW",
+      "risk_score": 3,
+      "correlation_id": "e72bf17b",
+      "summary_preview": "Cloudflare has confirmed that the massive service outage yesterday was not caused by a security incident and no data has been lost.",
+      "full_summary": "Cloudflare has confirmed that the massive service outage yesterday was not caused by a security incident and no data has been lost. [...]",
+      "key_insights": [],
+      "actionable_items": [
+        "Monitor threat developments and assess security posture"
+      ],
+      "technical_indicators": [
+        "security incident"
+      ],
+      "business_impact": "Minimal business impact - awareness and routine security review sufficient",
+      "timeline_urgency": "ROUTINE",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.7,
+        "critical_finding": "Corporate Security Incident detected requiring routine response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
     },
     {
       "title": "KrebsOnSecurity Hit With Near-Record 6.3 Tbps DDoS",
@@ -221,11 +991,11 @@
       "source_url": "https://krebsonsecurity.com/2025/05/krebsonsecurity-hit-with-near-record-6-3-tbps-ddos/",
       "timestamp": "Tue, 20 May 2025 21:30:30 +0000",
       "threat_level": "LOW",
-      "ai_technical_analysis": "Incident involving ddos with limited business impact",
-      "confidence_score": 0.8,
+      "ai_technical_analysis": "Security incident involving malware campaign with low impact potential",
+      "confidence_score": 0.7,
       "severity_rating": 3,
       "attack_vectors": [
-        "web_attack"
+        "web"
       ],
       "affected_sectors": [],
       "geographic_scope": "Global",
@@ -233,36 +1003,38 @@
       "threat_actors": [],
       "mitigation_priority": "ROUTINE",
       "cve_references": [],
-      "threat_family": "Ddos Attack",
+      "threat_family": "Malware Campaign",
       "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
       "risk_score": 3,
       "correlation_id": "820a83a1",
       "summary_preview": "KrebsOnSecurity last week was hit by a near record distributed denial-of-service (DDoS) attack that clocked in at more than 6.3 terabits of data per second (a terabit is one trillion bits of data).",
       "full_summary": "KrebsOnSecurity last week was hit by a near record distributed denial-of-service (DDoS) attack that clocked in at more than 6.3 terabits of data per second (a terabit is one trillion bits of data). The brief attack appears to have been a test run for a massive new Internet of Things (IoT) botnet capable of launching crippling digital assaults that few web destinations can withstand. Read on for more about the botnet, the attack, and the apparent creator of this global menace.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
+      "key_insights": [],
       "actionable_items": [
-        "Monitor situation and review security posture"
+        "Monitor threat developments and assess security posture"
       ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
+      "technical_indicators": [
+        "botnet"
+      ],
+      "business_impact": "Minimal business impact - awareness and routine security review sufficient",
+      "timeline_urgency": "ROUTINE",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.7,
+        "critical_finding": "Malware Campaign detected requiring routine response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
     },
     {
       "title": "Breachforums Boss to Pay $700k in Healthcare Breach",
-      "summary": "In what experts are calling a novel legal outcome, the 22-year-old former administrator of the cybercrime community Breachforums will forfeit nearly $700,000 to settle a civil lawsuit from a health insurance company whose customer data was posted for...",
+      "summary": "In what experts are calling a novel legal outcome, the 22-year-old former administrator of the cybercrime community Breachforums will forfeit nearly $700,000 to settle a civil lawsuit from a health insurance company whose customer data was posted for sale on the forum in 2023.",
       "source": "KREBS_SECURITY",
       "source_url": "https://krebsonsecurity.com/2025/05/breachforums-boss-to-pay-700k-in-healthcare-breach/",
       "timestamp": "Thu, 15 May 2025 19:56:51 +0000",
       "threat_level": "LOW",
-      "ai_technical_analysis": "Incident involving breach, customer data with limited business impact",
-      "confidence_score": 0.8,
+      "ai_technical_analysis": "Security incident involving data breach with low impact potential",
+      "confidence_score": 0.7,
       "severity_rating": 3,
       "attack_vectors": [],
       "affected_sectors": [
@@ -275,1415 +1047,144 @@
       "cve_references": [],
       "threat_family": "Data Breach",
       "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
       "risk_score": 3,
       "correlation_id": "6187a304",
-      "summary_preview": "In what experts are calling a novel legal outcome, the 22-year-old former administrator of the cybercrime community Breachforums will forfeit nearly $700,000 to settle a civil lawsuit from a health insurance company whose customer data was posted for...",
+      "summary_preview": "In what experts are calling a novel legal outcome, the 22-year-old former administrator of the cybercrime community Breachforums will forfeit nearly $700,000 to settle a civil lawsuit from a health insurance company whose customer data was posted for sale on the forum in 2023.",
       "full_summary": "In what experts are calling a novel legal outcome, the 22-year-old former administrator of the cybercrime community Breachforums will forfeit nearly $700,000 to settle a civil lawsuit from a health insurance company whose customer data was posted for sale on the forum in 2023. Conor Brian Fitzpatrick, a.k.a. \"Pompompurin,\" is slated for resentencing next month after pleading guilty to access device fraud and possession of child sexual abuse material (CSAM).",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
+      "key_insights": [],
       "actionable_items": [
-        "Verify data integrity and access controls"
+        "Conduct data inventory and verify access controls"
       ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
-    },
-    {
-      "title": "Patch Tuesday, May 2025 Edition",
-      "summary": "Microsoft on Tuesday released software updates to fix at least 70 vulnerabilities in Windows and related products, including five zero-day flaws that are already seeing active exploitation.",
-      "source": "KREBS_SECURITY",
-      "source_url": "https://krebsonsecurity.com/2025/05/patch-tuesday-may-2025-edition/",
-      "timestamp": "Wed, 14 May 2025 11:57:48 +0000",
-      "threat_level": "CRITICAL",
-      "ai_technical_analysis": "Incident involving patch tuesday with high business impact",
-      "confidence_score": 0.8,
-      "severity_rating": 9,
-      "attack_vectors": [],
-      "affected_sectors": [
-        "technology"
+      "technical_indicators": [
+        "breach"
       ],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "IMMEDIATE",
-      "cve_references": [],
-      "threat_family": "Vulnerability Disclosure",
-      "attack_sophistication": "HIGH",
-      "attack_timeline": "immediate",
-      "risk_score": 9,
-      "correlation_id": "e41b5500",
-      "summary_preview": "Microsoft on Tuesday released software updates to fix at least 70 vulnerabilities in Windows and related products, including five zero-day flaws that are already seeing active exploitation.",
-      "full_summary": "Microsoft on Tuesday released software updates to fix at least 70 vulnerabilities in Windows and related products, including five zero-day flaws that are already seeing active exploitation. Adding to the sense of urgency with this month's patch batch from Redmond are fixes for two other weaknesses that now have public proof-of-concept exploits available.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "IMMEDIATE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Review and apply relevant security updates"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "HIGH"
-      },
-      "business_impact": "High impact incident requiring immediate attention and resource allocation"
-    },
-    {
-      "title": "Pakistani Firm Shipped Fentanyl Analogs, Scams to US",
-      "summary": "A Texas firm recently charged with conspiring to distribute synthetic opioids in the United States is at the center of a vast network of companies in the U.S.",
-      "source": "KREBS_SECURITY",
-      "source_url": "https://krebsonsecurity.com/2025/05/pakistani-firm-shipped-fentanyl-analogs-scams-to-us/",
-      "timestamp": "Wed, 07 May 2025 22:22:48 +0000",
-      "threat_level": "LOW",
-      "ai_technical_analysis": "Security incident classified as security incident",
-      "confidence_score": 0.8,
-      "severity_rating": 3,
-      "attack_vectors": [
-        "web_attack",
-        "network_attack"
-      ],
-      "affected_sectors": [
-        "telecommunications"
-      ],
-      "geographic_scope": "United States, U.S.",
-      "country_code": "US",
-      "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
-      "cve_references": [],
-      "threat_family": "Security Incident",
-      "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
-      "risk_score": 3,
-      "correlation_id": "a621c9c7",
-      "summary_preview": "A Texas firm recently charged with conspiring to distribute synthetic opioids in the United States is at the center of a vast network of companies in the U.S.",
-      "full_summary": "A Texas firm recently charged with conspiring to distribute synthetic opioids in the United States is at the center of a vast network of companies in the U.S. and Pakistan whose employees are accused of using online ads to scam westerners seeking help with trademarks, book writing, mobile app development and logo designs, a new investigation reveals.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Monitor situation and review security posture"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
-    },
-    {
-      "title": "&#x5b;Guest Diary&#x5d; Anatomy of a Linux SSH Honeypot Attack: Detailed Analysis of Captured Malware, (Fri, Jun 13th)",
-      "summary": "x26 x5b This is a Guest Diary by Michal Ambrozkiewicz, an ISC intern as part of the SANS.edu Bachelor x26 39 s Degree in Applied Cybersecurity (BACS) program x26 x5b 1 .",
-      "source": "SANS_ISC",
-      "source_url": "https://isc.sans.edu/diary/rss/32024",
-      "timestamp": "Fri, 13 Jun 2025 00:21:01 GMT",
-      "threat_level": "MEDIUM",
-      "ai_technical_analysis": "Incident involving malware with moderate business impact",
-      "confidence_score": 0.8,
-      "severity_rating": 5,
-      "attack_vectors": [
-        "malware_delivery"
-      ],
-      "affected_sectors": [],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
-      "cve_references": [],
-      "threat_family": "Malware Campaign",
-      "attack_sophistication": "MEDIUM",
-      "attack_timeline": "routine",
-      "risk_score": 5,
-      "correlation_id": "1f48638b",
-      "summary_preview": "x26 x5b This is a Guest Diary by Michal Ambrozkiewicz, an ISC intern as part of the SANS.edu Bachelor x26 39 s Degree in Applied Cybersecurity (BACS) program x26 x5b 1 .",
-      "full_summary": "x26 x5b This is a Guest Diary by Michal Ambrozkiewicz, an ISC intern as part of the SANS.edu Bachelor x26 39 s Degree in Applied Cybersecurity (BACS) program x26 x5b 1 .",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Monitor situation and review security posture"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "MEDIUM"
-      },
-      "business_impact": "Moderate impact incident requiring security team review"
-    },
-    {
-      "title": "Quasar RAT Delivered Through Bat Files, (Wed, Jun 11th)",
-      "summary": "RAT x26 39 s are popular malware. They are many of them in the wild, Quasar 1 being one of them.",
-      "source": "SANS_ISC",
-      "source_url": "https://isc.sans.edu/diary/rss/32036",
-      "timestamp": "Wed, 11 Jun 2025 05:53:08 GMT",
-      "threat_level": "MEDIUM",
-      "ai_technical_analysis": "Incident involving malware with moderate business impact",
-      "confidence_score": 0.8,
-      "severity_rating": 5,
-      "attack_vectors": [
-        "malware_delivery"
-      ],
-      "affected_sectors": [],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
-      "cve_references": [],
-      "threat_family": "Malware Campaign",
-      "attack_sophistication": "MEDIUM",
-      "attack_timeline": "routine",
-      "risk_score": 5,
-      "correlation_id": "b4eb303d",
-      "summary_preview": "RAT x26 39 s are popular malware. They are many of them in the wild, Quasar 1 being one of them.",
-      "full_summary": "RAT x26 39 s are popular malware. They are many of them in the wild, Quasar 1 being one of them. The malware has been active for a long time and new campaigns come regularly back on stage. I spotted an interesting .bat file (Windows script) that attracted my attention because it is very well obfuscated. This file is a second stage that is downloaded and launched from a simple script:",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Monitor situation and review security posture"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "MEDIUM"
-      },
-      "business_impact": "Moderate impact incident requiring security team review"
-    },
-    {
-      "title": "Microsoft Patch Tuesday June 2025, (Tue, Jun 10th)",
-      "summary": "Microsoft today released patches for 67 vulnerabilities. 10 of these vulnerabilities are rated critical.",
-      "source": "SANS_ISC",
-      "source_url": "https://isc.sans.edu/diary/rss/32032",
-      "timestamp": "Tue, 10 Jun 2025 17:50:23 GMT",
-      "threat_level": "LOW",
-      "ai_technical_analysis": "Incident involving patch tuesday, vulnerability with limited business impact",
-      "confidence_score": 0.8,
-      "severity_rating": 3,
-      "attack_vectors": [],
-      "affected_sectors": [
-        "technology"
-      ],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
-      "cve_references": [],
-      "threat_family": "Vulnerability Disclosure",
-      "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
-      "risk_score": 3,
-      "correlation_id": "e6a2ab4c",
-      "summary_preview": "Microsoft today released patches for 67 vulnerabilities. 10 of these vulnerabilities are rated critical.",
-      "full_summary": "Microsoft today released patches for 67 vulnerabilities. 10 of these vulnerabilities are rated critical. One vulnerability has already been exploited and another vulnerability has been publicly disclosed before today.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Review and apply relevant security updates",
-        "Scan systems for similar vulnerabilities"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
-    },
-    {
-      "title": "WestJet investigates cyberattack disrupting internal systems",
-      "summary": "WestJet, Canada's second-largest airline, is investigating a cyberattack that has disrupted access to some internal systems as it responds to the breach. [...].",
-      "source": "BLEEPING_COMPUTER",
-      "source_url": "https://www.bleepingcomputer.com/news/security/westjet-investigates-cyberattack-disrupting-internal-systems/",
-      "timestamp": "Sat, 14 Jun 2025 13:34:10 -0400",
-      "threat_level": "LOW",
-      "ai_technical_analysis": "Incident involving breach with limited business impact",
-      "confidence_score": 0.8,
-      "severity_rating": 3,
-      "attack_vectors": [],
-      "affected_sectors": [],
-      "geographic_scope": "Canada",
-      "country_code": "CA",
-      "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
-      "cve_references": [],
-      "threat_family": "Data Breach",
-      "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
-      "risk_score": 3,
-      "correlation_id": "232a22b3",
-      "summary_preview": "WestJet, Canada's second-largest airline, is investigating a cyberattack that has disrupted access to some internal systems as it responds to the breach. [...].",
-      "full_summary": "WestJet, Canada's second-largest airline, is investigating a cyberattack that has disrupted access to some internal systems as it responds to the breach. [...]",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Verify data integrity and access controls"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
-    },
-    {
-      "title": "Anubis ransomware adds wiper to destroy files beyond recovery",
-      "summary": "<The Anubis ransomware-as-a-service (RaaS) operation has added to its file-encrypting malware a wiper module that destroys targeted files, making recovery impossible even if the ransom is paid. [...].",
-      "source": "BLEEPING_COMPUTER",
-      "source_url": "https://www.bleepingcomputer.com/news/security/anubis-ransomware-adds-wiper-to-destroy-files-beyond-recovery/",
-      "timestamp": "Sat, 14 Jun 2025 10:29:38 -0400",
-      "threat_level": "HIGH",
-      "ai_technical_analysis": "Incident involving ransomware, ransom with high business impact",
-      "confidence_score": 0.8,
-      "severity_rating": 7,
-      "attack_vectors": [
-        "malware_delivery"
-      ],
-      "affected_sectors": [],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "URGENT",
-      "cve_references": [],
-      "threat_family": "Ransomware",
-      "attack_sophistication": "HIGH",
-      "attack_timeline": "urgent",
-      "risk_score": 7,
-      "correlation_id": "78419e03",
-      "summary_preview": "<The Anubis ransomware-as-a-service (RaaS) operation has added to its file-encrypting malware a wiper module that destroys targeted files, making recovery impossible even if the ransom is paid. [...].",
-      "full_summary": "<The Anubis ransomware-as-a-service (RaaS) operation has added to its file-encrypting malware a wiper module that destroys targeted files, making recovery impossible even if the ransom is paid. [...]",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "URGENT",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Ensure backup systems are secure and accessible"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "HIGH"
-      },
-      "business_impact": "High impact incident requiring immediate attention and resource allocation"
-    },
-    {
-      "title": "Discord flaw lets hackers reuse expired invites in malware campaign",
-      "summary": "Hackers are hijacking expired or deleted Discord invite links to redirect users to malicious sites that deliver remote access trojans and information-stealing malware. [...].",
-      "source": "BLEEPING_COMPUTER",
-      "source_url": "https://www.bleepingcomputer.com/news/security/discord-flaw-lets-hackers-reuse-expired-invites-in-malware-campaign/",
-      "timestamp": "Fri, 13 Jun 2025 12:10:51 -0400",
-      "threat_level": "MEDIUM",
-      "ai_technical_analysis": "Incident involving malware, trojan with moderate business impact",
-      "confidence_score": 0.8,
-      "severity_rating": 5,
-      "attack_vectors": [
-        "network_attack",
-        "malware_delivery"
-      ],
-      "affected_sectors": [],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
-      "cve_references": [],
-      "threat_family": "Malware Campaign",
-      "attack_sophistication": "MEDIUM",
-      "attack_timeline": "routine",
-      "risk_score": 5,
-      "correlation_id": "01a110f2",
-      "summary_preview": "Hackers are hijacking expired or deleted Discord invite links to redirect users to malicious sites that deliver remote access trojans and information-stealing malware. [...].",
-      "full_summary": "Hackers are hijacking expired or deleted Discord invite links to redirect users to malicious sites that deliver remote access trojans and information-stealing malware. [...]",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Monitor situation and review security posture"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "MEDIUM"
-      },
-      "business_impact": "Moderate impact incident requiring security team review"
-    },
-    {
-      "title": "Microsoft confirms auth issues affecting Microsoft 365 users",
-      "summary": "Microsoft is investigating an ongoing incident that is causing users to experience errors with some Microsoft 365 authentication features. [...].",
-      "source": "BLEEPING_COMPUTER",
-      "source_url": "https://www.bleepingcomputer.com/news/microsoft/microsoft-confirms-auth-issues-affecting-microsoft-365-users/",
-      "timestamp": "Fri, 13 Jun 2025 08:37:06 -0400",
-      "threat_level": "LOW",
-      "ai_technical_analysis": "Security incident classified as security incident",
-      "confidence_score": 0.8,
-      "severity_rating": 3,
-      "attack_vectors": [],
-      "affected_sectors": [
-        "technology"
-      ],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
-      "cve_references": [],
-      "threat_family": "Security Incident",
-      "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
-      "risk_score": 3,
-      "correlation_id": "5552624f",
-      "summary_preview": "Microsoft is investigating an ongoing incident that is causing users to experience errors with some Microsoft 365 authentication features. [...].",
-      "full_summary": "Microsoft is investigating an ongoing incident that is causing users to experience errors with some Microsoft 365 authentication features. [...]",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Monitor situation and review security posture"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
-    },
-    {
-      "title": "Victoria’s Secret restores critical systems after cyberattack",
-      "summary": "Victoria's Secret has restored all critical systems impacted by a May 24 security incident that forced it to shut down corporate systems and the e-commerce website. [...].",
-      "source": "BLEEPING_COMPUTER",
-      "source_url": "https://www.bleepingcomputer.com/news/security/victorias-secret-restores-critical-systems-after-cyberattack/",
-      "timestamp": "Fri, 13 Jun 2025 07:56:16 -0400",
-      "threat_level": "LOW",
-      "ai_technical_analysis": "Incident involving security incident with limited business impact",
-      "confidence_score": 0.8,
-      "severity_rating": 3,
-      "attack_vectors": [
-        "web_attack"
-      ],
-      "affected_sectors": [
-        "retail"
-      ],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
-      "cve_references": [],
-      "threat_family": "Corporate Security Incident",
-      "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
-      "risk_score": 3,
-      "correlation_id": "6c5d7ff0",
-      "summary_preview": "Victoria's Secret has restored all critical systems impacted by a May 24 security incident that forced it to shut down corporate systems and the e-commerce website. [...].",
-      "full_summary": "Victoria's Secret has restored all critical systems impacted by a May 24 security incident that forced it to shut down corporate systems and the e-commerce website. [...]",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Monitor situation and review security posture"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
-    },
-    {
-      "title": "Cloudflare: Outage not caused by security incident, data is safe",
-      "summary": "Cloudflare has confirmed that the massive service outage yesterday was not caused by a security incident and no data has been lost. [...].",
-      "source": "BLEEPING_COMPUTER",
-      "source_url": "https://www.bleepingcomputer.com/news/security/cloudflare-outage-not-caused-by-security-incident-data-is-safe/",
-      "timestamp": "Fri, 13 Jun 2025 06:09:24 -0400",
-      "threat_level": "LOW",
-      "ai_technical_analysis": "Incident involving security incident with limited business impact",
-      "confidence_score": 0.8,
-      "severity_rating": 3,
-      "attack_vectors": [],
-      "affected_sectors": [
-        "technology"
-      ],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
-      "cve_references": [],
-      "threat_family": "Corporate Security Incident",
-      "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
-      "risk_score": 3,
-      "correlation_id": "e72bf17b",
-      "summary_preview": "Cloudflare has confirmed that the massive service outage yesterday was not caused by a security incident and no data has been lost. [...].",
-      "full_summary": "Cloudflare has confirmed that the massive service outage yesterday was not caused by a security incident and no data has been lost. [...]",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Monitor situation and review security posture"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
-    },
-    {
-      "title": "Trend Micro fixes critical vulnerabilities in multiple products",
-      "summary": "Trend Micro has released security updates to address multiple critical-severity remote code execution and authentication bypass vulnerabilities that impact its Apex Central and Endpoint Encryption (TMEE) PolicyServer products. [...].",
-      "source": "BLEEPING_COMPUTER",
-      "source_url": "https://www.bleepingcomputer.com/news/security/trend-micro-fixes-six-critical-flaws-on-apex-central-endpoint-encryption-policyserver/",
-      "timestamp": "Thu, 12 Jun 2025 15:31:54 -0400",
-      "threat_level": "CRITICAL",
-      "ai_technical_analysis": "Incident involving encryption with high business impact",
-      "confidence_score": 0.8,
-      "severity_rating": 9,
-      "attack_vectors": [
-        "network_attack"
-      ],
-      "affected_sectors": [],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "IMMEDIATE",
-      "cve_references": [],
-      "threat_family": "Ransomware",
-      "attack_sophistication": "HIGH",
-      "attack_timeline": "immediate",
-      "risk_score": 8,
-      "correlation_id": "fd9eab5e",
-      "summary_preview": "Trend Micro has released security updates to address multiple critical-severity remote code execution and authentication bypass vulnerabilities that impact its Apex Central and Endpoint Encryption (TMEE) PolicyServer products. [...].",
-      "full_summary": "Trend Micro has released security updates to address multiple critical-severity remote code execution and authentication bypass vulnerabilities that impact its Apex Central and Endpoint Encryption (TMEE) PolicyServer products. [...]",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "IMMEDIATE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Review and apply relevant security updates"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "HIGH"
-      },
-      "business_impact": "High impact incident requiring immediate attention and resource allocation"
-    },
-    {
-      "title": "Graphite spyware used in Apple iOS zero-click attacks on journalists",
-      "summary": "Forensic investigation has confirmed the use of Paragon's Graphite spyware platform in zero-click attacks that targeted Apple iOS devices of at least two journalists in Europe. [...].",
-      "source": "BLEEPING_COMPUTER",
-      "source_url": "https://www.bleepingcomputer.com/news/security/graphite-spyware-used-in-apple-ios-zero-click-attacks-on-journalists/",
-      "timestamp": "Thu, 12 Jun 2025 13:42:09 -0400",
-      "threat_level": "LOW",
-      "ai_technical_analysis": "Incident involving spyware with limited business impact",
-      "confidence_score": 0.8,
-      "severity_rating": 3,
-      "attack_vectors": [],
-      "affected_sectors": [
-        "technology"
-      ],
-      "geographic_scope": "Europe",
-      "country_code": "EU",
-      "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
-      "cve_references": [],
-      "threat_family": "Malware Campaign",
-      "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
-      "risk_score": 3,
-      "correlation_id": "207b3d38",
-      "summary_preview": "Forensic investigation has confirmed the use of Paragon's Graphite spyware platform in zero-click attacks that targeted Apple iOS devices of at least two journalists in Europe. [...].",
-      "full_summary": "Forensic investigation has confirmed the use of Paragon's Graphite spyware platform in zero-click attacks that targeted Apple iOS devices of at least two journalists in Europe. [...]",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Monitor situation and review security posture"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
-    },
-    {
-      "title": "Student Loan Breach Exposes 2.5M Records",
-      "summary": "2.5 million people were affected, in a breach that could spell more trouble down the line.",
-      "source": "THREAT_POST",
-      "source_url": "https://threatpost.com/student-loan-breach-exposes-2-5m-records/180492/",
-      "timestamp": "Wed, 31 Aug 2022 12:57:48 +0000",
-      "threat_level": "LOW",
-      "ai_technical_analysis": "Incident involving breach with limited business impact",
-      "confidence_score": 0.8,
-      "severity_rating": 3,
-      "attack_vectors": [],
-      "affected_sectors": [
-        "education"
-      ],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
-      "cve_references": [],
-      "threat_family": "Data Breach",
-      "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
-      "risk_score": 3,
-      "correlation_id": "adb09e47",
-      "summary_preview": "2.5 million people were affected, in a breach that could spell more trouble down the line.",
-      "full_summary": "2.5 million people were affected, in a breach that could spell more trouble down the line.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Verify data integrity and access controls"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
-    },
-    {
-      "title": "Watering Hole Attacks Push ScanBox Keylogger",
-      "summary": "Researchers uncover a watering hole attack likely carried out by APT TA423, which attempts to plant the ScanBox JavaScript-based reconnaissance tool.",
-      "source": "THREAT_POST",
-      "source_url": "https://threatpost.com/watering-hole-attacks-push-scanbox-keylogger/180490/",
-      "timestamp": "Tue, 30 Aug 2022 16:00:43 +0000",
-      "threat_level": "LOW",
-      "ai_technical_analysis": "Incident involving apt with limited business impact",
-      "confidence_score": 0.8,
-      "severity_rating": 3,
-      "attack_vectors": [],
-      "affected_sectors": [
-        "critical_infrastructure"
-      ],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
-      "cve_references": [],
-      "threat_family": "Nation-State Apt",
-      "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
-      "risk_score": 3,
-      "correlation_id": "4e33d383",
-      "summary_preview": "Researchers uncover a watering hole attack likely carried out by APT TA423, which attempts to plant the ScanBox JavaScript-based reconnaissance tool.",
-      "full_summary": "Researchers uncover a watering hole attack likely carried out by APT TA423, which attempts to plant the ScanBox JavaScript-based reconnaissance tool.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Monitor situation and review security posture"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
-    },
-    {
-      "title": "Tentacles of ‘0ktapus’ Threat Group Victimize 130 Firms",
-      "summary": "Over 130 companies tangled in sprawling phishing campaign that spoofed a multi-factor authentication system.",
-      "source": "THREAT_POST",
-      "source_url": "https://threatpost.com/0ktapus-victimize-130-firms/180487/",
-      "timestamp": "Mon, 29 Aug 2022 14:56:19 +0000",
-      "threat_level": "MEDIUM",
-      "ai_technical_analysis": "Incident involving phishing with limited business impact",
-      "confidence_score": 0.8,
-      "severity_rating": 5,
-      "attack_vectors": [
-        "email_attack"
-      ],
-      "affected_sectors": [],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
-      "cve_references": [],
-      "threat_family": "Phishing Campaign",
-      "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
-      "risk_score": 4,
-      "correlation_id": "a5ec1c0b",
-      "summary_preview": "Over 130 companies tangled in sprawling phishing campaign that spoofed a multi-factor authentication system.",
-      "full_summary": "Over 130 companies tangled in sprawling phishing campaign that spoofed a multi-factor authentication system.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Enhance email security and user awareness"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
-    },
-    {
-      "title": "Ransomware Attacks are on the Rise",
-      "summary": "Lockbit is by far this summer’s most prolific ransomware group, trailed by two offshoots of the Conti group.",
-      "source": "THREAT_POST",
-      "source_url": "https://threatpost.com/ransomware-attacks-are-on-the-rise/180481/",
-      "timestamp": "Fri, 26 Aug 2022 16:44:27 +0000",
-      "threat_level": "HIGH",
-      "ai_technical_analysis": "Incident involving ransomware, ransom with high business impact",
-      "confidence_score": 0.8,
-      "severity_rating": 7,
-      "attack_vectors": [],
-      "affected_sectors": [],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "URGENT",
-      "cve_references": [],
-      "threat_family": "Ransomware",
-      "attack_sophistication": "HIGH",
-      "attack_timeline": "urgent",
-      "risk_score": 7,
-      "correlation_id": "9a63aedf",
-      "summary_preview": "Lockbit is by far this summer’s most prolific ransomware group, trailed by two offshoots of the Conti group.",
-      "full_summary": "Lockbit is by far this summer’s most prolific ransomware group, trailed by two offshoots of the Conti group.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "URGENT",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Ensure backup systems are secure and accessible"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "HIGH"
-      },
-      "business_impact": "High impact incident requiring immediate attention and resource allocation"
-    },
-    {
-      "title": "Cybercriminals Are Selling Access to Chinese Surveillance Cameras",
-      "summary": "Tens of thousands of cameras have failed to patch a critical, 11-month-old CVE, leaving thousands of organizations exposed.",
-      "source": "THREAT_POST",
-      "source_url": "https://threatpost.com/cybercriminals-are-selling-access-to-chinese-surveillance-cameras/180478/",
-      "timestamp": "Thu, 25 Aug 2022 18:47:15 +0000",
-      "threat_level": "LOW",
-      "ai_technical_analysis": "Security incident classified as security incident",
-      "confidence_score": 0.8,
-      "severity_rating": 3,
-      "attack_vectors": [],
-      "affected_sectors": [],
-      "geographic_scope": "Usa",
-      "country_code": "US",
-      "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
-      "cve_references": [],
-      "threat_family": "Security Incident",
-      "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
-      "risk_score": 3,
-      "correlation_id": "747af87f",
-      "summary_preview": "Tens of thousands of cameras have failed to patch a critical, 11-month-old CVE, leaving thousands of organizations exposed.",
-      "full_summary": "Tens of thousands of cameras have failed to patch a critical, 11-month-old CVE, leaving thousands of organizations exposed.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Review and apply relevant security updates"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
-    },
-    {
-      "title": "Twitter Whistleblower Complaint: The TL;DR Version",
-      "summary": "Twitter is blasted for security and privacy lapses by the company’s former head of security who alleges the social media giant’s actions amount to a national security risk.",
-      "source": "THREAT_POST",
-      "source_url": "https://threatpost.com/twitter-whistleblower-tldr-version/180472/",
-      "timestamp": "Wed, 24 Aug 2022 14:17:04 +0000",
-      "threat_level": "LOW",
-      "ai_technical_analysis": "Security incident classified as security incident",
-      "confidence_score": 0.8,
-      "severity_rating": 3,
-      "attack_vectors": [
-        "social_engineering"
-      ],
-      "affected_sectors": [
-        "media"
-      ],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
-      "cve_references": [],
-      "threat_family": "Security Incident",
-      "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
-      "risk_score": 3,
-      "correlation_id": "ad8e328d",
-      "summary_preview": "Twitter is blasted for security and privacy lapses by the company’s former head of security who alleges the social media giant’s actions amount to a national security risk.",
-      "full_summary": "Twitter is blasted for security and privacy lapses by the company’s former head of security who alleges the social media giant’s actions amount to a national security risk.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Monitor situation and review security posture"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
-    },
-    {
-      "title": "Firewall Bug Under Active Attack Triggers CISA Warning",
-      "summary": "CISA is warning that Palo Alto Networks’ PAN-OS is under active attack and needs to be patched ASAP.",
-      "source": "THREAT_POST",
-      "source_url": "https://threatpost.com/firewall-bug-under-active-attack-cisa-warning/180467/",
-      "timestamp": "Tue, 23 Aug 2022 13:19:58 +0000",
-      "threat_level": "LOW",
-      "ai_technical_analysis": "Security incident classified as security incident",
-      "confidence_score": 0.8,
-      "severity_rating": 3,
-      "attack_vectors": [
-        "network_attack"
-      ],
-      "affected_sectors": [
-        "telecommunications"
-      ],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
-      "cve_references": [],
-      "threat_family": "Security Incident",
-      "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
-      "risk_score": 3,
-      "correlation_id": "464dfa9d",
-      "summary_preview": "CISA is warning that Palo Alto Networks’ PAN-OS is under active attack and needs to be patched ASAP.",
-      "full_summary": "CISA is warning that Palo Alto Networks’ PAN-OS is under active attack and needs to be patched ASAP.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Review and apply relevant security updates"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
-    },
-    {
-      "title": "iPhone Users Urged to Update to Patch 2 Zero-Days",
-      "summary": "Separate fixes to macOS and iOS patch respective flaws in the kernel and WebKit that can allow threat actors to take over devices and are under attack.",
-      "source": "THREAT_POST",
-      "source_url": "https://threatpost.com/iphone-users-urged-to-update-to-patch-2-zero-days-under-attack/180448/",
-      "timestamp": "Fri, 19 Aug 2022 15:25:56 +0000",
-      "threat_level": "CRITICAL",
-      "ai_technical_analysis": "Incident involving zero-day with high business impact",
-      "confidence_score": 0.8,
-      "severity_rating": 9,
-      "attack_vectors": [
-        "web_attack"
-      ],
-      "affected_sectors": [],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "IMMEDIATE",
-      "cve_references": [],
-      "threat_family": "Zero-Day Exploit",
-      "attack_sophistication": "HIGH",
-      "attack_timeline": "immediate",
-      "risk_score": 9,
-      "correlation_id": "12dca194",
-      "summary_preview": "Separate fixes to macOS and iOS patch respective flaws in the kernel and WebKit that can allow threat actors to take over devices and are under attack.",
-      "full_summary": "Separate fixes to macOS and iOS patch respective flaws in the kernel and WebKit that can allow threat actors to take over devices and are under attack.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "IMMEDIATE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Review and apply relevant security updates"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "HIGH"
-      },
-      "business_impact": "High impact incident requiring immediate attention and resource allocation"
-    },
-    {
-      "title": "Google Patches Chrome’s Fifth Zero-Day of the Year",
-      "summary": "An insufficient validation input flaw, one of 11 patched in an update this week, could allow for arbitrary code execution and is under active attack.",
-      "source": "THREAT_POST",
-      "source_url": "https://threatpost.com/google-patches-chromes-fifth-zero-day-of-the-year/180432/",
-      "timestamp": "Thu, 18 Aug 2022 14:31:38 +0000",
-      "threat_level": "CRITICAL",
-      "ai_technical_analysis": "Incident involving patches with high business impact",
-      "confidence_score": 0.8,
-      "severity_rating": 9,
-      "attack_vectors": [],
-      "affected_sectors": [
-        "technology"
-      ],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "IMMEDIATE",
-      "cve_references": [],
-      "threat_family": "Vulnerability Disclosure",
-      "attack_sophistication": "HIGH",
-      "attack_timeline": "immediate",
-      "risk_score": 9,
-      "correlation_id": "ad2f6e5c",
-      "summary_preview": "An insufficient validation input flaw, one of 11 patched in an update this week, could allow for arbitrary code execution and is under active attack.",
-      "full_summary": "An insufficient validation input flaw, one of 11 patched in an update this week, could allow for arbitrary code execution and is under active attack.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "IMMEDIATE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Review and apply relevant security updates"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "HIGH"
-      },
-      "business_impact": "High impact incident requiring immediate attention and resource allocation"
-    },
-    {
-      "title": "Predator spyware activity surfaces in new places with new tricks",
-      "summary": "The spyware’s developer, Intellexa, has been under pressure due to sanctions and public disclosure, but Recorded Future uncovered fresh activity. The post Predator spyware activity surfaces in new places with new tricks appeared first on CyberScoop.",
-      "source": "CYBER_SCOOP",
-      "source_url": "https://cyberscoop.com/predator-spyware-activity-surfaces-in-new-places-with-new-tricks/",
-      "timestamp": "Thu, 12 Jun 2025 18:58:51 +0000",
-      "threat_level": "LOW",
-      "ai_technical_analysis": "Incident involving spyware with limited business impact",
-      "confidence_score": 0.8,
-      "severity_rating": 3,
-      "attack_vectors": [],
-      "affected_sectors": [],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
-      "cve_references": [],
-      "threat_family": "Malware Campaign",
-      "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
-      "risk_score": 3,
-      "correlation_id": "bceae434",
-      "summary_preview": "The spyware’s developer, Intellexa, has been under pressure due to sanctions and public disclosure, but Recorded Future uncovered fresh activity. The post Predator spyware activity surfaces in new places with new tricks appeared first on CyberScoop.",
-      "full_summary": "The spyware’s developer, Intellexa, has been under pressure due to sanctions and public disclosure, but Recorded Future uncovered fresh activity. The post Predator spyware activity surfaces in new places with new tricks appeared first on CyberScoop.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Monitor situation and review security posture"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
-    },
-    {
-      "title": "Paragon spyware found on the phones of Euro journos",
-      "summary": "They’re the first confirmed cases of Paragon spyware on Apple products, according to Citizen Lab. The post Paragon spyware found on the phones of Euro journos appeared first on CyberScoop.",
-      "source": "CYBER_SCOOP",
-      "source_url": "https://cyberscoop.com/paragon-spyware-citizen-lab-italy-journalists/",
-      "timestamp": "Thu, 12 Jun 2025 13:32:28 +0000",
-      "threat_level": "LOW",
-      "ai_technical_analysis": "Incident involving spyware with limited business impact",
-      "confidence_score": 0.8,
-      "severity_rating": 3,
-      "attack_vectors": [],
-      "affected_sectors": [
-        "technology"
-      ],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
-      "cve_references": [],
-      "threat_family": "Malware Campaign",
-      "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
-      "risk_score": 3,
-      "correlation_id": "c75325a8",
-      "summary_preview": "They’re the first confirmed cases of Paragon spyware on Apple products, according to Citizen Lab. The post Paragon spyware found on the phones of Euro journos appeared first on CyberScoop.",
-      "full_summary": "They’re the first confirmed cases of Paragon spyware on Apple products, according to Citizen Lab. The post Paragon spyware found on the phones of Euro journos appeared first on CyberScoop.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Monitor situation and review security posture"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
-    },
-    {
-      "title": "Digital rights groups sound alarm on Stop CSAM Act",
-      "summary": "The organizations say a reintroduced version of the bill would “break” encryption for most Americans and make it impossible for end-to-end encrypted service providers to avoid lawsuits. The post Digital rights groups sound alarm on Stop CSAM Act appeared first on CyberScoop.",
-      "source": "CYBER_SCOOP",
-      "source_url": "https://cyberscoop.com/digital-rights-groups-oppose-stop-csam-act-encryption/",
-      "timestamp": "Thu, 12 Jun 2025 01:00:00 +0000",
-      "threat_level": "HIGH",
-      "ai_technical_analysis": "Incident involving encryption with high business impact",
-      "confidence_score": 0.8,
-      "severity_rating": 7,
-      "attack_vectors": [],
-      "affected_sectors": [],
-      "geographic_scope": "America",
-      "country_code": "US",
-      "threat_actors": [],
-      "mitigation_priority": "URGENT",
-      "cve_references": [],
-      "threat_family": "Ransomware",
-      "attack_sophistication": "HIGH",
-      "attack_timeline": "urgent",
-      "risk_score": 7,
-      "correlation_id": "a4836998",
-      "summary_preview": "The organizations say a reintroduced version of the bill would “break” encryption for most Americans and make it impossible for end-to-end encrypted service providers to avoid lawsuits. The post Digital rights groups sound alarm on Stop CSAM Act appeared first on CyberScoop.",
-      "full_summary": "The organizations say a reintroduced version of the bill would “break” encryption for most Americans and make it impossible for end-to-end encrypted service providers to avoid lawsuits. The post Digital rights groups sound alarm on Stop CSAM Act appeared first on CyberScoop.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "URGENT",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Monitor situation and review security posture"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "HIGH"
-      },
-      "business_impact": "High impact incident requiring immediate attention and resource allocation"
-    },
-    {
-      "title": "Global law enforcement action in Asia nets large infrastructure seizure, 32 arrests",
-      "summary": "Operation Secure targeted malicious IPs, domains and servers used for infostealer operations that claimed more than 216,000 victims. The post Global law enforcement action in Asia nets large infrastructure seizure, 32 arrests appeared first on CyberScoop.",
-      "source": "CYBER_SCOOP",
-      "source_url": "https://cyberscoop.com/operation-secure-asia-takedown/",
-      "timestamp": "Wed, 11 Jun 2025 18:54:51 +0000",
-      "threat_level": "LOW",
-      "ai_technical_analysis": "Security incident classified as security incident",
-      "confidence_score": 0.8,
-      "severity_rating": 3,
-      "attack_vectors": [],
-      "affected_sectors": [
-        "critical_infrastructure"
-      ],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
-      "cve_references": [],
-      "threat_family": "Security Incident",
-      "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
-      "risk_score": 3,
-      "correlation_id": "f5dc9fd6",
-      "summary_preview": "Operation Secure targeted malicious IPs, domains and servers used for infostealer operations that claimed more than 216,000 victims. The post Global law enforcement action in Asia nets large infrastructure seizure, 32 arrests appeared first on CyberScoop.",
-      "full_summary": "Operation Secure targeted malicious IPs, domains and servers used for infostealer operations that claimed more than 216,000 victims. The post Global law enforcement action in Asia nets large infrastructure seizure, 32 arrests appeared first on CyberScoop.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Monitor situation and review security posture"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
-    },
-    {
-      "title": "Dems want watchdog study of two troubled federally-funded vulnerability tracking initiatives",
-      "summary": "The CVE program publishes standardized information about known cyber vulnerabilities, while the NVD is a storehouse for vulnerability management data. The post Dems want watchdog study of two troubled federally-funded vulnerability tracking initiatives appeared first on CyberScoop.",
-      "source": "CYBER_SCOOP",
-      "source_url": "https://cyberscoop.com/gao-vulnerability-management-letter-cve-nvd-bennie-thompson-zoe-lofgren/",
-      "timestamp": "Wed, 11 Jun 2025 17:15:53 +0000",
-      "threat_level": "LOW",
-      "ai_technical_analysis": "Incident involving vulnerability with limited business impact",
-      "confidence_score": 0.8,
-      "severity_rating": 3,
-      "attack_vectors": [],
-      "affected_sectors": [
-        "government",
-        "retail"
-      ],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
-      "cve_references": [],
-      "threat_family": "Vulnerability Disclosure",
-      "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
-      "risk_score": 3,
-      "correlation_id": "efc0808b",
-      "summary_preview": "The CVE program publishes standardized information about known cyber vulnerabilities, while the NVD is a storehouse for vulnerability management data. The post Dems want watchdog study of two troubled federally-funded vulnerability tracking initiatives appeared first on CyberScoop.",
-      "full_summary": "The CVE program publishes standardized information about known cyber vulnerabilities, while the NVD is a storehouse for vulnerability management data. The post Dems want watchdog study of two troubled federally-funded vulnerability tracking initiatives appeared first on CyberScoop.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Scan systems for similar vulnerabilities"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
-    },
-    {
-      "title": "How Amazon Web Services uses AI to be a security ‘force multiplier’",
-      "summary": "Amazon CSO Stephen Schmidt says AI is transforming the way the company does security reviews and incident response. The post How Amazon Web Services uses AI to be a security ‘force multiplier’ appeared first on CyberScoop.",
-      "source": "CYBER_SCOOP",
-      "source_url": "https://cyberscoop.com/aws-ai-stephen-schmidt-dc-summit-appsec-reviews/",
-      "timestamp": "Wed, 11 Jun 2025 16:49:00 +0000",
-      "threat_level": "LOW",
-      "ai_technical_analysis": "Security incident classified as security incident",
-      "confidence_score": 0.8,
-      "severity_rating": 3,
-      "attack_vectors": [
-        "web_attack"
-      ],
-      "affected_sectors": [
-        "technology"
-      ],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
-      "cve_references": [],
-      "threat_family": "Security Incident",
-      "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
-      "risk_score": 3,
-      "correlation_id": "d1bbada6",
-      "summary_preview": "Amazon CSO Stephen Schmidt says AI is transforming the way the company does security reviews and incident response. The post How Amazon Web Services uses AI to be a security ‘force multiplier’ appeared first on CyberScoop.",
-      "full_summary": "Amazon CSO Stephen Schmidt says AI is transforming the way the company does security reviews and incident response. The post How Amazon Web Services uses AI to be a security ‘force multiplier’ appeared first on CyberScoop.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Monitor situation and review security posture"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
-    },
-    {
-      "title": "Microsoft Patch Tuesday addresses 66 vulnerabilities, including an actively exploited zero-day",
-      "summary": "A researcher tells CyberScoop that up to 80% of enterprises could be vulnerable to the zero-day Microsoft patched in its June update. The post Microsoft Patch Tuesday addresses 66 vulnerabilities, including an actively exploited zero-day appeared first on CyberScoop.",
-      "source": "CYBER_SCOOP",
-      "source_url": "https://cyberscoop.com/microsoft-patch-tuesday-june-2025/",
-      "timestamp": "Tue, 10 Jun 2025 21:58:43 +0000",
-      "threat_level": "CRITICAL",
-      "ai_technical_analysis": "Incident involving patch tuesday with high business impact",
-      "confidence_score": 0.8,
-      "severity_rating": 9,
-      "attack_vectors": [],
-      "affected_sectors": [
-        "technology"
-      ],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "IMMEDIATE",
-      "cve_references": [],
-      "threat_family": "Vulnerability Disclosure",
-      "attack_sophistication": "HIGH",
-      "attack_timeline": "immediate",
-      "risk_score": 9,
-      "correlation_id": "937d6a5a",
-      "summary_preview": "A researcher tells CyberScoop that up to 80% of enterprises could be vulnerable to the zero-day Microsoft patched in its June update. The post Microsoft Patch Tuesday addresses 66 vulnerabilities, including an actively exploited zero-day appeared first on CyberScoop.",
-      "full_summary": "A researcher tells CyberScoop that up to 80% of enterprises could be vulnerable to the zero-day Microsoft patched in its June update. The post Microsoft Patch Tuesday addresses 66 vulnerabilities, including an actively exploited zero-day appeared first on CyberScoop.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "IMMEDIATE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Review and apply relevant security updates"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "HIGH"
-      },
-      "business_impact": "High impact incident requiring immediate attention and resource allocation"
-    },
-    {
-      "title": "House Homeland Chairman Mark Green’s departure could leave congressional cyber agenda in limbo",
-      "summary": "Green, R-Tenn., has championed legislation on the cyber workforce, renewal of a cyber threat information sharing bill and more. The post House Homeland Chairman Mark Green’s departure could leave congressional cyber agenda in limbo appeared first on CyberScoop.",
-      "source": "CYBER_SCOOP",
-      "source_url": "https://cyberscoop.com/mark-green-house-homeland-chairman-cybersecurity-agenda/",
-      "timestamp": "Tue, 10 Jun 2025 21:10:18 +0000",
-      "threat_level": "LOW",
-      "ai_technical_analysis": "Security incident classified as security incident",
-      "confidence_score": 0.8,
-      "severity_rating": 3,
-      "attack_vectors": [],
-      "affected_sectors": [],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
-      "cve_references": [],
-      "threat_family": "Security Incident",
-      "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
-      "risk_score": 3,
-      "correlation_id": "7e852f75",
-      "summary_preview": "Green, R-Tenn., has championed legislation on the cyber workforce, renewal of a cyber threat information sharing bill and more. The post House Homeland Chairman Mark Green’s departure could leave congressional cyber agenda in limbo appeared first on CyberScoop.",
-      "full_summary": "Green, R-Tenn., has championed legislation on the cyber workforce, renewal of a cyber threat information sharing bill and more. The post House Homeland Chairman Mark Green’s departure could leave congressional cyber agenda in limbo appeared first on CyberScoop.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Monitor situation and review security posture"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
-    },
-    {
-      "title": "United Natural Foods fulfilling orders on ‘limited basis’ in wake of cyberattack",
-      "summary": "CEO Sandy Douglas said the food distributor is helping some customers maintain inventory with assistance from other wholesalers. The post United Natural Foods fulfilling orders on ‘limited basis’ in wake of cyberattack appeared first on CyberScoop.",
-      "source": "CYBER_SCOOP",
-      "source_url": "https://cyberscoop.com/united-natural-foods-cyberattack-recovery/",
-      "timestamp": "Tue, 10 Jun 2025 19:46:51 +0000",
-      "threat_level": "LOW",
-      "ai_technical_analysis": "Security incident classified as security incident",
-      "confidence_score": 0.8,
-      "severity_rating": 3,
-      "attack_vectors": [],
-      "affected_sectors": [],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
-      "cve_references": [],
-      "threat_family": "Security Incident",
-      "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
-      "risk_score": 3,
-      "correlation_id": "7f71a916",
-      "summary_preview": "CEO Sandy Douglas said the food distributor is helping some customers maintain inventory with assistance from other wholesalers. The post United Natural Foods fulfilling orders on ‘limited basis’ in wake of cyberattack appeared first on CyberScoop.",
-      "full_summary": "CEO Sandy Douglas said the food distributor is helping some customers maintain inventory with assistance from other wholesalers. The post United Natural Foods fulfilling orders on ‘limited basis’ in wake of cyberattack appeared first on CyberScoop.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Monitor situation and review security posture"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
-    },
-    {
-      "title": "House committee sets CISA budget cut at $135M, not Trump’s $495M",
-      "summary": "The move indicated at least some resistance to the president’s CISA reduction goal, but Democrats still said that was too steep for the agency’s fiscal 2026 funding legislation. The post House committee sets CISA budget cut at $135M, not Trump’s $495M appeared first on CyberScoop.",
-      "source": "CYBER_SCOOP",
-      "source_url": "https://cyberscoop.com/cisa-budget-135m-dhs-2026-house-appropriations/",
-      "timestamp": "Tue, 10 Jun 2025 17:59:57 +0000",
-      "threat_level": "LOW",
-      "ai_technical_analysis": "Security incident classified as security incident",
-      "confidence_score": 0.8,
-      "severity_rating": 3,
-      "attack_vectors": [],
-      "affected_sectors": [
-        "government"
-      ],
-      "geographic_scope": "Global",
-      "country_code": "GLOBAL",
-      "threat_actors": [],
-      "mitigation_priority": "ROUTINE",
-      "cve_references": [],
-      "threat_family": "Security Incident",
-      "attack_sophistication": "LOW",
-      "attack_timeline": "routine",
-      "risk_score": 3,
-      "correlation_id": "6d749b8c",
-      "summary_preview": "The move indicated at least some resistance to the president’s CISA reduction goal, but Democrats still said that was too steep for the agency’s fiscal 2026 funding legislation. The post House committee sets CISA budget cut at $135M, not Trump’s $495M appeared first on CyberScoop.",
-      "full_summary": "The move indicated at least some resistance to the president’s CISA reduction goal, but Democrats still said that was too steep for the agency’s fiscal 2026 funding legislation. The post House committee sets CISA budget cut at $135M, not Trump’s $495M appeared first on CyberScoop.",
-      "ai_insights": {
-        "confidence": 0.8,
-        "urgency": "ROUTINE",
-        "analysis_type": "AI"
-      },
-      "actionable_items": [
-        "Monitor situation and review security posture"
-      ],
-      "technical_details": {
-        "indicators": [],
-        "sophistication": "LOW"
-      },
-      "business_impact": "Low to moderate impact incident for awareness and monitoring"
+      "business_impact": "Minimal business impact - awareness and routine security review sufficient",
+      "timeline_urgency": "ROUTINE",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.7,
+        "critical_finding": "Data Breach detected requiring routine response",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
     }
   ],
   "metrics": {
-    "total_threats": 39,
-    "critical_threats": 5,
-    "high_threats": 3,
-    "medium_threats": 6,
-    "low_threats": 25,
+    "total_threats": 25,
+    "critical_threats": 8,
+    "high_threats": 4,
+    "medium_threats": 9,
+    "low_threats": 4,
     "global_threat_level": "CRITICAL",
-    "intelligence_confidence": 80,
+    "intelligence_confidence": 71,
     "recent_threats_24h": 0,
     "top_threat_families": [
       {
+        "name": "Zero-Day Exploit",
+        "count": 4,
+        "risk_level": "CRITICAL",
+        "avg_risk": 9.0
+      },
+      {
         "name": "Security Incident",
-        "count": 11,
-        "risk_level": "HIGH"
+        "count": 4,
+        "risk_level": "CRITICAL",
+        "avg_risk": 7.0
       },
       {
         "name": "Malware Campaign",
-        "count": 8,
-        "risk_level": "HIGH"
+        "count": 4,
+        "risk_level": "MEDIUM",
+        "avg_risk": 4.5
       },
       {
         "name": "Vulnerability Disclosure",
-        "count": 6,
-        "risk_level": "HIGH"
-      },
-      {
-        "name": "Ransomware",
-        "count": 4,
-        "risk_level": "HIGH"
-      },
-      {
-        "name": "Data Breach",
         "count": 3,
-        "risk_level": "HIGH"
+        "risk_level": "HIGH",
+        "avg_risk": 5.0
       },
       {
-        "name": "Nation-State Apt",
+        "name": "Corporate Security Incident",
         "count": 2,
-        "risk_level": "MEDIUM"
+        "risk_level": "HIGH",
+        "avg_risk": 6.0
+      },
+      {
+        "name": "APT Campaign",
+        "count": 2,
+        "risk_level": "CRITICAL",
+        "avg_risk": 7.0
       }
     ],
     "geographic_distribution": {
-      "GLOBAL": 32,
-      "US": 5,
-      "CA": 1,
-      "EU": 1
+      "GLOBAL": 21,
+      "US": 3,
+      "CA": 1
     },
-    "zero_day_count": 1,
+    "zero_day_count": 4,
     "trending_threats": [
       {
-        "title": "Patch Tuesday, May 2025 Edition",
+        "title": "Victoria’s Secret restores critical systems after cyberattack",
         "risk_score": 9,
-        "threat_family": "Vulnerability Disclosure",
-        "threat_level": "CRITICAL"
+        "threat_family": "Corporate Security Incident",
+        "threat_level": "CRITICAL",
+        "key_insight": ""
       },
       {
         "title": "iPhone Users Urged to Update to Patch 2 Zero-Days",
         "risk_score": 9,
         "threat_family": "Zero-Day Exploit",
-        "threat_level": "CRITICAL"
-      },
-      {
-        "title": "Google Patches Chrome’s Fifth Zero-Day of the Year",
-        "risk_score": 9,
-        "threat_family": "Vulnerability Disclosure",
-        "threat_level": "CRITICAL"
+        "threat_level": "CRITICAL",
+        "key_insight": "Zero-day vulnerability requires immediate attention and patch management"
       },
       {
         "title": "Microsoft Patch Tuesday addresses 66 vulnerabilities, including an actively exploited zero-day",
         "risk_score": 9,
-        "threat_family": "Vulnerability Disclosure",
-        "threat_level": "CRITICAL"
+        "threat_family": "Zero-Day Exploit",
+        "threat_level": "CRITICAL",
+        "key_insight": "Zero-day vulnerability requires immediate attention and patch management"
       },
       {
-        "title": "Trend Micro fixes critical vulnerabilities in multiple products",
-        "risk_score": 8,
-        "threat_family": "Ransomware",
-        "threat_level": "CRITICAL"
+        "title": "Patch Tuesday, May 2025 Edition",
+        "risk_score": 9,
+        "threat_family": "Zero-Day Exploit",
+        "threat_level": "CRITICAL",
+        "key_insight": "Zero-day vulnerability requires immediate attention and patch management"
+      },
+      {
+        "title": "Google Patches Chrome’s Fifth Zero-Day of the Year",
+        "risk_score": 9,
+        "threat_family": "Zero-Day Exploit",
+        "threat_level": "CRITICAL",
+        "key_insight": "Zero-day vulnerability requires immediate attention and patch management"
       }
     ],
-    "sector_risk_matrix": {
-      "critical_infrastructure": 3,
-      "technology": 4,
-      "media": 3,
-      "government": 3,
-      "financial": 5,
-      "healthcare": 3,
-      "telecommunications": 3,
-      "retail": 3,
-      "education": 3
-    },
-    "ai_analysis_quality": 100,
+    "ai_analysis_quality": 0,
     "threat_velocity": "stable",
-    "impact_forecast": "elevated"
+    "fresh_intel_24h": 0,
+    "source_credibility": 0.71,
+    "emerging_trends": [
+      "Critical Vulnerability Surge",
+      "Zero-Day Activity",
+      "Ransomware Campaign"
+    ],
+    "threat_evolution": "escalating"
   },
-  "lastUpdated": "2025-06-15T11:19:35.161645+00:00",
-  "version": "4.1",
+  "lastUpdated": "2025-06-15T11:35:46.051316+00:00",
+  "version": "4.2",
   "ai_usage": {
-    "api_calls_made": 12,
-    "api_calls_limit": 15,
-    "efficiency_score": 73
+    "api_calls_made": 6,
+    "api_calls_limit": 12,
+    "efficiency_score": 20,
+    "cost_optimization": "MAXIMUM_VALUE"
   },
   "intelligence_summary": {
     "mission_status": "OPERATIONAL",
-    "threats_analyzed": 39,
-    "intelligence_confidence": 80,
+    "threats_analyzed": 25,
+    "intelligence_sources": 5,
+    "confidence_level": 71,
     "threat_landscape": "CRITICAL",
-    "cost_optimization": "ENABLED",
-    "next_update": "2025-06-15T17:19:35.161656+00:00",
+    "next_update": "2025-06-15T17:35:46.051327+00:00",
     "repository": "https://github.com/danishnizmi/Patriots_Protocol"
   }
 }
