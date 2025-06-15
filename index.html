@@ -24,7 +24,7 @@
             position: relative;
         }
 
-        /* Enhanced Matrix Background */
+        /* Enhanced Matrix Background - More Visible Numbers Only */
         .matrix-bg {
             position: fixed;
             top: 0;
@@ -32,7 +32,7 @@
             width: 100%;
             height: 100%;
             z-index: -3;
-            opacity: 0.08;
+            opacity: 0.15;
         }
 
         .matrix-overlay {
@@ -45,13 +45,12 @@
             background: 
                 radial-gradient(ellipse at 20% 80%, rgba(255, 68, 68, 0.08) 0%, transparent 50%),
                 radial-gradient(ellipse at 80% 20%, rgba(0, 255, 65, 0.06) 0%, transparent 50%),
-                radial-gradient(ellipse at 40% 40%, rgba(255, 215, 0, 0.04) 0%, transparent 50%),
-                linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.95) 100%);
+                linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.95) 100%);
             pointer-events: none;
         }
 
-        /* Enhanced Matrix Rain */
-        .cyber-rain {
+        /* Floating Numbers Matrix Effect */
+        .number-rain {
             position: fixed;
             top: 0;
             left: 0;
@@ -62,34 +61,21 @@
             overflow: hidden;
         }
 
-        .rain-column {
+        .number-column {
             position: absolute;
             top: -100px;
             color: #00ff41;
-            font-size: 12px;
-            line-height: 14px;
-            animation: matrix-fall linear infinite;
-            opacity: 0.6;
+            font-size: 14px;
+            line-height: 16px;
+            animation: number-fall linear infinite;
+            opacity: 0.7;
+            font-family: 'Share Tech Mono', monospace;
         }
 
-        @keyframes matrix-fall {
+        @keyframes number-fall {
             to {
                 transform: translateY(calc(100vh + 100px));
             }
-        }
-
-        /* Cyber Glitch Effects */
-        .glitch-text {
-            position: relative;
-            animation: glitch 3s infinite;
-        }
-
-        @keyframes glitch {
-            0%, 100% { transform: translate(0); }
-            20% { transform: translate(-1px, 1px); }
-            40% { transform: translate(-1px, -1px); }
-            60% { transform: translate(1px, 1px); }
-            80% { transform: translate(1px, -1px); }
         }
 
         .header {
@@ -116,12 +102,18 @@
             text-shadow: 
                 0 0 10px #00ff41,
                 0 0 20px #00ff41,
-                0 0 40px #00ff41,
-                0 0 80px #00ff41;
+                0 0 40px #00ff41;
             animation: neon-glow 4s ease-in-out infinite alternate;
             margin-bottom: 1rem;
             letter-spacing: 4px;
             text-transform: uppercase;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #ff6666;
+            text-shadow: 0 0 10px #ff6666;
+            margin-bottom: 1rem;
         }
 
         @keyframes neon-glow {
@@ -523,21 +515,6 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
         }
 
-        .threat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.08), transparent);
-            transition: left 0.6s;
-        }
-
-        .threat-card:hover::before {
-            left: 100%;
-        }
-
         .threat-card:hover {
             background: 
                 linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)),
@@ -693,7 +670,7 @@
             transform: translateX(5px);
         }
 
-        /* Key Insights Section */
+        /* Enhanced Key Insights Section */
         .key-insights {
             background: rgba(0, 255, 65, 0.05);
             border: 1px solid #00ff41;
@@ -796,22 +773,6 @@
             backdrop-filter: blur(10px);
             position: relative;
             overflow: hidden;
-        }
-
-        .technical-analysis::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #ffd700, transparent);
-            animation: analysis-scan 2s infinite;
-        }
-
-        @keyframes analysis-scan {
-            0% { left: -100%; }
-            100% { left: 100%; }
         }
 
         .analysis-header {
@@ -1021,10 +982,11 @@
 <body>
     <canvas class="matrix-bg" id="matrix"></canvas>
     <div class="matrix-overlay"></div>
-    <div class="cyber-rain" id="cyberRain"></div>
+    <div class="number-rain" id="numberRain"></div>
     
     <div class="header">
-        <h1 class="title glitch-text">PATRIOTS PROTOCOL</h1>
+        <h1 class="title">PATRIOTS PROTOCOL</h1>
+        <div class="subtitle">CYBER THREAT INTELLIGENCE</div>
         <div class="version-badge">ENHANCED v4.2</div>
     </div>
 
@@ -1063,10 +1025,12 @@
                 resizeCanvas();
                 window.addEventListener('resize', resizeCanvas);
 
-                // Enhanced Matrix characters with cyber terms
-                const characters = "CYBERTHREATINTELAPTMALWAREZERODAY10110010110ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%^&*+=ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ";
+                // Only numbers and binary for Matrix effect
+                const numbers = "0123456789";
+                const binary = "01";
+                const characters = numbers + binary;
                 const matrix = characters.split("");
-                const fontSize = 16;
+                const fontSize = 18;
                 const columns = Math.floor(canvas.width / fontSize);
                 const drops = [];
 
@@ -1075,34 +1039,32 @@
                 }
 
                 function draw() {
-                    // Enhanced fade effect
-                    ctx.fillStyle = 'rgba(0, 0, 0, 0.03)';
+                    // Subtle fade effect
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
                     ctx.font = fontSize + 'px Share Tech Mono';
 
                     for (let i = 0; i < drops.length; i++) {
-                        // Enhanced color variations with cyber theme
-                        const colors = ['#00ff41', '#ff4444', '#ffd700', '#66ccff'];
-                        const colorIndex = Math.floor(Math.random() * colors.length);
-                        const alpha = Math.random() * 0.8 + 0.2;
+                        // Green matrix numbers with some variation
+                        const isBinary = Math.random() > 0.7;
+                        const char = isBinary ? binary[Math.floor(Math.random() * binary.length)] : 
+                                              numbers[Math.floor(Math.random() * numbers.length)];
                         
-                        ctx.fillStyle = colors[colorIndex];
-                        ctx.globalAlpha = alpha;
+                        // Slight color variation - mostly green with occasional cyan
+                        const alpha = Math.random() * 0.7 + 0.3;
+                        ctx.fillStyle = Math.random() > 0.9 ? `rgba(102, 204, 255, ${alpha})` : `rgba(0, 255, 65, ${alpha})`;
                         
-                        const text = matrix[Math.floor(Math.random() * matrix.length)];
-                        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                        
-                        ctx.globalAlpha = 1;
+                        ctx.fillText(char, i * fontSize, drops[i] * fontSize);
 
-                        if (drops[i] * fontSize > canvas.height && Math.random() > 0.98) {
-                            drops[i] = Math.floor(Math.random() * -50);
+                        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                            drops[i] = Math.floor(Math.random() * -100);
                         }
                         drops[i]++;
                     }
                 }
 
-                const interval = setInterval(draw, 45);
+                const interval = setInterval(draw, 50);
                 
                 return () => {
                     clearInterval(interval);
@@ -1113,32 +1075,25 @@
             return <canvas ref={canvasRef} className="matrix-bg" />;
         }
 
-        function CyberRain() {
+        function NumberRain() {
             useEffect(() => {
-                const container = document.getElementById('cyberRain');
-                const cyberTerms = [
-                    'THREAT DETECTED', 'MALWARE ANALYSIS', 'ZERO-DAY EXPLOIT', 'APT ACTIVITY',
-                    'RANSOMWARE ALERT', 'PHISHING DETECTED', 'NETWORK INTRUSION', 'DATA BREACH',
-                    'VULNERABILITY SCAN', 'INCIDENT RESPONSE', 'THREAT HUNTING', 'IOC ANALYSIS',
-                    'CYBER KILL CHAIN', 'ATTACK VECTOR', 'PAYLOAD ANALYSIS', 'C2 COMMUNICATION',
-                    'CRITICAL PATCH', 'SECURITY UPDATE', 'THREAT INTELLIGENCE', 'DEFENSE MATRIX'
-                ];
-
-                function createRainColumn() {
+                const container = document.getElementById('numberRain');
+                const numbers = '0123456789';
+                
+                function createNumberColumn() {
                     const column = document.createElement('div');
-                    column.className = 'rain-column';
+                    column.className = 'number-column';
                     column.style.left = Math.random() * 100 + '%';
                     column.style.animationDuration = (Math.random() * 3 + 2) + 's';
                     column.style.animationDelay = Math.random() * 2 + 's';
                     
-                    // Create multiple lines for the column
-                    const lines = Math.floor(Math.random() * 3) + 2;
-                    for (let i = 0; i < lines; i++) {
-                        const line = document.createElement('div');
-                        line.textContent = cyberTerms[Math.floor(Math.random() * cyberTerms.length)];
-                        line.style.opacity = Math.random() * 0.5 + 0.3;
-                        column.appendChild(line);
+                    // Create a string of numbers for the column
+                    const columnHeight = Math.floor(Math.random() * 10) + 5;
+                    let numberString = '';
+                    for (let i = 0; i < columnHeight; i++) {
+                        numberString += numbers[Math.floor(Math.random() * numbers.length)] + '\n';
                     }
+                    column.textContent = numberString;
                     
                     container.appendChild(column);
                     
@@ -1147,7 +1102,7 @@
                     }, 8000);
                 }
 
-                const interval = setInterval(createRainColumn, 800);
+                const interval = setInterval(createNumberColumn, 600);
                 
                 return () => clearInterval(interval);
             }, []);
@@ -1322,6 +1277,128 @@
                 URL.revokeObjectURL(url);
             }
 
+            function createBetterInsights(threat) {
+                const insights = [];
+                const content = (threat.title + ' ' + threat.summary + ' ' + (threat.full_summary || '')).toLowerCase();
+                
+                // Generate specific insights based on content
+                if (content.includes('zero-day') || content.includes('0-day')) {
+                    insights.push('Zero-day exploit requires immediate patch prioritization and vulnerability scanning');
+                }
+                if (content.includes('ransomware')) {
+                    insights.push('Ransomware threat - verify backup integrity and test recovery procedures immediately');
+                }
+                if (content.includes('supply chain')) {
+                    insights.push('Supply chain attack affects vendor security dependencies and third-party integrations');
+                }
+                if (content.includes('critical') && content.includes('patch')) {
+                    insights.push('Critical security updates available - prioritize deployment across all affected systems');
+                }
+                if (content.includes('microsoft') && content.includes('patch tuesday')) {
+                    insights.push('Microsoft Patch Tuesday - schedule maintenance windows for Windows systems updates');
+                }
+                if (content.includes('apt') || content.includes('nation-state')) {
+                    insights.push('Advanced persistent threat - enhance monitoring and threat hunting capabilities');
+                }
+                if (content.includes('phishing') || content.includes('email')) {
+                    insights.push('Email-based attack vector - strengthen email security and user awareness training');
+                }
+                if (content.includes('data breach') || content.includes('leaked')) {
+                    insights.push('Data exposure incident - conduct data inventory and access control review');
+                }
+                
+                // Add general insight if no specific ones found
+                if (insights.length === 0) {
+                    if (threat.risk_score >= 7) {
+                        insights.push('High-risk security incident requiring immediate security team attention');
+                    } else if (threat.risk_score >= 5) {
+                        insights.push('Moderate security concern requiring assessment and monitoring');
+                    } else {
+                        insights.push('Security awareness update for ongoing threat landscape monitoring');
+                    }
+                }
+                
+                return insights.slice(0, 3); // Limit to 3 insights
+            }
+
+            function createBetterTechnicalAnalysis(threat) {
+                const content = (threat.title + ' ' + threat.summary).toLowerCase();
+                
+                // Create specific technical analysis based on content
+                if (content.includes('zero-day')) {
+                    return `Zero-day vulnerability exploitation detected. This represents an unknown security flaw being actively exploited by threat actors before patches are available. Immediate threat hunting and defensive measures required.`;
+                }
+                if (content.includes('ransomware')) {
+                    const family = content.includes('lockbit') ? 'LockBit' : 
+                                  content.includes('conti') ? 'Conti' : 
+                                  content.includes('anubis') ? 'Anubis' : 'ransomware';
+                    return `${family} ransomware operation detected with file encryption and potential data exfiltration capabilities. This attack vector typically involves initial access through phishing or credential compromise, followed by lateral movement and data encryption for ransom demands.`;
+                }
+                if (content.includes('supply chain')) {
+                    return `Supply chain compromise affecting downstream organizations through trusted vendor relationships. This attack vector exploits the trust relationships between organizations and their technology providers to gain unauthorized access to multiple targets simultaneously.`;
+                }
+                if (content.includes('patch tuesday')) {
+                    const vulnCount = content.match(/(\d+)\s+vulnerabilities?/i);
+                    const count = vulnCount ? vulnCount[1] : 'multiple';
+                    return `Microsoft Patch Tuesday release addressing ${count} security vulnerabilities across Windows and related products. Includes critical remote code execution flaws and privilege escalation vulnerabilities requiring immediate deployment prioritization.`;
+                }
+                if (content.includes('phishing')) {
+                    return `Sophisticated phishing campaign targeting user credentials and system access. This social engineering attack leverages convincing fake communications to trick users into revealing sensitive information or installing malicious software.`;
+                }
+                if (content.includes('apt') || content.includes('nation-state')) {
+                    return `Advanced Persistent Threat (APT) activity indicating sophisticated threat actor with long-term access objectives. These campaigns typically involve advanced techniques, custom malware, and extended dwell time for intelligence gathering or infrastructure disruption.`;
+                }
+                
+                // Fallback based on threat family and risk score
+                const family = threat.threat_family || 'security incident';
+                if (threat.risk_score >= 7) {
+                    return `High-severity ${family.toLowerCase()} with significant impact potential. This threat requires immediate security team response and may involve advanced attack techniques targeting critical business operations or sensitive data.`;
+                } else if (threat.risk_score >= 5) {
+                    return `Moderate-severity ${family.toLowerCase()} requiring security assessment and monitoring. This threat represents ongoing risk to organizational security posture and should be addressed through standard security procedures.`;
+                } else {
+                    return `Low-severity ${family.toLowerCase()} for situational awareness and baseline security monitoring. This represents general threat landscape activity that should be tracked but does not require immediate response actions.`;
+                }
+            }
+
+            function createBetterActionableItems(threat) {
+                const content = (threat.title + ' ' + threat.summary).toLowerCase();
+                const actions = [];
+                
+                if (content.includes('patch') || content.includes('update')) {
+                    actions.push('Deploy security patches immediately on all affected systems');
+                    actions.push('Conduct vulnerability scans to identify unpatched systems');
+                }
+                if (content.includes('zero-day')) {
+                    actions.push('Implement network segmentation to limit attack surface');
+                    actions.push('Enable advanced endpoint detection and response monitoring');
+                }
+                if (content.includes('ransomware')) {
+                    actions.push('Test backup systems and offline recovery procedures');
+                    actions.push('Block known ransomware indicators at network perimeter');
+                }
+                if (content.includes('phishing')) {
+                    actions.push('Configure advanced email filtering and anti-phishing controls');
+                    actions.push('Conduct targeted security awareness training for employees');
+                }
+                if (content.includes('data breach') || content.includes('exposed')) {
+                    actions.push('Audit data access controls and user permissions');
+                    actions.push('Monitor for unauthorized data access or exfiltration');
+                }
+                
+                // Add general actions if none specific
+                if (actions.length === 0) {
+                    if (threat.risk_score >= 7) {
+                        actions.push('Escalate to security incident response team immediately');
+                        actions.push('Enhance monitoring for related threat indicators');
+                    } else {
+                        actions.push('Monitor threat developments and security advisories');
+                        actions.push('Review current security controls effectiveness');
+                    }
+                }
+                
+                return actions.slice(0, 4); // Limit to 4 actions
+            }
+
             function renderAnalyticsPanel() {
                 const geoDistribution = metrics.geographic_distribution || {};
                 
@@ -1407,71 +1484,42 @@
             }
 
             function renderEnhancedTechnicalAnalysis(threat, index) {
-                if (!threat.ai_technical_analysis || 
-                    threat.ai_technical_analysis.includes('Technical analysis in progress')) {
-                    return null;
-                }
-
+                // Create better technical analysis
+                const technicalAnalysis = createBetterTechnicalAnalysis(threat);
+                const actionableItems = createBetterActionableItems(threat);
+                
                 return (
                     <div className="technical-analysis">
                         <div className="analysis-header">
-                            <div className="analysis-label">🔍 AI TECHNICAL ANALYSIS</div>
+                            <div className="analysis-label">🔍 ENHANCED TECHNICAL ANALYSIS</div>
                             <div className="threat-badge" style={{fontSize: '0.6rem'}}>
-                                {threat.attack_sophistication || threat.smart_analysis?.analysis_type || 'ENHANCED'}
+                                {threat.attack_sophistication || 'ENHANCED'}
                             </div>
                         </div>
                         
                         <div className="analysis-text">
-                            {threat.ai_technical_analysis}
+                            {technicalAnalysis}
                         </div>
                         
-                        {threat.smart_analysis?.critical_finding && (
+                        {threat.business_impact && (
                             <div style={{
-                                background: 'rgba(255, 68, 68, 0.1)',
-                                border: '1px solid #ff4444',
+                                background: 'rgba(255, 215, 0, 0.1)',
+                                border: '1px solid rgba(255, 215, 0, 0.3)',
                                 padding: '0.8rem',
                                 borderRadius: '6px',
                                 margin: '1rem 0',
-                                fontSize: '0.9rem'
+                                fontSize: '0.85rem'
                             }}>
-                                <strong style={{color: '#ff4444'}}>Critical Finding:</strong> {threat.smart_analysis.critical_finding}
-                            </div>
-                        )}
-                        
-                        {threat.business_impact && (
-                            <div className="analysis-text" style={{fontSize: '0.85rem', opacity: 0.9}}>
                                 <strong style={{color: '#ffd700'}}>Business Impact:</strong> {threat.business_impact}
                             </div>
                         )}
                         
-                        {threat.actionable_items && threat.actionable_items.length > 0 && (
+                        {actionableItems && actionableItems.length > 0 && (
                             <div className="actionable-items">
                                 <div className="actionable-title">⚡ IMMEDIATE ACTIONS</div>
                                 <ul className="actionable-list">
-                                    {threat.actionable_items.slice(0, 4).map((item, idx) => (
+                                    {actionableItems.map((item, idx) => (
                                         <li key={idx} className="actionable-item">{item}</li>
-                                    ))}
-                                </ul>
-                            </div>
-                        )}
-
-                        {threat.smart_analysis?.detection_guidance && threat.smart_analysis.detection_guidance.length > 0 && (
-                            <div style={{marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid rgba(255, 215, 0, 0.3)'}}>
-                                <div style={{color: '#ffd700', fontSize: '0.8rem', fontWeight: 'bold', marginBottom: '0.5rem', textTransform: 'uppercase'}}>
-                                    🔍 DETECTION GUIDANCE
-                                </div>
-                                <ul style={{listStyle: 'none', padding: 0}}>
-                                    {threat.smart_analysis.detection_guidance.slice(0, 3).map((guide, idx) => (
-                                        <li key={idx} style={{
-                                            color: '#ffec8c',
-                                            fontSize: '0.8rem',
-                                            marginBottom: '0.3rem',
-                                            paddingLeft: '1rem',
-                                            position: 'relative'
-                                        }}>
-                                            <span style={{position: 'absolute', left: 0, color: '#ffd700'}}>🔍</span>
-                                            {guide}
-                                        </li>
                                     ))}
                                 </ul>
                             </div>
@@ -1671,7 +1719,10 @@
                         </div>
                         
                         <div className="threat-grid">
-                            {filteredThreats.map((threat, index) => (
+                            {filteredThreats.map((threat, index) => {
+                                const enhancedInsights = createBetterInsights(threat);
+                                
+                                return (
                                 <div key={index} className={`threat-card ${
                                     threat.threat_level === 'CRITICAL' ? 'critical-threat' : 
                                     threat.threat_level === 'HIGH' ? 'high-threat' : ''
@@ -1700,14 +1751,14 @@
                                         </div>
                                     </div>
                                     
-                                    {/* Key Insights Section */}
-                                    {threat.key_insights && threat.key_insights.length > 0 && (
+                                    {/* Enhanced Key Insights Section */}
+                                    {enhancedInsights && enhancedInsights.length > 0 && (
                                         <div className="key-insights">
                                             <div className="insights-title">
                                                 💡 KEY INSIGHTS
                                             </div>
                                             <ul className="insights-list">
-                                                {threat.key_insights.slice(0, 3).map((insight, idx) => (
+                                                {enhancedInsights.map((insight, idx) => (
                                                     <li key={idx} className="insight-item">{insight}</li>
                                                 ))}
                                             </ul>
@@ -1772,7 +1823,7 @@
                                     
                                     {renderEnhancedTechnicalAnalysis(threat, index)}
                                 </div>
-                            ))}
+                            )})}
                         </div>
                     </div>
                 </div>
@@ -1782,7 +1833,7 @@
         ReactDOM.render(
             <>
                 <EnhancedMatrixBackground />
-                <CyberRain />
+                <NumberRain />
                 <EnhancedThreatDashboard />
             </>,
             document.getElementById('app')
