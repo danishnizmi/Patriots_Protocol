@@ -111,6 +111,22 @@
             font-weight: bold;
         }
 
+        .cost-indicator {
+            background: rgba(0, 255, 65, 0.2);
+            border: 1px solid #00ff41;
+            color: #00ff41;
+            padding: 0.2rem 0.6rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            margin-left: 0.5rem;
+            animation: costPulse 3s infinite;
+        }
+
+        @keyframes costPulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
         @keyframes subtitleFlicker {
             0%, 100% { opacity: 0.9; }
             50% { opacity: 0.7; }
@@ -828,7 +844,9 @@
     
     <div class="header">
         <h1 class="title">PATRIOTS PROTOCOL</h1>
-        <p class="subtitle">AI-DRIVEN CYBER INTELLIGENCE NETWORK</p>
+        <p class="subtitle">AI-DRIVEN CYBER INTELLIGENCE NETWORK
+            <span class="cost-indicator">COST-OPTIMIZED</span>
+        </p>
         <div class="version-badge">CYBER v4.0</div>
         <a href="https://github.com/danishnizmi/Patriots_Protocol" target="_blank" class="patriots-link">
             🔗 SOURCE: PATRIOTS PROTOCOL REPOSITORY
@@ -846,6 +864,9 @@
         </div>
         <div class="status-item">
             <span id="aiModels">CYBER AI: ACTIVE</span>
+        </div>
+        <div class="status-item">
+            <span id="costOptimization">COST: OPTIMIZED</span>
         </div>
         <a href="https://github.com/danishnizmi/Patriots_Protocol" target="_blank">
             🎖️ PATRIOTS PROTOCOL CYBER v4.0
@@ -912,6 +933,7 @@
         function App() {
             const [newsData, setNewsData] = useState([]);
             const [metrics, setMetrics] = useState({});
+            const [costData, setCostData] = useState({});
             const [systemInfo, setSystemInfo] = useState({});
             const [loading, setLoading] = useState(true);
             const [error, setError] = useState(null);
@@ -919,7 +941,7 @@
 
             useEffect(() => {
                 loadData();
-                const interval = setInterval(loadData, 120000); // Check every 2 minutes
+                const interval = setInterval(loadData, 180000); // Check every 3 minutes for cost efficiency
                 return () => clearInterval(interval);
             }, []);
 
@@ -1001,6 +1023,7 @@
                         
                         setNewsData(sortedArticles);
                         setMetrics(data.metrics || {});
+                        setCostData(data.cost_optimization || {});
                         setSystemInfo(data.patriots_protocol_info || data.system_status || {});
                         setLastUpdate(new Date().toLocaleString());
                         
@@ -1078,6 +1101,7 @@
                 const systemStatus = document.getElementById('systemStatus');
                 const lastUpdateEl = document.getElementById('lastUpdate');
                 const aiModels = document.getElementById('aiModels');
+                const costOptimization = document.getElementById('costOptimization');
                 
                 if (systemStatus) {
                     systemStatus.textContent = `STATUS: ${metricsData?.system_status || 'OPERATIONAL'}`;
@@ -1089,6 +1113,11 @@
                 
                 if (aiModels) {
                     aiModels.textContent = `CYBER AI: ${metricsData?.api_status || 'ACTIVE'}`;
+                }
+                
+                if (costOptimization) {
+                    const apiCalls = metricsData?.api_calls_made || 0;
+                    costOptimization.textContent = `COST: ${apiCalls} API CALLS`;
                 }
             }
 
@@ -1144,11 +1173,11 @@
                 return (
                     <div className="container">
                         <div className="loading">
-                            🎖️ PATRIOTS PROTOCOL CYBER v4.0 SYSTEMS INITIALIZING<span className="terminal-cursor">_</span>
+                            🎖️ PATRIOTS PROTOCOL CYBER v4.0 COST-OPTIMIZED SYSTEMS INITIALIZING<span className="terminal-cursor">_</span>
                             <div className="loading-details">
-                                Connecting to cyber intelligence networks...<br/>
-                                Loading threat assessment protocols...<br/>
-                                Activating cyber security analysis systems...
+                                Connecting to cost-optimized cyber intelligence networks...<br/>
+                                Loading efficient threat assessment protocols...<br/>
+                                Activating budget-conscious security analysis systems...
                             </div>
                         </div>
                     </div>
@@ -1218,6 +1247,21 @@
                                 </div>
                                 <div className="metric-change">Emerging: {(metrics.emerging_threats || []).length} indicators</div>
                             </div>
+                            
+                            <div className="metric-card">
+                                <div className="metric-header">
+                                    <div className="metric-title">Cost Optimization</div>
+                                    <div className="metric-icon">💰</div>
+                                </div>
+                                <div className="metric-value" style={{fontSize: '1.8rem'}}>${(costData.estimated_cost || 0).toFixed(4)}</div>
+                                <div className="metric-details">
+                                    <span>API Calls: {costData.api_calls_used || 0}/{costData.api_calls_limit || 8}</span>
+                                    <span>Efficiency: {costData.api_calls_used ? Math.round((newsData.length / costData.api_calls_used) * 100) / 100 : 0} reports/call</span>
+                                </div>
+                                <div className="metric-change">
+                                    Saved: {costData.cleanup_stats ? `${costData.cleanup_stats.space_saved_mb?.toFixed(1) || 0} MB` : '0 MB'}
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -1282,21 +1326,21 @@
                             
                             <div style={{marginTop: '1.5rem'}}>
                                 <div style={{color: '#ffd700', fontSize: '0.9rem', fontWeight: 'bold', marginBottom: '0.8rem'}}>
-                                    🌐 EMERGING CYBER THREATS
+                                    💰 COST OPTIMIZATION STATUS
                                 </div>
-                                <div style={{display: 'flex', flexWrap: 'wrap', gap: '0.5rem'}}>
-                                    {(metrics.emerging_threats || ['ACTIVE_MONITORING', 'THREAT_HUNTING', 'IOC_ANALYSIS']).slice(0, 5).map((threat, index) => (
-                                        <span key={index} style={{
-                                            background: 'rgba(255, 215, 0, 0.2)',
-                                            border: '1px solid #ffd700',
-                                            color: '#ffd700',
-                                            padding: '0.3rem 0.6rem',
-                                            borderRadius: '12px',
-                                            fontSize: '0.75rem'
-                                        }}>
-                                            {threat.replace('_', ' ')}
-                                        </span>
-                                    ))}
+                                <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', fontSize: '0.85rem'}}>
+                                    <div style={{color: '#ffec8c'}}>
+                                        API Efficiency: {costData.api_calls_used || 0}/{costData.api_calls_limit || 8} calls
+                                    </div>
+                                    <div style={{color: '#ffec8c'}}>
+                                        Cost: ${(costData.estimated_cost || 0).toFixed(4)}
+                                    </div>
+                                    <div style={{color: '#ffec8c'}}>
+                                        Data Retention: {costData.data_retention_days || 6} days
+                                    </div>
+                                    <div style={{color: '#ffec8c'}}>
+                                        Space Saved: {costData.cleanup_stats?.space_saved_mb?.toFixed(1) || 0} MB
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1434,17 +1478,18 @@
             document.getElementById('app')
         );
 
-        // Patriots Protocol Cyber v4.0 System Initialization
-        console.log('🎖️ PATRIOTS PROTOCOL CYBER v4.0 - AI Intelligence Network Initialized');
+        // Patriots Protocol Cost-Optimized Cyber v4.0 System Initialization
+        console.log('🎖️ PATRIOTS PROTOCOL COST-OPTIMIZED CYBER v4.0 - AI Intelligence Network Initialized');
+        console.log('💰 Cost Optimization: Enabled with API limits and data retention');
         console.log('🔗 Repository: https://github.com/danishnizmi/Patriots_Protocol');
     </script>
 
     <!-- Patriots Protocol Cyber v4.0 Web Interface -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🎖️ Patriots Protocol Cyber v4.0 Web Interface Activated');
+            console.log('🎖️ Patriots Protocol Cost-Optimized Cyber v4.0 Web Interface Activated');
             
-            // Enhanced status updates with cyber theme
+            // Enhanced status updates with cyber theme and cost monitoring
             setInterval(function() {
                 const now = new Date();
                 const lastUpdateEl = document.getElementById('lastUpdate');
@@ -1462,7 +1507,7 @@
             // Repository link tracking
             document.addEventListener('click', function(e) {
                 if (e.target.classList.contains('patriots-link')) {
-                    console.log('🎖️ Accessing Patriots Protocol Cyber Repository');
+                    console.log('🎖️ Accessing Patriots Protocol Cost-Optimized Cyber Repository');
                 }
             });
         });
