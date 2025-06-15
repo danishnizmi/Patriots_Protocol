@@ -41,7 +41,6 @@
             position: relative;
         }
 
-        /* Enhanced MGS Pixelated Title Style */
         .title {
             font-size: 3rem;
             text-shadow: 0 0 20px #00ff41;
@@ -111,22 +110,6 @@
             font-weight: bold;
         }
 
-        .cost-indicator {
-            background: rgba(0, 255, 65, 0.2);
-            border: 1px solid #00ff41;
-            color: #00ff41;
-            padding: 0.2rem 0.6rem;
-            border-radius: 8px;
-            font-size: 0.75rem;
-            margin-left: 0.5rem;
-            animation: costPulse 3s infinite;
-        }
-
-        @keyframes costPulse {
-            0%, 100% { opacity: 0.8; }
-            50% { opacity: 1; }
-        }
-
         @keyframes subtitleFlicker {
             0%, 100% { opacity: 0.9; }
             50% { opacity: 0.7; }
@@ -173,12 +156,12 @@
             padding: 2rem;
         }
 
-        /* Enhanced Metrics Grid for Cyber Focus */
-        .metrics-overview {
+        /* Threat Intelligence Dashboard */
+        .intel-overview {
             margin-bottom: 2rem;
         }
 
-        .metrics-title {
+        .intel-title {
             font-size: 1.8rem;
             color: #ff4444;
             margin-bottom: 1.5rem;
@@ -186,14 +169,14 @@
             text-shadow: 0 0 10px #ff4444;
         }
 
-        .metrics-grid {
+        .threat-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 1.5rem;
             margin-bottom: 2rem;
         }
 
-        .metric-card {
+        .threat-card {
             background: rgba(255, 68, 68, 0.1);
             border: 1px solid #ff4444;
             padding: 1.5rem;
@@ -204,7 +187,7 @@
             overflow: hidden;
         }
 
-        .metric-card::before {
+        .threat-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -220,13 +203,13 @@
             100% { transform: translateX(100%); }
         }
 
-        .metric-card:hover {
+        .threat-card:hover {
             background: rgba(255, 68, 68, 0.15);
             box-shadow: 0 5px 25px rgba(255, 68, 68, 0.3);
             transform: translateY(-3px);
         }
 
-        .metric-card.critical {
+        .threat-card.critical {
             border-color: #ff0000;
             background: rgba(255, 0, 0, 0.15);
             animation: criticalPulse 2s infinite;
@@ -241,30 +224,25 @@
             }
         }
 
-        .metric-card.high-value {
-            border-color: #ffd700;
-            background: rgba(255, 215, 0, 0.1);
-        }
-
-        .metric-header {
+        .threat-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1rem;
         }
 
-        .metric-title {
+        .threat-metric-title {
             font-size: 0.9rem;
             color: #ff6666;
             font-weight: bold;
             text-transform: uppercase;
         }
 
-        .metric-icon {
+        .threat-icon {
             font-size: 1.2rem;
         }
 
-        .metric-value {
+        .threat-value {
             font-size: 2.5rem;
             font-weight: bold;
             margin-bottom: 0.8rem;
@@ -277,7 +255,7 @@
             to { text-shadow: 0 0 20px currentColor, 0 0 30px currentColor; }
         }
 
-        .metric-details {
+        .threat-details {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 0.5rem;
@@ -285,14 +263,8 @@
             color: #ffcccc;
         }
 
-        .metric-change {
-            font-size: 0.85rem;
-            color: #ffcccc;
-            margin-top: 0.5rem;
-        }
-
-        /* Enhanced Intelligence Overview for Cyber */
-        .intelligence-overview {
+        /* Threat Landscape Section */
+        .threat-landscape {
             margin: 3rem 0;
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -300,12 +272,12 @@
         }
 
         @media (max-width: 1024px) {
-            .intelligence-overview {
+            .threat-landscape {
                 grid-template-columns: 1fr;
             }
         }
 
-        .strategic-section {
+        .landscape-section {
             background: rgba(255, 68, 68, 0.05);
             border: 1px solid #ff4444;
             padding: 2rem;
@@ -332,7 +304,7 @@
             color: #ff4444;
         }
 
-        .intelligence-content {
+        .landscape-content {
             color: #ffffff;
             line-height: 1.7;
             margin-bottom: 1.5rem;
@@ -367,8 +339,8 @@
             text-transform: uppercase;
         }
 
-        /* Enhanced News Section for Cyber Intelligence */
-        .news-section {
+        /* Intelligence Reports Section */
+        .intel-section {
             margin-top: 3rem;
         }
 
@@ -391,13 +363,13 @@
             font-size: 0.9rem;
         }
 
-        .news-grid {
+        .intel-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
             gap: 2rem;
         }
 
-        .news-card {
+        .intel-card {
             background: rgba(0, 0, 0, 0.85);
             border: 1px solid #ff4444;
             padding: 2rem;
@@ -407,7 +379,7 @@
             overflow: hidden;
         }
 
-        .news-card::before {
+        .intel-card::before {
             content: '';
             position: absolute;
             top: 0;
@@ -419,17 +391,17 @@
             transition: opacity 0.3s ease;
         }
 
-        .news-card:hover::before {
+        .intel-card:hover::before {
             opacity: 1;
         }
 
-        .news-card:hover {
+        .intel-card:hover {
             background: rgba(255, 68, 68, 0.05);
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(255, 68, 68, 0.2);
         }
 
-        .news-card.critical-intel {
+        .intel-card.critical-threat {
             border-left: 4px solid #ff0000;
             background: rgba(255, 0, 0, 0.08);
             animation: criticalBlink 3s infinite;
@@ -440,12 +412,12 @@
             96%, 100% { border-left-color: #ff4444; }
         }
 
-        .news-card.high-value-intel {
+        .intel-card.high-threat {
             border-left: 4px solid #ffd700;
             background: rgba(255, 215, 0, 0.05);
         }
 
-        .intel-badges {
+        .threat-badges {
             position: absolute;
             top: 1.5rem;
             right: 1.5rem;
@@ -454,7 +426,7 @@
             gap: 0.5rem;
         }
 
-        .intel-badge {
+        .threat-badge {
             padding: 0.3rem 0.8rem;
             border-radius: 12px;
             font-size: 0.7rem;
@@ -463,28 +435,33 @@
             min-width: 70px;
         }
 
-        .intel-badge.critical {
+        .threat-badge.critical {
             background: rgba(255, 0, 0, 0.9);
             color: #fff;
             animation: pulse 2s infinite;
         }
 
-        .intel-badge.high {
+        .threat-badge.high {
             background: rgba(255, 215, 0, 0.9);
             color: #000;
         }
 
-        .intel-badge.medium {
+        .threat-badge.medium {
             background: rgba(255, 165, 0, 0.8);
             color: #fff;
         }
 
-        .news-header {
+        .threat-badge.low {
+            background: rgba(0, 255, 65, 0.8);
+            color: #000;
+        }
+
+        .intel-header {
             margin-bottom: 1.5rem;
             padding-right: 5rem;
         }
 
-        .news-title {
+        .intel-title-text {
             font-size: 1.3rem;
             margin-bottom: 1rem;
             color: #ffffff;
@@ -507,23 +484,23 @@
         .threat-high { background-color: #ff4444; }
         .threat-critical { 
             background-color: #ff0000; 
-            animation: criticalBlink 1s infinite;
+            animation: criticalThreatBlink 1s infinite;
             box-shadow: 0 0 10px #ff0000;
         }
 
-        @keyframes criticalBlink {
+        @keyframes criticalThreatBlink {
             0%, 50% { opacity: 1; }
             51%, 100% { opacity: 0.3; }
         }
 
-        .news-summary {
+        .intel-summary {
             color: #cccccc;
             line-height: 1.6;
             margin-bottom: 1.5rem;
             font-size: 0.95rem;
         }
 
-        .news-meta-grid {
+        .intel-meta-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
@@ -662,7 +639,7 @@
             gap: 0.5rem;
         }
 
-        .ai-importance {
+        .severity-badge {
             background: rgba(255, 215, 0, 0.2);
             border: 1px solid #ffd700;
             padding: 0.2rem 0.6rem;
@@ -690,10 +667,6 @@
 
         .patriots-ref {
             color: #ffd700;
-        }
-
-        .reading-time {
-            color: #ffcccc;
         }
 
         .loading {
@@ -755,20 +728,6 @@
             text-shadow: 0 0 10px #ffd700;
         }
 
-        .category-badge {
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            margin-left: 0.5rem;
-        }
-
-        .category-security { 
-            background: rgba(255, 68, 68, 0.2); 
-            border: 1px solid #ff4444; 
-            color: #ff4444; 
-        }
-
         .error-display {
             background: rgba(255, 68, 68, 0.1);
             border: 1px solid #ff4444;
@@ -779,41 +738,24 @@
             text-align: center;
         }
 
-        .fresh-indicator {
-            display: inline-block;
-            background: rgba(0, 255, 65, 0.2);
-            border: 1px solid #00ff41;
-            color: #00ff41;
-            padding: 0.2rem 0.5rem;
-            border-radius: 8px;
-            font-size: 0.7rem;
-            margin-left: 0.5rem;
-            animation: freshPulse 2s infinite;
-        }
-
-        @keyframes freshPulse {
-            0%, 100% { opacity: 0.7; }
-            50% { opacity: 1; }
-        }
-
         @media (max-width: 768px) {
             .title {
                 font-size: 2.5rem;
             }
             
-            .metrics-grid {
+            .threat-grid {
                 grid-template-columns: 1fr;
             }
             
-            .news-grid {
+            .intel-grid {
                 grid-template-columns: 1fr;
             }
             
-            .news-header {
+            .intel-header {
                 padding-right: 0;
             }
             
-            .intel-badges {
+            .threat-badges {
                 position: static;
                 display: flex;
                 flex-direction: row;
@@ -844,9 +786,7 @@
     
     <div class="header">
         <h1 class="title">PATRIOTS PROTOCOL</h1>
-        <p class="subtitle">AI-DRIVEN CYBER INTELLIGENCE NETWORK
-            <span class="cost-indicator">COST-OPTIMIZED</span>
-        </p>
+        <p class="subtitle">AI-DRIVEN CYBER INTELLIGENCE NETWORK</p>
         <div class="version-badge">CYBER v4.0</div>
         <a href="https://github.com/danishnizmi/Patriots_Protocol" target="_blank" class="patriots-link">
             🔗 SOURCE: PATRIOTS PROTOCOL REPOSITORY
@@ -857,16 +797,13 @@
 
     <div class="status-bar">
         <div class="status-item">
-            <span id="systemStatus">STATUS: OPERATIONAL</span>
+            <span id="systemStatus">INTELLIGENCE: ACTIVE</span>
         </div>
         <div class="status-item">
             LAST UPDATE: <span id="lastUpdate">CONNECTING...</span>
         </div>
         <div class="status-item">
-            <span id="aiModels">CYBER AI: ACTIVE</span>
-        </div>
-        <div class="status-item">
-            <span id="costOptimization">COST: OPTIMIZED</span>
+            <span id="threatLevel">THREAT LEVEL: MONITORING</span>
         </div>
         <a href="https://github.com/danishnizmi/Patriots_Protocol" target="_blank">
             🎖️ PATRIOTS PROTOCOL CYBER v4.0
@@ -876,7 +813,7 @@
     <script type="text/babel">
         const { useState, useEffect, useRef } = React;
 
-        // Enhanced Matrix Background for Cyber Theme
+        // Matrix Background
         function MatrixBackground() {
             const canvasRef = useRef(null);
 
@@ -931,78 +868,19 @@
         }
 
         function App() {
-            const [newsData, setNewsData] = useState([]);
+            const [threatData, setThreatData] = useState([]);
             const [metrics, setMetrics] = useState({});
-            const [costData, setCostData] = useState({});
-            const [systemInfo, setSystemInfo] = useState({});
             const [loading, setLoading] = useState(true);
             const [error, setError] = useState(null);
             const [lastUpdate, setLastUpdate] = useState('');
 
             useEffect(() => {
-                loadData();
-                const interval = setInterval(loadData, 180000); // Check every 3 minutes for cost efficiency
+                loadIntelligenceData();
+                const interval = setInterval(loadIntelligenceData, 180000); // Check every 3 minutes
                 return () => clearInterval(interval);
             }, []);
 
-            // Enhanced intelligence data with cyber security focus
-            function enhanceIntelligenceData(articles) {
-                return articles.map((article, index) => {
-                    // Enhanced confidence variation for cyber security
-                    let confidence = 0.78;
-                    if (article.source_credibility > 0.9) confidence += 0.12;
-                    if (article.category === 'SECURITY') confidence += 0.10;
-                    if (article.keywords?.some(k => ['MALWARE', 'RANSOMWARE', 'APT', 'BREACH'].includes(k))) confidence += 0.08;
-                    if (article.keywords?.includes('CRITICAL')) confidence += 0.05;
-                    confidence += (Math.random() - 0.5) * 0.12;
-                    confidence = Math.min(0.96, Math.max(0.72, confidence));
-
-                    // Enhanced reading times for cyber analysis
-                    let readingTime = Math.max(1, Math.floor((article.word_count || 180) / 180));
-                    if (article.keywords?.some(k => ['TECHNICAL', 'ANALYSIS', 'FORENSICS'].includes(k))) readingTime += 2;
-                    if (article.threat_level === 'CRITICAL') readingTime += 1;
-                    readingTime = Math.min(8, readingTime);
-
-                    // Enhanced cyber intelligence value assessment
-                    let intelValue = 'MEDIUM';
-                    let priority = 6;
-
-                    if (article.threat_level === 'CRITICAL') {
-                        intelValue = 'CRITICAL';
-                        priority += 4;
-                    } else if (article.threat_level === 'HIGH') {
-                        intelValue = 'HIGH';
-                        priority += 2;
-                    }
-                    
-                    if (article.keywords?.some(k => ['ZERO_DAY', 'APT', 'NATION_STATE'].includes(k))) {
-                        intelValue = 'CRITICAL';
-                        priority += 3;
-                    }
-                    
-                    if (article.keywords?.some(k => ['RANSOMWARE', 'BREACH', 'EXPLOIT'].includes(k))) {
-                        priority += 2;
-                    }
-                    
-                    if (confidence > 0.9) priority += 1;
-
-                    // Check if content is fresh (within last 24 hours)
-                    const isFresh = article.timestamp && 
-                        new Date(article.timestamp) > new Date(Date.now() - 24 * 60 * 60 * 1000);
-
-                    return {
-                        ...article,
-                        confidence: parseFloat(confidence.toFixed(2)),
-                        reading_time: `${readingTime} min read`,
-                        intelligence_value: intelValue,
-                        priority_score: Math.min(10, priority),
-                        enhanced: true,
-                        is_fresh: isFresh
-                    };
-                });
-            }
-
-            async function loadData() {
+            async function loadIntelligenceData() {
                 try {
                     setError(null);
                     
@@ -1010,86 +888,63 @@
                     
                     if (response.ok) {
                         const data = await response.json();
-                        console.log('🎖️ Patriots Protocol v4.0 Cyber data loaded:', data);
+                        console.log('🎖️ Patriots Protocol intelligence data loaded:', data);
                         
-                        const enhancedArticles = enhanceIntelligenceData(data.articles || []);
-                        
-                        // Sort by freshness and priority
-                        const sortedArticles = enhancedArticles.sort((a, b) => {
-                            if (a.is_fresh && !b.is_fresh) return -1;
-                            if (!a.is_fresh && b.is_fresh) return 1;
-                            return b.priority_score - a.priority_score;
-                        });
-                        
-                        setNewsData(sortedArticles);
+                        setThreatData(data.articles || []);
                         setMetrics(data.metrics || {});
-                        setCostData(data.cost_optimization || {});
-                        setSystemInfo(data.patriots_protocol_info || data.system_status || {});
                         setLastUpdate(new Date().toLocaleString());
                         
                         updateStatusBar(data.metrics);
                         
                     } else {
-                        throw new Error(`HTTP ${response.status}: Unable to load cyber intelligence data`);
+                        throw new Error(`HTTP ${response.status}: Unable to load intelligence data`);
                     }
                 } catch (error) {
-                    console.error('Patriots Protocol cyber data loading error:', error);
-                    setError('Cyber Intelligence Network - Loading fresh threat data...');
+                    console.error('Patriots Protocol intelligence loading error:', error);
+                    setError('Cyber Intelligence Network - Loading threat data...');
                     
-                    // Enhanced fallback data with cyber security focus
+                    // Fallback data focused on threats
                     const fallbackData = {
                         articles: [
                             {
-                                title: "Critical Zero-Day Vulnerability Discovered in Enterprise Systems",
-                                full_summary: "Security researchers identified a critical zero-day vulnerability affecting multiple enterprise systems worldwide. The flaw allows remote code execution with elevated privileges.",
-                                source: "CYBERSECURITY_INTEL",
-                                source_credibility: 0.94,
-                                category: "SECURITY",
+                                title: "Advanced Persistent Threat Campaign Targeting Critical Infrastructure",
+                                summary: "Nation-state actors are conducting sophisticated attacks against energy sector organizations using zero-day exploits and custom malware toolkits.",
+                                source: "CISA_ADVISORIES",
                                 threat_level: "CRITICAL",
-                                keywords: ["ZERO_DAY", "CRITICAL", "EXPLOIT", "ENTERPRISE"],
-                                word_count: 220,
-                                ai_analysis: "Critical vulnerability requires immediate patching. Threat actors actively exploiting in targeted campaigns against financial and healthcare sectors.",
+                                keywords: ["APT", "CRITICAL_INFRASTRUCTURE", "ZERO_DAY", "ENERGY"],
+                                attack_vectors: ["malware", "zero_day"],
+                                affected_sectors: ["energy", "critical_infrastructure"],
+                                ai_analysis: "This campaign represents a significant threat to national security infrastructure. Immediate defensive measures and threat hunting activities are recommended.",
+                                confidence: 0.94,
+                                severity_score: 9,
                                 timestamp: new Date().toISOString()
                             },
                             {
-                                title: "Advanced Persistent Threat Group Targets Critical Infrastructure",
-                                full_summary: "Nation-state affiliated APT group launches sophisticated campaign targeting energy sector critical infrastructure with custom malware toolkit.",
+                                title: "Ransomware-as-a-Service Platform Targets Healthcare Organizations",
+                                summary: "Cybercriminals are leveraging advanced ransomware tools to target hospitals and healthcare systems, disrupting critical patient care services.",
                                 source: "KREBS_SECURITY",
-                                source_credibility: 0.96,
-                                category: "SECURITY", 
                                 threat_level: "HIGH",
-                                keywords: ["APT", "CRITICAL_INFRASTRUCTURE", "NATION_STATE", "MALWARE"],
-                                word_count: 280,
-                                ai_analysis: "State-sponsored cyber espionage campaign demonstrates advanced capabilities. Energy sector organizations should implement enhanced monitoring protocols.",
+                                keywords: ["RANSOMWARE", "HEALTHCARE", "PATIENT_CARE"],
+                                attack_vectors: ["ransomware", "phishing"],
+                                affected_sectors: ["healthcare"],
+                                ai_analysis: "Healthcare sector continues to be prime target due to critical nature of services and often outdated security infrastructure.",
+                                confidence: 0.89,
+                                severity_score: 8,
                                 timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString()
-                            },
-                            {
-                                title: "Ransomware-as-a-Service Platform Disrupted by International Task Force",
-                                full_summary: "International law enforcement disrupts major ransomware-as-a-service operation responsible for attacks on healthcare systems globally.",
-                                source: "DARK_READING",
-                                source_credibility: 0.91,
-                                category: "SECURITY",
-                                threat_level: "HIGH", 
-                                keywords: ["RANSOMWARE", "LAW_ENFORCEMENT", "HEALTHCARE", "DISRUPTION"],
-                                word_count: 195,
-                                ai_analysis: "Successful ransomware disruption operation reduces immediate threat to healthcare sector. Expected retaliation campaigns likely.",
-                                timestamp: new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString()
                             }
                         ],
                         metrics: {
-                            total_articles: 3,
-                            threat_level: "HIGH",
-                            ai_confidence: 88,
-                            high_value_intelligence: 3,
-                            critical_intelligence: 1,
-                            system_status: "OPERATIONAL"
+                            total_threats: 2,
+                            critical_threats: 1,
+                            high_priority_threats: 1,
+                            global_threat_level: "HIGH",
+                            confidence_level: 91,
+                            fresh_intel_count: 2
                         }
                     };
                     
-                    const enhancedArticles = enhanceIntelligenceData(fallbackData.articles);
-                    setNewsData(enhancedArticles);
+                    setThreatData(fallbackData.articles);
                     setMetrics(fallbackData.metrics);
-                    setSystemInfo({ system_name: 'PATRIOTS PROTOCOL CYBER', status: 'OPERATIONAL' });
                     
                 } finally {
                     setLoading(false);
@@ -1100,84 +955,64 @@
             function updateStatusBar(metricsData) {
                 const systemStatus = document.getElementById('systemStatus');
                 const lastUpdateEl = document.getElementById('lastUpdate');
-                const aiModels = document.getElementById('aiModels');
-                const costOptimization = document.getElementById('costOptimization');
+                const threatLevel = document.getElementById('threatLevel');
                 
                 if (systemStatus) {
-                    systemStatus.textContent = `STATUS: ${metricsData?.system_status || 'OPERATIONAL'}`;
+                    systemStatus.textContent = `INTELLIGENCE: ${metricsData?.total_threats || 0} THREATS`;
                 }
                 
                 if (lastUpdateEl) {
                     lastUpdateEl.textContent = new Date().toLocaleString();
                 }
                 
-                if (aiModels) {
-                    aiModels.textContent = `CYBER AI: ${metricsData?.api_status || 'ACTIVE'}`;
-                }
-                
-                if (costOptimization) {
-                    const apiCalls = metricsData?.api_calls_made || 0;
-                    costOptimization.textContent = `COST: ${apiCalls} API CALLS`;
+                if (threatLevel) {
+                    threatLevel.textContent = `THREAT LEVEL: ${metricsData?.global_threat_level || 'MONITORING'}`;
                 }
             }
 
-            function getMetricCardClass(metricType, value) {
-                if (metricType === 'threat_level' && (value === 'HIGH' || value === 'CRITICAL')) {
-                    return 'metric-card critical';
+            function getThreatCardClass(threatLevel) {
+                if (threatLevel === 'CRITICAL') {
+                    return 'threat-card critical';
                 }
-                if (metricType === 'critical_intelligence' && value > 0) {
-                    return 'metric-card critical';
-                }
-                if (metricType === 'high_value_intelligence' && value > 0) {
-                    return 'metric-card high-value';
-                }
-                if (metricType === 'ai_confidence' && value < 80) {
-                    return 'metric-card critical';
-                }
-                return 'metric-card';
+                return 'threat-card';
             }
 
-            function getNewsCardClass(article) {
-                if (article.intelligence_value === 'CRITICAL' || article.threat_level === 'CRITICAL') {
-                    return 'news-card critical-intel';
+            function getIntelCardClass(threat) {
+                if (threat.threat_level === 'CRITICAL') {
+                    return 'intel-card critical-threat';
                 }
-                if (article.intelligence_value === 'HIGH' || article.priority_score >= 8) {
-                    return 'news-card high-value-intel';
+                if (threat.threat_level === 'HIGH') {
+                    return 'intel-card high-threat';
                 }
-                return 'news-card';
+                return 'intel-card';
             }
 
-            function getIntelligenceBadges(article) {
+            function getThreatBadges(threat) {
                 const badges = [];
                 
-                if (article.intelligence_value === 'CRITICAL') {
-                    badges.push(<span key="critical" className="intel-badge critical">CRITICAL</span>);
-                } else if (article.intelligence_value === 'HIGH') {
-                    badges.push(<span key="high" className="intel-badge high">HIGH VALUE</span>);
-                } else if (article.intelligence_value === 'MEDIUM') {
-                    badges.push(<span key="medium" className="intel-badge medium">MEDIUM</span>);
-                }
+                const level = threat.threat_level?.toLowerCase() || 'medium';
+                badges.push(
+                    <span key="level" className={`threat-badge ${level}`}>
+                        {threat.threat_level || 'MEDIUM'}
+                    </span>
+                );
                 
-                if (article.is_fresh) {
-                    badges.push(<span key="fresh" className="intel-badge" style={{background: 'rgba(0, 255, 65, 0.9)', color: '#000'}}>FRESH</span>);
+                if (threat.severity_score >= 9) {
+                    badges.push(<span key="severe" className="threat-badge critical">SEVERE</span>);
                 }
                 
                 return badges;
-            }
-
-            function getCategoryBadgeClass(category) {
-                return 'category-badge category-security'; // All cyber security focused
             }
 
             if (loading) {
                 return (
                     <div className="container">
                         <div className="loading">
-                            🎖️ PATRIOTS PROTOCOL CYBER v4.0 COST-OPTIMIZED SYSTEMS INITIALIZING<span className="terminal-cursor">_</span>
+                            🎖️ PATRIOTS PROTOCOL CYBER INTELLIGENCE INITIALIZING<span className="terminal-cursor">_</span>
                             <div className="loading-details">
-                                Connecting to cost-optimized cyber intelligence networks...<br/>
-                                Loading efficient threat assessment protocols...<br/>
-                                Activating budget-conscious security analysis systems...
+                                Connecting to threat intelligence networks...<br/>
+                                Loading real-time cyber threat data...<br/>
+                                Activating AI threat analysis systems...
                             </div>
                         </div>
                     </div>
@@ -1192,273 +1027,238 @@
                         </div>
                     )}
 
-                    {/* Enhanced Metrics Overview for Cyber */}
-                    <div className="metrics-overview">
-                        <h2 className="metrics-title">🎯 CYBER INTELLIGENCE COMMAND CENTER</h2>
-                        <div className="metrics-grid">
-                            <div className={getMetricCardClass('total_articles', metrics.total_articles)}>
-                                <div className="metric-header">
-                                    <div className="metric-title">Cyber Intelligence Reports</div>
-                                    <div className="metric-icon">🛡️</div>
+                    {/* Threat Intelligence Dashboard */}
+                    <div className="intel-overview">
+                        <h2 className="intel-title">🎯 CYBER THREAT INTELLIGENCE COMMAND CENTER</h2>
+                        <div className="threat-grid">
+                            <div className={getThreatCardClass(metrics.global_threat_level)}>
+                                <div className="threat-header">
+                                    <div className="threat-metric-title">Active Threats</div>
+                                    <div className="threat-icon">🛡️</div>
                                 </div>
-                                <div className="metric-value">{metrics.total_articles || newsData.length}</div>
-                                <div className="metric-details">
-                                    <span>Processed: {metrics.ai_analysis_complete || newsData.length}</span>
-                                    <span>Fresh Intel: {newsData.filter(a => a.is_fresh).length}</span>
+                                <div className="threat-value">{metrics.total_threats || threatData.length}</div>
+                                <div className="threat-details">
+                                    <span>Critical: {metrics.critical_threats || 0}</span>
+                                    <span>High Priority: {metrics.high_priority_threats || 0}</span>
                                 </div>
-                                <div className="metric-change">Critical Threats: {newsData.filter(a => a.threat_level === 'CRITICAL').length}</div>
                             </div>
                             
-                            <div className={getMetricCardClass('ai_confidence', metrics.ai_confidence)}>
-                                <div className="metric-header">
-                                    <div className="metric-title">AI Cyber Confidence</div>
-                                    <div className="metric-icon">🤖</div>
+                            <div className="threat-card">
+                                <div className="threat-header">
+                                    <div className="threat-metric-title">Global Threat Level</div>
+                                    <div className="threat-icon">🔥</div>
                                 </div>
-                                <div className="metric-value">{metrics.ai_confidence || 88}%</div>
-                                <div className="metric-details">
-                                    <span>Analysis Quality: ENHANCED</span>
-                                    <span>Processing: {metrics.processing_time || '< 45s'}</span>
+                                <div className="threat-value">{metrics.global_threat_level || 'MEDIUM'}</div>
+                                <div className="threat-details">
+                                    <span>Confidence: {metrics.confidence_level || 85}%</span>
+                                    <span>Fresh Intel: {metrics.fresh_intel_count || 0}</span>
                                 </div>
-                                <div className="metric-change">Cyber API: {metrics.api_status || 'ACTIVE'}</div>
                             </div>
                             
-                            <div className={getMetricCardClass('threat_level', metrics.threat_level)}>
-                                <div className="metric-header">
-                                    <div className="metric-title">Cyber Threat Assessment</div>
-                                    <div className="metric-icon">🔥</div>
+                            <div className="threat-card">
+                                <div className="threat-header">
+                                    <div className="threat-metric-title">Attack Campaigns</div>
+                                    <div className="threat-icon">⚔️</div>
                                 </div>
-                                <div className="metric-value">{metrics.threat_level || 'HIGH'}</div>
-                                <div className="metric-details">
-                                    <span>Status: {metrics.system_status || 'OPERATIONAL'}</span>
-                                    <span>Sources: {metrics.source_diversity || 8}</span>
+                                <div className="threat-value">{metrics.active_campaigns || 0}</div>
+                                <div className="threat-details">
+                                    <span>APT Groups: {(metrics.threat_actors || []).length}</span>
+                                    <span>Techniques: {(metrics.attack_techniques || []).length}</span>
                                 </div>
-                                <div className="metric-change">Credibility: {Math.round((metrics.credibility_average || 0.9) * 100)}%</div>
                             </div>
                             
-                            <div className={getMetricCardClass('critical_intelligence', metrics.critical_intelligence)}>
-                                <div className="metric-header">
-                                    <div className="metric-title">Critical Cyber Threats</div>
-                                    <div className="metric-icon">⚠️</div>
+                            <div className="threat-card">
+                                <div className="threat-header">
+                                    <div className="threat-metric-title">Targeted Sectors</div>
+                                    <div className="threat-icon">🏢</div>
                                 </div>
-                                <div className="metric-value">{metrics.critical_intelligence || newsData.filter(a => a.intelligence_value === 'CRITICAL').length}</div>
-                                <div className="metric-details">
-                                    <span>High Value: {metrics.high_value_intelligence || newsData.filter(a => a.intelligence_value === 'HIGH').length}</span>
-                                    <span>Actionable: {newsData.filter(a => a.priority_score >= 8).length}</span>
-                                </div>
-                                <div className="metric-change">Emerging: {(metrics.emerging_threats || []).length} indicators</div>
-                            </div>
-                            
-                            <div className="metric-card">
-                                <div className="metric-header">
-                                    <div className="metric-title">Cost Optimization</div>
-                                    <div className="metric-icon">💰</div>
-                                </div>
-                                <div className="metric-value" style={{fontSize: '1.8rem'}}>${(costData.estimated_cost || 0).toFixed(4)}</div>
-                                <div className="metric-details">
-                                    <span>API Calls: {costData.api_calls_used || 0}/{costData.api_calls_limit || 8}</span>
-                                    <span>Efficiency: {costData.api_calls_used ? Math.round((newsData.length / costData.api_calls_used) * 100) / 100 : 0} reports/call</span>
-                                </div>
-                                <div className="metric-change">
-                                    Saved: {costData.cleanup_stats ? `${costData.cleanup_stats.space_saved_mb?.toFixed(1) || 0} MB` : '0 MB'}
+                                <div className="threat-value">{(metrics.targeted_sectors || []).length}</div>
+                                <div className="threat-details">
+                                    <span>Healthcare: {threatData.filter(t => t.affected_sectors?.includes('healthcare')).length}</span>
+                                    <span>Finance: {threatData.filter(t => t.affected_sectors?.includes('finance')).length}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* Enhanced Intelligence Overview for Cyber */}
-                    <div className="intelligence-overview">
-                        <div className="strategic-section">
+                    {/* Threat Landscape Assessment */}
+                    <div className="threat-landscape">
+                        <div className="landscape-section">
                             <div className="section-header">
-                                🎯 STRATEGIC CYBER INTELLIGENCE ASSESSMENT
+                                🎯 STRATEGIC THREAT LANDSCAPE ASSESSMENT
                             </div>
                             
-                            <div className="intelligence-content">
-                                {metrics.strategic_assessment || `Patriots Protocol Cyber Intelligence analyzed ${newsData.length} cyber security reports with advanced AI assessment. Identified ${newsData.filter(a => a.intelligence_value === 'HIGH').length} high-value cyber threats requiring immediate attention. Detected ${newsData.filter(a => a.threat_level === 'CRITICAL').length} critical cyber incidents.`}
+                            <div className="landscape-content">
+                                Patriots Protocol has identified <strong>{threatData.length}</strong> active cyber threats requiring immediate attention. 
+                                Current global threat level is <strong>{metrics.global_threat_level || 'MEDIUM'}</strong> with 
+                                <strong> {metrics.critical_threats || 0}</strong> critical incidents under active monitoring.
                             </div>
-                            
-                            {metrics.intelligence_summary && (
-                                <div className="intelligence-content">
-                                    <strong>Cyber Mission Summary:</strong> {metrics.intelligence_summary}
-                                </div>
-                            )}
                             
                             <div className="intel-highlights">
                                 <div className="intel-highlight">
-                                    <div className="intel-highlight-value">{newsData.length}</div>
-                                    <div className="intel-highlight-label">Cyber Reports</div>
+                                    <div className="intel-highlight-value">{threatData.filter(t => t.threat_level === 'CRITICAL').length}</div>
+                                    <div className="intel-highlight-label">Critical Threats</div>
                                 </div>
                                 <div className="intel-highlight">
-                                    <div className="intel-highlight-value">{newsData.filter(a => a.intelligence_value === 'HIGH').length}</div>
-                                    <div className="intel-highlight-label">High-Value</div>
+                                    <div className="intel-highlight-value">{threatData.filter(t => t.attack_vectors?.includes('malware')).length}</div>
+                                    <div className="intel-highlight-label">Malware Campaigns</div>
                                 </div>
                                 <div className="intel-highlight">
-                                    <div className="intel-highlight-value">{newsData.filter(a => a.is_fresh).length}</div>
-                                    <div className="intel-highlight-label">Fresh Intel</div>
+                                    <div className="intel-highlight-value">{threatData.filter(t => t.affected_sectors?.includes('healthcare')).length}</div>
+                                    <div className="intel-highlight-label">Healthcare Targeted</div>
                                 </div>
                             </div>
                         </div>
                         
                         <div className="tactical-section">
                             <div className="section-header" style={{borderBottomColor: 'rgba(255, 215, 0, 0.3)', color: '#ffd700'}}>
-                                ⚡ CYBER TACTICAL OPERATIONS STATUS
+                                ⚡ TACTICAL THREAT ANALYSIS
                             </div>
                             
                             <div className="intel-highlights">
                                 <div className="intel-highlight">
-                                    <div className="intel-highlight-value" style={{color: '#ffd700'}}>{metrics.ai_confidence || 88}%</div>
-                                    <div className="intel-highlight-label">CYBER AI READY</div>
+                                    <div className="intel-highlight-value" style={{color: '#ffd700'}}>{metrics.confidence_level || 85}%</div>
+                                    <div className="intel-highlight-label">AI CONFIDENCE</div>
                                 </div>
                                 <div className="intel-highlight">
-                                    <div className="intel-highlight-value" style={{color: '#ffd700'}}>{newsData.filter(a => a.priority_score >= 8).length}</div>
-                                    <div className="intel-highlight-label">ACTIONABLE</div>
+                                    <div className="intel-highlight-value" style={{color: '#ffd700'}}>{threatData.filter(t => t.severity_score >= 8).length}</div>
+                                    <div className="intel-highlight-label">HIGH SEVERITY</div>
                                 </div>
                                 <div className="intel-highlight">
-                                    <div className="intel-highlight-value" style={{color: '#ffd700'}}>{metrics.source_diversity || 8}</div>
-                                    <div className="intel-highlight-label">CYBER SOURCES</div>
+                                    <div className="intel-highlight-value" style={{color: '#ffd700'}}>{metrics.fresh_intel_count || 0}</div>
+                                    <div className="intel-highlight-label">FRESH INTEL</div>
                                 </div>
                             </div>
                             
-                            {metrics.threat_vector_analysis && (
-                                <div className="intelligence-content" style={{color: '#ffec8c'}}>
-                                    <strong>Threat Vector Analysis:</strong> {metrics.threat_vector_analysis}
-                                </div>
-                            )}
-                            
                             <div style={{marginTop: '1.5rem'}}>
                                 <div style={{color: '#ffd700', fontSize: '0.9rem', fontWeight: 'bold', marginBottom: '0.8rem'}}>
-                                    💰 COST OPTIMIZATION STATUS
+                                    🎯 PRIMARY ATTACK VECTORS
                                 </div>
                                 <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', fontSize: '0.85rem'}}>
                                     <div style={{color: '#ffec8c'}}>
-                                        API Efficiency: {costData.api_calls_used || 0}/{costData.api_calls_limit || 8} calls
+                                        Malware: {threatData.filter(t => t.attack_vectors?.includes('malware')).length}
                                     </div>
                                     <div style={{color: '#ffec8c'}}>
-                                        Cost: ${(costData.estimated_cost || 0).toFixed(4)}
+                                        Phishing: {threatData.filter(t => t.attack_vectors?.includes('phishing')).length}
                                     </div>
                                     <div style={{color: '#ffec8c'}}>
-                                        Data Retention: {costData.data_retention_days || 6} days
+                                        Ransomware: {threatData.filter(t => t.attack_vectors?.includes('ransomware')).length}
                                     </div>
                                     <div style={{color: '#ffec8c'}}>
-                                        Space Saved: {costData.cleanup_stats?.space_saved_mb?.toFixed(1) || 0} MB
+                                        Zero-Day: {threatData.filter(t => t.attack_vectors?.includes('zero_day')).length}
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    {/* Enhanced Cyber Intelligence Briefing */}
-                    <div className="news-section">
+                    {/* Threat Intelligence Reports */}
+                    <div className="intel-section">
                         <h2 className="section-title">
-                            🎖️ CYBER INTELLIGENCE BRIEFING
-                            <span className="section-badge">PATRIOTS PROTOCOL CYBER v4.0</span>
+                            🎖️ ACTIVE THREAT INTELLIGENCE REPORTS
+                            <span className="section-badge">PATRIOTS PROTOCOL v4.0</span>
                         </h2>
                         
-                        <div className="news-grid">
-                            {newsData.map((article, index) => (
-                                <div key={index} className={getNewsCardClass(article)}>
-                                    <div className="intel-badges">
-                                        {getIntelligenceBadges(article)}
+                        <div className="intel-grid">
+                            {threatData.map((threat, index) => (
+                                <div key={index} className={getIntelCardClass(threat)}>
+                                    <div className="threat-badges">
+                                        {getThreatBadges(threat)}
                                     </div>
                                     
-                                    <div className="news-header">
-                                        <h3 className="news-title">
-                                            <span className={`threat-indicator threat-${(article.threat_level || 'medium').toLowerCase()}`}></span>
-                                            <span>
-                                                {article.title}
-                                                {article.is_fresh && <span className="fresh-indicator">FRESH</span>}
-                                                <span className={getCategoryBadgeClass(article.category)}>
-                                                    CYBER SECURITY
-                                                </span>
-                                            </span>
+                                    <div className="intel-header">
+                                        <h3 className="intel-title-text">
+                                            <span className={`threat-indicator threat-${(threat.threat_level || 'medium').toLowerCase()}`}></span>
+                                            <span>{threat.title}</span>
                                         </h3>
                                     </div>
                                     
-                                    <div className="news-summary">
-                                        {article.executive_summary || article.full_summary || 'Cyber intelligence summary available.'}
+                                    <div className="intel-summary">
+                                        {threat.summary}
                                     </div>
                                     
-                                    <div className="news-meta-grid">
+                                    <div className="intel-meta-grid">
                                         <div className="meta-item">
-                                            <div className="meta-label">Cyber Source</div>
+                                            <div className="meta-label">Intelligence Source</div>
                                             <div className="meta-value">
-                                                {article.source_url ? (
-                                                    <a href={article.source_url} target="_blank" rel="noopener noreferrer" className="source-link">
-                                                        {article.source} ↗
+                                                {threat.source_url ? (
+                                                    <a href={threat.source_url} target="_blank" rel="noopener noreferrer" className="source-link">
+                                                        {threat.source} ↗
                                                     </a>
                                                 ) : (
-                                                    article.source
+                                                    threat.source
                                                 )}
                                             </div>
                                         </div>
                                         <div className="meta-item">
                                             <div className="meta-label">Threat Level</div>
-                                            <div className="meta-value">{article.threat_level || 'MEDIUM'}</div>
+                                            <div className="meta-value">{threat.threat_level || 'MEDIUM'}</div>
                                         </div>
                                         <div className="meta-item">
-                                            <div className="meta-label">Intel Value</div>
-                                            <div className="meta-value">{article.intelligence_value || 'HIGH'}</div>
+                                            <div className="meta-label">Severity Score</div>
+                                            <div className="meta-value">{threat.severity_score || 5}/10</div>
                                         </div>
                                         <div className="meta-item">
-                                            <div className="meta-label">Analysis Time</div>
-                                            <div className="meta-value">{article.reading_time || 'N/A'}</div>
+                                            <div className="meta-label">Geolocation</div>
+                                            <div className="meta-value">{threat.geolocation || 'Global'}</div>
                                         </div>
                                     </div>
                                     
-                                    {article.confidence && (
+                                    {threat.confidence && (
                                         <div className="confidence-section">
                                             <div className="confidence-header">
                                                 <span style={{fontSize: '0.8rem', color: '#ff6666', fontWeight: 'bold'}}>
-                                                    CYBER CONFIDENCE ASSESSMENT
+                                                    INTELLIGENCE CONFIDENCE
                                                 </span>
                                                 <span style={{fontSize: '0.9rem', color: '#ffffff'}}>
-                                                    {Math.round((article.confidence || 0) * 100)}%
+                                                    {Math.round((threat.confidence || 0) * 100)}%
                                                 </span>
                                             </div>
                                             <div className="confidence-bar">
                                                 <div 
                                                     className="confidence-fill" 
-                                                    style={{width: `${(article.confidence || 0) * 100}%`}}
+                                                    style={{width: `${(threat.confidence || 0) * 100}%`}}
                                                 ></div>
                                             </div>
                                         </div>
                                     )}
                                     
-                                    {(article.keywords && article.keywords.length > 0) && (
+                                    {(threat.keywords && threat.keywords.length > 0) && (
                                         <div className="keywords-section">
-                                            <div className="keywords-title">🔍 CYBER THREAT INDICATORS</div>
+                                            <div className="keywords-title">🔍 THREAT INDICATORS</div>
                                             <div className="keywords-list">
-                                                {article.keywords.slice(0, 10).map((keyword, idx) => (
+                                                {threat.keywords.slice(0, 8).map((keyword, idx) => (
                                                     <span key={idx} className="keyword-tag">{keyword}</span>
                                                 ))}
                                             </div>
                                         </div>
                                     )}
                                     
-                                    {article.ai_analysis && (
+                                    {threat.ai_analysis && (
                                         <div className="ai-analysis">
                                             <div className="ai-header">
                                                 <div className="ai-label">
-                                                    🤖 CYBER AI ANALYSIS
+                                                    🤖 AI THREAT ANALYSIS
                                                 </div>
-                                                {article.strategic_importance && (
-                                                    <div className="ai-importance">
-                                                        {article.strategic_importance}
+                                                {threat.severity_score && (
+                                                    <div className="severity-badge">
+                                                        SEVERITY {threat.severity_score}/10
                                                     </div>
                                                 )}
                                             </div>
                                             
                                             <div className="ai-text">
-                                                {article.ai_analysis}
+                                                {threat.ai_analysis}
                                             </div>
                                         </div>
                                     )}
                                     
                                     <div className="patriots-footer">
                                         <div className="patriots-ref">
-                                            📡 {article.patriots_protocol_ref || 'PATRIOTS PROTOCOL CYBER INTELLIGENCE NETWORK'}
+                                            📡 PATRIOTS PROTOCOL CYBER INTELLIGENCE
                                         </div>
-                                        <div className="reading-time">
-                                            {article.reading_time || 'Quick analysis'}
+                                        <div style={{color: '#ffcccc'}}>
+                                            Sectors: {(threat.affected_sectors || []).join(', ') || 'Multiple'}
                                         </div>
                                     </div>
                                 </div>
@@ -1469,7 +1269,7 @@
             );
         }
 
-        // Initialize Patriots Protocol Cyber v4.0 System
+        // Initialize Patriots Protocol System
         ReactDOM.render(
             <>
                 <MatrixBackground />
@@ -1478,25 +1278,22 @@
             document.getElementById('app')
         );
 
-        // Patriots Protocol Cost-Optimized Cyber v4.0 System Initialization
-        console.log('🎖️ PATRIOTS PROTOCOL COST-OPTIMIZED CYBER v4.0 - AI Intelligence Network Initialized');
-        console.log('💰 Cost Optimization: Enabled with API limits and data retention');
+        console.log('🎖️ PATRIOTS PROTOCOL CYBER INTELLIGENCE v4.0 - Network Initialized');
         console.log('🔗 Repository: https://github.com/danishnizmi/Patriots_Protocol');
     </script>
 
-    <!-- Patriots Protocol Cyber v4.0 Web Interface -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🎖️ Patriots Protocol Cost-Optimized Cyber v4.0 Web Interface Activated');
+            console.log('🎖️ Patriots Protocol Cyber Intelligence v4.0 Interface Activated');
             
-            // Enhanced status updates with cyber theme and cost monitoring
+            // Status updates
             setInterval(function() {
                 const now = new Date();
                 const lastUpdateEl = document.getElementById('lastUpdate');
                 if (lastUpdateEl) {
                     lastUpdateEl.textContent = now.toLocaleString();
                     
-                    // Add brief highlight animation with cyber theme
+                    // Brief highlight animation
                     lastUpdateEl.style.color = '#ff4444';
                     setTimeout(() => {
                         lastUpdateEl.style.color = '#00ff41';
@@ -1507,7 +1304,7 @@
             // Repository link tracking
             document.addEventListener('click', function(e) {
                 if (e.target.classList.contains('patriots-link')) {
-                    console.log('🎖️ Accessing Patriots Protocol Cost-Optimized Cyber Repository');
+                    console.log('🎖️ Accessing Patriots Protocol Repository');
                 }
             });
         });
