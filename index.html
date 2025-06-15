@@ -250,11 +250,11 @@
         }
 
         .metric-card {
-            background: linear-gradient(135deg, rgba(255, 68, 68, 0.1), rgba(255, 68, 68, 0.05));
-            border: 1px solid #ff4444;
+            background: linear-gradient(135deg, rgba(255, 68, 68, 0.08), rgba(255, 68, 68, 0.03));
+            border: 1px solid rgba(255, 68, 68, 0.6);
             padding: 1.2rem;
             border-radius: 10px;
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(8px);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -361,14 +361,14 @@
         }
 
         .threat-card {
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.8));
-            border: 1px solid #ff4444;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4));
+            border: 1px solid rgba(255, 68, 68, 0.6);
             padding: 1.8rem;
             border-radius: 12px;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(5px);
         }
 
         .threat-card::before {
@@ -378,7 +378,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 68, 68, 0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 65, 0.05), transparent);
             transition: left 0.5s;
         }
 
@@ -387,19 +387,20 @@
         }
 
         .threat-card:hover {
-            background: linear-gradient(135deg, rgba(255, 68, 68, 0.05), rgba(0, 0, 0, 0.9));
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5));
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 68, 68, 0.2);
+            box-shadow: 0 8px 25px rgba(0, 255, 65, 0.15);
+            border-color: rgba(0, 255, 65, 0.8);
         }
 
         .threat-card.critical-threat {
             border-left: 4px solid #ff0000;
-            background: linear-gradient(135deg, rgba(255, 0, 0, 0.08), rgba(0, 0, 0, 0.9));
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.1), rgba(0, 0, 0, 0.6));
         }
 
         .threat-card.high-threat {
             border-left: 4px solid #ffd700;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(0, 0, 0, 0.9));
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.08), rgba(0, 0, 0, 0.6));
         }
 
         .threat-header {
@@ -1305,11 +1306,16 @@
                                     
                                     <div className="threat-header">
                                         <div className="threat-title">
-                                            {threat.threat_level === 'CRITICAL' && threat.source_url ? (
-                                                <a href={threat.source_url} target="_blank" rel="noopener noreferrer" className="critical-link">
-                                                    🚨 {threat.title}
+                                            {threat.source_url ? (
+                                                <a href={threat.source_url} target="_blank" rel="noopener noreferrer" 
+                                                   className={threat.threat_level === 'CRITICAL' ? 'critical-link' : 'source-link'}>
+                                                    {threat.threat_level === 'CRITICAL' ? '🚨 ' : ''}{threat.title}
                                                 </a>
-                                            ) : threat.title}
+                                            ) : (
+                                                <>
+                                                    {threat.threat_level === 'CRITICAL' ? '🚨 ' : ''}{threat.title}
+                                                </>
+                                            )}
                                         </div>
                                     </div>
                                     
