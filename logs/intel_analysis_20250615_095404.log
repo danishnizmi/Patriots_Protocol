@@ -1,0 +1,121 @@
+🎖️  2025-06-15 09:54:04 UTC - INTEL - INFO - 🎖️  PATRIOTS PROTOCOL - Intelligence Gathering Mission Initiated
+🎖️  2025-06-15 09:54:04 UTC - INTEL - INFO - 🎖️  Patriots Protocol Intelligence Engine v4.0 - Intelligence Network Active
+🎖️  2025-06-15 09:54:04 UTC - INTEL - INFO - 🔍 Gathering intelligence from CISA_ADVISORIES...
+🎖️  2025-06-15 09:54:04 UTC - INTEL - WARNING - ⚠️  CISA_ADVISORIES returned 404
+🎖️  2025-06-15 09:54:04 UTC - INTEL - INFO - 🔍 Gathering intelligence from KREBS_SECURITY...
+🎖️  2025-06-15 09:54:05 UTC - INTEL - INFO - 📊 KREBS_SECURITY: 8 intelligence reports collected
+🎖️  2025-06-15 09:54:05 UTC - INTEL - INFO - 🔍 Gathering intelligence from SANS_ISC...
+🎖️  2025-06-15 09:54:06 UTC - INTEL - INFO - 📊 SANS_ISC: 3 intelligence reports collected
+🎖️  2025-06-15 09:54:06 UTC - INTEL - INFO - 🔍 Gathering intelligence from DARK_READING...
+🎖️  2025-06-15 09:54:06 UTC - INTEL - WARNING - ⚠️  DARK_READING returned 403
+🎖️  2025-06-15 09:54:06 UTC - INTEL - INFO - 🔍 Gathering intelligence from BLEEPING_COMPUTER...
+🎖️  2025-06-15 09:54:06 UTC - INTEL - INFO - 📊 BLEEPING_COMPUTER: 7 intelligence reports collected
+🎖️  2025-06-15 09:54:06 UTC - INTEL - INFO - 🔍 Gathering intelligence from SECURITY_WEEK...
+🎖️  2025-06-15 09:54:06 UTC - INTEL - WARNING - ⚠️  SECURITY_WEEK returned 403
+🎖️  2025-06-15 09:54:06 UTC - INTEL - INFO - 🔍 Gathering intelligence from THREAT_POST...
+🎖️  2025-06-15 09:54:07 UTC - INTEL - INFO - 📊 THREAT_POST: 9 intelligence reports collected
+🎖️  2025-06-15 09:54:07 UTC - INTEL - INFO - 🔍 Gathering intelligence from CYBER_SCOOP...
+🎖️  2025-06-15 09:54:07 UTC - INTEL - INFO - 📊 CYBER_SCOOP: 10 intelligence reports collected
+🎖️  2025-06-15 09:54:07 UTC - INTEL - INFO - 🎯 Total Intelligence Collected: 37 reports from 8 sources
+🎖️  2025-06-15 09:54:08 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:54:08 UTC - INTEL - INFO - Retrying request to /chat/completions in 21.000000 seconds
+🎖️  2025-06-15 09:54:29 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:54:29 UTC - INTEL - INFO - Retrying request to /chat/completions in 0.903107 seconds
+🎖️  2025-06-15 09:54:30 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:54:30 UTC - INTEL - ERROR - ❌ AI intelligence analysis failed: Error code: 429 - {'error': {'code': 'RateLimitReached', 'message': 'Rate limit of 150 per 86400s exceeded for UserByModelByDay. Please wait 16797 seconds before retrying.', 'details': 'Rate limit of 150 per 86400s exceeded for UserByModelByDay. Please wait 16797 seconds before retrying.'}}
+🎖️  2025-06-15 09:54:30 UTC - INTEL - INFO - ✅ Intelligence Processed: Inside a Dark Adtech Empire Fed by Fake CAPTCHAs... (Level: HIGH)
+🎖️  2025-06-15 09:54:30 UTC - INTEL - INFO - ✅ Intelligence Processed: Patch Tuesday, June 2025 Edition... (Level: HIGH)
+🎖️  2025-06-15 09:54:30 UTC - INTEL - INFO - ✅ Intelligence Processed: U.S. Sanctions Cloud Provider ‘Funnull’ as Top Source of ‘Pi... (Level: MEDIUM)
+🎖️  2025-06-15 09:54:30 UTC - INTEL - INFO - ✅ Intelligence Processed: Pakistan Arrests 21 in ‘Heartsender’ Malware Service... (Level: LOW)
+🎖️  2025-06-15 09:54:32 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:54:32 UTC - INTEL - INFO - Retrying request to /chat/completions in 0.408054 seconds
+🎖️  2025-06-15 09:54:33 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:54:33 UTC - INTEL - INFO - Retrying request to /chat/completions in 0.837897 seconds
+🎖️  2025-06-15 09:54:33 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:54:33 UTC - INTEL - ERROR - ❌ AI intelligence analysis failed: Error code: 429 - {'error': {'code': 'RateLimitReached', 'message': 'Rate limit of 150 per 86400s exceeded for UserByModelByDay. Please wait 16794 seconds before retrying.', 'details': 'Rate limit of 150 per 86400s exceeded for UserByModelByDay. Please wait 16794 seconds before retrying.'}}
+🎖️  2025-06-15 09:54:33 UTC - INTEL - INFO - ✅ Intelligence Processed: Oops: DanaBot Malware Devs Infected Their Own PCs... (Level: LOW)
+🎖️  2025-06-15 09:54:33 UTC - INTEL - INFO - ✅ Intelligence Processed: KrebsOnSecurity Hit With Near-Record 6.3 Tbps DDoS... (Level: MEDIUM)
+🎖️  2025-06-15 09:54:33 UTC - INTEL - INFO - ✅ Intelligence Processed: Breachforums Boss to Pay $700k in Healthcare Breach... (Level: LOW)
+🎖️  2025-06-15 09:54:33 UTC - INTEL - INFO - ✅ Intelligence Processed: Patch Tuesday, May 2025 Edition... (Level: CRITICAL)
+🎖️  2025-06-15 09:54:36 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:54:36 UTC - INTEL - INFO - Retrying request to /chat/completions in 0.387631 seconds
+🎖️  2025-06-15 09:54:36 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:54:36 UTC - INTEL - INFO - Retrying request to /chat/completions in 0.825498 seconds
+🎖️  2025-06-15 09:54:59 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:54:59 UTC - INTEL - ERROR - ❌ AI intelligence analysis failed: Error code: 429 - {'error': {'code': 'RateLimitReached', 'message': 'Rate limit of 150 per 86400s exceeded for UserByModelByDay. Please wait 16768 seconds before retrying.', 'details': 'Rate limit of 150 per 86400s exceeded for UserByModelByDay. Please wait 16768 seconds before retrying.'}}
+🎖️  2025-06-15 09:54:59 UTC - INTEL - INFO - ✅ Intelligence Processed: &#x5b;Guest Diary&#x5d; Anatomy of a Linux SSH Honeypot Atta... (Level: HIGH)
+🎖️  2025-06-15 09:54:59 UTC - INTEL - INFO - ✅ Intelligence Processed: Quasar RAT Delivered Through Bat Files, (Wed, Jun 11th)... (Level: LOW)
+🎖️  2025-06-15 09:54:59 UTC - INTEL - INFO - ✅ Intelligence Processed: Microsoft Patch Tuesday June 2025, (Tue, Jun 10th)... (Level: HIGH)
+🎖️  2025-06-15 09:54:59 UTC - INTEL - INFO - ✅ Intelligence Processed: WestJet investigates cyberattack disrupting internal systems... (Level: LOW)
+🎖️  2025-06-15 09:55:01 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:55:01 UTC - INTEL - INFO - Retrying request to /chat/completions in 0.451277 seconds
+🎖️  2025-06-15 09:55:02 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:55:02 UTC - INTEL - INFO - Retrying request to /chat/completions in 0.834569 seconds
+🎖️  2025-06-15 09:55:03 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:55:03 UTC - INTEL - ERROR - ❌ AI intelligence analysis failed: Error code: 429 - {'error': {'code': 'RateLimitReached', 'message': 'Rate limit of 150 per 86400s exceeded for UserByModelByDay. Please wait 16765 seconds before retrying.', 'details': 'Rate limit of 150 per 86400s exceeded for UserByModelByDay. Please wait 16765 seconds before retrying.'}}
+🎖️  2025-06-15 09:55:03 UTC - INTEL - INFO - ✅ Intelligence Processed: Anubis ransomware adds wiper to destroy files beyond recover... (Level: HIGH)
+🎖️  2025-06-15 09:55:03 UTC - INTEL - INFO - ✅ Intelligence Processed: Discord flaw lets hackers reuse expired invites in malware c... (Level: HIGH)
+🎖️  2025-06-15 09:55:03 UTC - INTEL - INFO - ✅ Intelligence Processed: Microsoft confirms auth issues affecting Microsoft 365 users... (Level: LOW)
+🎖️  2025-06-15 09:55:03 UTC - INTEL - INFO - ✅ Intelligence Processed: Victoria’s Secret restores critical systems after cyberattac... (Level: LOW)
+🎖️  2025-06-15 09:55:05 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:55:05 UTC - INTEL - INFO - Retrying request to /chat/completions in 24.000000 seconds
+🎖️  2025-06-15 09:55:29 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:55:29 UTC - INTEL - INFO - Retrying request to /chat/completions in 0.902189 seconds
+🎖️  2025-06-15 09:55:30 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:55:30 UTC - INTEL - ERROR - ❌ AI intelligence analysis failed: Error code: 429 - {'error': {'code': 'RateLimitReached', 'message': 'Rate limit of 150 per 86400s exceeded for UserByModelByDay. Please wait 16737 seconds before retrying.', 'details': 'Rate limit of 150 per 86400s exceeded for UserByModelByDay. Please wait 16737 seconds before retrying.'}}
+🎖️  2025-06-15 09:55:30 UTC - INTEL - INFO - ✅ Intelligence Processed: Cloudflare: Outage not caused by security incident, data is ... (Level: LOW)
+🎖️  2025-06-15 09:55:30 UTC - INTEL - INFO - ✅ Intelligence Processed: Trend Micro fixes critical vulnerabilities in multiple produ... (Level: MEDIUM)
+🎖️  2025-06-15 09:55:30 UTC - INTEL - INFO - ✅ Intelligence Processed: Student Loan Breach Exposes 2.5M Records... (Level: LOW)
+🎖️  2025-06-15 09:55:30 UTC - INTEL - INFO - ✅ Intelligence Processed: Watering Hole Attacks Push ScanBox Keylogger... (Level: HIGH)
+🎖️  2025-06-15 09:55:32 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:55:32 UTC - INTEL - INFO - Retrying request to /chat/completions in 0.436287 seconds
+🎖️  2025-06-15 09:55:33 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:55:33 UTC - INTEL - INFO - Retrying request to /chat/completions in 0.868966 seconds
+🎖️  2025-06-15 09:55:34 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:55:34 UTC - INTEL - ERROR - ❌ AI intelligence analysis failed: Error code: 429 - {'error': {'code': 'RateLimitReached', 'message': 'Rate limit of 150 per 86400s exceeded for UserByModelByDay. Please wait 16734 seconds before retrying.', 'details': 'Rate limit of 150 per 86400s exceeded for UserByModelByDay. Please wait 16734 seconds before retrying.'}}
+🎖️  2025-06-15 09:55:34 UTC - INTEL - INFO - ✅ Intelligence Processed: Tentacles of ‘0ktapus’ Threat Group Victimize 130 Firms... (Level: MEDIUM)
+🎖️  2025-06-15 09:55:34 UTC - INTEL - INFO - ✅ Intelligence Processed: Ransomware Attacks are on the Rise... (Level: HIGH)
+🎖️  2025-06-15 09:55:34 UTC - INTEL - INFO - ✅ Intelligence Processed: Cybercriminals Are Selling Access to Chinese Surveillance Ca... (Level: LOW)
+🎖️  2025-06-15 09:55:34 UTC - INTEL - INFO - ✅ Intelligence Processed: Twitter Whistleblower Complaint: The TL;DR Version... (Level: LOW)
+🎖️  2025-06-15 09:55:36 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:55:36 UTC - INTEL - INFO - Retrying request to /chat/completions in 0.470875 seconds
+🎖️  2025-06-15 09:55:36 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:55:36 UTC - INTEL - INFO - Retrying request to /chat/completions in 0.781654 seconds
+🎖️  2025-06-15 09:55:37 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:55:37 UTC - INTEL - ERROR - ❌ AI intelligence analysis failed: Error code: 429 - {'error': {'code': 'RateLimitReached', 'message': 'Rate limit of 150 per 86400s exceeded for UserByModelByDay. Please wait 16730 seconds before retrying.', 'details': 'Rate limit of 150 per 86400s exceeded for UserByModelByDay. Please wait 16730 seconds before retrying.'}}
+🎖️  2025-06-15 09:55:37 UTC - INTEL - INFO - ✅ Intelligence Processed: Firewall Bug Under Active Attack Triggers CISA Warning... (Level: LOW)
+🎖️  2025-06-15 09:55:37 UTC - INTEL - INFO - ✅ Intelligence Processed: iPhone Users Urged to Update to Patch 2 Zero-Days... (Level: CRITICAL)
+🎖️  2025-06-15 09:55:37 UTC - INTEL - INFO - ✅ Intelligence Processed: Google Patches Chrome’s Fifth Zero-Day of the Year... (Level: CRITICAL)
+🎖️  2025-06-15 09:55:37 UTC - INTEL - INFO - ✅ Intelligence Processed: Predator spyware activity surfaces in new places with new tr... (Level: LOW)
+🎖️  2025-06-15 09:55:39 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:55:39 UTC - INTEL - INFO - Retrying request to /chat/completions in 0.390301 seconds
+🎖️  2025-06-15 09:55:40 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:55:40 UTC - INTEL - INFO - Retrying request to /chat/completions in 0.946507 seconds
+🎖️  2025-06-15 09:55:41 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:55:41 UTC - INTEL - ERROR - ❌ AI intelligence analysis failed: Error code: 429 - {'error': {'code': 'RateLimitReached', 'message': 'Rate limit of 150 per 86400s exceeded for UserByModelByDay. Please wait 16726 seconds before retrying.', 'details': 'Rate limit of 150 per 86400s exceeded for UserByModelByDay. Please wait 16726 seconds before retrying.'}}
+🎖️  2025-06-15 09:55:41 UTC - INTEL - INFO - ✅ Intelligence Processed: Paragon spyware found on the phones of Euro journos... (Level: LOW)
+🎖️  2025-06-15 09:55:41 UTC - INTEL - INFO - ✅ Intelligence Processed: Digital rights groups sound alarm on Stop CSAM Act... (Level: LOW)
+🎖️  2025-06-15 09:55:41 UTC - INTEL - INFO - ✅ Intelligence Processed: Global law enforcement action in Asia nets large infrastruct... (Level: LOW)
+🎖️  2025-06-15 09:55:41 UTC - INTEL - INFO - ✅ Intelligence Processed: Dems want watchdog study of two troubled federally-funded vu... (Level: HIGH)
+🎖️  2025-06-15 09:55:43 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:55:43 UTC - INTEL - INFO - Retrying request to /chat/completions in 0.399162 seconds
+🎖️  2025-06-15 09:55:43 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:55:43 UTC - INTEL - INFO - Retrying request to /chat/completions in 0.772530 seconds
+🎖️  2025-06-15 09:55:44 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:55:44 UTC - INTEL - ERROR - ❌ AI intelligence analysis failed: Error code: 429 - {'error': {'code': 'RateLimitReached', 'message': 'Rate limit of 150 per 86400s exceeded for UserByModelByDay. Please wait 16723 seconds before retrying.', 'details': 'Rate limit of 150 per 86400s exceeded for UserByModelByDay. Please wait 16723 seconds before retrying.'}}
+🎖️  2025-06-15 09:55:44 UTC - INTEL - INFO - ✅ Intelligence Processed: How Amazon Web Services uses AI to be a security ‘force mult... (Level: LOW)
+🎖️  2025-06-15 09:55:44 UTC - INTEL - INFO - ✅ Intelligence Processed: Microsoft Patch Tuesday addresses 66 vulnerabilities, includ... (Level: CRITICAL)
+🎖️  2025-06-15 09:55:44 UTC - INTEL - INFO - ✅ Intelligence Processed: House Homeland Chairman Mark Green’s departure could leave c... (Level: LOW)
+🎖️  2025-06-15 09:55:44 UTC - INTEL - INFO - ✅ Intelligence Processed: United Natural Foods fulfilling orders on ‘limited basis’ in... (Level: LOW)
+🎖️  2025-06-15 09:55:46 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:55:46 UTC - INTEL - INFO - Retrying request to /chat/completions in 0.498131 seconds
+🎖️  2025-06-15 09:55:47 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:55:47 UTC - INTEL - INFO - Retrying request to /chat/completions in 0.861767 seconds
+🎖️  2025-06-15 09:55:48 UTC - INTEL - INFO - HTTP Request: POST https://models.github.ai/inference/chat/completions "HTTP/1.1 429 Too Many Requests"
+🎖️  2025-06-15 09:55:48 UTC - INTEL - ERROR - ❌ AI intelligence analysis failed: Error code: 429 - {'error': {'code': 'RateLimitReached', 'message': 'Rate limit of 15 per 60s exceeded for UserByModelByMinute. Please wait 42 seconds before retrying.', 'details': 'Rate limit of 15 per 60s exceeded for UserByModelByMinute. Please wait 42 seconds before retrying.'}}
+🎖️  2025-06-15 09:55:48 UTC - INTEL - INFO - ✅ Intelligence Processed: House committee sets CISA budget cut at $135M, not Trump’s $... (Level: LOW)
+🎖️  2025-06-15 09:55:50 UTC - INTEL - INFO - ✅ Intelligence Mission Complete
+🎖️  2025-06-15 09:55:50 UTC - INTEL - INFO - 🎯 Threat Intelligence Reports: 37
+🎖️  2025-06-15 09:55:50 UTC - INTEL - INFO - 🔥 Global Threat Level: CRITICAL
+🎖️  2025-06-15 09:55:50 UTC - INTEL - INFO - ⚠️  Critical Threats: 4
+🎖️  2025-06-15 09:55:50 UTC - INTEL - INFO - 🎖️  Patriots Protocol Intelligence Network: OPERATIONAL
