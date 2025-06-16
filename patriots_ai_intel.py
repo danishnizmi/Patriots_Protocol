@@ -204,13 +204,14 @@ class SmartPatriotsIntelligence:
             return self.enhanced_basic_analysis(title, content, source_config['name'])
 
         try:
-            from openai import AsyncOpenAI
+            # Fixed OpenAI client initialization
+            import aiohttp
             
-            client = AsyncOpenAI(
-                base_url=self.base_url,
-                api_key=self.api_token
-            )
-
+            headers = {
+                'Authorization': f'Bearer {self.api_token}',
+                'Content-Type': 'application/json'
+            }
+            
             # Value-focused analysis prompt
             analysis_prompt = f"""As a senior cybersecurity analyst, analyze this threat and extract MAXIMUM ACTIONABLE VALUE:
 
@@ -259,31 +260,38 @@ Provide comprehensive analysis in JSON format:
 
 Focus on ACTIONABLE intelligence. Avoid generic advice. Be specific about what organizations should DO."""
 
-            self.ai_calls_made += 1
-            logger.info(f"🤖 Premium AI Analysis ({self.ai_calls_made}/{self.max_ai_calls_per_run}): {title[:50]}...")
-
-            response = await client.chat.completions.create(
-                model=self.model,
-                messages=[
+            payload = {
+                "model": self.model,
+                "messages": [
                     {"role": "system", "content": "You are a senior cybersecurity analyst specializing in actionable threat intelligence. Provide specific, valuable insights that help security teams make decisions."},
                     {"role": "user", "content": analysis_prompt}
                 ],
-                temperature=0.1,
-                max_tokens=1200
-            )
-            
-            ai_response = response.choices[0].message.content
-            
-            # Extract JSON from response
-            json_start = ai_response.find('{')
-            json_end = ai_response.rfind('}') + 1
-            
-            if json_start != -1 and json_end > json_start:
-                json_content = ai_response[json_start:json_end]
-                analysis_result = json.loads(json_content)
-                logger.info("✅ Premium AI analysis completed successfully")
-                return self.format_premium_analysis(analysis_result)
-                
+                "temperature": 0.1,
+                "max_tokens": 1200
+            }
+
+            self.ai_calls_made += 1
+            logger.info(f"🤖 Premium AI Analysis ({self.ai_calls_made}/{self.max_ai_calls_per_run}): {title[:50]}...")
+
+            async with self.session.post(self.base_url + "/chat/completions", 
+                                       headers=headers, 
+                                       json=payload) as response:
+                if response.status == 200:
+                    result = await response.json()
+                    ai_response = result['choices'][0]['message']['content']
+                    
+                    # Extract JSON from response
+                    json_start = ai_response.find('{')
+                    json_end = ai_response.rfind('}') + 1
+                    
+                    if json_start != -1 and json_end > json_start:
+                        json_content = ai_response[json_start:json_end]
+                        analysis_result = json.loads(json_content)
+                        logger.info("✅ Premium AI analysis completed successfully")
+                        return self.format_premium_analysis(analysis_result)
+                else:
+                    logger.warning(f"⚠️ Premium AI API error: {response.status}")
+                    
         except Exception as e:
             logger.warning(f"⚠️ Premium AI analysis failed: {str(e)[:100]}... - using enhanced basic analysis")
             
@@ -291,39 +299,43 @@ Focus on ACTIONABLE intelligence. Avoid generic advice. Be specific about what o
 
     def format_premium_analysis(self, ai_result: Dict) -> Dict[str, Any]:
         """Format premium AI analysis into standardized high-value structure"""
-        executive = ai_result.get('executive_summary', {})
-        technical = ai_result.get('technical_intelligence', {})
-        actionable = ai_result.get('actionable_response', {})
-        context = ai_result.get('threat_context', {})
-        
-        risk_assessment = executive.get('risk_assessment', {})
-        threat_classification = technical.get('threat_classification', {})
-        impact_scope = technical.get('impact_scope', {})
-        
-        return {
-            'technical_analysis': technical.get('attack_analysis', 'Advanced threat analysis in progress'),
-            'key_insights': executive.get('key_insights', []),
-            'critical_finding': executive.get('critical_finding', ''),
-            'threat_family': threat_classification.get('family', 'Advanced Threat'),
-            'attack_sophistication': threat_classification.get('sophistication', 'MEDIUM'),
-            'attack_vectors': threat_classification.get('attack_vectors', []),
-            'technical_indicators': threat_classification.get('indicators', []),
-            'affected_sectors': impact_scope.get('affected_sectors', []),
-            'geographic_scope': impact_scope.get('geographic_impact', []),
-            'impact_scale': impact_scope.get('scale', ''),
-            'cve_references': context.get('cve_references', []),
-            'threat_actors': context.get('threat_actors', []),
-            'campaign_details': context.get('campaign_details', ''),
-            'risk_score': risk_assessment.get('risk_score', 5),
-            'severity': risk_assessment.get('severity', 'MEDIUM'),
-            'urgency': risk_assessment.get('urgency', 'ROUTINE'),
-            'confidence': risk_assessment.get('confidence', 0.7),
-            'immediate_actions': actionable.get('immediate_actions', []),
-            'detection_guidance': actionable.get('detection_guidance', []),
-            'mitigation_steps': actionable.get('mitigation_steps', []),
-            'business_impact': actionable.get('business_impact', 'Impact assessment requires further analysis'),
-            'analysis_type': 'Premium AI'
-        }
+        try:
+            executive = ai_result.get('executive_summary', {})
+            technical = ai_result.get('technical_intelligence', {})
+            actionable = ai_result.get('actionable_response', {})
+            context = ai_result.get('threat_context', {})
+            
+            risk_assessment = executive.get('risk_assessment', {})
+            threat_classification = technical.get('threat_classification', {})
+            impact_scope = technical.get('impact_scope', {})
+            
+            return {
+                'technical_analysis': technical.get('attack_analysis', 'Advanced threat analysis in progress'),
+                'key_insights': executive.get('key_insights', []),
+                'critical_finding': executive.get('critical_finding', ''),
+                'threat_family': threat_classification.get('family', 'Advanced Threat'),
+                'attack_sophistication': threat_classification.get('sophistication', 'MEDIUM'),
+                'attack_vectors': threat_classification.get('attack_vectors', []),
+                'technical_indicators': threat_classification.get('indicators', []),
+                'affected_sectors': impact_scope.get('affected_sectors', []),
+                'geographic_scope': impact_scope.get('geographic_impact', []),
+                'impact_scale': impact_scope.get('scale', ''),
+                'cve_references': context.get('cve_references', []),
+                'threat_actors': context.get('threat_actors', []),
+                'campaign_details': context.get('campaign_details', ''),
+                'risk_score': risk_assessment.get('risk_score', 5),
+                'severity': risk_assessment.get('severity', 'MEDIUM'),
+                'urgency': risk_assessment.get('urgency', 'ROUTINE'),
+                'confidence': risk_assessment.get('confidence', 0.7),
+                'immediate_actions': actionable.get('immediate_actions', []),
+                'detection_guidance': actionable.get('detection_guidance', []),
+                'mitigation_steps': actionable.get('mitigation_steps', []),
+                'business_impact': actionable.get('business_impact', 'Impact assessment requires further analysis'),
+                'analysis_type': 'Premium AI'
+            }
+        except Exception as e:
+            logger.warning(f"⚠️ Error formatting premium analysis: {e}")
+            return self.enhanced_basic_analysis("", "", "AI")
 
     def enhanced_basic_analysis(self, title: str, content: str, source: str) -> Dict[str, Any]:
         """Enhanced basic analysis with improved value extraction"""
