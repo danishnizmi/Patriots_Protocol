@@ -46,48 +46,82 @@ jobs:
                 "title": "Patriots Protocol Intelligence Network Initialization",
                 "summary": "AI-driven cyber threat intelligence network successfully deployed. Monitoring global threat feeds and preparing tactical assessments for enhanced security posture.",
                 "source": "PATRIOTS_PROTOCOL",
-                "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)",
+                "timestamp": "2025-06-16T00:00:00.000Z",
                 "threat_level": "LOW",
-                "ai_analysis": "Intelligence network operational. All AI threat analysis models active and ready for comprehensive cyber threat processing and assessment.",
-                "confidence": 0.95,
-                "severity_score": 2,
-                "keywords": ["INTELLIGENCE", "NETWORK", "OPERATIONAL"],
+                "ai_technical_analysis": "Intelligence network operational. All AI threat analysis models active and ready for comprehensive cyber threat processing and assessment.",
+                "confidence_score": 0.95,
+                "severity_rating": 2,
                 "attack_vectors": ["monitoring"],
                 "affected_sectors": ["intelligence"],
-                "geolocation": "Global",
-                "threat_actors": ["none"],
-                "technical_details": {
-                  "malware_families": [],
-                  "attack_techniques": [],
-                  "vulnerabilities": [],
-                  "indicators": []
+                "geographic_scope": "Global",
+                "country_code": "GLOBAL",
+                "threat_actors": [],
+                "mitigation_priority": "ROUTINE",
+                "cve_references": [],
+                "threat_family": "System Initialization",
+                "attack_sophistication": "LOW",
+                "risk_score": 2,
+                "correlation_id": "init001",
+                "summary_preview": "AI-driven cyber threat intelligence network successfully deployed.",
+                "full_summary": "AI-driven cyber threat intelligence network successfully deployed. Monitoring global threat feeds and preparing tactical assessments for enhanced security posture.",
+                "key_insights": ["Intelligence Network Operational", "AI Systems Active", "Global Monitoring Enabled"],
+                "actionable_items": ["Monitor system performance", "Validate data feeds", "Ensure continuous operation"],
+                "technical_indicators": ["initialization", "operational", "ready"],
+                "business_impact": "Minimal business impact - system initialization complete",
+                "timeline_urgency": "ROUTINE",
+                "smart_analysis": {
+                  "analysis_type": "Enhanced Basic",
+                  "confidence": 0.95,
+                  "critical_finding": "Intelligence network successfully initialized",
+                  "detection_guidance": [],
+                  "mitigation_steps": []
                 }
               }
             ],
             "metrics": {
-              "total_threats": 0,
+              "total_threats": 1,
               "critical_threats": 0,
               "high_threats": 0,
               "medium_threats": 0,
-              "low_threats": 0,
-              "threat_actors_identified": 0,
-              "attack_techniques_observed": 0,
-              "sectors_targeted": 0,
+              "low_threats": 1,
               "global_threat_level": "LOW",
               "intelligence_confidence": 95,
+              "recent_threats_24h": 0,
+              "top_threat_families": [
+                {
+                  "name": "System Initialization",
+                  "count": 1,
+                  "risk_level": "LOW",
+                  "avg_risk": 2.0
+                }
+              ],
+              "geographic_distribution": {
+                "GLOBAL": 1
+              },
+              "zero_day_count": 0,
+              "trending_threats": [],
+              "ai_analysis_quality": 75,
+              "threat_velocity": "stable",
               "fresh_intel_24h": 0,
               "source_credibility": 0.95,
               "emerging_trends": ["Intelligence Network Deployment", "AI Integration", "Threat Monitoring"],
               "threat_evolution": "stable"
             },
-            "lastUpdated": "$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)",
-            "version": "4.0",
+            "lastUpdated": "2025-06-16T00:00:00.000Z",
+            "version": "4.2",
+            "ai_usage": {
+              "api_calls_made": 0,
+              "api_calls_limit": 12,
+              "efficiency_score": 40,
+              "cost_optimization": "MAXIMUM_VALUE"
+            },
             "intelligence_summary": {
               "mission_status": "OPERATIONAL",
-              "threats_analyzed": 0,
+              "threats_analyzed": 1,
               "intelligence_sources": 8,
               "confidence_level": 95,
               "threat_landscape": "LOW",
+              "next_update": "2025-06-16T06:00:00.000Z",
               "repository": "https://github.com/danishnizmi/Patriots_Protocol"
             }
           }
@@ -139,7 +173,8 @@ jobs:
           if [ -f "data/news-analysis.json" ]; then
             echo "✅ Intelligence data file found"
             
-            python3 -c "
+            # Create validation script to avoid complex inline Python
+            cat > validate_data.py << 'VALIDATION_SCRIPT'
           import json
           import sys
           
@@ -160,13 +195,16 @@ jobs:
               
               print(f'✅ Intelligence data structure valid')
               print(f'📊 Articles: {len(articles)}')
-              print(f'🎯 Threat Level: {metrics.get(\"global_threat_level\", \"LOW\")}')
-              print(f'🤖 Confidence: {metrics.get(\"intelligence_confidence\", 85)}%')
+              print(f'🎯 Threat Level: {metrics.get("global_threat_level", "LOW")}')
+              print(f'🤖 Confidence: {metrics.get("intelligence_confidence", 85)}%')
               
           except Exception as e:
               print(f'❌ Intelligence data validation failed: {e}')
               sys.exit(1)
-          "
+          VALIDATION_SCRIPT
+            
+            python3 validate_data.py
+            
           else
             echo "❌ Intelligence data file missing"
             exit 1
