@@ -637,7 +637,7 @@
 
             useEffect(() => {
                 loadThreatData();
-                const interval = setInterval(loadThreatData, 300000); // 5 minutes
+                const interval = setInterval(loadThreatData, 300000);
                 return () => clearInterval(interval);
             }, []);
 
@@ -649,7 +649,7 @@
                         const data = await response.json();
                         setThreatData(data.articles || []);
                         setMetrics(data.metrics || {});
-                        setSummary(data.summary || {});
+                        setSummary(data.intelligence_summary || {});
                         updateStatusBar(data);
                     } else {
                         throw new Error(`HTTP ${response.status}`);
@@ -680,7 +680,7 @@
                 }
                 
                 if (systemStatus) {
-                    const status = data.summary?.status || 'OPERATIONAL';
+                    const status = data.intelligence_summary?.mission_status || 'OPERATIONAL';
                     systemStatus.textContent = `SYSTEM ${status}`;
                 }
             }
@@ -791,7 +791,7 @@
                             )}
                             
                             <div className="summary-item">
-                                <strong>Confidence:</strong> {metrics.confidence_level || 0}%
+                                <strong>Confidence:</strong> {metrics.intelligence_confidence || 0}%
                             </div>
                         </div>
                     </div>
@@ -894,12 +894,3 @@
                                 🔄 REFRESH
                             </button>
                             <div style={{position: 'relative'}}>
-                                <button 
-                                    className="action-button" 
-                                    onClick={() => setShowExportMenu(!showExportMenu)}
-                                >
-                                    📊 EXPORT
-                                </button>
-                                {showExportMenu && (
-                                    <div className="export-menu">
-                                        <div className="export
