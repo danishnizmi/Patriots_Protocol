@@ -1,13 +1,39 @@
-name: Patriots Protocol - Cyber Threat Intelligence
+name: Patriots Protocol - Enhanced AI Cyber Intelligence v4.2
 
 on:
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '0 */6 * * *'  # Every 6 hours for optimal cost/value balance
   workflow_dispatch:
+    inputs:
+      ai_analysis_intensity:
+        description: 'AI Analysis Mode'
+        required: false
+        default: 'smart'
+        type: choice
+        options:
+        - 'basic'
+        - 'smart' 
+        - 'premium'
+        - 'maximum'
+      geographic_focus:
+        description: 'Geographic Intelligence Focus'
+        required: false
+        default: 'global'
+        type: choice
+        options:
+        - 'global'
+        - 'us_focus'
+        - 'apac_focus'
+        - 'eu_focus'
+      force_premium_analysis:
+        description: 'Force premium AI analysis for all high-value threats'
+        required: false
+        default: 'false'
+        type: boolean
   push:
     branches: ["main"]
     paths:
-      - 'patriots_intel.py'
+      - 'patriots_ai_intel.py'
       - 'index.html'
       - '.github/workflows/ai-news-analysis.yml'
 
@@ -17,217 +43,439 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "patriots-intelligence"
+  group: "patriots-enhanced-intel-v42"
   cancel-in-progress: true
 
+env:
+  INTELLIGENCE_RETENTION_DAYS: 14
+  PYTHON_VERSION: '3.11'
+  AI_ANALYSIS_MODE: ${{ github.event.inputs.ai_analysis_intensity || 'smart' }}
+  GEOGRAPHIC_FOCUS: ${{ github.event.inputs.geographic_focus || 'global' }}
+  MAX_AI_CALLS: 12
+  ENHANCED_VERSION: "4.2"
+
 jobs:
-  threat-intelligence:
+  enhanced-threat-intelligence:
     runs-on: ubuntu-latest
     outputs:
-      mission_status: ${{ steps.analysis.outputs.mission_status }}
-      threats_analyzed: ${{ steps.analysis.outputs.threats_analyzed }}
-      critical_threats: ${{ steps.analysis.outputs.critical_threats }}
-      global_threat_level: ${{ steps.analysis.outputs.global_threat_level }}
+      mission_status: ${{ steps.enhanced_analysis.outputs.mission_status }}
+      threats_analyzed: ${{ steps.enhanced_analysis.outputs.threats_analyzed }}
+      critical_threats: ${{ steps.enhanced_analysis.outputs.critical_threats }}
+      zero_day_activity: ${{ steps.enhanced_analysis.outputs.zero_day_activity }}
+      global_threat_level: ${{ steps.enhanced_analysis.outputs.global_threat_level }}
+      intelligence_confidence: ${{ steps.enhanced_analysis.outputs.intelligence_confidence }}
+      ai_quality_score: ${{ steps.enhanced_analysis.outputs.ai_quality_score }}
+      cost_efficiency: ${{ steps.enhanced_analysis.outputs.cost_efficiency }}
+      premium_analysis_ratio: ${{ steps.enhanced_analysis.outputs.premium_analysis_ratio }}
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout Patriots Protocol Repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 2
 
-      - name: Setup Python Environment
+      - name: Setup Enhanced Python Environment
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: ${{ env.PYTHON_VERSION }}
 
-      - name: Install Dependencies
+      - name: Install Optimized Dependencies with Caching
         run: |
-          echo "Installing Patriots Protocol dependencies..."
-          pip install --upgrade pip
-          pip install aiohttp feedparser python-dateutil
+          echo "🎖️ Installing Patriots Protocol Enhanced Dependencies v4.2..."
+          
+          pip install --upgrade pip setuptools wheel
+          
+          # Core intelligence processing with optimized versions
+          pip install aiohttp==3.9.0 feedparser==6.0.10 python-dateutil==2.8.2
+          
+          # Enhanced data processing (optional for cost optimization)
+          pip install pandas numpy || echo "⚠️ Advanced data processing libraries unavailable"
+          
+          # AI analysis capabilities with fallback
+          pip install openai==1.3.0 || echo "⚠️ OpenAI unavailable - will use enhanced basic analysis"
+          
+          # Performance and reliability enhancements
+          pip install aiofiles tenacity || echo "⚠️ Performance enhancements unavailable"
+          
+          echo "✅ Enhanced dependencies v4.2 configured for ${AI_ANALYSIS_MODE} analysis"
 
-      - name: Validate Intelligence Engine
+      - name: Validate Enhanced Intelligence Engine v4.2
         run: |
-          echo "Validating intelligence engine..."
-          if [ -f "patriots_intel.py" ]; then
-            echo "✅ Intelligence engine found"
-            python -m py_compile patriots_intel.py
+          echo "🔍 Validating Enhanced Intelligence Engine v4.2..."
+          
+          if [ -f "patriots_ai_intel.py" ]; then
+            echo "✅ Enhanced intelligence engine found"
+            
+            # Comprehensive syntax validation
+            python -m py_compile patriots_ai_intel.py
             echo "✅ Syntax validation passed"
+            
+            # Enhanced feature detection
+            enhanced_features=0
+            
+            if grep -q "SmartPatriotsIntelligence" patriots_ai_intel.py; then
+              echo "✅ Smart intelligence class detected"
+              enhanced_features=$((enhanced_features + 1))
+            fi
+            
+            if grep -q "premium_ai_analysis" patriots_ai_intel.py; then
+              echo "✅ Premium AI analysis detected"
+              enhanced_features=$((enhanced_features + 1))
+            fi
+            
+            if grep -q "should_use_premium_ai_analysis" patriots_ai_intel.py; then
+              echo "✅ Smart AI optimization detected"
+              enhanced_features=$((enhanced_features + 1))
+            fi
+            
+            if grep -q "calculate_accurate_metrics" patriots_ai_intel.py; then
+              echo "✅ Enhanced metrics calculation detected"
+              enhanced_features=$((enhanced_features + 1))
+            fi
+            
+            if grep -q "key_insights" patriots_ai_intel.py; then
+              echo "✅ Value-driven insights extraction detected"
+              enhanced_features=$((enhanced_features + 1))
+            fi
+            
+            if grep -q "create_smart_summary" patriots_ai_intel.py; then
+              echo "✅ Smart content handling detected"
+              enhanced_features=$((enhanced_features + 1))
+            fi
+            
+            echo "📊 Enhanced features detected: ${enhanced_features}/6"
+            
+            if [ "$enhanced_features" -ge "5" ]; then
+              echo "✅ Enhanced intelligence engine v4.2 fully validated"
+            else
+              echo "⚠️ Some enhanced features missing - continuing with available features"
+            fi
+            
           else
-            echo "❌ Intelligence engine not found"
+            echo "❌ Enhanced intelligence engine not found"
             exit 1
           fi
 
-      - name: Create Data Directory
+      - name: Create Enhanced Intelligence Infrastructure v4.2
         run: |
-          mkdir -p data
-          echo "📁 Data directory created"
+          echo "🛡️ Creating enhanced intelligence infrastructure v4.2..."
+          
+          # Enhanced directory structure with better organization
+          mkdir -p data/{raw,processed,analytics,exports,cache,backups}
+          mkdir -p logs/{intelligence,performance,errors,audit}
+          mkdir -p backup/{daily,emergency,archive}
+          mkdir -p cache/{feeds,analysis,metrics}
+          
+          # Set secure permissions
+          chmod 750 data logs backup cache
+          chmod 750 data/{raw,processed,analytics,exports,cache,backups}
+          chmod 750 logs/{intelligence,performance,errors,audit}
+          chmod 750 cache/{feeds,analysis,metrics}
+          
+          # Create enhanced configuration
+          cat > data/config.json << EOF
+          {
+            "version": "4.2",
+            "ai_analysis_mode": "${AI_ANALYSIS_MODE}",
+            "geographic_focus": "${GEOGRAPHIC_FOCUS}",
+            "max_ai_calls": ${MAX_AI_CALLS},
+            "mission_timestamp": "$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)",
+            "cost_optimization": "MAXIMUM_VALUE",
+            "enhanced_features": {
+              "premium_ai_analysis": true,
+              "smart_content_handling": true,
+              "value_driven_insights": true,
+              "accurate_metrics": true,
+              "enhanced_ui": true,
+              "matrix_theme": true
+            },
+            "performance_targets": {
+              "ai_quality_threshold": 85,
+              "cost_efficiency_target": 75,
+              "intelligence_confidence_min": 80
+            }
+          }
+          EOF
+          
+          echo "Advanced intelligence infrastructure v4.2 initialized" > logs/intelligence/system_init_v42.log
+          echo "$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ): Infrastructure v4.2 ready for ${AI_ANALYSIS_MODE} analysis" > logs/performance/startup.log
+          
+          echo "✅ Enhanced infrastructure v4.2 ready with maximum value optimization"
 
-      - name: Execute Intelligence Mission
-        id: analysis
+      - name: Execute Enhanced Intelligence Mission v4.2
+        id: enhanced_analysis
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MODEL_TOKEN: ${{ secrets.MODEL_TOKEN }}
+          AI_ANALYSIS_MODE: ${{ env.AI_ANALYSIS_MODE }}
+          GEOGRAPHIC_FOCUS: ${{ env.GEOGRAPHIC_FOCUS }}
+          FORCE_PREMIUM_ANALYSIS: ${{ github.event.inputs.force_premium_analysis }}
         run: |
-          echo "🎖️ Starting Patriots Protocol Intelligence Mission..."
-          echo "📅 Mission Start: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          echo "🎖️ PATRIOTS PROTOCOL v4.2 - Enhanced Value Intelligence Mission Starting..."
+          echo "📅 Mission Start: $(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)"
+          echo "🤖 AI Analysis Mode: ${AI_ANALYSIS_MODE}"
+          echo "🌍 Geographic Focus: ${GEOGRAPHIC_FOCUS}"
+          echo "💰 Cost Optimization: MAXIMUM VALUE"
+          echo "🔥 Enhanced Features: Premium AI, Smart Content, Value Insights"
+          echo "🛡️ Executing enhanced cyber threat intelligence operation v4.2..."
           
-          python patriots_intel.py 2>&1 | tee intelligence.log || echo "Intelligence script completed with warnings"
+          # Performance monitoring with enhanced metrics
+          MISSION_START=$(date +%s)
           
+          # Execute enhanced intelligence mission with comprehensive logging
+          python patriots_ai_intel.py 2>&1 | tee logs/intelligence/enhanced_mission_v42_$(date +%Y%m%d_%H%M%S).log
+          
+          # Calculate enhanced performance metrics
+          MISSION_END=$(date +%s)
+          EXECUTION_TIME=$((MISSION_END - MISSION_START))
+          echo "⏱️ Mission execution: ${EXECUTION_TIME} seconds" | tee -a logs/performance/mission_timing.log
+          
+          # Enhanced metrics extraction with better error handling
           if [ -f ./data/news-analysis.json ]; then
-            echo "✅ Intelligence data generated successfully"
+            echo "✅ Enhanced intelligence data v4.2 generated successfully"
             
             python3 -c "
-import json
-import os
-
-try:
-    with open('./data/news-analysis.json', 'r') as f:
-        data = json.load(f)
-    
-    metrics = data.get('metrics', {})
-    summary = data.get('intelligence_summary', {})
-    
-    threats_analyzed = len(data.get('articles', []))
-    critical_threats = metrics.get('critical_threats', 0)
-    global_threat_level = metrics.get('global_threat_level', 'MONITORING')
-    mission_status = summary.get('mission_status', 'OPERATIONAL')
-    
-    print(f'🎖️ Patriots Protocol Intelligence Summary:')
-    print(f'   📊 Mission Status: {mission_status}')
-    print(f'   🎯 Threats Analyzed: {threats_analyzed}')
-    print(f'   🚨 Critical Threats: {critical_threats}')
-    print(f'   🔥 Global Threat Level: {global_threat_level}')
-    
-    with open(os.environ['GITHUB_OUTPUT'], 'a') as gh_output:
-        gh_output.write(f'mission_status={mission_status}\\n')
-        gh_output.write(f'threats_analyzed={threats_analyzed}\\n')
-        gh_output.write(f'critical_threats={critical_threats}\\n')
-        gh_output.write(f'global_threat_level={global_threat_level}\\n')
-    
-    print(f'\\n🎖️ Patriots Protocol Intelligence Mission: COMPLETE')
-    
-except Exception as e:
-    print(f'❌ Metrics extraction failed: {e}')
-    with open(os.environ['GITHUB_OUTPUT'], 'a') as gh_output:
-        gh_output.write('mission_status=ERROR\\n')
-        gh_output.write('threats_analyzed=0\\n')
-        gh_output.write('critical_threats=0\\n')
-        gh_output.write('global_threat_level=ERROR\\n')
-" || echo "Metrics extraction failed - using defaults"
+          import json
+          import sys
+          import os
+          from datetime import datetime
+          
+          try:
+              with open('./data/news-analysis.json', 'r') as f:
+                  data = json.load(f)
+              
+              articles = data.get('articles', [])
+              metrics = data.get('metrics', {})
+              summary = data.get('intelligence_summary', {})
+              ai_usage = data.get('ai_usage', {})
+              
+              # Core enhanced metrics
+              threats_analyzed = len(articles)
+              critical_threats = metrics.get('critical_threats', 0)
+              zero_day_activity = metrics.get('zero_day_count', 0)
+              global_threat_level = metrics.get('global_threat_level', 'MONITORING')
+              intelligence_confidence = metrics.get('intelligence_confidence', 0)
+              mission_status = summary.get('mission_status', 'UNKNOWN')
+              
+              # Enhanced v4.2 metrics
+              ai_quality_score = metrics.get('ai_analysis_quality', 0)
+              ai_calls_made = ai_usage.get('api_calls_made', 0)
+              ai_calls_limit = ai_usage.get('api_calls_limit', 12)
+              cost_efficiency = ai_usage.get('efficiency_score', 0)
+              
+              # Calculate premium analysis ratio
+              premium_analyzed = sum(1 for article in articles 
+                                   if article.get('smart_analysis', {}).get('analysis_type') == 'Premium AI')
+              premium_ratio = int((premium_analyzed / max(threats_analyzed, 1)) * 100)
+              
+              # Enhanced mission summary
+              print(f'🎖️ Patriots Protocol v4.2 Enhanced Intelligence Summary:')
+              print(f'   📊 Mission Status: {mission_status}')
+              print(f'   🎯 Threats Analyzed: {threats_analyzed}')
+              print(f'   🚨 Critical Threats: {critical_threats}')
+              print(f'   💥 Zero-Day Activity: {zero_day_activity}')
+              print(f'   🔥 Global Threat Level: {global_threat_level}')
+              print(f'   🎯 Intelligence Confidence: {intelligence_confidence}%')
+              print(f'   🤖 AI Quality Score: {ai_quality_score}%')
+              print(f'   💰 AI Usage: {ai_calls_made}/{ai_calls_limit} calls')
+              print(f'   📈 Cost Efficiency: {cost_efficiency}%')
+              print(f'   🎯 Premium Analysis: {premium_ratio}% of threats')
+              print(f'   ⏱️ Execution Time: ${EXECUTION_TIME} seconds')
+              
+              # Enhanced performance assessment
+              performance_score = (ai_quality_score + cost_efficiency + intelligence_confidence) / 3
+              if performance_score >= 80:
+                  print('   ✅ Performance: EXCELLENT (v4.2 Optimal)')
+              elif performance_score >= 70:
+                  print('   ✅ Performance: VERY GOOD (v4.2 Enhanced)')
+              elif performance_score >= 60:
+                  print('   ✅ Performance: GOOD (v4.2 Standard)')
+              else:
+                  print('   ⚠️ Performance: NEEDS OPTIMIZATION')
+              
+              # Value assessment
+              value_indicators = 0
+              if critical_threats > 0: value_indicators += 1
+              if zero_day_activity > 0: value_indicators += 1
+              if ai_quality_score >= 80: value_indicators += 1
+              if premium_ratio >= 30: value_indicators += 1
+              
+              print(f'   💎 Value Score: {value_indicators}/4 ({"High" if value_indicators >= 3 else "Medium" if value_indicators >= 2 else "Standard"})')
+              
+              # Set GitHub Actions outputs with all enhanced metrics
+              outputs = {
+                  'mission_status': mission_status,
+                  'threats_analyzed': threats_analyzed,
+                  'critical_threats': critical_threats,
+                  'zero_day_activity': zero_day_activity,
+                  'global_threat_level': global_threat_level,
+                  'intelligence_confidence': intelligence_confidence,
+                  'ai_quality_score': ai_quality_score,
+                  'cost_efficiency': cost_efficiency,
+                  'premium_analysis_ratio': premium_ratio
+              }
+              
+              with open(os.environ['GITHUB_OUTPUT'], 'a') as gh_output:
+                  for key, value in outputs.items():
+                      gh_output.write(f'{key}={value}\\n')
+              
+              print(f'\\n🎖️ Patriots Protocol v4.2 Enhanced Intelligence Mission: COMPLETE')
+              
+          except Exception as e:
+              print(f'❌ Enhanced metrics extraction failed: {e}', file=sys.stderr)
+              # Set comprehensive error fallback values
+              error_outputs = {
+                  'mission_status': 'ERROR',
+                  'threats_analyzed': 0,
+                  'critical_threats': 0,
+                  'zero_day_activity': 0,
+                  'global_threat_level': 'ERROR',
+                  'intelligence_confidence': 0,
+                  'ai_quality_score': 0,
+                  'cost_efficiency': 0,
+                  'premium_analysis_ratio': 0
+              }
+              
+              with open(os.environ['GITHUB_OUTPUT'], 'a') as gh_output:
+                  for key, value in error_outputs.items():
+                      gh_output.write(f'{key}={value}\\n')
+              sys.exit(1)
+          "
           else
-            echo "⚠️ No intelligence data generated - creating default"
+            echo "⚠️ No enhanced intelligence data generated"
             cat >> $GITHUB_OUTPUT << EOF
-mission_status=NO_DATA
-threats_analyzed=0
-critical_threats=0
-global_threat_level=NO_DATA
-EOF
+          mission_status=NO_DATA
+          threats_analyzed=0
+          critical_threats=0
+          zero_day_activity=0
+          global_threat_level=NO_DATA
+          intelligence_confidence=0
+          ai_quality_score=0
+          cost_efficiency=0
+          premium_analysis_ratio=0
+          EOF
           fi
 
-      - name: Validate Data Structure
+      - name: Enhanced Data Validation and Backup v4.2
         run: |
-          echo "🔍 Validating data structure..."
+          echo "🔍 Enhanced data validation and backup v4.2..."
           
           if [ -f ./data/news-analysis.json ]; then
+            # Comprehensive JSON structure validation
             python3 -c "
-import json
-import sys
-
-try:
-    with open('./data/news-analysis.json', 'r') as f:
-        data = json.load(f)
-    
-    required_fields = ['articles', 'metrics', 'intelligence_summary']
-    missing = [field for field in required_fields if field not in data]
-    
-    if missing:
-        print(f'❌ Missing required fields: {missing}')
-        print('⚠️ Continuing with available data...')
-    
-    articles = data.get('articles', [])
-    print(f'✅ Validation passed: {len(articles)} threats processed')
-    
-except Exception as e:
-    print(f'❌ Validation failed: {e}')
-    print('⚠️ Continuing anyway...')
-" || echo "Validation completed with warnings"
-            echo "✅ Data structure validation completed"
+          import json
+          import sys
+          
+          try:
+              with open('./data/news-analysis.json', 'r') as f:
+                  data = json.load(f)
+              
+              # Enhanced validation for v4.2 structure
+              required_fields = ['articles', 'metrics', 'intelligence_summary', 'ai_usage', 'version']
+              missing = [field for field in required_fields if field not in data]
+              
+              if missing:
+                  print(f'❌ Missing required fields: {missing}')
+                  sys.exit(1)
+              
+              # Validate version
+              if data.get('version') != '4.2':
+                  print(f'⚠️ Version mismatch: expected 4.2, got {data.get(\"version\")}')
+              
+              # Validate enhanced article structure
+              articles = data.get('articles', [])
+              enhanced_articles = 0
+              for article in articles[:5]:  # Check first 5
+                  if 'key_insights' in article or 'smart_analysis' in article:
+                      enhanced_articles += 1
+              
+              enhancement_ratio = (enhanced_articles / max(len(articles[:5]), 1)) * 100
+              print(f'✅ Enhanced validation passed: {len(articles)} articles ({enhancement_ratio:.0f}% enhanced)')
+              
+              # Validate metrics structure
+              metrics = data.get('metrics', {})
+              required_metrics = ['total_threats', 'global_threat_level', 'ai_analysis_quality']
+              missing_metrics = [m for m in required_metrics if m not in metrics]
+              
+              if missing_metrics:
+                  print(f'⚠️ Missing metrics: {missing_metrics}')
+              else:
+                  print(f'✅ Metrics validation passed')
+              
+          except Exception as e:
+              print(f'❌ Enhanced validation failed: {e}')
+              sys.exit(1)
+          "
+          
+            # Create enhanced backup with metadata
+            timestamp=$(date +%Y%m%d-%H%M%S)
+            mkdir -p backup/enhanced/v42/${timestamp}
+            
+            # Copy intelligence data with enhanced metadata
+            cp ./data/news-analysis.json ./backup/enhanced/v42/${timestamp}/intelligence-v42-${timestamp}.json
+            
+            # Create backup metadata
+            cat > ./backup/enhanced/v42/${timestamp}/metadata.json << EOF
+          {
+            "backup_timestamp": "$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)",
+            "version": "4.2",
+            "threats_count": $(jq '.articles | length' ./data/news-analysis.json 2>/dev/null || echo 0),
+            "mission_status": "$(jq -r '.intelligence_summary.mission_status // "UNKNOWN"' ./data/news-analysis.json 2>/dev/null)",
+            "ai_quality": $(jq '.metrics.ai_analysis_quality // 0' ./data/news-analysis.json 2>/dev/null || echo 0),
+            "backup_size": $(stat -f%z ./data/news-analysis.json 2>/dev/null || stat -c%s ./data/news-analysis.json 2>/dev/null || echo 0)
+          }
+          EOF
+            
+            echo "✅ Enhanced validation and backup v4.2 completed with metadata"
           else
-            echo "❌ Intelligence data file missing"
-            echo "Creating minimal data file..."
-            cat > ./data/news-analysis.json << 'EOF'
-{
-  "articles": [],
-  "metrics": {
-    "total_threats": 0,
-    "critical_threats": 0,
-    "high_threats": 0,
-    "medium_threats": 0,
-    "low_threats": 0,
-    "global_threat_level": "MONITORING",
-    "intelligence_confidence": 0,
-    "recent_threats_24h": 0,
-    "top_threat_families": [],
-    "geographic_distribution": {},
-    "zero_day_count": 0,
-    "trending_threats": [],
-    "ai_analysis_quality": 0,
-    "threat_velocity": "stable",
-    "fresh_intel_24h": 0,
-    "source_credibility": 0.0,
-    "emerging_trends": [],
-    "threat_evolution": "stable"
-  },
-  "lastUpdated": "2025-06-17T00:00:00.000Z",
-  "version": "4.2",
-  "ai_usage": {
-    "api_calls_made": 0,
-    "api_calls_limit": 12,
-    "efficiency_score": 0,
-    "cost_optimization": "MAXIMUM_VALUE"
-  },
-  "intelligence_summary": {
-    "mission_status": "STANDBY",
-    "threats_analyzed": 0,
-    "intelligence_sources": 8,
-    "confidence_level": 0,
-    "threat_landscape": "MONITORING",
-    "next_update": "2025-06-17T06:00:00.000Z",
-    "repository": "https://github.com/danishnizmi/Patriots_Protocol"
-  }
-}
-EOF
+            echo "❌ Enhanced intelligence data file missing"
+            exit 1
           fi
 
-      - name: Commit Intelligence Data
+      - name: Commit Enhanced Intelligence Data v4.2
         run: |
-          git config --local user.email "patriots@cyber.ai"
-          git config --local user.name "Patriots Protocol Intelligence"
+          # Configure git with enhanced identity
+          git config --local user.email "patriots-enhanced-v42@cyber.ai"
+          git config --local user.name "Patriots Protocol Enhanced Intelligence v4.2"
           
+          # Stage files with enhanced patterns
           git add data/news-analysis.json 2>/dev/null || true
+          git add logs/intelligence/ 2>/dev/null || true
+          git add backup/enhanced/v42/ 2>/dev/null || true
           
+          # Check for changes
           if git diff --staged --quiet; then
-            echo "📋 No new intelligence data to commit"
+            echo "📋 No new enhanced intelligence data to commit"
           else
-            COMMIT_MSG="🎖️ Patriots Protocol: Cyber Threat Intelligence Update"
+            # Create enhanced commit message with full metrics
+            COMMIT_MSG="🎖️ Patriots Protocol v4.2: Enhanced AI Cyber Intelligence"
             COMMIT_MSG="${COMMIT_MSG}\n\n📅 Mission: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-            COMMIT_MSG="${COMMIT_MSG}\n🎯 Analyzed: ${{ steps.analysis.outputs.threats_analyzed }} threats"
-            COMMIT_MSG="${COMMIT_MSG}\n🚨 Critical: ${{ steps.analysis.outputs.critical_threats }}"
-            COMMIT_MSG="${COMMIT_MSG}\n🔥 Threat Level: ${{ steps.analysis.outputs.global_threat_level }}"
-            COMMIT_MSG="${COMMIT_MSG}\n📊 Status: ${{ steps.analysis.outputs.mission_status }}"
+            COMMIT_MSG="${COMMIT_MSG}\n🎯 Analyzed: ${{ steps.enhanced_analysis.outputs.threats_analyzed }} threats"
+            COMMIT_MSG="${COMMIT_MSG}\n🚨 Critical: ${{ steps.enhanced_analysis.outputs.critical_threats }}"
+            COMMIT_MSG="${COMMIT_MSG}\n💥 Zero-Day Activity: ${{ steps.enhanced_analysis.outputs.zero_day_activity }}"
+            COMMIT_MSG="${COMMIT_MSG}\n🔥 Threat Level: ${{ steps.enhanced_analysis.outputs.global_threat_level }}"
+            COMMIT_MSG="${COMMIT_MSG}\n🎯 Confidence: ${{ steps.enhanced_analysis.outputs.intelligence_confidence }}%"
+            COMMIT_MSG="${COMMIT_MSG}\n🤖 AI Quality: ${{ steps.enhanced_analysis.outputs.ai_quality_score }}%"
+            COMMIT_MSG="${COMMIT_MSG}\n💰 Cost Efficiency: ${{ steps.enhanced_analysis.outputs.cost_efficiency }}%"
+            COMMIT_MSG="${COMMIT_MSG}\n🎯 Premium Analysis: ${{ steps.enhanced_analysis.outputs.premium_analysis_ratio }}%"
+            COMMIT_MSG="${COMMIT_MSG}\n📊 Status: ${{ steps.enhanced_analysis.outputs.mission_status }}"
+            COMMIT_MSG="${COMMIT_MSG}\n\n🔗 Enhanced Intelligence v4.2: https://github.com/danishnizmi/Patriots_Protocol"
+            COMMIT_MSG="${COMMIT_MSG}\n💎 Features: Premium AI • Smart Content • Value Insights • Matrix UI"
             
-            echo -e "$COMMIT_MSG" > commit_message.txt
-            git commit -F commit_message.txt || echo "No changes to commit"
-            git push || echo "Push failed - continuing"
+            echo -e "$COMMIT_MSG" > enhanced_commit_message_v42.txt
+            git commit -F enhanced_commit_message_v42.txt
+            git push
             
-            echo "✅ Intelligence data committed and deployed"
+            echo "✅ Enhanced intelligence data v4.2 committed and deployed"
           fi
 
-  deploy-dashboard:
+  deploy-enhanced-dashboard:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: threat-intelligence
+    needs: enhanced-threat-intelligence
     if: always()
     steps:
       - name: Checkout Repository
@@ -238,90 +486,171 @@ EOF
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Validate Dashboard
+      - name: Enhanced Dashboard Validation v4.2
         run: |
-          echo "🌐 Validating Patriots Protocol Dashboard..."
+          echo "🌐 Validating Enhanced Patriots Protocol Dashboard v4.2..."
           
           if [ -f "index.html" ]; then
-            echo "✅ Dashboard found"
+            echo "✅ Enhanced dashboard found"
             
-            if grep -q "PATRIOTS PROTOCOL" index.html; then
-              echo "✅ Dashboard title found"
-            else
-              echo "❌ Dashboard title missing"
-              exit 1
+            # Comprehensive feature detection for v4.2
+            enhanced_features=0
+            
+            if grep -q "EnhancedThreatDashboard" index.html; then
+              echo "✅ Enhanced dashboard component detected"
+              enhanced_features=$((enhanced_features + 1))
             fi
             
-            if grep -q "CYBER THREAT INTELLIGENCE" index.html; then
-              echo "✅ Intelligence content found"
-            else
-              echo "❌ Intelligence content missing"
-              exit 1
+            if grep -q "matrix.*background" index.html; then
+              echo "✅ Matrix background detected"
+              enhanced_features=$((enhanced_features + 1))
             fi
             
+            if grep -q "key.*insights" index.html; then
+              echo "✅ Key insights display detected"
+              enhanced_features=$((enhanced_features + 1))
+            fi
+            
+            if grep -q "cyber.*rain" index.html; then
+              echo "✅ Cyber rain effect detected"
+              enhanced_features=$((enhanced_features + 1))
+            fi
+            
+            if grep -q "smart.*summary" index.html; then
+              echo "✅ Smart summary handling detected"
+              enhanced_features=$((enhanced_features + 1))
+            fi
+            
+            if grep -q "technical.*analysis" index.html; then
+              echo "✅ Enhanced technical analysis display detected"
+              enhanced_features=$((enhanced_features + 1))
+            fi
+            
+            if grep -q "v4\.2" index.html; then
+              echo "✅ Version 4.2 branding detected"
+              enhanced_features=$((enhanced_features + 1))
+            fi
+            
+            echo "📊 Enhanced dashboard features: ${enhanced_features}/7"
+            
+            if [ "$enhanced_features" -ge "5" ]; then
+              echo "✅ Enhanced dashboard v4.2 fully validated"
+            else
+              echo "⚠️ Some enhanced features missing - dashboard will still function"
+            fi
           else
-            echo "❌ Dashboard not found"
+            echo "❌ Enhanced dashboard missing"
             exit 1
           fi
 
-      - name: Upload Dashboard
+      - name: Upload Enhanced Dashboard
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
 
-      - name: Deploy Dashboard
+      - name: Deploy Enhanced Dashboard
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Deployment Success
+      - name: Enhanced Deployment Success v4.2
         run: |
-          echo "🎖️ ═══════════════════════════════════════════════════"
-          echo "     PATRIOTS PROTOCOL - INTELLIGENCE DEPLOYED"
-          echo "  ═══════════════════════════════════════════════════"
+          echo "🎖️ ═══════════════════════════════════════════════════════════════════"
+          echo "     PATRIOTS PROTOCOL v4.2 - ENHANCED INTELLIGENCE DEPLOYED"
+          echo "  ═══════════════════════════════════════════════════════════════════"
           echo "  🌐 Dashboard: ${{ steps.deployment.outputs.page_url }}"
-          echo "  📊 Mission: ${{ needs.threat-intelligence.outputs.mission_status }}"
-          echo "  🎯 Threats: ${{ needs.threat-intelligence.outputs.threats_analyzed }}"
-          echo "  🚨 Critical: ${{ needs.threat-intelligence.outputs.critical_threats }}"
-          echo "  🔥 Level: ${{ needs.threat-intelligence.outputs.global_threat_level }}"
+          echo "  📊 Mission: ${{ needs.enhanced-threat-intelligence.outputs.mission_status }}"
+          echo "  🎯 Threats: ${{ needs.enhanced-threat-intelligence.outputs.threats_analyzed }}"
+          echo "  🚨 Critical: ${{ needs.enhanced-threat-intelligence.outputs.critical_threats }}"
+          echo "  💥 Zero-Day: ${{ needs.enhanced-threat-intelligence.outputs.zero_day_activity }}"
+          echo "  🔥 Level: ${{ needs.enhanced-threat-intelligence.outputs.global_threat_level }}"
+          echo "  🤖 AI Quality: ${{ needs.enhanced-threat-intelligence.outputs.ai_quality_score }}%"
+          echo "  💰 Efficiency: ${{ needs.enhanced-threat-intelligence.outputs.cost_efficiency }}%"
+          echo "  🎯 Premium: ${{ needs.enhanced-threat-intelligence.outputs.premium_analysis_ratio }}%"
+          echo "  💎 Features: Premium AI • Smart Content • Value Insights • Matrix UI"
           echo "  ⏰ Next Update: 6 hours"
-          echo "  ═══════════════════════════════════════════════════"
+          echo "  ═══════════════════════════════════════════════════════════════════"
 
-  mission-summary:
+  enhanced-mission-summary:
     runs-on: ubuntu-latest
-    needs: [threat-intelligence, deploy-dashboard]
+    needs: [enhanced-threat-intelligence, deploy-enhanced-dashboard]
     if: always()
     steps:
-      - name: Patriots Protocol Mission Summary
+      - name: Patriots Protocol Enhanced Mission Summary v4.2
         run: |
-          echo "🎖️ ═══════════════════════════════════════════════════"
-          echo "     PATRIOTS PROTOCOL - INTELLIGENCE MISSION COMPLETE"
-          echo "  ═══════════════════════════════════════════════════"
+          echo "🎖️ ═══════════════════════════════════════════════════════════════════"
+          echo "     PATRIOTS PROTOCOL v4.2 - ENHANCED INTELLIGENCE MISSION COMPLETE"
+          echo "  ═══════════════════════════════════════════════════════════════════"
           echo "  📅 Mission: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-          echo "  📊 Status: ${{ needs.threat-intelligence.outputs.mission_status || 'UNKNOWN' }}"
-          echo "  🎯 Threats Analyzed: ${{ needs.threat-intelligence.outputs.threats_analyzed || '0' }}"
-          echo "  🚨 Critical Threats: ${{ needs.threat-intelligence.outputs.critical_threats || '0' }}"
-          echo "  🔥 Global Threat Level: ${{ needs.threat-intelligence.outputs.global_threat_level || 'UNKNOWN' }}"
-          echo "  🛡️ Intelligence: OPERATIONAL"
+          echo "  📊 Status: ${{ needs.enhanced-threat-intelligence.outputs.mission_status || 'UNKNOWN' }}"
+          echo "  🎯 Threats Analyzed: ${{ needs.enhanced-threat-intelligence.outputs.threats_analyzed || '0' }}"
+          echo "  🚨 Critical Threats: ${{ needs.enhanced-threat-intelligence.outputs.critical_threats || '0' }}"
+          echo "  💥 Zero-Day Activity: ${{ needs.enhanced-threat-intelligence.outputs.zero_day_activity || '0' }}"
+          echo "  🔥 Global Threat Level: ${{ needs.enhanced-threat-intelligence.outputs.global_threat_level || 'UNKNOWN' }}"
+          echo "  🎯 Intelligence Confidence: ${{ needs.enhanced-threat-intelligence.outputs.intelligence_confidence || '0' }}%"
+          echo "  🤖 AI Analysis Quality: ${{ needs.enhanced-threat-intelligence.outputs.ai_quality_score || '0' }}%"
+          echo "  💰 Cost Efficiency: ${{ needs.enhanced-threat-intelligence.outputs.cost_efficiency || '0' }}%"
+          echo "  🎯 Premium Analysis Ratio: ${{ needs.enhanced-threat-intelligence.outputs.premium_analysis_ratio || '0' }}%"
+          echo "  🛡️ Enhanced Intelligence: OPERATIONAL"
+          echo "  💎 Value Features: MAXIMUM"
           echo "  ⏰ Update Frequency: Every 6 hours"
-          echo "  ═══════════════════════════════════════════════════"
+          echo "  ═══════════════════════════════════════════════════════════════════"
           
-          CRITICAL_COUNT="${{ needs.threat-intelligence.outputs.critical_threats || '0' }}"
+          # Enhanced comprehensive assessment
+          CRITICAL_COUNT="${{ needs.enhanced-threat-intelligence.outputs.critical_threats || '0' }}"
+          ZERO_DAY_COUNT="${{ needs.enhanced-threat-intelligence.outputs.zero_day_activity || '0' }}"
+          AI_QUALITY="${{ needs.enhanced-threat-intelligence.outputs.ai_quality_score || '0' }}"
+          COST_EFFICIENCY="${{ needs.enhanced-threat-intelligence.outputs.cost_efficiency || '0' }}"
+          PREMIUM_RATIO="${{ needs.enhanced-threat-intelligence.outputs.premium_analysis_ratio || '0' }}"
+          CONFIDENCE="${{ needs.enhanced-threat-intelligence.outputs.intelligence_confidence || '0' }}"
           
-          echo "🚨 THREAT ASSESSMENT:"
+          echo "🚨 ENHANCED THREAT ASSESSMENT v4.2:"
           
-          if [ "$CRITICAL_COUNT" -gt "2" ]; then
+          if [ "$CRITICAL_COUNT" -gt "3" ]; then
             echo "   🚨 CRITICAL ALERT: $CRITICAL_COUNT critical threats detected"
-            echo "   📋 Immediate attention required"
+            echo "   📋 Immediate Executive Attention Required"
           elif [ "$CRITICAL_COUNT" -gt "0" ]; then
             echo "   ⚠️ ELEVATED ALERT: $CRITICAL_COUNT critical threats detected"
-            echo "   📋 Monitoring and response recommended"
+            echo "   📋 Enhanced monitoring and response recommended"
           else
             echo "   ✅ Threat level stable - standard monitoring active"
           fi
           
+          if [ "$ZERO_DAY_COUNT" -gt "0" ]; then
+            echo "   💥 ZERO-DAY ACTIVITY: $ZERO_DAY_COUNT active exploits detected"
+            echo "   🛡️ Immediate patch management review required"
+          fi
+          
           echo ""
-          echo "🎖️ Patriots Protocol Intelligence Mission Complete"
-          echo "   🔗 Dashboard: Live threat intelligence monitoring"
+          echo "🤖 AI PERFORMANCE & VALUE OPTIMIZATION v4.2:"
+          if [ "$AI_QUALITY" -ge "85" ] && [ "$COST_EFFICIENCY" -ge "75" ] && [ "$PREMIUM_RATIO" -ge "25" ]; then
+            echo "   ✅ AI Performance: EXCELLENT (v4.2 Optimal)"
+            echo "   💎 Value Delivery: MAXIMUM"
+            echo "   💰 Cost Efficiency: OPTIMAL"
+          elif [ "$AI_QUALITY" -ge "75" ] && [ "$COST_EFFICIENCY" -ge "65" ]; then
+            echo "   ✅ AI Performance: VERY GOOD (v4.2 Enhanced)"
+            echo "   💎 Value Delivery: HIGH"
+            echo "   💰 Cost Efficiency: GOOD"
+          elif [ "$AI_QUALITY" -ge "65" ] && [ "$COST_EFFICIENCY" -ge "55" ]; then
+            echo "   ✅ AI Performance: GOOD (v4.2 Standard)"
+            echo "   💎 Value Delivery: MEDIUM"
+            echo "   💰 Cost Efficiency: ACCEPTABLE"
+          else
+            echo "   ⚠️ Performance: OPTIMIZATION NEEDED"
+            echo "   📋 Review AI usage patterns and value extraction"
+          fi
+          
+          echo ""
+          echo "💎 VALUE FEATURES ACTIVE v4.2:"
+          echo "   🎯 Premium AI Analysis: ${PREMIUM_RATIO}% of high-value threats"
+          echo "   📝 Smart Content Handling: Enhanced summaries and key insights"
+          echo "   🔍 Value-Driven Intelligence: Actionable threat analysis"
+          echo "   🎨 Matrix-Inspired UI: Enhanced cyberpunk dashboard"
+          echo "   📊 Accurate Metrics: Comprehensive threat landscape assessment"
+          echo "   ⚡ Smart Cost Optimization: Maximum value per AI call"
+          
+          echo ""
+          echo "🎖️ Patriots Protocol v4.2 Enhanced Intelligence Mission Complete"
+          echo "   🔗 Enhanced Dashboard: Live intelligence with premium features"
           echo "   🛡️ Repository: https://github.com/danishnizmi/Patriots_Protocol"
-          echo "   📈 Next Mission: Scheduled in 6 hours"
-          echo "   💎 Status: OPERATIONAL"
+          echo "   📈 Next Mission: Scheduled in 6 hours for optimal value"
+          echo "   💎 Status: MAXIMUM VALUE OPERATIONAL"
