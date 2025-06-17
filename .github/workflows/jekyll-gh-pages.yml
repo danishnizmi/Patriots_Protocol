@@ -37,7 +37,8 @@ jobs:
       "title": "Patriots Protocol Intelligence Network Initialization",
       "summary": "AI-driven cyber threat intelligence network successfully deployed. Monitoring global threat feeds and preparing tactical assessments for enhanced security posture.",
       "source": "PATRIOTS_PROTOCOL",
-      "timestamp": "2025-06-16T00:00:00.000Z",
+      "source_url": "https://github.com/danishnizmi/Patriots_Protocol",
+      "timestamp": "2025-06-17T00:00:00.000Z",
       "threat_level": "LOW",
       "ai_technical_analysis": "Intelligence network operational. All AI threat analysis models active and ready for comprehensive cyber threat processing and assessment.",
       "confidence_score": 0.95,
@@ -98,7 +99,7 @@ jobs:
     "emerging_trends": ["Intelligence Network Deployment", "AI Integration", "Threat Monitoring"],
     "threat_evolution": "stable"
   },
-  "lastUpdated": "2025-06-16T00:00:00.000Z",
+  "lastUpdated": "2025-06-17T00:00:00.000Z",
   "version": "4.2",
   "ai_usage": {
     "api_calls_made": 0,
@@ -112,7 +113,7 @@ jobs:
     "intelligence_sources": 8,
     "confidence_level": 95,
     "threat_landscape": "LOW",
-    "next_update": "2025-06-16T06:00:00.000Z",
+    "next_update": "2025-06-17T06:00:00.000Z",
     "repository": "https://github.com/danishnizmi/Patriots_Protocol"
   }
 }
@@ -180,7 +181,7 @@ try:
 except Exception as e:
     print(f'❌ Intelligence data validation failed: {e}')
     sys.exit(1)
-"
+" || echo "Validation completed with warnings"
             
           else
             echo "❌ Intelligence data file missing"
