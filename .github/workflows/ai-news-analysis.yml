@@ -2,14 +2,14 @@ name: Patriots Protocol - Cyber Threat Intelligence
 
 on:
   schedule:
-    - cron: '0 */6 * * *'  # Every 6 hours
+    - cron: '0 */6 * * *'
   workflow_dispatch:
   push:
     branches: ["main"]
     paths:
       - 'patriots_intel.py'
       - 'index.html'
-      - '.github/workflows/patriots-intelligence.yml'
+      - '.github/workflows/ai-news-analysis.yml'
 
 permissions:
   contents: write
@@ -65,14 +65,11 @@ jobs:
           echo "🎖️ Starting Patriots Protocol Intelligence Mission..."
           echo "📅 Mission Start: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
           
-          # Execute intelligence mission
           python patriots_intel.py 2>&1 | tee intelligence.log
           
-          # Extract metrics if data file exists
           if [ -f ./data/news-analysis.json ]; then
             echo "✅ Intelligence data generated successfully"
             
-            # Extract metrics using Python
             python3 -c "
 import json
 import os
@@ -95,7 +92,6 @@ try:
     print(f'   🚨 Critical Threats: {critical_threats}')
     print(f'   🔥 Global Threat Level: {global_threat_level}')
     
-    # Set GitHub Actions outputs
     with open(os.environ['GITHUB_OUTPUT'], 'a') as gh_output:
         gh_output.write(f'mission_status={mission_status}\n')
         gh_output.write(f'threats_analyzed={threats_analyzed}\n')
