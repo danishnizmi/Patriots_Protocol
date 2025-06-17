@@ -1,30 +1,22 @@
-# Patriots Protocol - Intelligence Dashboard Deployment
 name: Deploy Patriots Protocol Intelligence Dashboard
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
     paths-ignore:
-      - 'data/**'  # Ignore data updates from intelligence workflow
-  
-  # Allows you to run this workflow manually from the Actions tab
+      - 'data/**'
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
     steps:
@@ -37,102 +29,100 @@ jobs:
       - name: Create intelligence data directory if missing
         run: |
           mkdir -p data
-          # Create fallback intelligence data file if it doesn't exist
           if [ ! -f data/news-analysis.json ]; then
             cat > data/news-analysis.json << 'EOF'
-          {
-            "articles": [
-              {
-                "title": "Patriots Protocol Intelligence Network Initialization",
-                "summary": "AI-driven cyber threat intelligence network successfully deployed. Monitoring global threat feeds and preparing tactical assessments for enhanced security posture.",
-                "source": "PATRIOTS_PROTOCOL",
-                "timestamp": "2025-06-16T00:00:00.000Z",
-                "threat_level": "LOW",
-                "ai_technical_analysis": "Intelligence network operational. All AI threat analysis models active and ready for comprehensive cyber threat processing and assessment.",
-                "confidence_score": 0.95,
-                "severity_rating": 2,
-                "attack_vectors": ["monitoring"],
-                "affected_sectors": ["intelligence"],
-                "geographic_scope": "Global",
-                "country_code": "GLOBAL",
-                "threat_actors": [],
-                "mitigation_priority": "ROUTINE",
-                "cve_references": [],
-                "threat_family": "System Initialization",
-                "attack_sophistication": "LOW",
-                "risk_score": 2,
-                "correlation_id": "init001",
-                "summary_preview": "AI-driven cyber threat intelligence network successfully deployed.",
-                "full_summary": "AI-driven cyber threat intelligence network successfully deployed. Monitoring global threat feeds and preparing tactical assessments for enhanced security posture.",
-                "key_insights": ["Intelligence Network Operational", "AI Systems Active", "Global Monitoring Enabled"],
-                "actionable_items": ["Monitor system performance", "Validate data feeds", "Ensure continuous operation"],
-                "technical_indicators": ["initialization", "operational", "ready"],
-                "business_impact": "Minimal business impact - system initialization complete",
-                "timeline_urgency": "ROUTINE",
-                "smart_analysis": {
-                  "analysis_type": "Enhanced Basic",
-                  "confidence": 0.95,
-                  "critical_finding": "Intelligence network successfully initialized",
-                  "detection_guidance": [],
-                  "mitigation_steps": []
-                }
-              }
-            ],
-            "metrics": {
-              "total_threats": 1,
-              "critical_threats": 0,
-              "high_threats": 0,
-              "medium_threats": 0,
-              "low_threats": 1,
-              "global_threat_level": "LOW",
-              "intelligence_confidence": 95,
-              "recent_threats_24h": 0,
-              "top_threat_families": [
-                {
-                  "name": "System Initialization",
-                  "count": 1,
-                  "risk_level": "LOW",
-                  "avg_risk": 2.0
-                }
-              ],
-              "geographic_distribution": {
-                "GLOBAL": 1
-              },
-              "zero_day_count": 0,
-              "trending_threats": [],
-              "ai_analysis_quality": 75,
-              "threat_velocity": "stable",
-              "fresh_intel_24h": 0,
-              "source_credibility": 0.95,
-              "emerging_trends": ["Intelligence Network Deployment", "AI Integration", "Threat Monitoring"],
-              "threat_evolution": "stable"
-            },
-            "lastUpdated": "2025-06-16T00:00:00.000Z",
-            "version": "4.2",
-            "ai_usage": {
-              "api_calls_made": 0,
-              "api_calls_limit": 12,
-              "efficiency_score": 40,
-              "cost_optimization": "MAXIMUM_VALUE"
-            },
-            "intelligence_summary": {
-              "mission_status": "OPERATIONAL",
-              "threats_analyzed": 1,
-              "intelligence_sources": 8,
-              "confidence_level": 95,
-              "threat_landscape": "LOW",
-              "next_update": "2025-06-16T06:00:00.000Z",
-              "repository": "https://github.com/danishnizmi/Patriots_Protocol"
-            }
-          }
-          EOF
+{
+  "articles": [
+    {
+      "title": "Patriots Protocol Intelligence Network Initialization",
+      "summary": "AI-driven cyber threat intelligence network successfully deployed. Monitoring global threat feeds and preparing tactical assessments for enhanced security posture.",
+      "source": "PATRIOTS_PROTOCOL",
+      "timestamp": "2025-06-16T00:00:00.000Z",
+      "threat_level": "LOW",
+      "ai_technical_analysis": "Intelligence network operational. All AI threat analysis models active and ready for comprehensive cyber threat processing and assessment.",
+      "confidence_score": 0.95,
+      "severity_rating": 2,
+      "attack_vectors": ["monitoring"],
+      "affected_sectors": ["intelligence"],
+      "geographic_scope": "Global",
+      "country_code": "GLOBAL",
+      "threat_actors": [],
+      "mitigation_priority": "ROUTINE",
+      "cve_references": [],
+      "threat_family": "System Initialization",
+      "attack_sophistication": "LOW",
+      "risk_score": 2,
+      "correlation_id": "init001",
+      "summary_preview": "AI-driven cyber threat intelligence network successfully deployed.",
+      "full_summary": "AI-driven cyber threat intelligence network successfully deployed. Monitoring global threat feeds and preparing tactical assessments for enhanced security posture.",
+      "key_insights": ["Intelligence Network Operational", "AI Systems Active", "Global Monitoring Enabled"],
+      "actionable_items": ["Monitor system performance", "Validate data feeds", "Ensure continuous operation"],
+      "technical_indicators": ["initialization", "operational", "ready"],
+      "business_impact": "Minimal business impact - system initialization complete",
+      "timeline_urgency": "ROUTINE",
+      "smart_analysis": {
+        "analysis_type": "Enhanced Basic",
+        "confidence": 0.95,
+        "critical_finding": "Intelligence network successfully initialized",
+        "detection_guidance": [],
+        "mitigation_steps": []
+      }
+    }
+  ],
+  "metrics": {
+    "total_threats": 1,
+    "critical_threats": 0,
+    "high_threats": 0,
+    "medium_threats": 0,
+    "low_threats": 1,
+    "global_threat_level": "LOW",
+    "intelligence_confidence": 95,
+    "recent_threats_24h": 0,
+    "top_threat_families": [
+      {
+        "name": "System Initialization",
+        "count": 1,
+        "risk_level": "LOW",
+        "avg_risk": 2.0
+      }
+    ],
+    "geographic_distribution": {
+      "GLOBAL": 1
+    },
+    "zero_day_count": 0,
+    "trending_threats": [],
+    "ai_analysis_quality": 75,
+    "threat_velocity": "stable",
+    "fresh_intel_24h": 0,
+    "source_credibility": 0.95,
+    "emerging_trends": ["Intelligence Network Deployment", "AI Integration", "Threat Monitoring"],
+    "threat_evolution": "stable"
+  },
+  "lastUpdated": "2025-06-16T00:00:00.000Z",
+  "version": "4.2",
+  "ai_usage": {
+    "api_calls_made": 0,
+    "api_calls_limit": 12,
+    "efficiency_score": 40,
+    "cost_optimization": "MAXIMUM_VALUE"
+  },
+  "intelligence_summary": {
+    "mission_status": "OPERATIONAL",
+    "threats_analyzed": 1,
+    "intelligence_sources": 8,
+    "confidence_level": 95,
+    "threat_landscape": "LOW",
+    "next_update": "2025-06-16T06:00:00.000Z",
+    "repository": "https://github.com/danishnizmi/Patriots_Protocol"
+  }
+}
+EOF
           fi
 
       - name: Validate Intelligence Dashboard structure
         run: |
           echo "🔍 Validating Patriots Protocol Intelligence Dashboard..."
           
-          # Check if index.html exists and contains required elements
           if [ -f "index.html" ]; then
             echo "✅ index.html found"
             
@@ -149,18 +139,10 @@ jobs:
               echo "⚠️  React framework not detected"
             fi
             
-            if grep -q "CYBER INTELLIGENCE" index.html; then
+            if grep -q "CYBER THREAT INTELLIGENCE" index.html; then
               echo "✅ Intelligence subtitle found"
             else
               echo "❌ Intelligence subtitle missing"
-              exit 1
-            fi
-            
-            # Check for intelligence-specific content
-            if grep -q "CYBER THREAT INTELLIGENCE" index.html; then
-              echo "✅ Cyber threat intelligence content found"
-            else
-              echo "❌ Cyber threat intelligence content missing"
               exit 1
             fi
             
@@ -169,41 +151,36 @@ jobs:
             exit 1
           fi
           
-          # Validate intelligence data structure
           if [ -f "data/news-analysis.json" ]; then
             echo "✅ Intelligence data file found"
             
-            # Create validation script to avoid complex inline Python
-            cat > validate_data.py << 'VALIDATION_SCRIPT'
-          import json
-          import sys
-          
-          try:
-              with open('data/news-analysis.json', 'r') as f:
-                  data = json.load(f)
-              
-              # Check required intelligence fields
-              required_fields = ['articles', 'metrics']
-              missing = [f for f in required_fields if f not in data]
-              
-              if missing:
-                  print(f'❌ Missing intelligence fields: {missing}')
-                  sys.exit(1)
-              
-              metrics = data.get('metrics', {})
-              articles = data.get('articles', [])
-              
-              print(f'✅ Intelligence data structure valid')
-              print(f'📊 Articles: {len(articles)}')
-              print(f'🎯 Threat Level: {metrics.get("global_threat_level", "LOW")}')
-              print(f'🤖 Confidence: {metrics.get("intelligence_confidence", 85)}%')
-              
-          except Exception as e:
-              print(f'❌ Intelligence data validation failed: {e}')
-              sys.exit(1)
-          VALIDATION_SCRIPT
-            
-            python3 validate_data.py
+            python3 -c "
+import json
+import sys
+
+try:
+    with open('data/news-analysis.json', 'r') as f:
+        data = json.load(f)
+    
+    required_fields = ['articles', 'metrics']
+    missing = [f for f in required_fields if f not in data]
+    
+    if missing:
+        print(f'❌ Missing intelligence fields: {missing}')
+        sys.exit(1)
+    
+    metrics = data.get('metrics', {})
+    articles = data.get('articles', [])
+    
+    print(f'✅ Intelligence data structure valid')
+    print(f'📊 Articles: {len(articles)}')
+    print(f'🎯 Threat Level: {metrics.get(\"global_threat_level\", \"LOW\")}')
+    print(f'🤖 Confidence: {metrics.get(\"intelligence_confidence\", 85)}%')
+    
+except Exception as e:
+    print(f'❌ Intelligence data validation failed: {e}')
+    sys.exit(1)
+"
             
           else
             echo "❌ Intelligence data file missing"
@@ -217,7 +194,6 @@ jobs:
         with:
           path: '.'
 
-  # Deployment job
   deploy:
     environment:
       name: github-pages
