@@ -79,7 +79,7 @@ class IntelligenceMetrics:
     emerging_trends: List[str]
     threat_evolution: str
 
-class SmartPatriotsIntelligence:
+class PatriotsIntelligence:
     """Cyber Threat Intelligence Collection and Analysis"""
     
     def __init__(self):
@@ -127,6 +127,27 @@ class SmartPatriotsIntelligence:
                 'url': 'https://www.cyberscoop.com/feed/',
                 'reliability': 0.85,
                 'priority': 2,
+                'ai_analysis': False
+            },
+            {
+                'name': 'DARK_READING',
+                'url': 'https://www.darkreading.com/rss.xml',
+                'reliability': 0.87,
+                'priority': 2,
+                'ai_analysis': False
+            },
+            {
+                'name': 'SECURITY_WEEK',
+                'url': 'https://feeds.feedburner.com/securityweek',
+                'reliability': 0.84,
+                'priority': 2,
+                'ai_analysis': False
+            },
+            {
+                'name': 'INFOSEC_ISLAND',
+                'url': 'https://www.infosecurity-magazine.com/rss/news/',
+                'reliability': 0.82,
+                'priority': 3,
                 'ai_analysis': False
             }
         ]
@@ -292,7 +313,7 @@ Focus on actionable intelligence only."""
                 'confidence': threat_assessment.get('confidence', 0.7),
                 'immediate_actions': intelligence.get('immediate_actions', []),
                 'business_impact': impact.get('business_impact', 'Standard monitoring required'),
-                'analysis_type': 'AI Analysis'
+                'analysis_type': 'Enhanced AI Analysis'
             }
         except Exception as e:
             logger.warning(f"⚠️ Error formatting AI analysis: {e}")
@@ -381,7 +402,7 @@ Focus on actionable intelligence only."""
             'confidence': confidence,
             'immediate_actions': actionable_items,
             'business_impact': self.assess_business_impact(full_text, risk_score),
-            'analysis_type': 'Basic Analysis'
+            'analysis_type': 'Enhanced Basic'
         }
 
     def assess_business_impact(self, content: str, risk_score: int) -> str:
@@ -602,7 +623,10 @@ Focus on actionable intelligence only."""
                     timeline_urgency=analysis['urgency'],
                     smart_analysis={
                         'analysis_type': analysis.get('analysis_type', 'Basic'),
-                        'confidence': analysis['confidence']
+                        'confidence': analysis['confidence'],
+                        'critical_finding': f"{analysis['threat_family']} threat detected",
+                        'detection_guidance': analysis.get('technical_indicators', []),
+                        'mitigation_steps': analysis.get('immediate_actions', [])
                     }
                 )
                 
@@ -678,4 +702,184 @@ Focus on actionable intelligence only."""
         recent_24h = 0
         for report in reports:
             try:
-                report_time = datetime.fromisoformat(report.timestamp.replace('
+                report_time = datetime.fromisoformat(report.timestamp.replace('Z', '+00:00'))
+                if report_time >= recent_cutoff:
+                    recent_24h += 1
+            except:
+                continue
+
+        # Intelligence confidence
+        avg_confidence = sum(r.confidence_score for r in reports) / len(reports) if reports else 0
+        intelligence_confidence = int(avg_confidence * 100)
+
+        # AI analysis quality
+        ai_reports = sum(1 for r in reports if 'AI' in r.smart_analysis.get('analysis_type', ''))
+        ai_quality = int((ai_reports / len(reports)) * 100) if reports else 0
+
+        # Source credibility
+        source_credibility = sum(r.confidence_score for r in reports) / len(reports) if reports else 0.0
+
+        # Emerging trends
+        emerging_trends = []
+        threat_keywords = {}
+        for report in reports:
+            for keyword in report.technical_indicators:
+                threat_keywords[keyword] = threat_keywords.get(keyword, 0) + 1
+        
+        trending = sorted(threat_keywords.items(), key=lambda x: x[1], reverse=True)[:5]
+        emerging_trends = [trend[0] for trend in trending]
+
+        return IntelligenceMetrics(
+            total_threats=len(reports),
+            critical_threats=threat_counts['CRITICAL'],
+            high_threats=threat_counts['HIGH'],
+            medium_threats=threat_counts['MEDIUM'],
+            low_threats=threat_counts['LOW'],
+            global_threat_level=global_level,
+            intelligence_confidence=intelligence_confidence,
+            recent_threats_24h=recent_24h,
+            top_threat_families=top_families,
+            geographic_distribution=geo_dist,
+            zero_day_count=zero_day_count,
+            trending_threats=[],
+            ai_analysis_quality=ai_quality,
+            threat_velocity="escalating" if threat_counts['CRITICAL'] > 2 else "stable",
+            fresh_intel_24h=recent_24h,
+            source_credibility=source_credibility,
+            emerging_trends=emerging_trends,
+            threat_evolution="evolving" if zero_day_count > 0 else "stable"
+        )
+
+    async def generate_intelligence_report(self) -> Dict[str, Any]:
+        """Generate complete intelligence report"""
+        logger.info("🎖️ Patriots Protocol Intelligence Mission - Starting")
+        
+        try:
+            # Collect intelligence
+            raw_intel = await self.collect_intelligence()
+            if not raw_intel:
+                logger.warning("⚠️ No intelligence data collected")
+                return self.create_empty_report()
+            
+            # Process intelligence
+            threat_reports = await self.process_intelligence(raw_intel)
+            if not threat_reports:
+                logger.warning("⚠️ No threat reports generated")
+                return self.create_empty_report()
+            
+            # Calculate metrics
+            metrics = self.calculate_metrics(threat_reports)
+            
+            # Create intelligence summary
+            intelligence_summary = {
+                "mission_status": "OPERATIONAL",
+                "threats_analyzed": len(threat_reports),
+                "intelligence_sources": len(self.intelligence_sources),
+                "confidence_level": metrics.intelligence_confidence,
+                "threat_landscape": metrics.global_threat_level,
+                "next_update": (datetime.now(timezone.utc) + timedelta(hours=6)).isoformat(),
+                "repository": "https://github.com/danishnizmi/Patriots_Protocol"
+            }
+            
+            # AI usage summary
+            ai_usage = {
+                "api_calls_made": self.ai_calls_made,
+                "api_calls_limit": self.max_ai_calls_per_run,
+                "efficiency_score": int((self.ai_calls_made / self.max_ai_calls_per_run) * 100),
+                "cost_optimization": "MAXIMUM_VALUE"
+            }
+            
+            report = {
+                "articles": [asdict(report) for report in threat_reports],
+                "metrics": asdict(metrics),
+                "lastUpdated": datetime.now(timezone.utc).isoformat(),
+                "version": "4.2",
+                "ai_usage": ai_usage,
+                "intelligence_summary": intelligence_summary
+            }
+            
+            logger.info(f"🎯 Intelligence Report Generated: {len(threat_reports)} threats, {metrics.critical_threats} critical")
+            return report
+            
+        except Exception as e:
+            logger.error(f"❌ Intelligence generation failed: {e}")
+            return self.create_empty_report()
+
+    def create_empty_report(self) -> Dict[str, Any]:
+        """Create empty report structure"""
+        empty_metrics = IntelligenceMetrics(
+            total_threats=0, critical_threats=0, high_threats=0, medium_threats=0, low_threats=0,
+            global_threat_level="MONITORING", intelligence_confidence=0, recent_threats_24h=0,
+            top_threat_families=[], geographic_distribution={}, zero_day_count=0,
+            trending_threats=[], ai_analysis_quality=0, threat_velocity="stable",
+            fresh_intel_24h=0, source_credibility=0.0, emerging_trends=[], threat_evolution="stable"
+        )
+        
+        return {
+            "articles": [],
+            "metrics": asdict(empty_metrics),
+            "lastUpdated": datetime.now(timezone.utc).isoformat(),
+            "version": "4.2",
+            "ai_usage": {
+                "api_calls_made": self.ai_calls_made,
+                "api_calls_limit": self.max_ai_calls_per_run,
+                "efficiency_score": 0,
+                "cost_optimization": "MAXIMUM_VALUE"
+            },
+            "intelligence_summary": {
+                "mission_status": "STANDBY",
+                "threats_analyzed": 0,
+                "intelligence_sources": len(self.intelligence_sources),
+                "confidence_level": 0,
+                "threat_landscape": "MONITORING",
+                "next_update": (datetime.now(timezone.utc) + timedelta(hours=6)).isoformat(),
+                "repository": "https://github.com/danishnizmi/Patriots_Protocol"
+            }
+        }
+
+    async def save_intelligence_data(self, report: Dict[str, Any]) -> bool:
+        """Save intelligence data to file"""
+        try:
+            output_file = self.data_directory / 'news-analysis.json'
+            
+            with open(output_file, 'w', encoding='utf-8') as f:
+                json.dump(report, f, indent=2, ensure_ascii=False)
+            
+            logger.info(f"💾 Intelligence data saved: {output_file}")
+            return True
+            
+        except Exception as e:
+            logger.error(f"❌ Failed to save intelligence data: {e}")
+            return False
+
+async def main():
+    """Main intelligence collection function"""
+    try:
+        async with PatriotsIntelligence() as intel_engine:
+            # Generate intelligence report
+            report = await intel_engine.generate_intelligence_report()
+            
+            # Save intelligence data
+            await intel_engine.save_intelligence_data(report)
+            
+            # Mission summary
+            metrics = report.get('metrics', {})
+            summary = report.get('intelligence_summary', {})
+            
+            logger.info("🎖️ ═══════════════════════════════════════════════════")
+            logger.info("     PATRIOTS PROTOCOL - INTELLIGENCE MISSION COMPLETE")
+            logger.info("  ═══════════════════════════════════════════════════")
+            logger.info(f"  📊 Mission Status: {summary.get('mission_status', 'UNKNOWN')}")
+            logger.info(f"  🎯 Threats Analyzed: {summary.get('threats_analyzed', 0)}")
+            logger.info(f"  🚨 Critical Threats: {metrics.get('critical_threats', 0)}")
+            logger.info(f"  🔥 Global Threat Level: {metrics.get('global_threat_level', 'UNKNOWN')}")
+            logger.info(f"  🤖 AI Analysis Quality: {metrics.get('ai_analysis_quality', 0)}%")
+            logger.info(f"  📈 Intelligence Confidence: {metrics.get('intelligence_confidence', 0)}%")
+            logger.info("  ═══════════════════════════════════════════════════")
+            
+    except Exception as e:
+        logger.error(f"❌ Mission failed: {e}")
+        raise
+
+if __name__ == "__main__":
+    asyncio.run(main())
