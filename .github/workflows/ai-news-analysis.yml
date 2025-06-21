@@ -1,29 +1,40 @@
-name: Patriots Protocol - Enhanced AI Cyber Intelligence v4.2
+name: Patriots Protocol - Tactical AI Cyber Intelligence v4.2
 
 on:
   schedule:
-    - cron: '0 */6 * * *'  # Every 6 hours for optimal cost/value balance
+    - cron: '0 */6 * * *'  # Every 6 hours for tactical intelligence
   workflow_dispatch:
     inputs:
-      ai_analysis_intensity:
-        description: 'AI Analysis Mode'
+      tactical_mode:
+        description: 'Tactical Analysis Mode'
         required: false
-        default: 'daily_summary'
+        default: 'tactical_sitrep'
         type: choice
         options:
-        - 'daily_summary'
+        - 'tactical_sitrep'
         - 'enhanced_basic'
-        - 'maximum'
-      geographic_focus:
-        description: 'Geographic Intelligence Focus'
+        - 'maximum_analysis'
+      threat_focus:
+        description: 'Threat Intelligence Focus'
         required: false
         default: 'global'
         type: choice
         options:
         - 'global'
-        - 'us_focus'
-        - 'apac_focus'
-        - 'eu_focus'
+        - 'critical_infrastructure'
+        - 'zero_day_focus'
+        - 'apt_campaigns'
+      force_protection_level:
+        description: 'Force Protection Level Override'
+        required: false
+        default: 'auto'
+        type: choice
+        options:
+        - 'auto'
+        - 'critical'
+        - 'high'
+        - 'medium'
+        - 'low'
   push:
     branches: ["main"]
     paths:
@@ -37,29 +48,31 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "patriots-enhanced-intel-v42"
+  group: "patriots-tactical-intel-v42"
   cancel-in-progress: true
 
 env:
-  INTELLIGENCE_RETENTION_DAYS: 14
+  TACTICAL_RETENTION_DAYS: 30
   PYTHON_VERSION: '3.11'
-  AI_ANALYSIS_MODE: ${{ github.event.inputs.ai_analysis_intensity || 'daily_summary' }}
-  GEOGRAPHIC_FOCUS: ${{ github.event.inputs.geographic_focus || 'global' }}
-  ENHANCED_VERSION: "4.2"
+  TACTICAL_MODE: ${{ github.event.inputs.tactical_mode || 'tactical_sitrep' }}
+  THREAT_FOCUS: ${{ github.event.inputs.threat_focus || 'global' }}
+  FORCE_PROTECTION: ${{ github.event.inputs.force_protection_level || 'auto' }}
+  TACTICAL_VERSION: "4.2"
 
 jobs:
-  enhanced-threat-intelligence:
+  tactical-threat-intelligence:
     runs-on: ubuntu-latest
     outputs:
-      mission_status: ${{ steps.enhanced_analysis.outputs.mission_status }}
-      threats_analyzed: ${{ steps.enhanced_analysis.outputs.threats_analyzed }}
-      critical_threats: ${{ steps.enhanced_analysis.outputs.critical_threats }}
-      zero_day_activity: ${{ steps.enhanced_analysis.outputs.zero_day_activity }}
-      global_threat_level: ${{ steps.enhanced_analysis.outputs.global_threat_level }}
-      intelligence_confidence: ${{ steps.enhanced_analysis.outputs.intelligence_confidence }}
-      ai_insights_quality: ${{ steps.enhanced_analysis.outputs.ai_insights_quality }}
-      daily_summary_confidence: ${{ steps.enhanced_analysis.outputs.daily_summary_confidence }}
-      threat_evolution: ${{ steps.enhanced_analysis.outputs.threat_evolution }}
+      mission_status: ${{ steps.tactical_analysis.outputs.mission_status }}
+      threats_analyzed: ${{ steps.tactical_analysis.outputs.threats_analyzed }}
+      critical_threats: ${{ steps.tactical_analysis.outputs.critical_threats }}
+      zero_day_activity: ${{ steps.tactical_analysis.outputs.zero_day_activity }}
+      threatcon_level: ${{ steps.tactical_analysis.outputs.threatcon_level }}
+      intelligence_confidence: ${{ steps.tactical_analysis.outputs.intelligence_confidence }}
+      ai_insights_quality: ${{ steps.tactical_analysis.outputs.ai_insights_quality }}
+      tactical_readiness: ${{ steps.tactical_analysis.outputs.tactical_readiness }}
+      force_protection_status: ${{ steps.tactical_analysis.outputs.force_protection_status }}
+      threat_evolution: ${{ steps.tactical_analysis.outputs.threat_evolution }}
 
     steps:
       - name: Checkout Patriots Protocol Repository
@@ -68,163 +81,173 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 2
 
-      - name: Setup Enhanced Python Environment
+      - name: Setup Tactical Python Environment
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
-      - name: Install Optimized Dependencies with Caching
+      - name: Install Tactical Dependencies
         run: |
-          echo "🎖️ Installing Patriots Protocol Enhanced Dependencies v4.2..."
+          echo "🎖️ Installing Patriots Protocol Tactical Dependencies v4.2..."
           
           pip install --upgrade pip setuptools wheel
           
-          # Core intelligence processing with optimized versions
+          # Core tactical intelligence processing
           pip install aiohttp==3.9.0 feedparser==6.0.10 python-dateutil==2.8.2
           
-          # Enhanced data processing (optional for cost optimization)
+          # Enhanced data processing for tactical analysis
           pip install pandas numpy || echo "⚠️ Advanced data processing libraries unavailable"
           
-          # AI analysis capabilities with fallback
-          pip install openai==1.3.0 || echo "⚠️ OpenAI unavailable - will use enhanced basic analysis"
+          # AI analysis capabilities for tactical intelligence
+          pip install openai==1.3.0 || echo "⚠️ OpenAI unavailable - will use enhanced tactical analysis"
           
           # Performance and reliability enhancements
           pip install aiofiles tenacity || echo "⚠️ Performance enhancements unavailable"
           
-          echo "✅ Enhanced dependencies v4.2 configured for ${AI_ANALYSIS_MODE} analysis"
+          echo "✅ Tactical dependencies v4.2 configured for ${TACTICAL_MODE} analysis"
 
-      - name: Validate Enhanced Intelligence Engine v4.2
+      - name: Validate Tactical Intelligence Engine v4.2
         run: |
-          echo "🔍 Validating Enhanced Intelligence Engine v4.2..."
+          echo "🔍 Validating Tactical Intelligence Engine v4.2..."
           
           if [ -f "patriots_ai_intel.py" ]; then
-            echo "✅ Enhanced intelligence engine found"
+            echo "✅ Tactical intelligence engine found"
             
             # Comprehensive syntax validation
             python -m py_compile patriots_ai_intel.py
             echo "✅ Syntax validation passed"
             
-            # Enhanced feature detection
-            enhanced_features=0
+            # Tactical feature detection
+            tactical_features=0
             
-            if grep -q "SmartPatriotsIntelligence" patriots_ai_intel.py; then
-              echo "✅ Smart intelligence class detected"
-              enhanced_features=$((enhanced_features + 1))
+            if grep -q "TacticalPatriotsIntelligence" patriots_ai_intel.py; then
+              echo "✅ Tactical intelligence class detected"
+              tactical_features=$((tactical_features + 1))
             fi
             
-            if grep -q "generate_daily_ai_summary" patriots_ai_intel.py; then
-              echo "✅ Daily AI summary generation detected"
-              enhanced_features=$((enhanced_features + 1))
+            if grep -q "generate_tactical_sitrep" patriots_ai_intel.py; then
+              echo "✅ Tactical SITREP generation detected"
+              tactical_features=$((tactical_features + 1))
             fi
             
-            if grep -q "DailyIntelligenceSummary" patriots_ai_intel.py; then
-              echo "✅ Daily summary structure detected"
-              enhanced_features=$((enhanced_features + 1))
+            if grep -q "TacticalSituationReport" patriots_ai_intel.py; then
+              echo "✅ Tactical SITREP structure detected"
+              tactical_features=$((tactical_features + 1))
             fi
             
-            if grep -q "calculate_accurate_metrics" patriots_ai_intel.py; then
-              echo "✅ Enhanced metrics calculation detected"
-              enhanced_features=$((enhanced_features + 1))
+            if grep -q "enhanced_tactical_analysis" patriots_ai_intel.py; then
+              echo "✅ Enhanced tactical analysis detected"
+              tactical_features=$((tactical_features + 1))
             fi
             
-            if grep -q "enhanced_basic_analysis" patriots_ai_intel.py; then
-              echo "✅ Enhanced basic analysis detected"
-              enhanced_features=$((enhanced_features + 1))
+            if grep -q "calculate_tactical_metrics" patriots_ai_intel.py; then
+              echo "✅ Tactical metrics calculation detected"
+              tactical_features=$((tactical_features + 1))
             fi
             
-            if grep -q "smart_deduplication" patriots_ai_intel.py; then
-              echo "✅ Smart deduplication detected"
-              enhanced_features=$((enhanced_features + 1))
+            if grep -q "risk_factors" patriots_ai_intel.py; then
+              echo "✅ Advanced risk assessment detected"
+              tactical_features=$((tactical_features + 1))
             fi
             
-            echo "📊 Enhanced features detected: ${enhanced_features}/6"
+            echo "📊 Tactical features detected: ${tactical_features}/6"
             
-            if [ "$enhanced_features" -ge "5" ]; then
-              echo "✅ Enhanced intelligence engine v4.2 fully validated"
+            if [ "$tactical_features" -ge "5" ]; then
+              echo "✅ Tactical intelligence engine v4.2 fully validated"
             else
-              echo "⚠️ Some enhanced features missing - continuing with available features"
+              echo "⚠️ Some tactical features missing - continuing with available features"
             fi
             
           else
-            echo "❌ Enhanced intelligence engine not found"
+            echo "❌ Tactical intelligence engine not found"
             exit 1
           fi
 
-      - name: Create Enhanced Intelligence Infrastructure v4.2
+      - name: Create Tactical Intelligence Infrastructure v4.2
         run: |
-          echo "🛡️ Creating enhanced intelligence infrastructure v4.2..."
+          echo "🛡️ Creating tactical intelligence infrastructure v4.2..."
           
-          # Enhanced directory structure with better organization
-          mkdir -p data/{raw,processed,analytics,exports,cache,backups}
-          mkdir -p logs/{intelligence,performance,errors,audit}
-          mkdir -p backup/{daily,emergency,archive}
-          mkdir -p cache/{feeds,analysis,metrics}
+          # Tactical directory structure
+          mkdir -p data/{raw,processed,tactical,exports,cache,backups}
+          mkdir -p logs/{tactical,performance,errors,audit,sitrep}
+          mkdir -p backup/{tactical,emergency,archive}
+          mkdir -p cache/{feeds,analysis,metrics,sitrep}
           
-          # Set secure permissions
+          # Set tactical permissions
           chmod 750 data logs backup cache
-          chmod 750 data/{raw,processed,analytics,exports,cache,backups}
-          chmod 750 logs/{intelligence,performance,errors,audit}
-          chmod 750 cache/{feeds,analysis,metrics}
+          chmod 750 data/{raw,processed,tactical,exports,cache,backups}
+          chmod 750 logs/{tactical,performance,errors,audit,sitrep}
+          chmod 750 cache/{feeds,analysis,metrics,sitrep}
           
-          # Create enhanced configuration
-          cat > data/config.json << EOF
+          # Create tactical configuration
+          cat > data/tactical_config.json << EOF
           {
             "version": "4.2",
-            "ai_analysis_mode": "${AI_ANALYSIS_MODE}",
-            "geographic_focus": "${GEOGRAPHIC_FOCUS}",
+            "tactical_mode": "${TACTICAL_MODE}",
+            "threat_focus": "${THREAT_FOCUS}",
+            "force_protection_level": "${FORCE_PROTECTION}",
             "mission_timestamp": "$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)",
-            "cost_optimization": "DAILY_SUMMARY_MODE",
+            "operational_mode": "TACTICAL_INTELLIGENCE",
             "enhanced_features": {
-              "daily_ai_summary": true,
-              "smart_content_handling": true,
-              "value_driven_insights": true,
-              "accurate_metrics": true,
-              "enhanced_ui": true,
-              "matrix_theme": true
+              "tactical_sitrep": true,
+              "enhanced_risk_assessment": true,
+              "force_protection_analysis": true,
+              "threat_actor_tracking": true,
+              "mgs_interface": true,
+              "recommended_reads": true
             },
-            "performance_targets": {
-              "ai_quality_threshold": 85,
-              "daily_summary_confidence": 90,
-              "intelligence_confidence_min": 80
+            "tactical_targets": {
+              "ai_quality_threshold": 90,
+              "sitrep_confidence": 95,
+              "intelligence_confidence_min": 85,
+              "response_time_max": 300
+            },
+            "risk_assessment": {
+              "impact_weighting": 0.4,
+              "probability_weighting": 0.3,
+              "sophistication_weighting": 0.3,
+              "minimum_risk_score": 1,
+              "maximum_risk_score": 10
             }
           }
           EOF
           
-          echo "Advanced intelligence infrastructure v4.2 initialized" > logs/intelligence/system_init_v42.log
-          echo "$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ): Infrastructure v4.2 ready for ${AI_ANALYSIS_MODE} analysis" > logs/performance/startup.log
+          echo "Tactical intelligence infrastructure v4.2 initialized" > logs/tactical/system_init_v42.log
+          echo "$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ): Tactical infrastructure v4.2 ready for ${TACTICAL_MODE} analysis" > logs/performance/startup.log
           
-          echo "✅ Enhanced infrastructure v4.2 ready with daily summary optimization"
+          echo "✅ Tactical infrastructure v4.2 ready with enhanced capabilities"
 
-      - name: Execute Enhanced Intelligence Mission v4.2
-        id: enhanced_analysis
+      - name: Execute Tactical Intelligence Mission v4.2
+        id: tactical_analysis
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MODEL_TOKEN: ${{ secrets.MODEL_TOKEN }}
-          AI_ANALYSIS_MODE: ${{ env.AI_ANALYSIS_MODE }}
-          GEOGRAPHIC_FOCUS: ${{ env.GEOGRAPHIC_FOCUS }}
+          TACTICAL_MODE: ${{ env.TACTICAL_MODE }}
+          THREAT_FOCUS: ${{ env.THREAT_FOCUS }}
+          FORCE_PROTECTION: ${{ env.FORCE_PROTECTION }}
         run: |
-          echo "🎖️ PATRIOTS PROTOCOL v4.2 - Enhanced Daily Summary Intelligence Mission Starting..."
+          echo "🎖️ PATRIOTS PROTOCOL v4.2 - Tactical Intelligence Mission Starting..."
           echo "📅 Mission Start: $(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)"
-          echo "🤖 AI Analysis Mode: ${AI_ANALYSIS_MODE}"
-          echo "🌍 Geographic Focus: ${GEOGRAPHIC_FOCUS}"
-          echo "💰 Cost Optimization: DAILY SUMMARY MODE"
-          echo "🔥 Enhanced Features: Daily AI Summary, Smart Content, Value Insights"
-          echo "🛡️ Executing enhanced cyber threat intelligence operation v4.2..."
+          echo "🤖 Tactical Mode: ${TACTICAL_MODE}"
+          echo "🎯 Threat Focus: ${THREAT_FOCUS}"
+          echo "🛡️ Force Protection: ${FORCE_PROTECTION}"
+          echo "💎 Enhanced Features: Tactical SITREP, Risk Assessment, MGS Interface"
+          echo "🔥 Executing tactical cyber threat intelligence operation v4.2..."
           
-          # Performance monitoring with enhanced metrics
+          # Tactical mission monitoring
           MISSION_START=$(date +%s)
           
-          # Execute enhanced intelligence mission with comprehensive logging
-          python patriots_ai_intel.py 2>&1 | tee logs/intelligence/enhanced_mission_v42_$(date +%Y%m%d_%H%M%S).log
+          # Execute tactical intelligence mission with comprehensive logging
+          python patriots_ai_intel.py 2>&1 | tee logs/tactical/tactical_mission_v42_$(date +%Y%m%d_%H%M%S).log
           
-          # Calculate enhanced performance metrics
+          # Calculate tactical performance metrics
           MISSION_END=$(date +%s)
           EXECUTION_TIME=$((MISSION_END - MISSION_START))
           echo "⏱️ Mission execution: ${EXECUTION_TIME} seconds" | tee -a logs/performance/mission_timing.log
           
-          # Enhanced metrics extraction with proper error handling
+          # Enhanced tactical metrics extraction
           if [ -f ./data/news-analysis.json ]; then
-            echo "✅ Enhanced intelligence data v4.2 generated successfully"
+            echo "✅ Tactical intelligence data v4.2 generated successfully"
             
             python3 -c "
 import json
@@ -240,27 +263,28 @@ try:
     metrics = data.get('metrics', {})
     summary = data.get('intelligence_summary', {})
     ai_usage = data.get('ai_usage', {})
-    daily_summary = data.get('daily_summary', {})
+    tactical_sitrep = data.get('daily_summary', {})
     
-    # Core enhanced metrics with proper defaults
+    # Core tactical metrics with proper defaults
     threats_analyzed = len(articles)
     critical_threats = metrics.get('critical_threats', 0)
     high_threats = metrics.get('high_threats', 0)
     medium_threats = metrics.get('medium_threats', 0)
     low_threats = metrics.get('low_threats', 0)
     zero_day_activity = metrics.get('zero_day_count', 0)
-    global_threat_level = metrics.get('global_threat_level', 'MONITORING')
+    threatcon_level = metrics.get('global_threat_level', 'MONITORING')
     intelligence_confidence = metrics.get('intelligence_confidence', 0)
     mission_status = summary.get('mission_status', 'UNKNOWN')
     
-    # Enhanced v4.2 metrics
+    # Enhanced tactical v4.2 metrics
     ai_insights_quality = metrics.get('ai_insights_quality', 0)
-    daily_summary_confidence = metrics.get('daily_summary_confidence', 0)
+    tactical_readiness = metrics.get('tactical_readiness', 'UNKNOWN')
+    force_protection_status = metrics.get('force_protection_status', 'NORMAL')
     threat_evolution = metrics.get('threat_evolution', 'stable')
-    daily_summary_generated = ai_usage.get('daily_summary_generated', False)
+    sitrep_generated = ai_usage.get('tactical_sitrep_generated', False)
     
-    # Enhanced mission summary
-    print(f'🎖️ Patriots Protocol v4.2 Daily Summary Intelligence Summary:')
+    # Tactical mission summary
+    print(f'🎖️ Patriots Protocol v4.2 Tactical Intelligence Summary:')
     print(f'   📊 Mission Status: {mission_status}')
     print(f'   🎯 Threats Analyzed: {threats_analyzed}')
     print(f'   🚨 Critical Threats: {critical_threats}')
@@ -268,59 +292,65 @@ try:
     print(f'   📊 Medium Threats: {medium_threats}')
     print(f'   📉 Low Threats: {low_threats}')
     print(f'   💥 Zero-Day Activity: {zero_day_activity}')
-    print(f'   🔥 Global Threat Level: {global_threat_level}')
+    print(f'   🔥 THREATCON Level: {threatcon_level}')
     print(f'   🎯 Intelligence Confidence: {intelligence_confidence}%')
     print(f'   🤖 AI Insights Quality: {ai_insights_quality}%')
-    print(f'   📝 Daily Summary Confidence: {daily_summary_confidence}%')
+    print(f'   🛡️ Tactical Readiness: {tactical_readiness}')
+    print(f'   🛡️ Force Protection: {force_protection_status}')
     print(f'   📈 Threat Evolution: {threat_evolution}')
-    print(f'   🎯 Daily Summary Generated: {'Yes' if daily_summary_generated else 'No'}')
+    print(f'   📋 Tactical SITREP Generated: {'Yes' if sitrep_generated else 'No'}')
     print(f'   ⏱️ Execution Time: ${EXECUTION_TIME} seconds')
     
-    # Enhanced performance assessment
-    performance_indicators = []
-    if ai_insights_quality >= 80:
-        performance_indicators.append('High AI Quality')
-    if daily_summary_confidence >= 85:
-        performance_indicators.append('Excellent Summary')
-    if intelligence_confidence >= 80:
-        performance_indicators.append('High Confidence')
-    if critical_threats == 0:
-        performance_indicators.append('Stable Landscape')
+    # Enhanced tactical performance assessment
+    tactical_indicators = []
+    if ai_insights_quality >= 85:
+        tactical_indicators.append('High AI Quality')
+    if intelligence_confidence >= 85:
+        tactical_indicators.append('High Intelligence Confidence')
+    if tactical_readiness in ['GREEN', 'YELLOW']:
+        tactical_indicators.append('Good Tactical Readiness')
+    if zero_day_activity == 0:
+        tactical_indicators.append('No Zero-Day Threats')
+    if sitrep_generated:
+        tactical_indicators.append('SITREP Generated')
     
-    if len(performance_indicators) >= 3:
-        print('   ✅ Performance: EXCELLENT (v4.2 Optimal)')
-    elif len(performance_indicators) >= 2:
-        print('   ✅ Performance: VERY GOOD (v4.2 Enhanced)')
-    elif len(performance_indicators) >= 1:
-        print('   ✅ Performance: GOOD (v4.2 Standard)')
+    if len(tactical_indicators) >= 4:
+        print('   ✅ Tactical Performance: EXCELLENT (v4.2 Optimal)')
+    elif len(tactical_indicators) >= 3:
+        print('   ✅ Tactical Performance: VERY GOOD (v4.2 Enhanced)')
+    elif len(tactical_indicators) >= 2:
+        print('   ✅ Tactical Performance: GOOD (v4.2 Standard)')
     else:
-        print('   ⚠️ Performance: NEEDS OPTIMIZATION')
+        print('   ⚠️ Tactical Performance: OPTIMIZATION NEEDED')
     
-    # Value assessment
-    value_indicators = 0
+    # Tactical value assessment
+    tactical_value = 0
     if critical_threats > 0: 
-        value_indicators += 1
+        tactical_value += 1
     if zero_day_activity > 0: 
-        value_indicators += 1
-    if ai_insights_quality >= 80: 
-        value_indicators += 1
-    if daily_summary_generated: 
-        value_indicators += 1
+        tactical_value += 1
+    if ai_insights_quality >= 85: 
+        tactical_value += 1
+    if sitrep_generated: 
+        tactical_value += 1
+    if tactical_readiness in ['GREEN', 'YELLOW']:
+        tactical_value += 1
     
-    value_levels = ['Standard', 'Medium', 'High', 'Maximum']
-    value_level = value_levels[min(value_indicators, 3)]
-    print(f'   💎 Value Score: {value_indicators}/4 ({value_level})')
+    value_levels = ['Minimal', 'Basic', 'Standard', 'High', 'Maximum']
+    value_level = value_levels[min(tactical_value, 4)]
+    print(f'   💎 Tactical Value: {tactical_value}/5 ({value_level})')
     
-    # Set GitHub Actions outputs with all enhanced metrics
+    # Set GitHub Actions outputs with tactical metrics
     outputs = {
         'mission_status': mission_status,
         'threats_analyzed': threats_analyzed,
         'critical_threats': critical_threats,
         'zero_day_activity': zero_day_activity,
-        'global_threat_level': global_threat_level,
+        'threatcon_level': threatcon_level,
         'intelligence_confidence': intelligence_confidence,
         'ai_insights_quality': ai_insights_quality,
-        'daily_summary_confidence': daily_summary_confidence,
+        'tactical_readiness': tactical_readiness,
+        'force_protection_status': force_protection_status,
         'threat_evolution': threat_evolution
     }
     
@@ -328,20 +358,21 @@ try:
         for key, value in outputs.items():
             gh_output.write(f'{key}={value}\\n')
     
-    print(f'\\n🎖️ Patriots Protocol v4.2 Enhanced Daily Summary Intelligence Mission: COMPLETE')
+    print(f'\\n🎖️ Patriots Protocol v4.2 Tactical Intelligence Mission: COMPLETE')
     
 except Exception as e:
-    print(f'❌ Enhanced metrics extraction failed: {e}', file=sys.stderr)
-    # Set comprehensive error fallback values
+    print(f'❌ Tactical metrics extraction failed: {e}', file=sys.stderr)
+    # Set tactical error fallback values
     error_outputs = {
         'mission_status': 'ERROR',
         'threats_analyzed': 0,
         'critical_threats': 0,
         'zero_day_activity': 0,
-        'global_threat_level': 'ERROR',
+        'threatcon_level': 'ERROR',
         'intelligence_confidence': 0,
         'ai_insights_quality': 0,
-        'daily_summary_confidence': 0,
+        'tactical_readiness': 'OFFLINE',
+        'force_protection_status': 'UNKNOWN',
         'threat_evolution': 'unknown'
     }
     
@@ -351,23 +382,24 @@ except Exception as e:
     sys.exit(1)
 "
           else
-            echo "⚠️ No enhanced intelligence data generated"
+            echo "⚠️ No tactical intelligence data generated"
             cat >> $GITHUB_OUTPUT << EOF
 mission_status=NO_DATA
 threats_analyzed=0
 critical_threats=0
 zero_day_activity=0
-global_threat_level=NO_DATA
+threatcon_level=NO_DATA
 intelligence_confidence=0
 ai_insights_quality=0
-daily_summary_confidence=0
+tactical_readiness=OFFLINE
+force_protection_status=UNKNOWN
 threat_evolution=unknown
 EOF
           fi
 
-      - name: Enhanced Data Validation and Backup v4.2
+      - name: Tactical Data Validation and Backup v4.2
         run: |
-          echo "🔍 Enhanced data validation and backup v4.2..."
+          echo "🔍 Tactical data validation and backup v4.2..."
           
           if [ -f ./data/news-analysis.json ]; then
             # Comprehensive JSON structure validation
@@ -379,7 +411,7 @@ try:
     with open('./data/news-analysis.json', 'r') as f:
         data = json.load(f)
     
-    # Enhanced validation for v4.2 structure
+    # Enhanced validation for tactical v4.2 structure
     required_fields = ['articles', 'metrics', 'intelligence_summary', 'ai_usage', 'version']
     missing = [field for field in required_fields if field not in data]
     
@@ -391,102 +423,123 @@ try:
     if data.get('version') != '4.2':
         print(f'⚠️ Version mismatch: expected 4.2, got {data.get(\"version\")}')
     
-    # Validate enhanced structure
+    # Validate tactical structure
     articles = data.get('articles', [])
-    daily_summary = data.get('daily_summary', {})
+    tactical_sitrep = data.get('daily_summary', {})
     
-    print(f'✅ Enhanced validation passed: {len(articles)} articles')
+    print(f'✅ Tactical validation passed: {len(articles)} threats analyzed')
     
-    # Validate daily summary structure
-    if daily_summary and 'executive_summary' in daily_summary:
-        print(f'✅ Daily summary validation passed')
+    # Validate tactical SITREP structure
+    if tactical_sitrep and 'executive_summary' in tactical_sitrep:
+        print(f'✅ Tactical SITREP validation passed')
+        if 'tactical_recommendations' in tactical_sitrep:
+            print(f'✅ Tactical recommendations detected')
+        if 'force_protection_level' in tactical_sitrep:
+            print(f'✅ Force protection assessment detected')
     else:
-        print(f'⚠️ Daily summary structure incomplete')
+        print(f'⚠️ Tactical SITREP structure incomplete')
     
-    # Validate metrics structure
+    # Validate enhanced metrics structure
     metrics = data.get('metrics', {})
-    required_metrics = ['total_threats', 'global_threat_level', 'ai_insights_quality']
-    missing_metrics = [m for m in required_metrics if m not in metrics]
+    tactical_metrics = ['total_threats', 'global_threat_level', 'ai_insights_quality', 'tactical_readiness']
+    missing_metrics = [m for m in tactical_metrics if m not in metrics]
     
     if missing_metrics:
-        print(f'⚠️ Missing metrics: {missing_metrics}')
+        print(f'⚠️ Missing tactical metrics: {missing_metrics}')
     else:
-        print(f'✅ Metrics validation passed')
+        print(f'✅ Tactical metrics validation passed')
+    
+    # Validate enhanced risk assessment
+    has_enhanced_risk = False
+    for article in articles[:3]:  # Check first 3
+        if 'risk_factors' in article or 'tactical_impact' in article:
+            has_enhanced_risk = True
+            break
+    
+    if has_enhanced_risk:
+        print(f'✅ Enhanced risk assessment detected')
+    else:
+        print(f'⚠️ Enhanced risk assessment missing')
     
 except Exception as e:
-    print(f'❌ Enhanced validation failed: {e}')
+    print(f'❌ Tactical validation failed: {e}')
     sys.exit(1)
 "
           
-            # Create enhanced backup with metadata
+            # Create tactical backup with metadata
             timestamp=$(date +%Y%m%d-%H%M%S)
-            mkdir -p backup/enhanced/v42/${timestamp}
+            mkdir -p backup/tactical/v42/${timestamp}
             
-            # Copy intelligence data with enhanced metadata
-            cp ./data/news-analysis.json ./backup/enhanced/v42/${timestamp}/intelligence-v42-${timestamp}.json
+            # Copy tactical intelligence data with metadata
+            cp ./data/news-analysis.json ./backup/tactical/v42/${timestamp}/tactical-intel-v42-${timestamp}.json
             
-            # Create backup metadata
-            cat > ./backup/enhanced/v42/${timestamp}/metadata.json << EOF
+            # Create tactical backup metadata
+            cat > ./backup/tactical/v42/${timestamp}/tactical_metadata.json << EOF
 {
   "backup_timestamp": "$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)",
   "version": "4.2",
+  "tactical_mode": "${TACTICAL_MODE}",
+  "threat_focus": "${THREAT_FOCUS}",
   "threats_count": $(jq '.articles | length' ./data/news-analysis.json 2>/dev/null || echo 0),
   "mission_status": "$(jq -r '.intelligence_summary.mission_status // "UNKNOWN"' ./data/news-analysis.json 2>/dev/null)",
+  "threatcon_level": "$(jq -r '.metrics.global_threat_level // "UNKNOWN"' ./data/news-analysis.json 2>/dev/null)",
+  "tactical_readiness": "$(jq -r '.metrics.tactical_readiness // "UNKNOWN"' ./data/news-analysis.json 2>/dev/null)",
   "ai_insights_quality": $(jq '.metrics.ai_insights_quality // 0' ./data/news-analysis.json 2>/dev/null || echo 0),
-  "daily_summary_available": $(jq 'has("daily_summary")' ./data/news-analysis.json 2>/dev/null || echo false),
+  "sitrep_available": $(jq 'has("daily_summary")' ./data/news-analysis.json 2>/dev/null || echo false),
   "backup_size": $(stat -f%z ./data/news-analysis.json 2>/dev/null || stat -c%s ./data/news-analysis.json 2>/dev/null || echo 0)
 }
 EOF
             
-            echo "✅ Enhanced validation and backup v4.2 completed with metadata"
+            echo "✅ Tactical validation and backup v4.2 completed with metadata"
           else
-            echo "❌ Enhanced intelligence data file missing"
+            echo "❌ Tactical intelligence data file missing"
             exit 1
           fi
 
-      - name: Commit Enhanced Intelligence Data v4.2
+      - name: Commit Tactical Intelligence Data v4.2
         run: |
-          # Configure git with enhanced identity
-          git config --local user.email "patriots-enhanced-v42@cyber.ai"
-          git config --local user.name "Patriots Protocol Enhanced Intelligence v4.2"
+          # Configure git with tactical identity
+          git config --local user.email "patriots-tactical-v42@cyber.mil"
+          git config --local user.name "Patriots Protocol Tactical Intelligence v4.2"
           
-          # Stage files with enhanced patterns
+          # Stage tactical files
           git add data/news-analysis.json 2>/dev/null || true
-          git add logs/intelligence/ 2>/dev/null || true
-          git add backup/enhanced/v42/ 2>/dev/null || true
+          git add logs/tactical/ 2>/dev/null || true
+          git add backup/tactical/v42/ 2>/dev/null || true
           
           # Check for changes
           if git diff --staged --quiet; then
-            echo "📋 No new enhanced intelligence data to commit"
+            echo "📋 No new tactical intelligence data to commit"
           else
-            # Create enhanced commit message with full metrics
-            COMMIT_MSG="🎖️ Patriots Protocol v4.2: Enhanced Daily Summary Intelligence"
+            # Create tactical commit message with full metrics
+            COMMIT_MSG="🎖️ Patriots Protocol v4.2: Tactical Intelligence Operation"
             COMMIT_MSG="${COMMIT_MSG}\n\n📅 Mission: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-            COMMIT_MSG="${COMMIT_MSG}\n🎯 Analyzed: ${{ steps.enhanced_analysis.outputs.threats_analyzed }} threats"
-            COMMIT_MSG="${COMMIT_MSG}\n🚨 Critical: ${{ steps.enhanced_analysis.outputs.critical_threats }}"
-            COMMIT_MSG="${COMMIT_MSG}\n💥 Zero-Day Activity: ${{ steps.enhanced_analysis.outputs.zero_day_activity }}"
-            COMMIT_MSG="${COMMIT_MSG}\n🔥 Threat Level: ${{ steps.enhanced_analysis.outputs.global_threat_level }}"
-            COMMIT_MSG="${COMMIT_MSG}\n🎯 Confidence: ${{ steps.enhanced_analysis.outputs.intelligence_confidence }}%"
-            COMMIT_MSG="${COMMIT_MSG}\n🤖 AI Quality: ${{ steps.enhanced_analysis.outputs.ai_insights_quality }}%"
-            COMMIT_MSG="${COMMIT_MSG}\n📝 Daily Summary: ${{ steps.enhanced_analysis.outputs.daily_summary_confidence }}%"
-            COMMIT_MSG="${COMMIT_MSG}\n📈 Evolution: ${{ steps.enhanced_analysis.outputs.threat_evolution }}"
-            COMMIT_MSG="${COMMIT_MSG}\n📊 Status: ${{ steps.enhanced_analysis.outputs.mission_status }}"
-            COMMIT_MSG="${COMMIT_MSG}\n\n🔗 Enhanced Intelligence v4.2: https://github.com/danishnizmi/Patriots_Protocol"
-            COMMIT_MSG="${COMMIT_MSG}\n💎 Features: Daily AI Summary • Smart Content • Value Insights • Matrix UI"
+            COMMIT_MSG="${COMMIT_MSG}\n🎯 Analyzed: ${{ steps.tactical_analysis.outputs.threats_analyzed }} threats"
+            COMMIT_MSG="${COMMIT_MSG}\n🚨 Critical: ${{ steps.tactical_analysis.outputs.critical_threats }}"
+            COMMIT_MSG="${COMMIT_MSG}\n💥 Zero-Day: ${{ steps.tactical_analysis.outputs.zero_day_activity }}"
+            COMMIT_MSG="${COMMIT_MSG}\n🔥 THREATCON: ${{ steps.tactical_analysis.outputs.threatcon_level }}"
+            COMMIT_MSG="${COMMIT_MSG}\n🎯 Confidence: ${{ steps.tactical_analysis.outputs.intelligence_confidence }}%"
+            COMMIT_MSG="${COMMIT_MSG}\n🤖 AI Quality: ${{ steps.tactical_analysis.outputs.ai_insights_quality }}%"
+            COMMIT_MSG="${COMMIT_MSG}\n🛡️ Readiness: ${{ steps.tactical_analysis.outputs.tactical_readiness }}"
+            COMMIT_MSG="${COMMIT_MSG}\n🛡️ Force Protection: ${{ steps.tactical_analysis.outputs.force_protection_status }}"
+            COMMIT_MSG="${COMMIT_MSG}\n📈 Evolution: ${{ steps.tactical_analysis.outputs.threat_evolution }}"
+            COMMIT_MSG="${COMMIT_MSG}\n📊 Status: ${{ steps.tactical_analysis.outputs.mission_status }}"
+            COMMIT_MSG="${COMMIT_MSG}\n\n🔗 Tactical Intelligence v4.2: https://github.com/danishnizmi/Patriots_Protocol"
+            COMMIT_MSG="${COMMIT_MSG}\n💎 Features: Tactical SITREP • Enhanced Risk • MGS Interface • AI Recommendations"
             
-            echo -e "$COMMIT_MSG" > enhanced_commit_message_v42.txt
-            git commit -F enhanced_commit_message_v42.txt
+            echo -e "$COMMIT_MSG" > tactical_commit_message_v42.txt
+            git commit -F tactical_commit_message_v42.txt
             git push
             
-            echo "✅ Enhanced intelligence data v4.2 committed and deployed"
+            echo "✅ Tactical intelligence data v4.2 committed and deployed"
           fi
 
-  deploy-enhanced-dashboard:
+  deploy-tactical-dashboard:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: enhanced-threat-intelligence
+    needs: tactical-threat-intelligence
     if: always()
     steps:
       - name: Checkout Repository
@@ -497,193 +550,231 @@ EOF
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Enhanced Dashboard Validation v4.2
+      - name: Tactical Dashboard Validation v4.2
         run: |
-          echo "🌐 Validating Enhanced Patriots Protocol Dashboard v4.2..."
+          echo "🌐 Validating Tactical Patriots Protocol Dashboard v4.2..."
           
           if [ -f "index.html" ]; then
-            echo "✅ Enhanced dashboard found"
+            echo "✅ Tactical dashboard found"
             
-            # Comprehensive feature detection for v4.2
-            enhanced_features=0
+            # Comprehensive tactical feature detection for v4.2
+            tactical_features=0
             
-            if grep -q "EnhancedThreatDashboard" index.html; then
-              echo "✅ Enhanced dashboard component detected"
-              enhanced_features=$((enhanced_features + 1))
+            if grep -q "TacticalDashboard" index.html; then
+              echo "✅ Tactical dashboard component detected"
+              tactical_features=$((tactical_features + 1))
             fi
             
-            if grep -q "renderDailySummary" index.html; then
-              echo "✅ Daily summary rendering detected"
-              enhanced_features=$((enhanced_features + 1))
+            if grep -q "renderTacticalBriefing" index.html; then
+              echo "✅ Tactical briefing rendering detected"
+              tactical_features=$((tactical_features + 1))
             fi
             
-            if grep -q "daily-summary-section" index.html; then
-              echo "✅ Daily summary UI components detected"
-              enhanced_features=$((enhanced_features + 1))
+            if grep -q "tactical-briefing" index.html; then
+              echo "✅ Tactical briefing UI components detected"
+              tactical_features=$((tactical_features + 1))
             fi
             
-            if grep -q "matrix.*background" index.html; then
-              echo "✅ Matrix background detected"
-              enhanced_features=$((enhanced_features + 1))
+            if grep -q "risk-matrix" index.html; then
+              echo "✅ Risk assessment matrix detected"
+              tactical_features=$((tactical_features + 1))
             fi
             
-            if grep -q "EnhancedMatrixBackground" index.html; then
-              echo "✅ Enhanced matrix effect detected"
-              enhanced_features=$((enhanced_features + 1))
+            if grep -q "tactical-grid" index.html; then
+              echo "✅ MGS-style tactical grid detected"
+              tactical_features=$((tactical_features + 1))
             fi
             
-            if grep -q "analytics-panel" index.html; then
-              echo "✅ Analytics panel detected"
-              enhanced_features=$((enhanced_features + 1))
+            if grep -q "intel-feeds" index.html; then
+              echo "✅ Recommended intel feeds detected"
+              tactical_features=$((tactical_features + 1))
             fi
             
-            if grep -q "v4\.2" index.html; then
-              echo "✅ Version 4.2 branding detected"
-              enhanced_features=$((enhanced_features + 1))
+            if grep -q "risk-factors" index.html; then
+              echo "✅ Enhanced risk factors display detected"
+              tactical_features=$((tactical_features + 1))
             fi
             
-            echo "📊 Enhanced dashboard features: ${enhanced_features}/7"
+            if grep -q "TACTICAL.*v4\.2" index.html; then
+              echo "✅ Tactical version 4.2 branding detected"
+              tactical_features=$((tactical_features + 1))
+            fi
             
-            if [ "$enhanced_features" -ge "5" ]; then
-              echo "✅ Enhanced dashboard v4.2 fully validated"
+            echo "📊 Tactical dashboard features: ${tactical_features}/8"
+            
+            if [ "$tactical_features" -ge "6" ]; then
+              echo "✅ Tactical dashboard v4.2 fully validated"
             else
-              echo "⚠️ Some enhanced features missing - dashboard will still function"
+              echo "⚠️ Some tactical features missing - dashboard will still function"
             fi
           else
-            echo "❌ Enhanced dashboard missing"
+            echo "❌ Tactical dashboard missing"
             exit 1
           fi
 
-      - name: Upload Enhanced Dashboard
+      - name: Upload Tactical Dashboard
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
 
-      - name: Deploy Enhanced Dashboard
+      - name: Deploy Tactical Dashboard
         id: deployment
         uses: actions/deploy-pages@v4
 
-      - name: Enhanced Deployment Success v4.2
+      - name: Tactical Deployment Success v4.2
         run: |
           echo "🎖️ ═══════════════════════════════════════════════════════════════════"
-          echo "     PATRIOTS PROTOCOL v4.2 - ENHANCED DAILY SUMMARY DEPLOYED"
+          echo "     PATRIOTS PROTOCOL v4.2 - TACTICAL INTELLIGENCE DEPLOYED"
           echo "  ═══════════════════════════════════════════════════════════════════"
           echo "  🌐 Dashboard: ${{ steps.deployment.outputs.page_url }}"
-          echo "  📊 Mission: ${{ needs.enhanced-threat-intelligence.outputs.mission_status }}"
-          echo "  🎯 Threats: ${{ needs.enhanced-threat-intelligence.outputs.threats_analyzed }}"
-          echo "  🚨 Critical: ${{ needs.enhanced-threat-intelligence.outputs.critical_threats }}"
-          echo "  💥 Zero-Day: ${{ needs.enhanced-threat-intelligence.outputs.zero_day_activity }}"
-          echo "  🔥 Level: ${{ needs.enhanced-threat-intelligence.outputs.global_threat_level }}"
-          echo "  🤖 AI Quality: ${{ needs.enhanced-threat-intelligence.outputs.ai_insights_quality }}%"
-          echo "  📝 Daily Summary: ${{ needs.enhanced-threat-intelligence.outputs.daily_summary_confidence }}%"
-          echo "  📈 Evolution: ${{ needs.enhanced-threat-intelligence.outputs.threat_evolution }}"
-          echo "  💎 Features: Daily AI Summary • Smart Content • Value Insights • Matrix UI"
-          echo "  ⏰ Next Update: 6 hours"
+          echo "  📊 Mission: ${{ needs.tactical-threat-intelligence.outputs.mission_status }}"
+          echo "  🎯 Threats: ${{ needs.tactical-threat-intelligence.outputs.threats_analyzed }}"
+          echo "  🚨 Critical: ${{ needs.tactical-threat-intelligence.outputs.critical_threats }}"
+          echo "  💥 Zero-Day: ${{ needs.tactical-threat-intelligence.outputs.zero_day_activity }}"
+          echo "  🔥 THREATCON: ${{ needs.tactical-threat-intelligence.outputs.threatcon_level }}"
+          echo "  🤖 AI Quality: ${{ needs.tactical-threat-intelligence.outputs.ai_insights_quality }}%"
+          echo "  🛡️ Readiness: ${{ needs.tactical-threat-intelligence.outputs.tactical_readiness }}"
+          echo "  🛡️ Force Protection: ${{ needs.tactical-threat-intelligence.outputs.force_protection_status }}"
+          echo "  📈 Evolution: ${{ needs.tactical-threat-intelligence.outputs.threat_evolution }}"
+          echo "  💎 Features: Tactical SITREP • Enhanced Risk • MGS Interface • AI Recommendations"
+          echo "  ⏰ Next Mission: 6 hours"
           echo "  ═══════════════════════════════════════════════════════════════════"
 
-  enhanced-mission-summary:
+  tactical-mission-summary:
     runs-on: ubuntu-latest
-    needs: [enhanced-threat-intelligence, deploy-enhanced-dashboard]
+    needs: [tactical-threat-intelligence, deploy-tactical-dashboard]
     if: always()
     steps:
-      - name: Patriots Protocol Enhanced Mission Summary v4.2
+      - name: Patriots Protocol Tactical Mission Summary v4.2
         run: |
           echo "🎖️ ═══════════════════════════════════════════════════════════════════"
-          echo "     PATRIOTS PROTOCOL v4.2 - DAILY SUMMARY INTELLIGENCE COMPLETE"
+          echo "     PATRIOTS PROTOCOL v4.2 - TACTICAL INTELLIGENCE COMPLETE"
           echo "  ═══════════════════════════════════════════════════════════════════"
           echo "  📅 Mission: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-          echo "  📊 Status: ${{ needs.enhanced-threat-intelligence.outputs.mission_status || 'UNKNOWN' }}"
-          echo "  🎯 Threats Analyzed: ${{ needs.enhanced-threat-intelligence.outputs.threats_analyzed || '0' }}"
-          echo "  🚨 Critical Threats: ${{ needs.enhanced-threat-intelligence.outputs.critical_threats || '0' }}"
-          echo "  💥 Zero-Day Activity: ${{ needs.enhanced-threat-intelligence.outputs.zero_day_activity || '0' }}"
-          echo "  🔥 Global Threat Level: ${{ needs.enhanced-threat-intelligence.outputs.global_threat_level || 'UNKNOWN' }}"
-          echo "  🎯 Intelligence Confidence: ${{ needs.enhanced-threat-intelligence.outputs.intelligence_confidence || '0' }}%"
-          echo "  🤖 AI Insights Quality: ${{ needs.enhanced-threat-intelligence.outputs.ai_insights_quality || '0' }}%"
-          echo "  📝 Daily Summary Confidence: ${{ needs.enhanced-threat-intelligence.outputs.daily_summary_confidence || '0' }}%"
-          echo "  📈 Threat Evolution: ${{ needs.enhanced-threat-intelligence.outputs.threat_evolution || 'unknown' }}"
-          echo "  🛡️ Enhanced Intelligence: OPERATIONAL"
-          echo "  💎 Mode: Daily AI Summary Optimization"
+          echo "  📊 Status: ${{ needs.tactical-threat-intelligence.outputs.mission_status || 'UNKNOWN' }}"
+          echo "  🎯 Threats Analyzed: ${{ needs.tactical-threat-intelligence.outputs.threats_analyzed || '0' }}"
+          echo "  🚨 Critical Threats: ${{ needs.tactical-threat-intelligence.outputs.critical_threats || '0' }}"
+          echo "  💥 Zero-Day Activity: ${{ needs.tactical-threat-intelligence.outputs.zero_day_activity || '0' }}"
+          echo "  🔥 THREATCON Level: ${{ needs.tactical-threat-intelligence.outputs.threatcon_level || 'UNKNOWN' }}"
+          echo "  🎯 Intelligence Confidence: ${{ needs.tactical-threat-intelligence.outputs.intelligence_confidence || '0' }}%"
+          echo "  🤖 AI Insights Quality: ${{ needs.tactical-threat-intelligence.outputs.ai_insights_quality || '0' }}%"
+          echo "  🛡️ Tactical Readiness: ${{ needs.tactical-threat-intelligence.outputs.tactical_readiness || 'UNKNOWN' }}"
+          echo "  🛡️ Force Protection: ${{ needs.tactical-threat-intelligence.outputs.force_protection_status || 'UNKNOWN' }}"
+          echo "  📈 Threat Evolution: ${{ needs.tactical-threat-intelligence.outputs.threat_evolution || 'unknown' }}"
+          echo "  🛡️ Tactical Intelligence: OPERATIONAL"
+          echo "  💎 Mode: Enhanced Tactical SITREP"
           echo "  ⏰ Update Frequency: Every 6 hours"
           echo "  ═══════════════════════════════════════════════════════════════════"
           
-          # Enhanced comprehensive assessment
-          CRITICAL_COUNT="${{ needs.enhanced-threat-intelligence.outputs.critical_threats || '0' }}"
-          ZERO_DAY_COUNT="${{ needs.enhanced-threat-intelligence.outputs.zero_day_activity || '0' }}"
-          AI_QUALITY="${{ needs.enhanced-threat-intelligence.outputs.ai_insights_quality || '0' }}"
-          DAILY_SUMMARY_CONF="${{ needs.enhanced-threat-intelligence.outputs.daily_summary_confidence || '0' }}"
-          CONFIDENCE="${{ needs.enhanced-threat-intelligence.outputs.intelligence_confidence || '0' }}"
-          EVOLUTION="${{ needs.enhanced-threat-intelligence.outputs.threat_evolution || 'unknown' }}"
+          # Enhanced tactical assessment
+          CRITICAL_COUNT="${{ needs.tactical-threat-intelligence.outputs.critical_threats || '0' }}"
+          ZERO_DAY_COUNT="${{ needs.tactical-threat-intelligence.outputs.zero_day_activity || '0' }}"
+          AI_QUALITY="${{ needs.tactical-threat-intelligence.outputs.ai_insights_quality || '0' }}"
+          TACTICAL_READINESS="${{ needs.tactical-threat-intelligence.outputs.tactical_readiness || 'UNKNOWN' }}"
+          FORCE_PROTECTION="${{ needs.tactical-threat-intelligence.outputs.force_protection_status || 'UNKNOWN' }}"
+          THREATCON="${{ needs.tactical-threat-intelligence.outputs.threatcon_level || 'UNKNOWN' }}"
+          EVOLUTION="${{ needs.tactical-threat-intelligence.outputs.threat_evolution || 'unknown' }}"
           
-          echo "🚨 ENHANCED THREAT ASSESSMENT v4.2:"
+          echo "🚨 TACTICAL THREAT ASSESSMENT v4.2:"
           
-          if [ "$CRITICAL_COUNT" -gt "3" ]; then
-            echo "   🚨 CRITICAL ALERT: $CRITICAL_COUNT critical threats detected"
-            echo "   📋 Immediate Executive Attention Required"
+          if [ "$CRITICAL_COUNT" -gt "4" ]; then
+            echo "   🚨 CONDITION RED: $CRITICAL_COUNT critical threats detected"
+            echo "   📋 Command attention and emergency response required"
+          elif [ "$CRITICAL_COUNT" -gt "2" ]; then
+            echo "   ⚠️ CONDITION ORANGE: $CRITICAL_COUNT critical threats detected"
+            echo "   📋 Enhanced security posture and monitoring required"
           elif [ "$CRITICAL_COUNT" -gt "0" ]; then
-            echo "   ⚠️ ELEVATED ALERT: $CRITICAL_COUNT critical threats detected"
-            echo "   📋 Enhanced monitoring and response recommended"
+            echo "   ⚠️ CONDITION YELLOW: $CRITICAL_COUNT critical threats detected"
+            echo "   📋 Increased vigilance and response readiness required"
           else
-            echo "   ✅ Threat level stable - standard monitoring active"
+            echo "   ✅ CONDITION GREEN: Threat level within normal parameters"
           fi
           
           if [ "$ZERO_DAY_COUNT" -gt "0" ]; then
-            echo "   💥 ZERO-DAY ACTIVITY: $ZERO_DAY_COUNT active exploits detected"
-            echo "   🛡️ Immediate patch management review required"
+            echo "   💥 ZERO-DAY ALERT: $ZERO_DAY_COUNT active exploits detected"
+            echo "   🛡️ Emergency patch management and containment required"
           fi
           
           echo ""
-          echo "🤖 AI PERFORMANCE & DAILY SUMMARY OPTIMIZATION v4.2:"
-          if [ "$AI_QUALITY" -ge "85" ] && [ "$DAILY_SUMMARY_CONF" -ge "90" ] && [ "$CONFIDENCE" -ge "80" ]; then
-            echo "   ✅ AI Performance: EXCELLENT (v4.2 Optimal)"
-            echo "   💎 Daily Summary: MAXIMUM QUALITY"
-            echo "   💰 Cost Efficiency: OPTIMAL"
-          elif [ "$AI_QUALITY" -ge "75" ] && [ "$DAILY_SUMMARY_CONF" -ge "80" ]; then
-            echo "   ✅ AI Performance: VERY GOOD (v4.2 Enhanced)"
-            echo "   💎 Daily Summary: HIGH QUALITY"
-            echo "   💰 Cost Efficiency: GOOD"
-          elif [ "$AI_QUALITY" -ge "65" ] && [ "$DAILY_SUMMARY_CONF" -ge "70" ]; then
-            echo "   ✅ AI Performance: GOOD (v4.2 Standard)"
-            echo "   💎 Daily Summary: MEDIUM QUALITY"
-            echo "   💰 Cost Efficiency: ACCEPTABLE"
+          echo "🤖 TACTICAL AI PERFORMANCE & INTELLIGENCE QUALITY v4.2:"
+          if [ "$AI_QUALITY" -ge "90" ] && [ "$TACTICAL_READINESS" = "GREEN" ]; then
+            echo "   ✅ AI Performance: EXCELLENT (v4.2 Tactical Optimal)"
+            echo "   💎 Tactical Intelligence: MAXIMUM QUALITY"
+            echo "   🛡️ Readiness Status: OPTIMAL"
+          elif [ "$AI_QUALITY" -ge "80" ] && [ "$TACTICAL_READINESS" != "RED" ]; then
+            echo "   ✅ AI Performance: VERY GOOD (v4.2 Tactical Enhanced)"
+            echo "   💎 Tactical Intelligence: HIGH QUALITY"
+            echo "   🛡️ Readiness Status: GOOD"
+          elif [ "$AI_QUALITY" -ge "70" ]; then
+            echo "   ✅ AI Performance: GOOD (v4.2 Tactical Standard)"
+            echo "   💎 Tactical Intelligence: MEDIUM QUALITY"
+            echo "   🛡️ Readiness Status: ACCEPTABLE"
           else
-            echo "   ⚠️ Performance: OPTIMIZATION NEEDED"
-            echo "   📋 Review AI usage patterns and summary generation"
+            echo "   ⚠️ Performance: TACTICAL OPTIMIZATION NEEDED"
+            echo "   📋 Review AI tactical analysis and SITREP generation"
           fi
           
           echo ""
-          echo "💎 DAILY SUMMARY FEATURES ACTIVE v4.2:"
-          echo "   📝 Single Daily AI Analysis: Comprehensive threat landscape summary"
-          echo "   🎯 Executive Summary: High-level threat overview for leadership"
-          echo "   🔍 Key Developments: Most significant security incidents identified"
-          echo "   ⚡ Immediate Actions: Actionable recommendations for security teams"
-          echo "   🌍 Geographic Hotspots: Regional threat activity analysis"
-          echo "   🛡️ Defensive Priorities: Prioritized security measures"
-          echo "   ⚡ Smart Cost Optimization: Single AI call for maximum value"
+          echo "🛡️ FORCE PROTECTION & TACTICAL READINESS:"
+          echo "   🎯 Current Readiness Level: $TACTICAL_READINESS"
+          echo "   🛡️ Force Protection Status: $FORCE_PROTECTION"
+          echo "   🔥 THREATCON Level: $THREATCON"
           
-          echo ""
-          echo "📈 THREAT EVOLUTION ANALYSIS:"
-          case "$EVOLUTION" in
-            "escalating")
-              echo "   🔥 ESCALATING: Threat landscape showing increased activity"
-              echo "   📋 Recommendation: Enhanced monitoring and response readiness"
+          case "$TACTICAL_READINESS" in
+            "GREEN")
+              echo "   ✅ All systems operational - standard monitoring active"
               ;;
-            "stable")
-              echo "   ✅ STABLE: Threat landscape maintaining normal patterns"
-              echo "   📋 Recommendation: Continue standard monitoring procedures"
+            "YELLOW")
+              echo "   ⚠️ Enhanced security posture - increased vigilance required"
               ;;
-            "improving")
-              echo "   📉 IMPROVING: Threat landscape showing decreased activity"
-              echo "   📋 Recommendation: Maintain vigilance while activity is reduced"
+            "ORANGE")
+              echo "   🚨 High alert status - tactical response teams on standby"
+              ;;
+            "RED")
+              echo "   🚨 Maximum alert - immediate tactical response required"
               ;;
             *)
-              echo "   ❓ UNKNOWN: Threat evolution pattern requires analysis"
-              echo "   📋 Recommendation: Review data collection and analysis methods"
+              echo "   ❓ Readiness status unknown - system assessment required"
               ;;
           esac
           
           echo ""
-          echo "🎖️ Patriots Protocol v4.2 Enhanced Daily Summary Intelligence Mission Complete"
-          echo "   🔗 Enhanced Dashboard: Live intelligence with daily AI summary"
+          echo "💎 TACTICAL FEATURES ACTIVE v4.2:"
+          echo "   📋 Tactical SITREP: AI-generated situation reports with actionable intelligence"
+          echo "   🎯 Enhanced Risk Assessment: Multi-factor tactical risk analysis"
+          echo "   🛡️ Force Protection Analysis: Automated readiness level assessment"
+          echo "   🎨 MGS-Style Interface: Tactical cyberpunk command center design"
+          echo "   📡 AI-Curated Intel Feeds: Recommended high-value intelligence sources"
+          echo "   ⚡ Smart Tactical Optimization: Maximum intelligence value per operation"
+          
+          echo ""
+          echo "📈 THREAT EVOLUTION & TACTICAL FORECAST:"
+          case "$EVOLUTION" in
+            "escalating")
+              echo "   🔥 ESCALATING: Threat landscape showing increased hostile activity"
+              echo "   📋 Recommendation: Enhance defensive posture and response readiness"
+              ;;
+            "elevated")
+              echo "   ⚠️ ELEVATED: Above-normal threat activity detected"
+              echo "   📋 Recommendation: Increased monitoring and tactical preparedness"
+              ;;
+            "stable")
+              echo "   ✅ STABLE: Threat landscape maintaining normal operational patterns"
+              echo "   📋 Recommendation: Continue standard tactical monitoring procedures"
+              ;;
+            "improving")
+              echo "   📉 IMPROVING: Threat landscape showing decreased hostile activity"
+              echo "   📋 Recommendation: Maintain vigilance while adjusting resource allocation"
+              ;;
+            *)
+              echo "   ❓ UNKNOWN: Threat evolution pattern requires tactical analysis"
+              echo "   📋 Recommendation: Review intelligence collection and assessment methods"
+              ;;
+          esac
+          
+          echo ""
+          echo "🎖️ Patriots Protocol v4.2 Tactical Intelligence Mission Complete"
+          echo "   🔗 Tactical Dashboard: Live intelligence with enhanced MGS interface"
           echo "   🛡️ Repository: https://github.com/danishnizmi/Patriots_Protocol"
-          echo "   📈 Next Mission: Scheduled in 6 hours for optimal value"
-          echo "   💎 Status: DAILY SUMMARY MODE OPERATIONAL"
+          echo "   📈 Next Mission: Scheduled in 6 hours for continuous tactical awareness"
+          echo "   💎 Status: TACTICAL INTELLIGENCE MODE OPERATIONAL"
