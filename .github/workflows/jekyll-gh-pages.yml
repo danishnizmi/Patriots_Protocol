@@ -1,5 +1,5 @@
-# Patriots Protocol - Intelligence Dashboard Deployment
-name: Deploy Patriots Protocol Intelligence Dashboard
+# Patriots Protocol - Tactical Intelligence Dashboard Deployment
+name: Deploy Patriots Protocol Tactical Intelligence Dashboard
 
 on:
   # Runs on pushes targeting the default branch
@@ -37,31 +37,40 @@ jobs:
       - name: Create intelligence data directory if missing
         run: |
           mkdir -p data
-          # Create fallback intelligence data file if it doesn't exist
+          # Create fallback tactical intelligence data file if it doesn't exist
           if [ ! -f data/news-analysis.json ]; then
             cat > data/news-analysis.json << 'EOF'
           {
             "articles": [
               {
-                "title": "Patriots Protocol Intelligence Network Initialization",
-                "summary": "AI-driven cyber threat intelligence network successfully deployed. Monitoring global threat feeds and preparing tactical assessments for enhanced security posture.",
+                "title": "Patriots Protocol Tactical Intelligence Network Initialization",
+                "summary": "AI-driven tactical cyber threat intelligence network successfully deployed. Monitoring global threat feeds and preparing tactical assessments for enhanced security posture.",
                 "source": "PATRIOTS_PROTOCOL",
                 "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)",
                 "threat_level": "LOW",
-                "ai_analysis": "Intelligence network operational. All AI threat analysis models active and ready for comprehensive cyber threat processing and assessment.",
-                "confidence": 0.95,
-                "severity_score": 2,
-                "keywords": ["INTELLIGENCE", "NETWORK", "OPERATIONAL"],
+                "confidence_score": 0.95,
+                "severity_rating": 2,
                 "attack_vectors": ["monitoring"],
                 "affected_sectors": ["intelligence"],
-                "geolocation": "Global",
-                "threat_actors": ["none"],
-                "technical_details": {
-                  "malware_families": [],
-                  "attack_techniques": [],
-                  "vulnerabilities": [],
-                  "indicators": []
-                }
+                "geographic_scope": "Global",
+                "country_code": "GLOBAL",
+                "threat_actors": [],
+                "mitigation_priority": "ROUTINE",
+                "cve_references": [],
+                "threat_family": "System Initialization",
+                "attack_sophistication": "LOW",
+                "risk_score": 2,
+                "correlation_id": "INIT0001",
+                "key_insights": ["Tactical intelligence network operational", "All AI threat analysis models active"],
+                "business_impact": "System initialization - tactical intelligence capabilities now online",
+                "tactical_impact": "Intelligence network operational - ready for tactical threat assessment",
+                "operational_urgency": "ROUTINE",
+                "risk_factors": {
+                  "impact": "LOW",
+                  "probability": "LOW", 
+                  "sophistication": "LOW"
+                },
+                "recommended_actions": ["Monitor system performance", "Verify data feeds"]
               }
             ],
             "metrics": {
@@ -70,42 +79,89 @@ jobs:
               "high_threats": 0,
               "medium_threats": 0,
               "low_threats": 0,
-              "threat_actors_identified": 0,
-              "attack_techniques_observed": 0,
-              "sectors_targeted": 0,
               "global_threat_level": "LOW",
               "intelligence_confidence": 95,
+              "recent_threats_24h": 0,
+              "top_threat_families": [],
+              "geographic_distribution": {"GLOBAL": 1},
+              "zero_day_count": 0,
+              "trending_threats": [],
+              "threat_velocity": "stable",
               "fresh_intel_24h": 0,
               "source_credibility": 0.95,
-              "emerging_trends": ["Intelligence Network Deployment", "AI Integration", "Threat Monitoring"],
-              "threat_evolution": "stable"
+              "emerging_trends": ["Intelligence Network Deployment", "AI Integration", "Tactical Monitoring"],
+              "threat_evolution": "stable",
+              "daily_summary_confidence": 95,
+              "ai_insights_quality": 95,
+              "tactical_readiness": "GREEN",
+              "force_protection_status": "NORMAL"
+            },
+            "daily_summary": {
+              "date": "$(date +%Y-%m-%d)",
+              "executive_summary": "Tactical intelligence network successfully initialized and operational. All monitoring systems active and ready for threat assessment operations.",
+              "key_developments": [
+                "Tactical intelligence network deployment complete",
+                "AI-powered threat analysis systems online",
+                "Global threat monitoring feeds active"
+              ],
+              "critical_threats_overview": "No critical threats detected during system initialization phase",
+              "trending_attack_vectors": ["monitoring"],
+              "geographic_hotspots": ["Global"],
+              "sector_impact_analysis": "Multi-sector monitoring capabilities established",
+              "recommended_actions": [
+                "Continue standard monitoring procedures",
+                "Verify all intelligence feeds operational",
+                "Maintain tactical readiness posture"
+              ],
+              "threat_landscape_assessment": "Stable baseline monitoring established",
+              "zero_day_activity": "No zero-day activity detected during initialization",
+              "attribution_insights": "No specific threat actor activity during system startup",
+              "defensive_priorities": [
+                "Maintain system operational status",
+                "Monitor intelligence feed quality",
+                "Verify tactical analysis capabilities"
+              ],
+              "tactical_recommendations": [
+                "Continue operational monitoring",
+                "Maintain GREEN readiness status",
+                "Verify intelligence collection effectiveness"
+              ],
+              "force_protection_level": "NORMAL"
             },
             "lastUpdated": "$(date -u +%Y-%m-%dT%H:%M:%S.%3NZ)",
-            "version": "4.0",
+            "version": "4.2",
+            "ai_usage": {
+              "tactical_sitrep_generated": true,
+              "approach": "Tactical Intelligence Mode",
+              "efficiency_score": 95,
+              "cost_optimization": "TACTICAL_VALUE"
+            },
             "intelligence_summary": {
               "mission_status": "OPERATIONAL",
               "threats_analyzed": 0,
-              "intelligence_sources": 8,
+              "intelligence_sources": 6,
               "confidence_level": 95,
               "threat_landscape": "LOW",
+              "tactical_readiness": "GREEN",
+              "force_protection": "NORMAL",
               "repository": "https://github.com/danishnizmi/Patriots_Protocol"
             }
           }
           EOF
           fi
 
-      - name: Validate Intelligence Dashboard structure
+      - name: Validate Tactical Intelligence Dashboard structure
         run: |
-          echo "🔍 Validating Patriots Protocol Intelligence Dashboard..."
+          echo "🔍 Validating Patriots Protocol Tactical Intelligence Dashboard..."
           
-          # Check if index.html exists and contains required elements
+          # Check if index.html exists and contains required tactical elements
           if [ -f "index.html" ]; then
             echo "✅ index.html found"
             
             if grep -q "PATRIOTS PROTOCOL" index.html; then
-              echo "✅ Dashboard title found"
+              echo "✅ Patriots Protocol title found"
             else
-              echo "❌ Dashboard title missing"
+              echo "❌ Patriots Protocol title missing"
               exit 1
             fi
             
@@ -115,18 +171,27 @@ jobs:
               echo "⚠️  React framework not detected"
             fi
             
-            if grep -q "CYBER INTELLIGENCE" index.html; then
-              echo "✅ Intelligence subtitle found"
+            # Check for tactical interface content (updated for new interface)
+            if grep -q -i "tactical.*cyber.*intelligence\|cyber.*threat.*intelligence" index.html; then
+              echo "✅ Tactical cyber intelligence content found"
             else
-              echo "❌ Intelligence subtitle missing"
+              echo "❌ Tactical cyber intelligence content missing"
               exit 1
             fi
             
-            # Check for intelligence-specific content
-            if grep -q "CYBER THREAT INTELLIGENCE" index.html; then
-              echo "✅ Cyber threat intelligence content found"
+            # Check for tactical-specific content
+            if grep -q -i "tactical\|sitrep\|threatcon\|force.*protection" index.html; then
+              echo "✅ Tactical interface elements found"
             else
-              echo "❌ Cyber threat intelligence content missing"
+              echo "❌ Tactical interface elements missing"
+              exit 1
+            fi
+            
+            # Check for dashboard functionality
+            if grep -q -i "dashboard\|TacticalDashboard\|EnhancedThreatDashboard" index.html; then
+              echo "✅ Dashboard functionality detected"
+            else
+              echo "❌ Dashboard functionality missing"
               exit 1
             fi
             
@@ -135,9 +200,9 @@ jobs:
             exit 1
           fi
           
-          # Validate intelligence data structure
+          # Validate tactical intelligence data structure
           if [ -f "data/news-analysis.json" ]; then
-            echo "✅ Intelligence data file found"
+            echo "✅ Tactical intelligence data file found"
             
             python3 -c "
           import json
@@ -147,32 +212,47 @@ jobs:
               with open('data/news-analysis.json', 'r') as f:
                   data = json.load(f)
               
-              # Check required intelligence fields
+              # Check required tactical intelligence fields
               required_fields = ['articles', 'metrics']
               missing = [f for f in required_fields if f not in data]
               
               if missing:
-                  print(f'❌ Missing intelligence fields: {missing}')
+                  print(f'❌ Missing tactical intelligence fields: {missing}')
                   sys.exit(1)
               
               metrics = data.get('metrics', {})
               articles = data.get('articles', [])
               
-              print(f'✅ Intelligence data structure valid')
+              print(f'✅ Tactical intelligence data structure valid')
               print(f'📊 Articles: {len(articles)}')
-              print(f'🎯 Threat Level: {metrics.get(\"global_threat_level\", \"LOW\")}')
-              print(f'🤖 Confidence: {metrics.get(\"intelligence_confidence\", 85)}%')
+              print(f'🎯 THREATCON Level: {metrics.get(\"global_threat_level\", \"LOW\")}')
+              print(f'🤖 Intelligence Confidence: {metrics.get(\"intelligence_confidence\", 95)}%')
+              
+              # Check for tactical-specific fields
+              if 'tactical_readiness' in metrics:
+                  print(f'✅ Tactical readiness field detected: {metrics[\"tactical_readiness\"]}')
+              
+              if 'force_protection_status' in metrics:
+                  print(f'✅ Force protection field detected: {metrics[\"force_protection_status\"]}')
+              
+              # Check for daily summary (SITREP)
+              if 'daily_summary' in data:
+                  daily_summary = data['daily_summary']
+                  if 'tactical_recommendations' in daily_summary:
+                      print(f'✅ Tactical SITREP with recommendations detected')
+                  else:
+                      print(f'✅ Daily summary detected')
               
           except Exception as e:
-              print(f'❌ Intelligence data validation failed: {e}')
+              print(f'❌ Tactical intelligence data validation failed: {e}')
               sys.exit(1)
           "
           else
-            echo "❌ Intelligence data file missing"
+            echo "❌ Tactical intelligence data file missing"
             exit 1
           fi
           
-          echo "🎯 Patriots Protocol Intelligence Dashboard validation complete"
+          echo "🎯 Patriots Protocol Tactical Intelligence Dashboard validation complete"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -191,9 +271,11 @@ jobs:
         id: deployment
         uses: actions/deploy-pages@v4
         
-      - name: Intelligence Dashboard Deployment Success
+      - name: Tactical Intelligence Dashboard Deployment Success
         run: |
-          echo "🎖️  Patriots Protocol Intelligence Dashboard deployed successfully!"
-          echo "🌐 Intelligence Dashboard URL: ${{ steps.deployment.outputs.page_url }}"
+          echo "🎖️  Patriots Protocol Tactical Intelligence Dashboard deployed successfully!"
+          echo "🌐 Tactical Dashboard URL: ${{ steps.deployment.outputs.page_url }}"
           echo "🎯 Status: OPERATIONAL"
-          echo "🛡️  Cyber Intelligence Network: ACTIVE"
+          echo "🛡️  Tactical Cyber Intelligence Network: ACTIVE"
+          echo "🔥 THREATCON Level: MONITORING"
+          echo "💎 Features: Tactical SITREP • Enhanced Risk Assessment • MGS Interface"
