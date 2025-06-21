@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 PATRIOTS PROTOCOL - Tactical AI-Powered Cyber Intelligence Engine v4.2
-Enhanced Risk Assessment with MGS-Style Tactical Intelligence
+Fixed for GitHub Models API Compatibility
 
 Repository: https://github.com/danishnizmi/Patriots_Protocol
 """
@@ -51,7 +51,6 @@ class TacticalThreatReport:
     correlation_id: str
     key_insights: List[str]
     business_impact: str
-    # Enhanced tactical fields
     tactical_impact: str
     operational_urgency: str
     risk_factors: Dict[str, str]
@@ -101,16 +100,22 @@ class TacticalMetrics:
     force_protection_status: str
 
 class TacticalPatriotsIntelligence:
-    """Enhanced Tactical AI-Powered Cyber Threat Intelligence"""
+    """Enhanced Tactical AI-Powered Cyber Threat Intelligence with GitHub Models Support"""
     
     def __init__(self):
+        # GitHub Models configuration
         self.api_token = os.getenv('GITHUB_TOKEN') or os.getenv('MODEL_TOKEN')
         self.base_url = "https://models.github.ai/inference"
-        self.model = "openai/gpt-4o-mini"
+        
+        # Updated model for GitHub Models compatibility
+        self.model = "openai/gpt-4.1"  # Changed from gpt-4o-mini to gpt-4.1
+        
         self.session: Optional[aiohttp.ClientSession] = None
         
         # Tactical optimization
         self.ai_summary_generated = False
+        self.ai_calls_made = 0
+        self.max_ai_calls = 3  # Conservative limit for GitHub Models
         
         # Enhanced intelligence sources with tactical priorities
         self.intelligence_sources = [
@@ -169,35 +174,18 @@ class TacticalPatriotsIntelligence:
             'russia': 'RU', 'brazil': 'BR', 'europe': 'EU', 'global': 'GLOBAL'
         }
         
-        # Enhanced risk factors for tactical assessment
-        self.risk_factors = {
-            'impact': {
-                'CRITICAL': {'score': 10, 'description': 'Mission-critical systems at risk'},
-                'HIGH': {'score': 8, 'description': 'Significant operational impact'},
-                'MEDIUM': {'score': 5, 'description': 'Moderate operational disruption'},
-                'LOW': {'score': 2, 'description': 'Minimal operational impact'}
-            },
-            'probability': {
-                'HIGH': {'score': 9, 'description': 'Active exploitation confirmed'},
-                'MEDIUM': {'score': 6, 'description': 'Exploit likely or demonstrated'},
-                'LOW': {'score': 3, 'description': 'Theoretical or low likelihood'}
-            },
-            'sophistication': {
-                'ADVANCED': {'score': 9, 'description': 'Nation-state level complexity'},
-                'HIGH': {'score': 7, 'description': 'Professional cybercriminal tools'},
-                'MEDIUM': {'score': 5, 'description': 'Intermediate technical skills'},
-                'LOW': {'score': 3, 'description': 'Basic attack methods'}
-            }
-        }
-        
         self.data_directory = Path('./data')
         self.data_directory.mkdir(exist_ok=True)
         
-        logger.info("🎖️ Tactical Patriots Protocol Intelligence Engine v4.2 - Operational")
+        logger.info("🎖️ Tactical Patriots Protocol Intelligence Engine v4.2 - GitHub Models Compatible")
+        if self.api_token:
+            logger.info(f"🤖 GitHub Models API configured - Model: {self.model}")
+        else:
+            logger.warning("⚠️ No GitHub Models API token found - will use enhanced basic analysis")
 
     async def __aenter__(self):
         self.session = aiohttp.ClientSession(
-            timeout=aiohttp.ClientTimeout(total=60),
+            timeout=aiohttp.ClientTimeout(total=90),  # Increased timeout for GitHub Models
             headers={
                 'User-Agent': 'Patriots-Protocol-Tactical/4.2 (+https://github.com/danishnizmi/Patriots_Protocol)',
                 'Accept': 'application/rss+xml, application/xml, text/xml, */*'
@@ -209,53 +197,105 @@ class TacticalPatriotsIntelligence:
         if self.session:
             await self.session.close()
 
+    async def test_github_models_api(self) -> bool:
+        """Test GitHub Models API connectivity"""
+        if not self.api_token:
+            logger.warning("⚠️ No API token available for testing")
+            return False
+            
+        try:
+            headers = {
+                'Authorization': f'Bearer {self.api_token}',
+                'Content-Type': 'application/json'
+            }
+            
+            test_payload = {
+                "model": self.model,
+                "messages": [
+                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "user", "content": "Test message - respond with 'API_TEST_SUCCESS'"}
+                ],
+                "temperature": 0.1,
+                "max_tokens": 50
+            }
+
+            logger.info(f"🔍 Testing GitHub Models API connectivity...")
+            
+            async with self.session.post(self.base_url + "/chat/completions", 
+                                       headers=headers, 
+                                       json=test_payload) as response:
+                if response.status == 200:
+                    result = await response.json()
+                    test_response = result['choices'][0]['message']['content']
+                    if 'API_TEST_SUCCESS' in test_response:
+                        logger.info("✅ GitHub Models API test successful")
+                        return True
+                    else:
+                        logger.info(f"✅ GitHub Models API responding (got: {test_response[:50]}...)")
+                        return True
+                else:
+                    error_text = await response.text()
+                    logger.error(f"❌ GitHub Models API test failed: {response.status} - {error_text[:200]}")
+                    return False
+                    
+        except Exception as e:
+            logger.error(f"❌ GitHub Models API test error: {str(e)}")
+            return False
+
     async def generate_tactical_sitrep(self, all_threats: List[TacticalThreatReport]) -> TacticalSituationReport:
-        """Generate comprehensive tactical situation report"""
+        """Generate comprehensive tactical situation report using GitHub Models"""
         if not self.api_token or not all_threats:
+            logger.info("🔄 Using tactical fallback analysis (no API token or no threats)")
+            return self.create_tactical_fallback(all_threats)
+
+        # Test API connectivity first
+        api_working = await self.test_github_models_api()
+        if not api_working:
+            logger.warning("⚠️ GitHub Models API not accessible - using tactical fallback")
             return self.create_tactical_fallback(all_threats)
 
         try:
             threat_data = self.prepare_tactical_summary_data(all_threats)
             
-            tactical_prompt = f"""As a senior military cyber intelligence analyst, provide a TACTICAL SITUATION REPORT for {datetime.now().strftime('%Y-%m-%d')}.
+            # Optimized prompt for GitHub Models
+            tactical_prompt = f"""Generate a TACTICAL SITUATION REPORT for {datetime.now().strftime('%Y-%m-%d')}.
 
-THREAT INTELLIGENCE ANALYZED:
+THREAT DATA:
 {threat_data}
 
-Provide tactical analysis in this EXACT JSON format:
+Provide tactical analysis in JSON format:
 {{
-    "executive_summary": "2-3 sentence tactical overview of current threat landscape and operational implications",
+    "executive_summary": "Brief tactical overview of threat landscape",
     "key_developments": [
-        "Most significant cyber incident requiring immediate attention",
-        "Critical vulnerability or exploit development with tactical impact",
-        "Notable threat actor operations affecting mission readiness"
+        "Most significant cyber incident",
+        "Critical vulnerability or exploit",
+        "Notable threat actor activity"
     ],
-    "critical_threats_overview": "Detailed tactical analysis of critical threats, their operational impact, and required response measures",
-    "trending_attack_vectors": ["primary_attack_method", "secondary_vector", "emerging_technique"],
-    "geographic_hotspots": ["region_with_significant_activity"],
-    "sector_impact_analysis": "Assessment of which critical sectors are targeted and operational implications",
+    "critical_threats_overview": "Analysis of critical threats and required response",
+    "trending_attack_vectors": ["primary_method", "secondary_vector"],
+    "geographic_hotspots": ["region_with_activity"],
+    "sector_impact_analysis": "Assessment of targeted sectors",
     "recommended_actions": [
-        "Immediate tactical action required within 24 hours",
-        "Critical system updates or patches to deploy immediately",
-        "Enhanced monitoring or defensive posture adjustments"
+        "Immediate action required",
+        "Critical patches to deploy",
+        "Enhanced monitoring needed"
     ],
-    "threat_landscape_assessment": "Overall tactical assessment - escalating threat posture, stable operations, or improving security environment",
-    "zero_day_activity": "Specific assessment of zero-day or critical vulnerability exploitation activity",
-    "attribution_insights": "Threat actor attribution intelligence and campaign tracking",
+    "threat_landscape_assessment": "Overall threat posture assessment",
+    "zero_day_activity": "Zero-day vulnerability assessment",
+    "attribution_insights": "Threat actor intelligence",
     "defensive_priorities": [
-        "Primary defensive priority for immediate implementation",
-        "Secondary defensive measure requiring attention",
-        "Tertiary security enhancement recommendation"
+        "Primary defensive priority",
+        "Secondary measure",
+        "Third priority"
     ],
     "tactical_recommendations": [
-        "Specific tactical recommendation for operational security",
-        "Force protection measure for critical assets",
-        "Intelligence collection priority adjustment"
+        "Operational security recommendation",
+        "Force protection measure"
     ],
-    "force_protection_level": "CRITICAL/HIGH/MEDIUM/LOW force protection posture recommendation"
+    "force_protection_level": "CRITICAL/HIGH/MEDIUM/LOW"
 }}
 
-Use TACTICAL language appropriate for military/security operations. Focus on OPERATIONAL impact and ACTIONABLE intelligence."""
+Focus on actionable tactical intelligence."""
 
             headers = {
                 'Authorization': f'Bearer {self.api_token}',
@@ -265,14 +305,15 @@ Use TACTICAL language appropriate for military/security operations. Focus on OPE
             payload = {
                 "model": self.model,
                 "messages": [
-                    {"role": "system", "content": "You are a senior military cyber intelligence analyst providing tactical situation reports. Use clear, actionable language focused on operational security."},
+                    {"role": "system", "content": "You are a senior military cyber intelligence analyst. Provide tactical situation reports with actionable intelligence."},
                     {"role": "user", "content": tactical_prompt}
                 ],
                 "temperature": 0.1,
-                "max_tokens": 2200
+                "max_tokens": 2000
             }
 
-            logger.info(f"🤖 Generating Tactical SITREP for {len(all_threats)} threats...")
+            self.ai_calls_made += 1
+            logger.info(f"🤖 Generating Tactical SITREP for {len(all_threats)} threats using GitHub Models...")
 
             async with self.session.post(self.base_url + "/chat/completions", 
                                        headers=headers, 
@@ -281,6 +322,7 @@ Use TACTICAL language appropriate for military/security operations. Focus on OPE
                     result = await response.json()
                     ai_response = result['choices'][0]['message']['content']
                     
+                    # Extract JSON from response
                     json_start = ai_response.find('{')
                     json_end = ai_response.rfind('}') + 1
                     
@@ -288,13 +330,14 @@ Use TACTICAL language appropriate for military/security operations. Focus on OPE
                         json_content = ai_response[json_start:json_end]
                         sitrep_data = json.loads(json_content)
                         self.ai_summary_generated = True
-                        logger.info("✅ Tactical SITREP generated successfully")
+                        logger.info("✅ Tactical SITREP generated successfully using GitHub Models")
                         return self.format_tactical_sitrep(sitrep_data)
                 else:
-                    logger.warning(f"⚠️ AI API error: {response.status}")
+                    error_text = await response.text()
+                    logger.warning(f"⚠️ GitHub Models API error: {response.status} - {error_text[:200]}")
                     
         except Exception as e:
-            logger.warning(f"⚠️ Tactical SITREP failed: {str(e)[:100]}... - using tactical fallback")
+            logger.warning(f"⚠️ Tactical SITREP generation failed: {str(e)[:100]}... - using tactical fallback")
             
         return self.create_tactical_fallback(all_threats)
 
@@ -307,20 +350,20 @@ Use TACTICAL language appropriate for military/security operations. Focus on OPE
         high_threats = [t for t in threats if t.threat_level == 'HIGH']
         zero_day_threats = [t for t in threats if 'zero' in t.threat_family.lower()]
         
-        summary_data.append(f"SITREP - TOTAL THREATS: {len(threats)}")
+        summary_data.append(f"TOTAL THREATS: {len(threats)}")
         summary_data.append(f"CRITICAL: {len(critical_threats)}, HIGH: {len(high_threats)}, ZERO-DAY: {len(zero_day_threats)}")
         
         # Critical threats intelligence
         if critical_threats:
             summary_data.append("\nCRITICAL THREATS:")
             for threat in critical_threats[:3]:
-                summary_data.append(f"- {threat.title} ({threat.threat_family}) - Risk: {threat.risk_score}/10")
+                summary_data.append(f"- {threat.title[:80]} ({threat.threat_family}) - Risk: {threat.risk_score}/10")
         
         # High priority threats
         if high_threats:
-            summary_data.append("\nHIGH PRIORITY THREATS:")
+            summary_data.append("\nHIGH THREATS:")
             for threat in high_threats[:3]:
-                summary_data.append(f"- {threat.title} ({threat.threat_family}) - Risk: {threat.risk_score}/10")
+                summary_data.append(f"- {threat.title[:80]} ({threat.threat_family}) - Risk: {threat.risk_score}/10")
         
         # Tactical analysis data
         families = {}
@@ -337,21 +380,9 @@ Use TACTICAL language appropriate for military/security operations. Focus on OPE
         top_regions = sorted(geography.items(), key=lambda x: x[1], reverse=True)[:3]
         top_vectors = sorted(attack_vectors.items(), key=lambda x: x[1], reverse=True)[:3]
         
-        summary_data.append(f"\nTOP THREAT FAMILIES: {', '.join([f'{k}({v})' for k, v in top_families])}")
-        summary_data.append(f"GEOGRAPHIC HOTSPOTS: {', '.join([f'{k}({v})' for k, v in top_regions])}")
-        summary_data.append(f"ATTACK VECTORS: {', '.join([f'{k}({v})' for k, v in top_vectors])}")
-        
-        # CVE and attribution intelligence
-        cves = []
-        threat_actors = []
-        for threat in threats:
-            cves.extend(threat.cve_references)
-            threat_actors.extend(threat.threat_actors)
-        
-        if cves:
-            summary_data.append(f"CVE REFERENCES: {', '.join(list(set(cves))[:5])}")
-        if threat_actors:
-            summary_data.append(f"THREAT ACTORS: {', '.join(list(set(threat_actors))[:3])}")
+        summary_data.append(f"\nTOP FAMILIES: {', '.join([f'{k}({v})' for k, v in top_families])}")
+        summary_data.append(f"REGIONS: {', '.join([f'{k}({v})' for k, v in top_regions])}")
+        summary_data.append(f"VECTORS: {', '.join([f'{k}({v})' for k, v in top_vectors])}")
         
         return '\n'.join(summary_data)
 
@@ -359,7 +390,7 @@ Use TACTICAL language appropriate for military/security operations. Focus on OPE
         """Format AI response into tactical SITREP structure"""
         return TacticalSituationReport(
             date=datetime.now().strftime('%Y-%m-%d'),
-            executive_summary=ai_data.get('executive_summary', 'Tactical analysis complete - threat landscape stable'),
+            executive_summary=ai_data.get('executive_summary', 'Tactical analysis complete - threat landscape assessed'),
             key_developments=ai_data.get('key_developments', []),
             critical_threats_overview=ai_data.get('critical_threats_overview', 'No critical threats requiring immediate response'),
             trending_attack_vectors=ai_data.get('trending_attack_vectors', []),
@@ -429,9 +460,9 @@ Use TACTICAL language appropriate for military/security operations. Focus on OPE
         # Generate key developments
         key_developments = []
         if critical_threats:
-            key_developments.append(f"Critical threat detected: {critical_threats[0].title[:80]}...")
+            key_developments.append(f"Critical threat detected: {critical_threats[0].title[:60]}...")
         if high_threats:
-            key_developments.append(f"High-priority incident: {high_threats[0].title[:80]}...")
+            key_developments.append(f"High-priority incident: {high_threats[0].title[:60]}...")
         if zero_days:
             key_developments.append(f"Zero-day vulnerability activity detected ({zero_days} incidents)")
         
@@ -1104,7 +1135,9 @@ Use TACTICAL language appropriate for military/security operations. Focus on OPE
             "version": "4.2",
             "ai_usage": {
                 "tactical_sitrep_generated": self.ai_summary_generated,
-                "approach": "Tactical Intelligence Mode",
+                "approach": "GitHub Models Tactical Intelligence",
+                "model_used": self.model,
+                "api_calls_made": self.ai_calls_made,
                 "efficiency_score": 95 if self.ai_summary_generated else 75,
                 "cost_optimization": "TACTICAL_VALUE"
             },
@@ -1127,14 +1160,18 @@ Use TACTICAL language appropriate for military/security operations. Focus on OPE
         
         logger.info(f"💾 Tactical Intelligence saved: {len(reports)} reports")
         logger.info(f"🎯 THREATCON Level: {metrics.global_threat_level}")
-        logger.info(f"🤖 Tactical SITREP: {'Generated' if self.ai_summary_generated else 'Fallback Used'}")
+        logger.info(f"🤖 GitHub Models SITREP: {'Generated' if self.ai_summary_generated else 'Fallback Used'}")
+        logger.info(f"📊 AI Analysis Quality: {metrics.ai_insights_quality}%")
 
 async def execute_tactical_intelligence_mission():
-    """Execute tactical cyber threat intelligence mission"""
-    logger.info("🎖️ PATRIOTS PROTOCOL v4.2 - Tactical Intelligence Mission")
+    """Execute tactical cyber threat intelligence mission with GitHub Models"""
+    logger.info("🎖️ PATRIOTS PROTOCOL v4.2 - Tactical Intelligence Mission (GitHub Models)")
     
     try:
         async with TacticalPatriotsIntelligence() as intel_engine:
+            # Test GitHub Models API connectivity
+            logger.info("🔍 Testing GitHub Models API connectivity...")
+            
             # Collect tactical intelligence
             raw_intelligence = await intel_engine.collect_intelligence()
             
@@ -1149,7 +1186,7 @@ async def execute_tactical_intelligence_mission():
                 logger.warning("⚠️ No threats processed")
                 return
             
-            # Generate tactical SITREP
+            # Generate tactical SITREP using GitHub Models
             tactical_sitrep = await intel_engine.generate_tactical_sitrep(threat_reports)
             
             # Calculate tactical metrics
